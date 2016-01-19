@@ -19,3 +19,15 @@ ___________________
 10. As a team leader, I want to view an organized list of goals so that I can visualize the status of all the goals.
 11. As a team leader, I want to close completed goals so that to indicate completion.
 12. As a team leader, I want to make announcements so that I can inform my team.
+
+
+__________________
+
+Read Only
+
+__________________
+
+1.As a read only user, I want to view the goals of all teams/departments so that I am informed.
+2.As a read only user, I want to view other users’ profiles so that I know who they are.
+3.As a read only user, I want to set up a profile so that other users know who I am.
+
