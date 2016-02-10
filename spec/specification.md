@@ -1,13 +1,17 @@
 <script>
 h1{font-size: 7em;}
 h2{font-size: 4em;}
+<p>
+{
+padding-left:5em
+}
 </script>
 
-<h1><b>MacEwan University</h1>
-<font size = "7">CMPT 395, Winter 2016 </font>
-<h2><b>EPL Business Plan Solution
+<h1><b>MacEwan University</h1></b>
+CMPT 395, Winter 2016 
+EPL Business Plan Solution
 
-Introduction</h2></b>
+<h2><b>Introduction</h2></b>
 
 <p>This document is intended to indicate how we will provide a solution for the Edmonton Public Library’s business plan problem. </p>
 
@@ -21,23 +25,25 @@ Introduction</h2></b>
 
 <h2><b>GOAT Structure</h2></b>
 <p>There are 4 levels in the GOAT hierarchy from most broad to most specific, they are: Goals Objectives, Actions, Tasks.
-
-	1.<b>Goals:</b> are the highest level in the hierarchy, they are defined in business plan and most broadly define an objective of the business plan.
-Objectives: are all below a goal, although there may be multiple objectives per goal. 
-
-	2.<b>Actions:</b> exist under Objectives and is created by the teams and departments on their own. Non-BP Actions can be created, and will not be tied to any particular objective.
-
-	3.<b>Tasks:</b> are under Actions, making them the most specific part of the business plan.
 </p>
-<b>Features</b>
-View the business plan in an organized tableview.
-Ability to edit and update the business plan.
-User management will provide tools to organise employees hierarchically which will improve organisation and yield faster results in communication.
-Team/Department management will provide tools to edit teams further increasing organization.
-The ability to view and sort the business plan in a logical and useful manner.
-Provide a more sophisticated structure to organize budget to increase savings and management of budget.
+<p>1.<b>Goals:</b> are the highest level in the hierarchy, they are defined in business plan and most broadly define an objective of the business plan.
+Objectives: are all below a goal, although there may be multiple objectives per goal. 
+</p>
+<p>2.<b>Actions:</b> exist under Objectives and is created by the teams and departments on their own. Non-BP Actions can be created, and will not be tied to any particular objective.
+</p>
+<p>3.<b>Tasks:</b> are under Actions, making them the most specific part of the business plan.
+</p>
+<h2><b>Features</b></h2>
+<ul>
+<li>View the business plan in an organized tableview.</li>
+<li>Ability to edit and update the business plan.</li>
+<li>User management will provide tools to organise employees hierarchically which will improve organisation and yield faster results in communication.</li>
+<li>Team/Department management will provide tools to edit teams further increasing organization.</li>
+<li>The ability to view and sort the business plan in a logical and useful manner.</li>
+<li>Provide a more sophisticated structure to organize budget to increase savings and management of budget.</li>
+</ul>
 
-Users
+<h2><b>Users</h2></b>
 There are 5 types of users. In order of most privileges to least, they are: Admin, BP Lead, Team/Department Lead, Team/Department Member and Read Only User. 
 The Admin is a type of user that can add, modify and remove users from the system. The admin can also add, modify and remove business plans from the system. The admin is intended to be a user role that maintains the system in the form of managing other users.
 The BP Lead is a type of user that can add, modify and remove business plans from the system. The BP Lead will add overarching Goals, and then Objectives to the system. Once Objectives have been added, the BP Lead will be responsible for adding collaborators for each objective. The BP Lead user role is intended for the Business Plan leaders within the Edmonton Public Library. BP Lead users will also be able to generate reports that will encompass the progress on the overall business plan.
