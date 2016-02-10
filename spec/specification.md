@@ -1,28 +1,35 @@
+<script>
 h1{font-size: 7em;}
+h2{font-size: 4em;}
+</script>
 
-<h1><b>MacEwan University</b></h1>
+<h1><b>MacEwan University</h1>
 <font size = "7">CMPT 395, Winter 2016 </font>
-EPL Business Plan Solution
+<h2><b>EPL Business Plan Solution
 
-Introduction
-This document is intended to indicate how we will provide a solution for the Edmonton Public Library’s business plan problem. 
+Introduction</h2></b>
 
-The Problem
-The Edmonton Public Library develops business plans every 3 - 5 years in which teams and departments have specific actions they are expected to complete. Currently, each Team or Department have separate excel spreadsheets that lack structure. Updating and maintaining the spreadsheets is fairly inconvenient and takes a lot of time.
+<p>This document is intended to indicate how we will provide a solution for the Edmonton Public Library’s business plan problem. </p>
 
+<h2><b>The Problem</h2></b>
+<p>The Edmonton Public Library develops business plans every 3 - 5 years in which teams and departments have specific actions they are expected to complete. Currently, each Team or Department have separate excel spreadsheets that lack structure. Updating and maintaining the spreadsheets is fairly inconvenient and takes a lot of time.
+</p>
 
-The Solution
-We plan to provide a web-based based application for tracking and reporting on business plans which will allow smooth collaboration between several users. Users will be able to view business plans, and update specific items based on their permissions.
+<h2><b>The Solution</h2></b>
+<p>We plan to provide a web-based based application for tracking and reporting on business plans which will allow smooth collaboration between several users. Users will be able to view business plans, and update specific items based on their permissions.
+</p>
 
+<h2><b>GOAT Structure</h2></b>
+<p>There are 4 levels in the GOAT hierarchy from most broad to most specific, they are: Goals Objectives, Actions, Tasks.
 
-GOAT Structure
-There are 4 levels in the GOAT hierarchy from most broad to most specific, they are: Goals Objectives, Actions, Tasks.
-Goals: are the highest level in the hierarchy, they are defined in business plan and most broadly define an objective of the business plan.
+	1.<b>Goals:</b> are the highest level in the hierarchy, they are defined in business plan and most broadly define an objective of the business plan.
 Objectives: are all below a goal, although there may be multiple objectives per goal. 
-Actions: exist under Objectives and is created by the teams and departments on their own. Non-BP Actions can be created, and will not be tied to any particular objective.
-Tasks: are under Actions, making them the most specific part of the business plan.
 
-Features
+	2.<b>Actions:</b> exist under Objectives and is created by the teams and departments on their own. Non-BP Actions can be created, and will not be tied to any particular objective.
+
+	3.<b>Tasks:</b> are under Actions, making them the most specific part of the business plan.
+</p>
+<b>Features</b>
 View the business plan in an organized tableview.
 Ability to edit and update the business plan.
 User management will provide tools to organise employees hierarchically which will improve organisation and yield faster results in communication.
