@@ -1,5 +1,5 @@
-cEwan University
-CMPT 395, Winter 2016
+<b>MacEwan University</b>
+<font size = "7">CMPT 395, Winter 2016 </font>
 EPL Business Plan Solution
 
 Introduction
