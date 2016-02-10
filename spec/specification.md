@@ -1,4 +1,6 @@
-<b>MacEwan University</b>
+h1{font-size: 7em;}
+
+<h1><b>MacEwan University</b></h1>
 <font size = "7">CMPT 395, Winter 2016 </font>
 EPL Business Plan Solution
 
