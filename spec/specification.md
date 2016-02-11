@@ -30,13 +30,13 @@ EPL Business Plan Solution
 </p>
 <p>2.<b>Objectives:</b> are all below a goal, although there may be multiple objectives per goal. 
 </p>
-<p>2.<b>Actions:</b> exist under Objectives and is created by the teams and departments on their own. Non-BP Actions can be created, and will not be tied to any particular objective.
+<p>3.<b>Actions:</b> exist under Objectives and is created by the teams and departments on their own. Non-BP Actions can be created, and will not be tied to any particular objective.
 </p>
-<p>3.<b>Tasks:</b> are under Actions, making them the most specific part of the business plan.
+<p>4.<b>Tasks:</b> are under Actions, making them the most specific part of the business plan.
 </p>
 <h2><b>Features</b></h2>
 <ul>
-<li>View the business plan in an organized tableview.</li>
+<li>View the business plan in an organized table view.</li>
 <li>Ability to edit and update the business plan.</li>
 <li>User management will provide tools to organise employees hierarchically which will improve organisation and yield faster results in communication.</li>
 <li>Team/Department management will provide tools to edit teams further increasing organization.</li>
