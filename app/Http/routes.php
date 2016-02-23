@@ -14,22 +14,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//--------------------------
-//TOP BAR ROUTES
-//--------------------------
+/*
+|--------------------------
+| TOP BAR ROUTES
+|--------------------------
+ */
 
-Route::get('dashBoard', 'DashBoardController@dashBoard');
-Route::get('myTasks','MyTasksController@myTasks');
-Route::get('businessPlan','BusinessPlanController@businessPlan');
+
+Route::get('dashboard', 'DashboardController@dashBoard');
+Route::get('mytasks','MyTasksController@myTasks');
+Route::get('businessplan','BusinessPlanController@businessPlan');
 Route::get('teams','TeamsController@teams');
 Route::get('departments','DepartmentsController@departments');
 Route::get('notifications','NotificationsController@notifications');
-Route::get('myProfile','MyProfileController@myProfile');
+Route::get('myprofile','MyProfileController@myProfile');
 
 
-//--------------------------
-//TOP BAR ROUTES END
-//--------------------------
+/*
+|--------------------------
+| TOP BAR ROUTES END
+|--------------------------
+ */
 
 
 /*
@@ -43,6 +48,14 @@ Route::get('myProfile','MyProfileController@myProfile');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 });
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
