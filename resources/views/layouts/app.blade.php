@@ -13,7 +13,7 @@
         <div class="navbar-inner">
             <a id="logo" href="/"></a> <!-- TODO need reference to EPL logo, and where does clicking the logo take us? -->
             <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="/dashBoard">DashBoard</a></li>
                 <li><a href="/myTasks">My Tasks</a></li>
                 <li><a href="/businessPlan">Business Plan</a></li>
                 <li><a href="/teams">Teams</a></li>

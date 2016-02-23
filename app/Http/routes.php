@@ -14,8 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//--------------------------
+//TOP BAR ROUTES
+//--------------------------
 
-Route::get('home', 'HomeController@dashBoard');
+Route::get('dashBoard', 'DashBoardController@dashBoard');
+Route::get('myTasks','MyTasksController@myTasks');
+Route::get('businessPlan','BusinessPlanController@businessPlan');
+Route::get('teams','TeamsController@teams');
+Route::get('departments','DepartmentsController@departments');
+Route::get('notifications','NotificationsController@notifications');
+Route::get('myProfile','MyProfileController@myProfile');
+
+
+//--------------------------
+//TOP BAR ROUTES END
+//--------------------------
+
 
 /*
 |--------------------------------------------------------------------------
