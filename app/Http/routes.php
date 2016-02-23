@@ -18,13 +18,13 @@ Route::get('/', function () {
 //TOP BAR ROUTES
 //--------------------------
 
-Route::get('home', 'TopBarController@home');
-Route::get('myTasks','TopBarController@myTasks');
-Route::get('businessPlan','TopBarController@businessPlan');
-Route::get('teams','TopBarController@teams');
-Route::get('departments','TopBarController@departments');
-Route::get('notifications','TopBarController@notifications');
-Route::get('myProfile','TopBarController@myProfile');
+Route::get('dashBoard', 'DashBoardController@dashBoard');
+Route::get('myTasks','MyTasksController@myTasks');
+Route::get('businessPlan','BusinessPlanController@businessPlan');
+Route::get('teams','TeamsController@teams');
+Route::get('departments','DepartmentsController@departments');
+Route::get('notifications','NotificationsController@notifications');
+Route::get('myProfile','MyProfileController@myProfile');
 
 
 //--------------------------

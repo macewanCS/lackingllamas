@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class MyTasksController extends Controller
 {
-    public function dashBoard()
+ public function myTasks()
     {
-        return view('pages.home');
+        return view('TopBar.myTasks');
     }
 }

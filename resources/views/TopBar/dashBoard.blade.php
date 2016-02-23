@@ -3,6 +3,6 @@
 @section('content')
 <div class="container">
     <!--TODO work on dashboard -->
-    This is where our home page goes!
+    This is where our dashBoard page goes!
 </div>
 @stop
