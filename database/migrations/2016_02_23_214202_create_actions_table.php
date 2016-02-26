@@ -23,6 +23,7 @@ class CreateActionsTable extends Migration
             $table->text('successMeasured');
             $table->integer('priority');
             $table->timestamps();
+             $table->foreign('objective_id')->references('id')->on('objectives');
         });
     }
 

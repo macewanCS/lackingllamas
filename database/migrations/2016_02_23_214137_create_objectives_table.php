@@ -16,6 +16,7 @@ class CreateObjectivesTable extends Migration
             $table->increments('id');
             $table->name('name');
             $table->timestamps();
+             $table->foreign('goal_id')->references('id')->on('goals');
         });
     }
 
