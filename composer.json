@@ -13,7 +13,8 @@
         "Illuminate/database": "^5.2",
         "Illuminate/html": "^5.0",
         "Illuminate/support": "^5.2",
-        "Illuminate/container": "^5.2"
+        "Illuminate/container": "^5.2",
+        "nesbot/Carbon": "^1.21"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -47,10 +48,9 @@
             "php artisan clear-compiled",
             "php artisan optimize"
         ],
-        "pre-update-cmd": [
-            "php artisan clear-compiled"
-        ],
         "post-update-cmd": [
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
             "php artisan optimize"
         ]
     },
