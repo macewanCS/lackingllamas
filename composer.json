@@ -9,7 +9,11 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "barryvdh/laravel-ide-helper": "^2.1"
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "Illuminate/database": "^5.2",
+        "Illuminate/html": "^5.0",
+        "Illuminate/support": "^5.2",
+        "Illuminate/container": "^5.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
