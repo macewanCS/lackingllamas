@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>EPL Business Plan Manager</title>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -28,20 +28,7 @@
 <body id="app-layout">
 <nav class="navbar navbar-default">
     <div class="container">
-        <div class="navbar">
-            <div class="navbar-inner">
-                <a id="logo" href="/"></a> <!-- TODO need reference to EPL logo -->
-                <ul>
-                    <li><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="/mytasks">My Tasks</a></li>
-                    <li><a href="/businessplan">Business Plan</a></li>
-                    <li><a href="/teams">Teams</a></li>
-                    <li><a href="/departments">Departments</a></li>
-                    <li><a href="/notifications">Notifications</a></li>
-                    <li><a href="/myprofile">My Profile</a></li>
-                </ul>
-            </div>
-        </div>
+
 
         <div class="navbar-header">
 
@@ -55,14 +42,21 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                Laravel
+                EPL Business Plan Manager
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/home') }}">Home</a></li>
+                <!-- <li><img src ="http://d34rompce3lx70.cloudfront.net/wp-content/uploads/sites/18/2015/11/DesktopLogo_190x105.png?v=1455822337145582227914558222793"></li> TODO add epl picture to topbar-->
+                <li><a href="{{ url('/dashboard') }}">Home</a></li>
+                <li><a href="{{ url('/mytasks')}}">My Tasks</a></li>
+                <li><a href="{{ url('/businessplan')}}">Business Plan</a></li>
+                <li><a href="{{ url('/teams')}}">Teams</a></li>
+                <li><a href="{{ url('/departments')}}">Departments</a></li>
+                <li><a href="{{ url('/notifications')}}">Notifications</a></li>
+                <li><a href="{{ url('/myprofile')}}">My Profile</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
