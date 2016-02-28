@@ -5,72 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>EPL Business Plan Manager</title>
 
-    <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
-    <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
 
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+
+
+
+
 </head>
 <body id="app-layout">
+<!-- Styles -->
+{!! Html::style('css/style.css') !!}
 <nav class="navbar navbar-default">
     <div class="container">
-        <div class="navbar">
-            <div class="navbar-inner">
-                <a id="logo" href="/"></a> <!-- TODO need reference to EPL logo -->
-                <ul>
-                    <li><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="/mytasks">My Tasks</a></li>
-                    <li><a href="/businessplan">Business Plan</a></li>
-                    <li><a href="/teams">Teams</a></li>
-                    <li><a href="/departments">Departments</a></li>
-                    <li><a href="/notifications">Notifications</a></li>
-                    <li><a href="/myprofile">My Profile</a></li>
-                </ul>
-            </div>
-        </div>
+
 
         <div class="navbar-header">
 
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                Laravel
+                <!-- TODO move EPL Logo to here. -->
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
+
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/home') }}">Home</a></li>
+                <img src ="http://d34rompce3lx70.cloudfront.net/wp-content/uploads/sites/18/2015/11/DesktopLogo_190x105.png?v=1455821533145582093014558209303">
+                <li><div class ="navbar-text"><a href="{{ url('/dashboard') }}">Home</a></div></li>
+                <li><div class ="navbar-text"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
+                <li><div class ="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                <li><div class ="navbar-text"><a href="{{ url('/teams') }}">Teams</a></div></li>
+                <li><div class ="navbar-text"><a href="{{ url('/departments') }}">Departments</a></div></li>
+                <li><div class ="navbar-text"><a href="{{ url('/notifications') }}">Notifications</a></div></li>
+                <li><div class ="navbar-text"><a href="{{ url('/myprofile') }}">My Profile</a></div></li>
+
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <button class="dropbtn">
+                        Login
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url('/login') }}">Login</a>
+                        <a href="{{ url('/register') }}">Register</a>
+                    </div>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
