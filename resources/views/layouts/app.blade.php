@@ -34,7 +34,7 @@
 
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><img src ="http://d34rompce3lx70.cloudfront.net/wp-content/uploads/sites/18/2015/11/DesktopLogo_190x105.png?v=1455821533145582093014558209303"></li>
+                <img src ="http://d34rompce3lx70.cloudfront.net/wp-content/uploads/sites/18/2015/11/DesktopLogo_190x105.png?v=1455821533145582093014558209303">
                 <li><div class ="navbar-text"><a href="{{ url('/dashboard') }}">Home</a></div></li>
                 <li><div class ="navbar-text"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
                 <li><div class ="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
