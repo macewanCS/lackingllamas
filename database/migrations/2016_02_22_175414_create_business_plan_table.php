@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGoalsTable extends Migration
+class CreateBusinessPlanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateGoalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('goals', function (Blueprint $table) {
+        Schema::create('businessPlans', function (Blueprint $table){
             $table->increments('id');
             $table->string('name');
+            $table->date('created');
+            $table->date('ending');
             $table->timestamps();
-            $table->integer('bpid')->unsigned();
-            $table->foreign('bpid')->references('id')->on('businessPlans');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateGoalsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('goals');
+        Schema::drop('businessPlans');
     }
 }
