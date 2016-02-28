@@ -11,7 +11,7 @@
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-ide-helper": "^2.1",
         "Illuminate/database": "^5.2",
-        "Illuminate/html": "^5.0",
+        "laravelcollective/html": "5.2.*",
         "Illuminate/support": "^5.2",
         "Illuminate/container": "^5.2"
     },
