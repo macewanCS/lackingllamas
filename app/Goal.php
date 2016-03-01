@@ -8,7 +8,9 @@ class Goal extends Model
 {
 
     protected $fillable = [
-        'name'
+        'name',
+        'bpid'
+
     ];
 
 }

@@ -16,7 +16,8 @@ class Task extends Model
         'budget',
         'projectPlan',
         'successMeasured',
-        'priority'
+        'priority',
+        'action_id'
     ];
 
 

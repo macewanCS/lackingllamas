@@ -16,7 +16,8 @@ class Action extends Model
         'budget',
         'projectPlan',
         'successMeasured',
-        'priority'
+        'priority',
+        'objective_id'
     ];
 
 }
