@@ -8,7 +8,10 @@
         <h2>My Tasks</h2>
         <ul>
             @foreach($tasks as $task)
-                <li>{{$task->description}}</li>
+                <li>
+                    <div class="taskDescription">{{$task->description}}</div>
+                    <div class="taskDate">{{ $task->date}}</div>
+                </li>
             @endforeach
         </ul>
     </div>
