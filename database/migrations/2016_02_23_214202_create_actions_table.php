@@ -14,8 +14,8 @@ class CreateActionsTable extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->increments('id');
-            $table->description('description');
-            $table->timestamp('date');
+            $table->text('description');
+            $table->date('date');
             $table->string('leads');
             $table->string('collaborators');
             $table->integer('budget');
@@ -23,6 +23,8 @@ class CreateActionsTable extends Migration
             $table->text('successMeasured');
             $table->integer('priority');
             $table->timestamps();
+            $table->integer('objective_id')->unsigned();
+             $table->foreign('objective_id')->references('id')->on('objectives');
         });
     }
 
