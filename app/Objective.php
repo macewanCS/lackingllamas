@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Objective extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'goal_id'
     ];
 }

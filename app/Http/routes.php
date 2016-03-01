@@ -23,7 +23,11 @@ Route::get('/', function () {
 
 Route::get('dashboard', 'DashboardController@dashBoard');
 Route::get('mytasks','MyTasksController@myTasks');
+
 Route::get('businessplan','BusinessPlanController@businessPlan');
+Route::get('businessplan/creategoal','BusinessPlanController@createGoal');
+Route::post('businessplan','BusinessPlanController@storeGoal');
+
 Route::get('teams','TeamsController@teams');
 Route::get('departments','DepartmentsController@departments');
 Route::get('notifications','NotificationsController@notifications');
