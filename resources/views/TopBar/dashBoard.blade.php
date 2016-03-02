@@ -10,7 +10,7 @@
             @foreach($tasks as $task)
                 <li>
                     <div class="taskDescription">{{$task->description}}</div>
-                    <div class="taskDate">{{ $task->date}}</div>
+                    <div class="taskDate">{{ \Carbon\Carbon::parse($task->date)->diffForHumans()}}</div>
                 </li>
             @endforeach
         </ul>
