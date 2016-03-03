@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'root',
-                'email' => 'root',
+                'email' => 'root@root.ca',
                 'password' => Hash::make ('alpine' ),
             ]
         ]);
