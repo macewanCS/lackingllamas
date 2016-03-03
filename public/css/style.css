@@ -86,3 +86,23 @@
 .navbar-nav img, img:hover {
     text-decoration:none;
 }
+
+#login {
+    margin-top: 50px;
+    clear: left;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-link {
+    text-decoration: underline;
+    color: grey;
+}
+
+.btn-link:hover {
+    color: blue;
+}
+
+.form-group {
+    padding: 6px;
+}
