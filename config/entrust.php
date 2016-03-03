@@ -12,10 +12,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Entrust Role Model
+    | Entrust Role.php Model
     |--------------------------------------------------------------------------
     |
-    | This is the Role model used by Entrust to create correct relations.  Update
+    | This is the Role.php model used by Entrust to create correct relations.  Update
     | the role if it is in a different namespace.
     |
     */
