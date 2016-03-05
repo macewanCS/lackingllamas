@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Objective extends Model
+class Permission extends Model
 {
+
     protected $fillable = [
         'name',
-        'goal_id'
+        'display_name',
+        'description'
     ];
+
 }

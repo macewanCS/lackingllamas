@@ -6,9 +6,19 @@ table, td {
     border: 1px solid black;
 }
 #goalButton {
-     border:2px #333 solid;   
+     border:2px #666666 solid;   
     padding:10px;
-    background-color:#00a700;
+    background-color:#999999;
+    -webkit-border-radius:40px;
+    -moz-border-radius:40px;
+    border-radius:40px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+#goalCreateButton {
+     border:2px ##bbbbbb solid;   
+    padding:10px;
+    background-color:#77bb77;
     -webkit-border-radius:40px;
     -moz-border-radius:40px;
     border-radius:40px;
@@ -16,9 +26,9 @@ table, td {
     margin-bottom: 5px;
 }
 #objectiveButton {
-     border:1px #333 solid;   
+     border:1px #888888 solid;   
     padding:10px;
-    background-color:#00c700;
+    background-color:#bbbbbb;
     -webkit-border-radius:40px;
     -moz-border-radius:40px;
     border-radius:40px;
@@ -48,10 +58,9 @@ input[type=submit] {
 		<input id="goalButton" type="submit" value = "{{ $goal->name }}"></input>
 	</div>
 	@foreach($objectives as $objective)
-		<div>
 		@if($objective->goal_id==$goal->id)
+		<div>	
 			<input id="objectiveButton" type="submit" value = "{{ $objective->name }}"></input>
-		@endif
 		</div>
 
 		<table id ="table">
@@ -75,7 +84,7 @@ input[type=submit] {
 						<td>{{$action->projectPlan}}</td>
 						<td>{{$action->successMeasured}}</td>
 					</tr>
-				@endif
+
 				@foreach($tasks as $task)
 					@if($task->action_id==$action->id)
 						<tr>
@@ -89,25 +98,17 @@ input[type=submit] {
 						</tr>
 					@endif
   				@endforeach
+  				@endif
   			@endforeach
  
 		</table>
+		@endif
 	@endforeach
 @endforeach
+<div>
+		<input  onclick="window.location='{{ url("businessplan/creategoal") }}'" id="goalCreateButton" type="submit" value = "Create Goal" ></input>
+	</div>
 
-<table>
-  <tr id="c">
-  </tr>
- 
-</table>
-'description',
-        'date',
-        'leads',
-        'collaborators',
-        'budget',
-        'projectPlan',
-        'successMeasured',
-        'priority'
 <div class="container">
     <!--TODO work on dashboard -->
     This is where our dashBoard page goes!
@@ -121,9 +122,13 @@ input[type=submit] {
 	
 		for(i =0;i<colums.length;i++)
 		{
-			document.write("<td>"+colums[i]+"</td>");
-		
+			document.write("<td>"+colums[i]+"</td>")
 		}
+	}
+
+	function createGoal()
+	{
+
 	}
 </script>
 @stop
