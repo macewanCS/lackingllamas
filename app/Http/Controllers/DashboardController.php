@@ -11,9 +11,11 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
 
+
     public function dashBoard()
     {
         $tasks = Task::latest('date')->get();//tasks sorted by date TODO give only users tasks
         return view('dashBoard', compact('tasks'));
     }
+
 }

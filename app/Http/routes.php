@@ -19,17 +19,7 @@
  */
 
 
-Route::get('dashboard', 'DashboardController@dashBoard');
-Route::get('mytasks','MyTasksController@myTasks');
-Route::get('notifications','NotificationsController@notifications');
-Route::get('businessplan','BusinessPlanController@businessPlan');
-Route::get('businessplan/creategoal','BusinessPlanController@createGoal');
-Route::post('businessplan','BusinessPlanController@storeGoal');
 
-Route::get('teams','TeamsController@teams');
-Route::get('departments','DepartmentsController@departments');
-
-Route::get('myprofile','MyProfileController@myProfile');
 
 
 /*
@@ -57,7 +47,17 @@ Route::group(['middleware' => 'web'], function () {
         return view('welcome');
     });
     Route::get('/home', 'HomeController@index');
+    Route::get('dashboard', 'DashboardController@dashBoard');
+    Route::get('mytasks','MyTasksController@myTasks');
+    Route::get('notifications','NotificationsController@notifications');
+    Route::get('businessplan','BusinessPlanController@businessPlan');
+    Route::get('businessplan/creategoal','BusinessPlanController@createGoal');
+    Route::post('businessplan','BusinessPlanController@storeGoal');
 
+    Route::get('teams','TeamsController@teams');
+    Route::get('departments','DepartmentsController@departments');
+
+    Route::get('myprofile','MyProfileController@myProfile');
 });
 
 
