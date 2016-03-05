@@ -13,7 +13,7 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        db::table('Permissions')->insert([
+        db::table('permissions')->insert([
             [
                 'name' => 'createAT',
                 'display_name' => 'Create new Actions and Tasks',
