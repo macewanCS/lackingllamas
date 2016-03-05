@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bb225bd7483e65253ca992e860b6eba1",
+    "hash": "5695c0882ce8457d8cd7e388242d4f00",
     "content-hash": "2ad1c34766de845cf0e574fd48f1a6af",
     "packages": [
         {
@@ -2005,12 +2005,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Zizaco/entrust.git",
-                "reference": "be28aa634c44551ae5187894c903094a8ce8baee"
+                "reference": "ba8f9bb0b854475646801bf3b10c019db5614134"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/be28aa634c44551ae5187894c903094a8ce8baee",
-                "reference": "be28aa634c44551ae5187894c903094a8ce8baee",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/ba8f9bb0b854475646801bf3b10c019db5614134",
+                "reference": "ba8f9bb0b854475646801bf3b10c019db5614134",
                 "shasum": ""
             },
             "require": {
@@ -2064,7 +2064,7 @@
                 "permission",
                 "roles"
             ],
-            "time": "2015-11-12 17:38:37"
+            "time": "2016-03-04 17:34:33"
         }
     ],
     "packages-dev": [

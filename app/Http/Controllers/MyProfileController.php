@@ -11,6 +11,6 @@ class MyProfileController extends Controller
 {
  public function myProfile()
     {
-        return view('TopBar.myProfile');
+        return view('myProfile');
     }
 }
