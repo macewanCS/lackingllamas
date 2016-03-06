@@ -95,10 +95,32 @@
 }
 
 .LoginRegister {
-    margin-top: 50px;
     clear: left;
-    display: flex;
     justify-content: center;
+    width: 250px;
+    height: 210px;
+    background: white;
+    padding: 25px 10px 25px 25px;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.panel-heading {
+    position: relative;
+    right: 25px;
+    bottom: 25px;
+    padding: 10px 25px;
+    color: #FFF;
+    font-size: 16px;
+    text-transform: uppercase;
+    background-color: #3F4344;
+    text-align: center;
+    margin-right: 120px;
+    z-index: 9;
+    font-weight: bold;
 }
 
 .btn-link {

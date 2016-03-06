@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="LoginRegister">
+    <div class="LoginRegister" style="height: 270px;">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
