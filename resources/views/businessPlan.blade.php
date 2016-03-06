@@ -1,18 +1,24 @@
 @extends('layouts.app')
 
 @section('endHead')
-		<!-- <link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/screen.css" />-->
-		<link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/jquery.treetable.css" />
-		<link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/jquery.treetable.theme.default.css" />
+        {!! Html::style('css/jquery.treetable.css') !!}
+        {!! Html::style('css/jquery.treetable.theme.default.css') !!}
 		{!! Html::style('css/treeTableStyle.css') !!}
 		{!! Html::style('css/businessPlan.css') !!}
 @stop
 
 @section('content')
 
+
 <br>
 <br>
 <h2 id ="title"> Business Plan </h2>
+
+
+<button id="topButtons" onClick="showTree()">Graphical View</button>
+<button id="topButtons" onClick="showGrid()">Tree Grid View</button>
+<button id="collapseButtons" onClick="collapseAll()">CollapseAll</button>
+<button id="collapseButtons" onClick="expandAll()">ExpandAll</button>
 
 <div class = "notificationsTable">
 
@@ -81,6 +87,7 @@
 </div>
 </div>
 
+
 <table id="atest">
 	<thead>
 	<tr>
@@ -116,7 +123,19 @@
 						</tr>
 						@foreach($tasks as $task)
 							@if($task->action_id==$action->id)
-								<tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}">
+                                @if($task->priority > -1)
+                                    @if($task->priority == 0)
+                                        <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: white;">
+                                    @elseif($task->priority == 1)
+                                        <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: red;">
+                                    @elseif($task->priority == 2)
+                                        <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: orange;">
+                                    @elseif($task->priority == 3)
+                                        <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: yellow;">
+                                    @endif
+                                @else
+                                    <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: green;">
+                                @endif
 									<td>{{$task->description}}</td>
 									<td>{{$task->date}}</td>
 									<td>{{$task->lead}}</td>
@@ -146,6 +165,25 @@
 
 <script>
 	$("#atest").treetable({ expandable: true, initialState: "expanded" });
+	$("#atest").hide();
+
+	function showTree(){
+		$("#atest").hide();
+		$(".notificationsTable").show();
+	}
+
+	function showGrid(){
+		$("#atest").show();
+		$(".notificationsTable").hide();
+	}
+
+    function collapseAll() {
+        $("#atest").treetable("collapseAll");
+    }
+
+    function expandAll() {
+        $("#atest").treetable("expandAll");
+    }
 </script>
 
 <script>
