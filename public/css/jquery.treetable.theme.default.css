@@ -19,7 +19,6 @@ table.treetable thead {
 }
 
 table.treetable thead tr th {
-  border: 1px solid #888;
   font-weight: normal;
   padding: .3em 1em .1em 1em;
   text-align: left;
@@ -28,6 +27,7 @@ table.treetable thead tr th {
 table.treetable tbody tr td {
   cursor: default;
   padding: .3em 1em;
+  border: 1px solid #c0c0c0
 }
 
 table.treetable span {

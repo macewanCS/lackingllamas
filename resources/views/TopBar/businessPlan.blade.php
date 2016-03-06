@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('endHead')
-   <!-- <link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/screen.css" /> -->
+   <!-- <link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/screen.css" />-->
     <link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/jquery.treetable.css" />
     <link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/jquery.treetable.theme.default.css" />
+    {!! Html::style('css/treeTableStyle.css') !!}
 @stop
 
 @section('content')
@@ -115,11 +116,6 @@ input[type=submit] {
 		<input  onclick="window.location='{{ url("businessplan/creategoal") }}'" id="goalCreateButton" type="submit" value = "Create Goal" ></input>
 	</div>
 
-<div class="container">
-    <!--TODO work on dashboard -->
-    This is where our dashBoard page goes!
-</div>
-
 
 <script>
 	function createColumn()
@@ -155,17 +151,17 @@ input[type=submit] {
     </thead>
     <tbody>
     @foreach($goals as $goal)
-        <tr data-tt-id="{{$goal->id}}">
+        <tr id="tree-goal" data-tt-id="{{$goal->id}}">
             <td>{{$goal->name}}</td>
         </tr>
         @foreach($objectives as $objective)
             @if($objective->goal_id==$goal->id)
-            <tr data-tt-id="{{$goal->id}}.{{$objective->id}}" data-tt-parent-id="{{$goal->id}}">
+            <tr id="tree-objective" data-tt-id="{{$goal->id}}.{{$objective->id}}" data-tt-parent-id="{{$goal->id}}">
                 <td>{{$objective->name}}</td>
             </tr>
             @foreach($actions as $action)
                 @if($action->objective_id==$objective->id)
-                <tr data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}">
+                <tr id="tree-action" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}">
                     <td>{{$action->description}}</td>
                     <td>{{$action->date}}</td>
                     <td>{{$action->lead}}</td>
@@ -176,7 +172,7 @@ input[type=submit] {
                 </tr>
                 @foreach($tasks as $task)
                     @if($task->action_id==$action->id)
-                    <tr data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}">
+                    <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}">
                         <td>{{$task->description}}</td>
                         <td>{{$task->date}}</td>
                         <td>{{$task->lead}}</td>
@@ -205,6 +201,6 @@ input[type=submit] {
     <script type="text/javascript" src="http://ludo.cubicphuse.nl/jquery-treetable/jquery.treetable.js"></script>
 
     <script>
-            $("#atest").treetable({ expandable: true });
+            $("#atest").treetable({ expandable: true, initialState: "expanded" });
     </script>
 @stop
