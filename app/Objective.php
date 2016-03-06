@@ -10,4 +10,12 @@ class Objective extends Model
         'name',
         'goal_id'
     ];
+
+
+    public function getGoal($name) {
+        $objectives = Objective::All();
+        $objective = $objectives->where('name', $name)->first();
+        $objective->toArray();
+        return $objective->goal_id;
+    }
 }

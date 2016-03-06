@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('endHead')
+   <!-- <link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/screen.css" /> -->
+    <link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/jquery.treetable.css" />
+    <link rel="stylesheet" href="http://ludo.cubicphuse.nl/jquery-treetable/css/jquery.treetable.theme.default.css" />
+@stop
+
 @section('content')
 <style>
 table, td {
@@ -131,4 +137,74 @@ input[type=submit] {
 
 	}
 </script>
+
+
+
+
+<table id="atest">
+    <thead>
+        <tr>
+            <th>Description of GOAT Element</th>
+            <th>Date</th>
+            <th>Lead</th>
+            <th>Collaborators</th>
+            <th>Budget</th>
+            <th>Project Plan</th>
+            <th>Success Measures</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach($goals as $goal)
+        <tr data-tt-id="{{$goal->id}}">
+            <td>{{$goal->name}}</td>
+        </tr>
+        @foreach($objectives as $objective)
+            @if($objective->goal_id==$goal->id)
+            <tr data-tt-id="{{$goal->id}}.{{$objective->id}}" data-tt-parent-id="{{$goal->id}}">
+                <td>{{$objective->name}}</td>
+            </tr>
+            @foreach($actions as $action)
+                @if($action->objective_id==$objective->id)
+                <tr data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}">
+                    <td>{{$action->description}}</td>
+                    <td>{{$action->date}}</td>
+                    <td>{{$action->lead}}</td>
+                    <td>{{$action->collaborators}}</td>
+                    <td>{{$action->budget}}</td>
+                    <td>{{$action->projectPlan}}</td>
+                    <td>{{$action->successMeasured}}</td>
+                </tr>
+                @foreach($tasks as $task)
+                    @if($task->action_id==$action->id)
+                    <tr data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}">
+                        <td>{{$task->description}}</td>
+                        <td>{{$task->date}}</td>
+                        <td>{{$task->lead}}</td>
+                        <td>{{$task->collaborators}}</td>
+                        <td>{{$task->budget}}</td>
+                        <td>{{$task->projectPlan}}</td>
+                        <td>{{$task->successMeasured}}</td>
+                    </tr>
+                @endif
+                @endforeach
+            @endif
+            @endforeach
+            @endif
+        @endforeach
+    @endforeach
+
+    </tbody>
+</table>
+
+@stop
+
+@section('scripts')
+   <!-- <link rel="stylesheet" href="/public/javascript/jquery-ui.css"> -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://ludo.cubicphuse.nl/jquery-treetable/jquery.treetable.js"></script>
+
+    <script>
+            $("#atest").treetable({ expandable: true });
+    </script>
 @stop
