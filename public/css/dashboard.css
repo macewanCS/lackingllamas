@@ -1,0 +1,220 @@
+.container-dashboard {
+    display: inline-block;
+    width: 100%;
+    height: 600px;
+    margin-top: -25px;
+    margin-bottom: -15px;
+    position: relative;
+}
+.inner {
+    width: 50%;
+    margin: 0 auto;
+
+}
+.tasksTable {
+    width: 340px;
+    height:543px;
+    background: white;
+    padding: 25px 10px 25px 25px;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+
+}
+.tasksTable ul {
+    list-style: none;
+    position: relative;
+    right: 10mm;
+    bottom: 10mm;
+    margin: -15px;
+    height: 498px;
+
+}
+
+.tasksTable ul li{
+    font-size: smaller;
+    font-weight: bold;
+
+    padding: 5mm 5mm 3mm 5mm;
+
+    border-bottom: 1px solid #ccc;
+    color: rgb(63, 67, 68);
+}
+.tasksTable ul li:last-child{
+    border-bottom: none;
+}
+
+.tasksTable ul li:hover {
+    color: #000;
+    background-color: #ddd;
+}
+
+.tasksTable h2{
+    position: relative;
+    right: 6.7mm;
+    bottom: 10.3mm;
+    padding: 10px 25px;
+    color: #FFF;
+    font-size: 16px;
+    text-transform: uppercase;
+    background-color: #3F4344;
+    text-align: center;
+    margin-right: 5cm;
+
+    z-index: 9;
+    font-weight: bold;
+}
+
+.taskDate {
+    padding-top: 2mm;
+    font-style: italic;
+    font-size: x-small;
+}
+
+.tasksBtn {
+    position: relative;
+    height: 30px;
+}
+.tasksBtn a {
+
+    float: right;
+
+    font-size: small;
+}
+
+.teamsTable {
+    width: 340px;
+    height:240px;
+    background: white;
+    padding: 25px 10px 25px 25px;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+    margin-left: 390px;
+    margin-right: auto;
+
+
+}
+.teamsTable ul {
+    list-style: none;
+    position: relative;
+    right: 10mm;
+    bottom: 10mm;
+    margin: -15px;
+    height: 200px;
+}
+.teamsTable h2{
+    position: relative;
+    right: 6.7mm;
+    bottom: 10.3mm;
+    padding: 10px 25px;
+    color: #FFF;
+    font-size: 16px;
+    text-transform: uppercase;
+    background-color: #3F4344;
+    text-align: center;
+    margin-right: 2cm;
+    z-index: 9;
+    font-weight: bold;
+}
+.teamsTable ul li{
+    font-size: smaller;
+    font-weight: bold;
+
+    padding: 5mm 5mm 3mm 5mm;
+
+    border-bottom: 1px solid #ccc;
+    color: rgb(63, 67, 68);
+}
+.teamsTable ul li:last-child{
+    border-bottom: none;
+}
+
+.teamsTable ul li:hover {
+    color: #000;
+    background-color: #ddd;
+}
+
+hr {
+    margin-top: 25px;
+    height: 1px;
+
+
+    font-size: 0;
+    border: 0;
+}
+.footer {
+    background: white;
+    height: 80px;
+
+    box-shadow: -2px 2px 5px 0 gray;
+}
+
+.notificationsTable {
+    width: 340px;
+    height:240px;
+    background: white;
+    padding: 25px 10px 25px 25px;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+    margin-left: 390px;
+    margin-right: 10px;
+    margin-top: 10px;
+
+}
+
+.notificationsTable ul {
+    list-style: none;
+    position: relative;
+    right: 10mm;
+    bottom: 10mm;
+    margin: -15px;
+    height: 195px;
+
+
+}
+.notificationsTable h2{
+    position: relative;
+    right: 6.7mm;
+    bottom: 10.3mm;
+    padding: 10px 25px;
+    color: #FFF;
+    font-size: 16px;
+    text-transform: uppercase;
+    background-color: #3F4344;
+    text-align: center;
+    margin-right: 2cm;
+    z-index: 9;
+    font-weight: bold;
+}
+.notificationsTable ul li{
+    font-size: smaller;
+    font-weight: bold;
+
+    padding: 5mm 5mm 3mm 5mm;
+
+    border-bottom: 1px solid #ccc;
+    color: rgb(63, 67, 68);
+}
+.notificationsTable ul li:last-child{
+    border-bottom: none;
+}
+
+.notificationsTable ul li:hover {
+    color: #000;
+    background-color: #ddd;
+}
+.notificationsBtn {
+    position: relative;
+    height: 30px;
+}
+.notificationsBtn a {
+
+    float: right;
+
+    font-size: small;
+}

@@ -11,6 +11,6 @@ class NotificationsController extends Controller
 {
  public function notifications()
     {
-        return view('TopBar.notifications');
+        return view('notifications');
     }
 }

@@ -11,6 +11,6 @@ class TeamsController extends Controller
 {
  public function teams()
     {
-        return view('TopBar.teams');
+        return view('teams');
     }
 }

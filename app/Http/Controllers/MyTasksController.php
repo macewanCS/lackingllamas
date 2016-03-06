@@ -11,6 +11,6 @@ class MyTasksController extends Controller
 {
  public function myTasks()
     {
-        return view('TopBar.myTasks');
+        return view('myTasks');
     }
 }
