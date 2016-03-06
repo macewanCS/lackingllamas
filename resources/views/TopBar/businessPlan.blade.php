@@ -5,25 +5,18 @@
 table, td {
     border: 1px solid black;
 }
-#goalButton {
-     border:2px #666666 solid;   
-    padding:10px;
-    background-color:#999999;
-    -webkit-border-radius:40px;
-    -moz-border-radius:40px;
-    border-radius:40px;
-    margin-left: 10px;
-    margin-bottom: 5px;
+#title
+{
+	 margin-left: 10;
+    margin-bottom: 10px;
+	 padding:10px;
 }
 #goalCreateButton {
-     border:2px ##bbbbbb solid;   
-    padding:10px;
+	border:1px #888888 solid;   
     background-color:#77bb77;
-    -webkit-border-radius:40px;
-    -moz-border-radius:40px;
-    border-radius:40px;
-    margin-left: 10px;
-    margin-bottom: 5px;
+    padding: 2px;
+    cursor: pointer;
+    font-weight: bold;
 }
 #objectiveButton {
      border:1px #888888 solid;   
@@ -32,13 +25,15 @@ table, td {
     -webkit-border-radius:40px;
     -moz-border-radius:40px;
     border-radius:40px;
-    margin-left: 40px;
+    margin-left: 10;
     margin-bottom: 10px;
 }
 #table{
-	margin-left: 60px;
+	margin-left: 10px;
+	 margin-bottom: 10px;
+	 width:98%
 	}
-#actionTR{
+#actionTR{ 
 	background-color:#ddddf0;
 
 }
@@ -49,14 +44,38 @@ input[type=submit] {
     -ms-transition:all 0.3s ease-in-out;
     transition:all 0.3s ease-in-out;        
 }
+.container {
+    width:100%;
+    border:1px solid #d3d3d3;
+}
+.container div {
+
+    width:100%;
+}
+.container .header {
+    background-color:#d3d3d3;
+    cursor: pointer;
+    font-weight: bold;
+    border:1px #ffffff solid; 
+}
+.container .content {
+    display: none;
+    padding : 5px;
+}
 </style>
 
+<br>
+<h2 id ="title"> Business Plan </h2>
 
-<h1> Business Plan </h1>
+<input  onclick="window.location='{{ url("businessplan/creategoal") }}'" id="goalCreateButton" type="submit" value = "Create Goal" ></input>
+<div class = "container">
 @foreach ($goals as $goal)
-	<div>
-		<input id="goalButton" type="submit" value = "{{ $goal->name }}"></input>
+	<div class = "container">
+	<div class = "header"data-myatt="{{ $goal->name }}">
+		<span>{{ $goal->name }}</span>
+	
 	</div>
+	<div class = "content">
 	@foreach($objectives as $objective)
 		@if($objective->goal_id==$goal->id)
 		<div>	
@@ -104,31 +123,36 @@ input[type=submit] {
 		</table>
 		@endif
 	@endforeach
-@endforeach
-<div>
-		<input  onclick="window.location='{{ url("businessplan/creategoal") }}'" id="goalCreateButton" type="submit" value = "Create Goal" ></input>
 	</div>
+	</div>
+@endforeach
 
-<div class="container">
+	
+	<br>
+</div>
+<div>
     <!--TODO work on dashboard -->
     This is where our dashBoard page goes!
 </div>
-
-
-<script>
-	function createColumn()
-	{
-		var colums = ["Description","Date","Lead","Collaborators","Budget","Project Plan","Success Measured"];
 	
-		for(i =0;i<colums.length;i++)
-		{
-			document.write("<td>"+colums[i]+"</td>")
-		}
-	}
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+$(".header").click(function () {
 
-	function createGoal()
-	{
+    $header = $(this);
+    //getting the next element
+    $content = $header.next();
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $content.slideToggle(500, function () {
+        //execute this after slideToggle is done
+        //change text of header based on visibility of content div
+       
+        $header.text(function () {
+            //change text based on condition
+            return $content.is(":visible") ? "Collapse" : $header.data('myatt')
+        });
+    });
 
-	}
+});
 </script>
 @stop
