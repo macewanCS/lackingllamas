@@ -14,11 +14,29 @@
 <br>
 <h2 id ="title"> Business Plan </h2>
 
-
+<div style="display: inline-block">
 <button id="topButtons" onClick="showTree()">Graphical View</button>
 <button id="topButtons" onClick="showGrid()">Tree Grid View</button>
+</div>
+
+<div style="display: inline-block">
+    <div class="boxCompleted" style="display: inline-block"></div>
+    <div style="display: inline-block">Completed</div>
+    <div class="boxLow" style="display: inline-block"></div>
+    <div style="display: inline-block">Low Priority</div>
+    <div class="boxHigh" style="display: inline-block"></div>
+    <div style="display: inline-block">High Priority</div>
+    <div class="boxUrgent" style="display: inline-block"></div>
+    <div style="display: inline-block">Urgent</div>
+    <div class="boxNone" style="display: inline-block"></div>
+    <div style="display: inline-block">No Priority</div>
+</div>
+
+<div style="float: right">
 <button id="collapseButtons" onClick="collapseAll()">CollapseAll</button>
 <button id="collapseButtons" onClick="expandAll()">ExpandAll</button>
+</div>
+
 
 <div class = "notificationsTable">
 
@@ -112,7 +130,19 @@
 				</tr>
 				@foreach($actions as $action)
 					@if($action->objective_id==$objective->id)
-						<tr id="tree-action" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}">
+                        @if($action->priority > -1)
+                            @if($action->priority == 0)
+                                <tr id="tree-action" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}" style="background-color: white;">
+                            @elseif($action->priority == 1)
+                                <tr id="tree-action" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}" style="background-color: red;">
+                            @elseif($action->priority == 2)
+                                <tr id="tree-action" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}" style="background-color: orange;">
+                            @elseif($action->priority == 3)
+                                <tr id="tree-action" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}" style="background-color: yellow;">
+                            @endif
+                        @else
+                            <tr id="tree-action" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}" style="background-color: green;">
+                        @endif
 							<td>{{$action->description}}</td>
 							<td>{{$action->date}}</td>
 							<td>{{$action->lead}}</td>
@@ -123,19 +153,7 @@
 						</tr>
 						@foreach($tasks as $task)
 							@if($task->action_id==$action->id)
-                                @if($task->priority > -1)
-                                    @if($task->priority == 0)
-                                        <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: white;">
-                                    @elseif($task->priority == 1)
-                                        <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: red;">
-                                    @elseif($task->priority == 2)
-                                        <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: orange;">
-                                    @elseif($task->priority == 3)
-                                        <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: yellow;">
-                                    @endif
-                                @else
-                                    <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}" style="background-color: green;">
-                                @endif
+                                <tr id="tree-task" data-tt-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}.{{$task->id}}" data-tt-parent-id="{{$goal->id}}.{{$objective->id}}.{{$action->id}}">
 									<td>{{$task->description}}</td>
 									<td>{{$task->date}}</td>
 									<td>{{$task->lead}}</td>

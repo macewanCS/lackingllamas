@@ -52,7 +52,27 @@ class ActionSeeder extends Seeder
                 'successMeasured' => 'Over 500 people watching live and 5,000 video hits.',
                 'priority' => 2,
                 'objective_id' => 3
-            ]
+            ],
+            ['description' => 'Host EPL Day celebrations at all branches on March 13, 2016.',
+                'date' => Carbon::createFromDate(2016, 3, 13, 'America/Toronto'),
+                'leads' => 'J McPhee',
+                'collaborators' => 'Marketing, Purchasing, All Branches',
+                'budget' => 10000,
+                'projectPlan' => 'y',
+                'successMeasured' => 'Increase in customer visits year over year',
+                'priority' => 2,
+                'objective_id' => 4
+            ],
+            ['description' => 'Evaluate the 2016 event and create a proposal for the 2017 by November 30, 2016.',
+                'date' => Carbon::createFromDate(2017, 11, 30, 'America/Toronto'),
+                'leads' => 'J McPhee',
+                'collaborators' => 'Marketing',
+                'budget' => 0,
+                'projectPlan' => 'y',
+                'successMeasured' => '',
+                'priority' => 2,
+                'objective_id' => 4
+            ],
         ]);
     }
 }
