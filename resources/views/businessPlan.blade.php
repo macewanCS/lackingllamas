@@ -1,71 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-table, td {
-    border: 1px solid black;
-}
-#title
-{
-	 margin-left: 10;
-    margin-bottom: 10px;
-	 padding:10px;
-}
-#goalCreateButton {
-	border:1px #888888 solid;   
-    background-color:#77bb77;
-    padding: 2px;
-    cursor: pointer;
-    font-weight: bold;
-}
-#objectiveButton {
-     border:1px #888888 solid;   
-    padding:10px;
-    background-color:#bbbbbb;
-    -webkit-border-radius:40px;
-    -moz-border-radius:40px;
-    border-radius:40px;
-    margin-left: 10;
-    margin-bottom: 10px;
-}
-#table{
-	margin-left: 10px;
-	 margin-bottom: 10px;
-	 width:98%
-	}
-#actionTR{ 
-	background-color:#ddddf0;
-
-}
-input[type=submit] {
-    -webkit-transition:all 0.3s ease-in-out;    
-    -moz-transition:all 0.3s ease-in-out;
-    -o-transition:all 0.3s ease-in-out;
-    -ms-transition:all 0.3s ease-in-out;
-    transition:all 0.3s ease-in-out;        
-}
-.container {
-    width:100%;
-    border:1px solid #d3d3d3;
-}
-.container div {
-
-    width:100%;
-}
-.container .header {
-    background-color:#d3d3d3;
-    cursor: pointer;
-    font-weight: bold;
-    border:1px #ffffff solid; 
-}
-.container .content {
-    display: none;
-    padding : 5px;
-}
-</style>
+{!! Html::style('css/businessPlan.css') !!}
 
 <br>
+<br>
 <h2 id ="title"> Business Plan </h2>
+
+<div class = "notificationsTable">
 
 <input  onclick="window.location='{{ url("businessplan/creategoal") }}'" id="goalCreateButton" type="submit" value = "Create Goal" ></input>
 <div class = "container">
@@ -128,12 +70,11 @@ input[type=submit] {
 @endforeach
 
 	
-	<br>
+	
 </div>
-<div>
+</div>
     <!--TODO work on dashboard -->
-    This is where our dashBoard page goes!
-</div>
+
 	
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script>

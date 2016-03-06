@@ -1,0 +1,86 @@
+h2{
+    position: relative;
+    right: 6.7mm;
+    bottom: 10.3mm;
+    padding: 10px 25px;
+    color: #FFF;
+    font-size: 16px;
+    text-transform: uppercase;
+    background-color: #3F4344;
+    text-align: center;
+    margin-right: 2cm;
+    z-index: 9;
+    font-weight: bold;
+    width:100%;
+}
+table, td {
+    border: 1px solid black;
+}
+#title
+{
+	 margin-left: 10;
+    margin-bottom: 10px;
+	 padding:10px;
+}
+#goalCreateButton {
+	border:1px #888888 solid;   
+    background-color:#77bb77;
+    padding: 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+#objectiveButton {
+     border:1px #888888 solid;   
+    padding:10px;
+    background-color:#bbbbbb;
+    -webkit-border-radius:40px;
+    -moz-border-radius:40px;
+    border-radius:40px;
+    margin-left: 10;
+    margin-bottom: 10px;
+}
+#table{
+	margin-left: 10px;
+	 margin-bottom: 10px;
+	 width:98%
+	}
+.notificationsTable {
+    width: 97%;
+    height:100%;
+    background: white;
+    padding: 25px 10px 25px 25px;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+  
+
+}
+#actionTR{ 
+	background-color:#ddddf0;
+
+}
+input[type=submit] {
+    -webkit-transition:all 0.3s ease-in-out;    
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    -ms-transition:all 0.3s ease-in-out;
+    transition:all 0.3s ease-in-out;        
+}
+.container {
+    width:100%;
+    border:1px solid #d3d3d3;
+}
+.container div {
+
+    width:100%;
+}
+.container .header {
+    background-color:#d3d3d3;
+    cursor: pointer;
+    font-weight: bold;
+    border:1px #ffffff solid; 
+}
+.container .content {
+    display: none;
+    padding : 5px;
+}
