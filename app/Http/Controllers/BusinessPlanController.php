@@ -14,13 +14,15 @@ use Request;
 
 class BusinessPlanController extends Controller
 {
+
+
  public function businessPlan()
     {
     	$goals = Goal::all();
     	$objectives = Objective::all();
     	$actions = Action::all();
     	$tasks = Task::all();
-        return view('TopBar.businessPlan',compact('goals','objectives','actions','tasks'));
+        return view('businessPlan',compact('goals','objectives','actions','tasks'));
     }
   public function createGoal()
   {

@@ -9,8 +9,9 @@ use App\Http\Controllers\Controller;
 
 class DepartmentsController extends Controller
 {
+
  public function departments()
     {
-        return view('TopBar.departments');
+        return view('departments');
     }
 }
