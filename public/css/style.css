@@ -1,6 +1,9 @@
+
 #app-layout {
     background-color: rgb(204, 202, 200);
     font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+
 }
 #app-navbar-collapse {
     width: 100%;
