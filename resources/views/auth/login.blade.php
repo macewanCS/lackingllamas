@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div></div>
-    <div id="login">
+    <div class="LoginRegister">
         <div class="panel panel-default">
             <div class="panel-heading">Login</div>
             <div class="panel-body">

@@ -87,7 +87,7 @@
     text-decoration:none;
 }
 
-#login {
+.LoginRegister {
     margin-top: 50px;
     clear: left;
     display: flex;
@@ -97,6 +97,7 @@
 .btn-link {
     text-decoration: underline;
     color: grey;
+    font-size: 14px;
 }
 
 .btn-link:hover {
@@ -106,3 +107,18 @@
 .form-group {
     padding: 6px;
 }
+
+.form-control {
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    width: 200px;
+}
+
+.btn-primary {
+    border: none;
+    background-color: lightblue;
+    padding: 4px;
+    cursor: pointer;
+}
+
