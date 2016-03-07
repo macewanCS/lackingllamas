@@ -1,0 +1,34 @@
+table.treetable {
+    border-collapse: collapse;
+}
+
+#atest th {
+    font-weight: bold;
+    font-size: 175%;
+    border: none;
+    background-color: lightslategrey;
+}
+
+#atest {
+    background-color: white;
+}
+
+#atest td{
+    border: 1px solid #c0c0c0;
+    height: 40px;
+    font-weight: bold;
+}
+
+#tree-goal{
+    background-color: black;
+    color: white;
+    font-size: 150%;
+}
+
+#tree-objective {
+    background-color: #286090;
+    color: white;
+    font-size: 125%;
+}
+
+
