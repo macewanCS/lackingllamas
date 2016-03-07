@@ -9,7 +9,10 @@ use App\Http\Controllers\Controller;
 
 class TeamsController extends Controller
 {
- public function teams()
+	//page does not require login
+	public function __construct() {}
+
+	public function teams()
     {
         return view('teams');
     }

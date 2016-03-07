@@ -9,8 +9,10 @@ use App\Http\Controllers\Controller;
 
 class DepartmentsController extends Controller
 {
+	//page does not require login
+	public function __construct() {}
 
- public function departments()
+	public function departments()
     {
         return view('departments');
     }
