@@ -43,9 +43,7 @@
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::get('/', function() {
-        return view('welcome');
-    });
+    Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
     Route::get('dashboard', 'DashboardController@dashBoard');
     Route::get('mytasks','MyTasksController@myTasks');

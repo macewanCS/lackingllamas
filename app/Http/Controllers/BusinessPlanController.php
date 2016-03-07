@@ -15,6 +15,8 @@ use Request;
 class BusinessPlanController extends Controller
 {
 
+  //page does not require login
+  public function __construct() {}
 
  public function businessPlan()
     {
