@@ -13,4 +13,9 @@ class Goal extends Model
 
     ];
 
+    public function getBusinessPlan($name) {
+        $goals = Goal::All();
+        $goal = $goals->where("name", "=", $name)->first();
+        return $goal->bpid;
+    }
 }
