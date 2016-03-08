@@ -1,27 +1,36 @@
 .container-dashboard {
-    display: inline-block;
-    width: 100%;
+
     height: 600px;
     margin-top: -25px;
     margin-bottom: -15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1500px;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 .inner {
-    width: 50%;
-    margin: 0 auto;
+
 
 }
 .tasksTable {
-    width: 340px;
+    float:left;
+    width: 25%;
     height:543px;
     background: white;
     padding: 25px 10px 25px 25px;
     box-shadow: 10px 10px 5px grey;
     border: 2px solid;
     border-color: grey;
-    margin-left: auto;
-    margin-right: auto;
-    float: left;
+    margin-top: 40px;
+    margin-left: 10%;
+    display: inline-block;
+
+}
+.tasks-inner {
+
 
 }
 .tasksTable ul {
@@ -75,27 +84,28 @@
 }
 
 .tasksBtn {
-    position: relative;
+
     height: 30px;
 }
 .tasksBtn a {
-
     float: right;
-
     font-size: small;
 }
 
 .teamsTable {
-    width: 340px;
-    height:240px;
+    float: left;
+    width: 25%;
+    height:543px;
     background: white;
     padding: 25px 10px 25px 25px;
     box-shadow: 10px 10px 5px grey;
     border: 2px solid;
     border-color: grey;
-    margin-left: 390px;
-    margin-right: auto;
-
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 40px;
+}
+.teams-inner {
 
 }
 .teamsTable ul {
@@ -104,7 +114,7 @@
     right: 10mm;
     bottom: 10mm;
     margin: -15px;
-    height: 200px;
+    height: 498px;
 }
 .teamsTable h2{
     position: relative;
@@ -138,42 +148,33 @@
     background-color: #ddd;
 }
 
-hr {
-    margin-top: 25px;
-    height: 1px;
 
-
-    font-size: 0;
-    border: 0;
-}
-.footer {
-    background: white;
-    height: 80px;
-
-    box-shadow: -2px 2px 5px 0 gray;
-}
 
 .notificationsTable {
-    width: 340px;
-    height:240px;
+    float: left;
+    width: 25%;
+    height:543px;
     background: white;
     padding: 25px 10px 25px 25px;
     box-shadow: 10px 10px 5px grey;
     border: 2px solid;
     border-color: grey;
-    margin-left: 390px;
-    margin-right: 10px;
-    margin-top: 10px;
+    display: inline-block;
+    margin-top: 40px;
+    margin-left: 20px;
 
 }
+.notifications-inner {
 
+}
 .notificationsTable ul {
     list-style: none;
     position: relative;
     right: 10mm;
     bottom: 10mm;
     margin: -15px;
-    height: 195px;
+    height: 498px;
+
 
 
 }
@@ -213,8 +214,22 @@ hr {
     height: 30px;
 }
 .notificationsBtn a {
-
     float: right;
-
     font-size: small;
+}
+
+.welcomeTable h2 {
+    position: relative;
+    bottom: 3mm;
+    padding: 10px 25px;
+    color: #FFF;
+    font-size: 16px;
+    text-transform: uppercase;
+    background-color: #3F4344;
+    text-align: center;
+    margin-right: 2cm;
+    z-index: 9;
+    font-weight: bold;
+    width:100%;
+    margin-top: 50px;
 }

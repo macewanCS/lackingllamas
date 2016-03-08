@@ -8,6 +8,10 @@
         {!! Html::style('http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css') !!}
 @stop
 
+
+
+
+
 @section('content')
 
 
@@ -48,15 +52,16 @@
 
 
 <div style="float: right">
-<button id="collapseButtons" onClick="collapseAll()">CollapseAll</button>
-<button id="collapseButtons" onClick="expandAll()">ExpandAll</button>
+<button class = "collapseBP" id="collapseButtons" onClick="collapseAll()">CollapseAll</button>
+<button class = "expandBP" id="collapseButtons" onClick="expandAll()">ExpandAll</button>
 </div>
 
 
 
 <div class = "notificationsTable">
-
+@if(! Auth::guest())
 <input  onclick="window.location='{{ url("businessplan/creategoal") }}'" id="goalCreateButton" type="submit" value = "Create Goal" ></input>
+@endif
 <div class = "container">
 @foreach ($goals as $goal)
 	<div class = "container">
@@ -255,20 +260,19 @@
 	$(".header").click(function () {
 
 		$header = $(this);
-		//getting the next element
 		$content = $header.next();
-		//open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
 		$content.slideToggle(500, function () {
-			//execute this after slideToggle is done
-			//change text of header based on visibility of content div
-
-			$header.text(function () {
-				//change text based on condition
-				return $content.is(":visible") ? "Collapse" : $header.data('myatt')
-			});
 		});
 
 	});
+$(".expandBP").click(function () {
+$content =$(".content");
+$content.slideDown(500, function () {});
+});
+$(".collapseBP").click(function () {
+$content =$(".content");
+$content.slideUp(500, function () {});
+});
 </script>
 
 
