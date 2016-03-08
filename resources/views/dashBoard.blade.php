@@ -4,12 +4,12 @@
     {!! Html::style('css/dashboard.css') !!}
     <div class="container-dashboard">
         <!--TODO work on dashboard -->
-        <div class="inner">
-            <div class="welcomeTable">
-                <h2>Welcome, {{ Auth::user()->name }}</h2>
-                <div class="welcomeDescription">
-                </div>
+        <div class="welcomeTable">
+            <h2>Welcome, {{ Auth::user()->name }}</h2>
+            <div class="welcomeDescription">
             </div>
+        </div>
+        <div class="inner">
             <div class="tasksTable">
                 <div class = "tasks-inner">
                     <h2>My Tasks</h2>

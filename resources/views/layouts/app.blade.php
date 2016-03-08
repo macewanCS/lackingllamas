@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>EPL Business Plan Manager</title>
-
     @yield('endHead')
 </head>
 <body id="app-layout">
 <!-- Styles -->
 {!! Html::style('css/style.css') !!}
 <nav class="navbar navbar-default">
-    <div class="container">
+    <div class="container-topbar">
 
 
         <div class="navbar-header">
