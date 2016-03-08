@@ -54,5 +54,21 @@ class TaskSeeder extends Seeder
                 'action_id' => 3
             ]
         ]);
+
+        for ($j = 1; $j <= App\Action::All()->Count(); $j++){
+            global $act;
+            $act = DB::table('actions')->where('id', $j)->first();
+            for ($i = 1, $k = 1; $i <= App\Task::All()->Count(); $i++) {
+                $task = DB::table('tasks')
+                    ->where('id', $i)
+                    ->first();
+                if ($task->action_id == $act->id) {
+                    DB::table('tasks')
+                        ->where('id', $i)
+                        ->update(array('ident' => $act->ident . '.' . $k));
+                    $k++;
+                }
+            }
+        }
     }
 }

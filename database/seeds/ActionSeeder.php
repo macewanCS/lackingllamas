@@ -74,5 +74,21 @@ class ActionSeeder extends Seeder
                 'objective_id' => 4
             ],
         ]);
+
+        for ($j = 1; $j <= App\Objective::All()->Count(); $j++){
+            global $obj;
+            $obj = DB::table('objectives')->where('id', $j)->first();
+            for ($i = 1, $k = 1; $i <= App\Action::All()->Count(); $i++) {
+                $act = DB::table('actions')
+                    ->where('id', $i)
+                    ->first();
+                if ($act->objective_id == $obj->id) {
+                    DB::table('actions')
+                        ->where('id', $i)
+                        ->update(array('ident' => $obj->ident . '.' . $k));
+                    $k++;
+                }
+             }
+        }
     }
 }
