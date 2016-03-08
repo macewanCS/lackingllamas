@@ -44,8 +44,9 @@
 
 
 <div class = "notificationsTable">
-
+@if(! Auth::guest())
 <input  onclick="window.location='{{ url("businessplan/creategoal") }}'" id="goalCreateButton" type="submit" value = "Create Goal" ></input>
+@endif
 <div class = "container">
 @foreach ($goals as $goal)
 	<div class = "container">
