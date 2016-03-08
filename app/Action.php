@@ -17,7 +17,8 @@ class Action extends Model
         'projectPlan',
         'successMeasured',
         'priority',
-        'objective_id'
+        'objective_id',
+        'ident'
     ];
 
 }

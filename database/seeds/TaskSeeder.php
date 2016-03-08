@@ -25,7 +25,7 @@ class TaskSeeder extends Seeder
             ],
             ['description' => 'Upgrade LibOnline to the latest version (4.9)',
                 'date' => Carbon::createFromDate(2012, 1, 1, 'America/Toronto'),
-                'leads' => '<Michael, Luc',
+                'leads' => 'Michael, Luc',
                 'collaborators' => 'Active Networks',
                 'budget' => 0,
                 'projectPlan' => '',
@@ -54,5 +54,21 @@ class TaskSeeder extends Seeder
                 'action_id' => 3
             ]
         ]);
+
+        for ($j = 1; $j <= App\Action::All()->Count(); $j++){
+            global $act;
+            $act = DB::table('actions')->where('id', $j)->first();
+            for ($i = 1, $k = 1; $i <= App\Task::All()->Count(); $i++) {
+                $task = DB::table('tasks')
+                    ->where('id', $i)
+                    ->first();
+                if ($task->action_id == $act->id) {
+                    DB::table('tasks')
+                        ->where('id', $i)
+                        ->update(array('ident' => $act->ident . '.' . $k));
+                    $k++;
+                }
+            }
+        }
     }
 }

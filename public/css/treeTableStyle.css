@@ -2,21 +2,25 @@ table.treetable {
     border-collapse: collapse;
 }
 
-#atest th {
+#treeTableView th {
     font-weight: bold;
     font-size: 175%;
     border: none;
     background-color: lightslategrey;
 }
 
-#atest {
+#treeTableView {
     background-color: white;
 }
 
-#atest td{
+#treeTableView td {
     border: 1px solid #c0c0c0;
     height: 40px;
     font-weight: bold;
+}
+
+#treeTableView td:nth-child(1){
+    text-align: right;
 }
 
 #tree-goal{

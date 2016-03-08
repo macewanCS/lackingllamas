@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
         db::table('users')->insert([
             [
-                'name' => 'VickyVarga',
+                'name' => 'Vicky Varga',
                 'email' => 'VickyVarga@epl.ca',
                 'password' => Hash::make( 'password' ),
             ],
