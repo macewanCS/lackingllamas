@@ -61,17 +61,14 @@
     text-decoration: none;
 }
 .navbar-nav {
-    width: 50%;
     margin: 0 auto;
-    line-height: 59px;
+    margin-left: 10%;
 
 }
 .navbar-right {
     width: 10%;
     display: inline-block;
     position: relative;
-    margin-top: -80px;
-    margin-right: 50px;
     float: right;
 
 
