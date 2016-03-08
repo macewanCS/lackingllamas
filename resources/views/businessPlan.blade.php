@@ -222,7 +222,7 @@ $(".expandBP").click(function () {
 $content =$(".content");
 $content.slideDown(500, function () {});
 });
-$("collapse.BP").click(function () {
+$(".collapseBP").click(function () {
 $content =$(".content");
 $content.slideUp(500, function () {});
 });
