@@ -73,6 +73,26 @@ class ActionSeeder extends Seeder
                 'priority' => 2,
                 'objective_id' => 4
             ],
+            ['description' => 'Host a guest speaker during Freedom to Read Week related to intellectual freedom',
+                'date' => Carbon::createFromDate(2016, 2, 25, 'America/Toronto'),
+                'leads' => 'J Woods',
+                'collaborators' => 'Marketing, Adult Services, Fund Development, Volunteers',
+                'budget' => 0,
+                'projectPlan' => 'y',
+                'successMeasured' => 'Sold out event, full venue and 100% sell through of fund development seats. ',
+                'priority' => 1,
+                'objective_id' => 5
+            ],
+            ['description' => 'Host Reza Aslan to speak on confronting islamaphobia on May 18, 2016',
+                'date' => Carbon::createFromDate(2016, 5, 18, 'America/Toronto'),
+                'leads' => 'J McPhee',
+                'collaborators' => 'Marketing',
+                'budget' => 15000,
+                'projectPlan' => 'y',
+                'successMeasured' => 'Sold out event, full venue and 100% sell through of fund development seats. ',
+                'priority' => 3,
+                'objective_id' => 5
+            ],
         ]);
 
         for ($j = 1; $j <= App\Objective::All()->Count(); $j++){
