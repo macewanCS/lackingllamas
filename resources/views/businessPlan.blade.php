@@ -209,13 +209,13 @@
 
     $("#sortBy").selectmenu();
     $("#sortBy").selectmenu({
-        /*select: function(event, ui){
+        select: function(event, ui){
 
             if ('Date' == ui.item.value){
                 sortDate();
                 window.alert("got here");
             }
-        }*/
+        }
     });
 
 	function showTree(){
@@ -237,8 +237,9 @@
     }
 
     function sortDate(){
-        @foreach($objectives as $obj)
-            var objNode = $("#treeTableView").treetable('node', "{{$obj->ident}}");
+ /*       @foreach($objectives as $obj)
+            var objNode = $("#treeTableView").treetable('node', "1");
+            if (objNode == null) window.alert("Damn");
             $("#treeTreeView").treetable('sortBranch', objNode, 3);
         @endforeach
 
@@ -246,7 +247,7 @@
               var actNode = $("#treeTableView").treetable('node', "{{$action->ident}}");
               $("#treeTableView").treetable('sortBranch', actNode, 3);
         @endforeach
-
+*/
     }
 </script>
 
