@@ -5,6 +5,7 @@
         {!! Html::style('css/jquery.treetable.theme.default.css') !!}
 		{!! Html::style('css/treeTableStyle.css') !!}
 		{!! Html::style('css/businessPlan.css') !!}
+        {!! Html::style('http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css') !!}
 @stop
 
 @section('content')
@@ -34,10 +35,23 @@
     <div style="display: inline-block">No Priority</div>
 </div>
 
+<div id="select" style="display: inline-block; margin-left: 50px">
+    <label style="display: inline-block">SortBy: </label>
+    <select name="sortBy" id="sortBy" style="display: inline-block">
+        <option value="Desc.">Desc.</option>
+        <option value="Date">Date</option>
+        <option value="Leads">Leads</option>
+        <option value="Collabs">Collabs</option>
+        <option value="Budget">Budget</option>
+    </select>
+</div>
+
+
 <div style="float: right">
 <button id="collapseButtons" onClick="collapseAll()">CollapseAll</button>
 <button id="collapseButtons" onClick="expandAll()">ExpandAll</button>
 </div>
+
 
 
 <div class = "notificationsTable">
@@ -185,12 +199,24 @@
 @section('scripts')
 		<!-- <link rel="stylesheet" href="/public/javascript/jquery-ui.css"> -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script type="text/javascript" src="http://ludo.cubicphuse.nl/jquery-treetable/jquery.treetable.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+{!! Html::script('javascript/jquery.treetable.js') !!}
 
 <script>
-	$("#treeTableView").treetable({ expandable: true, initialState: "expanded" });
+	$("#treeTableView").treetable({ expandable: true, initialState: "expanded", column: 1 });
 	$("#treeTableView").hide();
+
+    $("#sortBy").selectmenu();
+    $("#sortBy").selectmenu({
+        /*select: function(event, ui){
+
+            if ('Date' == ui.item.value){
+                sortDate();
+                window.alert("got here");
+            }
+        }*/
+    });
 
 	function showTree(){
 		$("#treeTableView").hide();
@@ -208,6 +234,19 @@
 
     function expandAll() {
         $("#treeTableView").treetable("expandAll");
+    }
+
+    function sortDate(){
+        @foreach($objectives as $obj)
+            var objNode = $("#treeTableView").treetable('node', "{{$obj->ident}}");
+            $("#treeTreeView").treetable('sortBranch', objNode, 3);
+        @endforeach
+
+        @foreach($actions as $action)
+              var actNode = $("#treeTableView").treetable('node', "{{$action->ident}}");
+              $("#treeTableView").treetable('sortBranch', actNode, 3);
+        @endforeach
+
     }
 </script>
 

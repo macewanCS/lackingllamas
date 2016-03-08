@@ -25,7 +25,7 @@ class TaskSeeder extends Seeder
             ],
             ['description' => 'Upgrade LibOnline to the latest version (4.9)',
                 'date' => Carbon::createFromDate(2012, 1, 1, 'America/Toronto'),
-                'leads' => '<Michael, Luc',
+                'leads' => 'Michael, Luc',
                 'collaborators' => 'Active Networks',
                 'budget' => 0,
                 'projectPlan' => '',
