@@ -5,7 +5,12 @@
         {!! Html::style('css/jquery.treetable.theme.default.css') !!}
 		{!! Html::style('css/treeTableStyle.css') !!}
 		{!! Html::style('css/businessPlan.css') !!}
+
 @stop
+
+
+
+
 
 @section('content')
 
@@ -33,8 +38,8 @@
 </div>
 
 <div style="float: right">
-<button id="collapseButtons" onClick="collapseAll()">CollapseAll</button>
-<button id="collapseButtons" onClick="expandAll()">ExpandAll</button>
+<button class = "collapseBP" id="collapseButtons" onClick="collapseAll()">CollapseAll</button>
+<button class = "expandBP" id="collapseButtons" onClick="expandAll()">ExpandAll</button>
 </div>
 
 
@@ -208,20 +213,19 @@
 	$(".header").click(function () {
 
 		$header = $(this);
-		//getting the next element
 		$content = $header.next();
-		//open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
 		$content.slideToggle(500, function () {
-			//execute this after slideToggle is done
-			//change text of header based on visibility of content div
-
-			$header.text(function () {
-				//change text based on condition
-				return $content.is(":visible") ? "Collapse" : $header.data('myatt')
-			});
 		});
 
 	});
+$(".expandBP").click(function () {
+$content =$(".content");
+$content.slideDown(500, function () {});
+});
+$(".BP").click(function () {
+$content =$(".content");
+$content.slideUp(500, function () {});
+});
 </script>
 
 
