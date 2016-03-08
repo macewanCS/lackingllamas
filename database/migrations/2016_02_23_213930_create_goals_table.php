@@ -16,6 +16,7 @@ class CreateGoalsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
+            $table->string('ident');
             $table->integer('bpid')->unsigned();
             $table->foreign('bpid')->references('id')->on('businessPlans');
         });

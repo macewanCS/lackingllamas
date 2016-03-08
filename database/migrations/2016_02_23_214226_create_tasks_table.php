@@ -23,6 +23,7 @@ class CreateTasksTable extends Migration
             $table->text('successMeasured');
             $table->integer('priority');
             $table->timestamps();
+            $table->string('ident');
             $table->integer('action_id')->unsigned();
              $table->foreign('action_id')->references('id')->on('actions');
         });

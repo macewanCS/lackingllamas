@@ -20,8 +20,10 @@
 </div>
 
 <div style="display: inline-block">
-    <div class="boxCompleted" style="display: inline-block"></div>
-    <div style="display: inline-block">Completed</div>
+	<container id="complete">
+    	<div class="boxCompleted" style="display: inline-block"></div>
+		<div style="display: inline-block">Completed</div>
+	</container>
     <div class="boxLow" style="display: inline-block"></div>
     <div style="display: inline-block">Low Priority</div>
     <div class="boxHigh" style="display: inline-block"></div>

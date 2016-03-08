@@ -16,5 +16,11 @@ class GoalsSeeder extends Seeder
             ['name' => 'Transform Communities', 'bpid' => 1],
             ['name' => 'Evolve our Digital Environment', 'bpid' => 1]
         ]);
+
+        for ($i = 0; $i < App\Goal::All()->Count(); $i++){
+            DB::table('goals')
+                ->where('id', $i)
+                ->update(array('ident' => $i));
+        }
     }
 }

@@ -8,7 +8,8 @@ class Objective extends Model
 {
     protected $fillable = [
         'name',
-        'goal_id'
+        'goal_id',
+        'ident'
     ];
 
 
