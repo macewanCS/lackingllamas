@@ -11,13 +11,13 @@ class Task extends Model
 
         'description',
         'date',
-        'leads',
         'collaborators',
         'budget',
-        'projectPlan',
         'successMeasured',
-        'priority',
+        'progress',
         'action_id',
+        'teamOrDeptId',
+        'userId',
         'ident'
     ];
 

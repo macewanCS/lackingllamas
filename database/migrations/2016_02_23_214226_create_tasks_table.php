@@ -16,16 +16,18 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->text('description');
             $table->date('date');
-            $table->string('leads');
             $table->string('collaborators');
             $table->integer('budget');
-            $table->text('projectPlan');
             $table->text('successMeasured');
-            $table->integer('priority');
+            $table->integer('progress');
             $table->timestamps();
             $table->string('ident');
+            $table->integer('teamOrDeptId')->unsigned();
+            $table->integer('userId')->unsigned();
             $table->integer('action_id')->unsigned();
-             $table->foreign('action_id')->references('id')->on('actions');
+            $table->foreign('action_id')->references('id')->on('actions');
+            $table->foreign('teamOrDeptId')->references('id')->on('teamsAndDepartments');
+            $table->foreign('userId')->references('id')->on('users');
         });
     }
 
@@ -36,6 +38,11 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
+        Schema::table('tasks', function(Blueprint $table) {
+            $table->dropForeign('tasks_action_id_foreign');
+            $table->dropForeign('tasks_teamOrDeptId_foreign');
+            $table->dropForeign('tasks_userId_foreign');
+        });
         Schema::drop('tasks');
     }
 }

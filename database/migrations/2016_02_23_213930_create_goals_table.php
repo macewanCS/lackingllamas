@@ -17,8 +17,11 @@ class CreateGoalsTable extends Migration
             $table->string('name');
             $table->timestamps();
             $table->string('ident');
+            $table->integer('teamOrDeptId')->unsigned();
+            $table->boolean('bp');
             $table->integer('bpid')->unsigned();
             $table->foreign('bpid')->references('id')->on('businessPlans');
+            $table->foreign('teamOrDeptId')->references('id')->on('teamsAndDepartments');
         });
     }
 
@@ -29,6 +32,15 @@ class CreateGoalsTable extends Migration
      */
     public function down()
     {
+        if(Schema::hasTable('objectives')) {
+            Schema::table('objectives', function (Blueprint $table) {
+                $table->dropForeign('objectives_goal_id_foreign');
+                $table->dropForeign('objectives_teamOrDeptId_foreign');
+            });
+        }
+        Schema::table('goals', function(Blueprint $table) {
+            $table->dropForeign('goals_teamOrDeptId_foreign');
+        });
         Schema::drop('goals');
     }
 }
