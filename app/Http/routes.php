@@ -51,6 +51,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan','BusinessPlanController@businessPlan');
     Route::get('businessplan/creategoal','BusinessPlanController@createGoal');
     Route::post('businessplan','BusinessPlanController@storeGoal');
+    Route::get('businessplan/createobjective','BusinessPlanController@createObjective');
+    Route::post('businessplan','BusinessPlanController@storeObjective');
 
     Route::get('teams','TeamsController@teams');
     Route::get('departments','DepartmentsController@departments');
