@@ -16,16 +16,18 @@ class CreateActionsTable extends Migration
             $table->increments('id');
             $table->text('description');
             $table->date('date');
-            $table->string('leads');
             $table->string('collaborators');
             $table->integer('budget');
-            $table->text('projectPlan');
             $table->text('successMeasured');
-            $table->integer('priority');
+            $table->integer('progress');
             $table->timestamps();
             $table->string('ident');
+            $table->integer('teamOrDeptId')->unsigned();
+            $table->integer('userId')->unsigned();
             $table->integer('objective_id')->unsigned();
-             $table->foreign('objective_id')->references('id')->on('objectives');
+            $table->foreign('objective_id')->references('id')->on('objectives');
+            $table->foreign('teamOrDeptId')->references('id')->on('teamsAndDepartments');
+            $table->foreign('userId')->references('id')->on('users');
         });
     }
 
@@ -36,6 +38,18 @@ class CreateActionsTable extends Migration
      */
     public function down()
     {
+        if (Schema::hasTable('tasks')){
+            Schema::table('tasks', function (Blueprint $table) {
+                $table->dropForeign('tasks_action_id_foreign');
+                $table->dropForeign('tasks_teamOrDeptId_foreign');
+                $table->dropForeign('tasks_userId_foreign');
+            });
+         }
+        Schema::table('actions', function (Blueprint $table) {
+            $table->dropForeign('actions_objective_id_foreign');
+            $table->dropForeign('actions_teamOrDeptId_foreign');
+            $table->dropForeign('actions_userId_foreign');
+        });
         Schema::drop('actions');
     }
 }

@@ -9,6 +9,8 @@ class Objective extends Model
     protected $fillable = [
         'name',
         'goal_id',
+        'teamOrDeptId',
+        'bp',
         'ident'
     ];
 

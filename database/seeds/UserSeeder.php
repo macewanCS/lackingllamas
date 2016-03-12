@@ -18,6 +18,26 @@ class UserSeeder extends Seeder
                 'password' => Hash::make( 'password' ),
             ],
             [
+                'name' => 'J McPhee',
+                'email' => 'JMcPhee@epl.ca',
+                'password' => Hash::make ('password' ),
+            ],
+            [
+                'name' => 'Jody Crilly',
+                'email' => 'JodyCrilly@epl.ca',
+                'password' => Hash::make ('password' ),
+            ],
+            [
+                'name' => 'Elaine Jones',
+                'email' => 'ElaineJones@epl.ca',
+                'password' => Hash::make ('password' ),
+            ],
+            [
+                'name' => 'Alex Carruters',
+                'email' => 'AlexCarruthers@epl.ca',
+                'password' => Hash::make ('password' ),
+            ],
+            [
                 'name' => 'root',
                 'email' => 'root@root.ca',
                 'password' => Hash::make ('alpine' ),
