@@ -37,6 +37,27 @@ class BusinessPlanController extends Controller
   	Goal::create($input);
   	return redirect('businessplan');
   }
+  public function createObjective()
+  {
+    $goals = Goal::lists('name');
+    return view('businessPlan.createObjective',compact('goals'));
+  }
+   public function storeObjective()
+  {
+    $goals = Goal::all();
+    $input=Request::all();
+    $input['goal_id']
+    foreach ($goals as $goal)
+    {
+      if($input['goal_id']==$goal->name)
+      {
+
+        $input['goal_id'] = $goal->id;
+      }
+    }
+    Objective::create($input);
+    return redirect('businessplan');
+  }
 }
 
        
