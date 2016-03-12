@@ -30,32 +30,51 @@ class BusinessPlanController extends Controller
   {
   	return view('businessPlan.createGoal');
   }
-   public function storeGoal()
-  {
-  	$input=Request::all();
-  	$input['bpid'] = 1;
-  	Goal::create($input);
-  	return redirect('businessplan');
-  }
+
   public function createObjective()
   {
     $goals = Goal::lists('name');
     return view('businessPlan.createObjective',compact('goals'));
   }
-   public function storeObjective()
-  {
-    $goals = Goal::all();
-    $input=Request::all();
-    $input['goal_id']
-    foreach ($goals as $goal)
-    {
-      if($input['goal_id']==$goal->name)
-      {
 
-        $input['goal_id'] = $goal->id;
-      }
+
+    public function createAction()
+  {
+    $objectives = Objective::lists('name');
+    return view('businessPlan.createAction',compact('objectives'));
+  }
+
+
+    public function createTask()
+  {
+    $actions = Action::lists('description');
+
+    return view('businessPlan.createTask',compact('actions'));
+  }
+   public function store()
+  {
+    $input=Request::all();
+       if ((Request::has('bpid'))) {
+
+      $input['bpid']=1;
+      Action::create($input);
     }
-    Objective::create($input);
+       if ((Request::has('goal_id'))) {
+
+      $input['goal_id']+=1;
+      Objective::create($input);
+    }
+    if ((Request::has('objective_id'))) {
+
+      $input['objective_id']+=1;
+      Action::create($input);
+    }
+    if ((Request::has('action_id')))
+    {
+      $input['action_id']+=1;
+      Task::create($input);
+    }
+ 
     return redirect('businessplan');
   }
 }

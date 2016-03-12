@@ -14,7 +14,8 @@
 
 		<div class="form-group-one">
 			{!! Form::label('goal_id','Goal: ') !!}
-			{!! Form::select('goal_id',$goals,null,['class'=>'form-control'])!!}
+			{!! Form::select('goal_id',$goals)!!}
+
 			<br>
 			{!! Form::label('name','Name: ') !!}
 			{!! Form::text('name') !!}
@@ -23,7 +24,7 @@
 		</div>
 
 		<div class="form-group-two">
-			{!! Form::submit('Add Objective',['class'=>'btn-primary form-control']) !!}
+			{!! Form::submit('Add Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
 		</div>
 
 		{!! Form::close() !!}
