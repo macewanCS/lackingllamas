@@ -10,6 +10,8 @@ class Goal extends Model
     protected $fillable = [
         'name',
         'bpid',
+        'teamOrDeptId',
+        'bp',
         'ident'
 
 

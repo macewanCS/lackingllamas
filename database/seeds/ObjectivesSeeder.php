@@ -13,11 +13,11 @@ class ObjectivesSeeder extends Seeder
     public function run()
     {
         DB::table('objectives')->insert([
-            ['name' => 'We Identify and meet community needs', 'goal_id' => 1],
-            ['name' => 'We Reduce barriers to accessing library services', 'goal_id' => 1],
-            ['name' => 'Online services are highly used and valued', 'goal_id' => 2],
-            ['name' => 'Together with our community we provide successful, meaningful services that are highly rates and heavily used', 'goal_id' => 1],
-            ['name' => 'Edmontonians view EPL as integral to their lifelong formal and informal learning.', 'goal_id' => 3]
+            ['name' => 'We Identify and meet community needs', 'goal_id' => 1, 'teamOrDeptId' => 1, 'bp' => true],
+            ['name' => 'We Reduce barriers to accessing library services', 'goal_id' => 1, 'teamOrDeptId' => 1, 'bp' => true],
+            ['name' => 'Online services are highly used and valued', 'goal_id' => 2, 'teamOrDeptId' => 1, 'bp' => true],
+            ['name' => 'Together with our community we provide successful, meaningful services that are highly rates and heavily used', 'goal_id' => 1, 'teamOrDeptId' => 2, 'bp' => true],
+            ['name' => 'Edmontonians view EPL as integral to their lifelong formal and informal learning.', 'goal_id' => 3, 'teamOrDeptId' => 2, 'bp' => true]
         ]);
 
         for ($j = 1; $j <= App\Goal::All()->Count(); $j++){

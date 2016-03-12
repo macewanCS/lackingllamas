@@ -11,13 +11,13 @@ class Action extends Model
 
         'description',
         'date',
-        'leads',
         'collaborators',
         'budget',
-        'projectPlan',
         'successMeasured',
-        'priority',
+        'progress',
         'objective_id',
+        'teamOrDeptId',
+        'userId',
         'ident'
     ];
 
