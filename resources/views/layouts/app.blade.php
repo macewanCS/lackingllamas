@@ -61,7 +61,6 @@
                     <li><div class ="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
                     <li><div class ="navbar-text"><a href="{{ url('/teams') }}">Teams</a></div></li>
                     <li><div class ="navbar-text"><a href="{{ url('/departments') }}">Departments</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/notifications') }}">Notifications</a></div></li>
                     <li><div class ="navbar-text"><a href="{{ url('/myprofile') }}">My Profile</a></div></li>
                 @endif
 
