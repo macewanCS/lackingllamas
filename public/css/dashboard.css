@@ -1,14 +1,14 @@
 .container-dashboard {
-
-    height: 600px;
-    margin-top: -25px;
-    margin-bottom: -15px;
+    background:white;
+    height: 1000px;
     margin-left: auto;
     margin-right: auto;
-    width: 1500px;
+    width: 1000px;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+    margin-top: 25px;
 
 }
 .inner {
@@ -16,31 +16,24 @@
 
 }
 .tasksTable {
-    float:left;
-    width: 25%;
-    height:543px;
+    float:right;
+    width: 26%;
+    height:410px;
     background: white;
     padding: 25px 10px 25px 25px;
-    box-shadow: 10px 10px 5px grey;
     border: 2px solid;
     border-color: grey;
-    margin-top: 40px;
-    margin-left: 10%;
+    margin-right: 10%;
     display: inline-block;
-
 }
-.tasks-inner {
 
-
-}
 .tasksTable ul {
     list-style: none;
     position: relative;
     right: 10mm;
     bottom: 10mm;
     margin: -15px;
-    height: 498px;
-
+    height: 350px;
 }
 
 .tasksTable ul li{
@@ -63,7 +56,6 @@
 
 .tasksTable h2{
     position: relative;
-    right: 6.7mm;
     bottom: 10.3mm;
     padding: 10px 25px;
     color: #FFF;
@@ -71,7 +63,6 @@
     text-transform: uppercase;
     background-color: #3F4344;
     text-align: center;
-    margin-right: 5cm;
 
     z-index: 9;
     font-weight: bold;
@@ -84,7 +75,7 @@
 }
 
 .tasksBtn {
-
+    padding-top: 10px;
     height: 30px;
 }
 .tasksBtn a {
@@ -93,9 +84,9 @@
 }
 
 .teamsTable {
-    float: left;
+
     width: 25%;
-    height:543px;
+    height:275px;
     background: white;
     padding: 25px 10px 25px 25px;
     box-shadow: 10px 10px 5px grey;
@@ -151,31 +142,27 @@
 
 
 .notificationsTable {
-    float: left;
-    width: 25%;
-    height:543px;
+    float:left;
+    width:50%;
+    height:60%;
     background: white;
-    padding: 25px 10px 25px 25px;
-    box-shadow: 10px 10px 5px grey;
-    border: 2px solid;
-    border-color: grey;
+    padding: 25px 25px 25px 25px;
     display: inline-block;
     margin-top: 40px;
-    margin-left: 20px;
+    margin-left: 50px;
 
 }
 .notifications-inner {
+    margin: 0 auto;
 
 }
 .notificationsTable ul {
     list-style: none;
     position: relative;
-    right: 10mm;
     bottom: 10mm;
     margin: -15px;
-    height: 498px;
-
-
+    height: 100%;
+    width: 80%;
 
 }
 .notificationsTable h2{
@@ -188,21 +175,24 @@
     text-transform: uppercase;
     background-color: #3F4344;
     text-align: center;
-    margin-right: 2cm;
+
     z-index: 9;
     font-weight: bold;
+    width: 100%;
+
 }
 .notificationsTable ul li{
     font-size: smaller;
     font-weight: bold;
-
+    width: 100%;
     padding: 5mm 5mm 3mm 5mm;
 
     border-bottom: 1px solid #ccc;
     color: rgb(63, 67, 68);
+
 }
-.notificationsTable ul li:last-child{
-    border-bottom: none;
+.notificationsTable ul li:first-child{
+    border-top: 1px solid #ccc;
 }
 
 .notificationsTable ul li:hover {
@@ -218,18 +208,46 @@
     font-size: small;
 }
 
+.moreBtn {
+    position: relative;
+
+    width: 100%;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: grey;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+
+
+}
+
+.moreBtn-inner {
+    margin: 0 auto;
+    width: 50%;
+}
+.notificationDate {
+    padding-bottom: 2mm;
+    font-style: italic;
+    font-size: x-small;
+}
+
 .welcomeTable h2 {
     position: relative;
-    bottom: 3mm;
+
+    bottom: 10.3mm;
     padding: 10px 25px;
+    margin-top: 38px;
     color: #FFF;
     font-size: 16px;
     text-transform: uppercase;
     background-color: #3F4344;
     text-align: center;
-    margin-right: 2cm;
+
     z-index: 9;
     font-weight: bold;
-    width:100%;
-    margin-top: 50px;
 }
