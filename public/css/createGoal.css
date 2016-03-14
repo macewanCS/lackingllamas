@@ -1,6 +1,24 @@
 .create-goal-container {
-    width: 340px;
-    height:250px;
+    width: 30%;
+    height: 40%;
+    min-height: 300px;
+    max-height: 300px;
+
+    background: white;
+    padding: 25px 10px 25px 25px;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+.create-action-container {
+    width: 50%;
+    height: 40%;
+    min-height: 500;
+    max-height: 500;
+
     background: white;
     padding: 25px 10px 25px 25px;
     box-shadow: 10px 10px 5px grey;
@@ -30,6 +48,7 @@ h2 {
     font-size: smaller;
     font-weight: bold;
     padding: 5mm 5mm 3mm 5mm;
+    margin-left: 12mm;
     color: rgb(63, 67, 68);
 }
 
@@ -40,10 +59,30 @@ h2 {
     padding: 10px;
     margin-top: 3cm;
     font-size: 16px;
-    border: none;
     cursor: pointer;
+    border: 2px solid;
+    border-color: rgb(220, 20, 74);
 }
-
+.btn-primary:hover {
+    background-color: rgb(255, 20, 64);
+    border-color: rgb(180, 30, 90);
+}
+.btn-primary-action {
+    background-color: rgb(245, 0, 54);
+    float:right;
+    color: white;
+    padding: 10px;
+    margin-top: 1cm;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: rgb(220, 20, 74);
+  
+}
+.btn-primary-action:hover {
+    background-color: rgb(255, 20, 64);
+    border-color: rgb(180, 30, 90);
+}
 input#name {
     width: 220px;
 

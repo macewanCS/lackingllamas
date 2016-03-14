@@ -4,7 +4,7 @@
 @section('content')
 
       {!! Html::style('css/createGoal.css') !!}
-      <div class="create-goal-container">
+      <div class="create-action-container">
             <div class="create-goal-inner">
             <h2>
                   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -16,38 +16,39 @@
             {!! Form::open(['url'=>'businessplan']) !!}
 
             <div class="form-group-one">
-                  {!! Form::label('objective_id','Objective: ') !!}
-                  {!! Form::select('objective_id',$objectives)!!}
+
+                  {!! Form::label('objective_id','Objective: ') !!}<br>
+                  {!! Form::select('objective_id',$objectives,null, array('class' => 'form-control'))!!}<br>
 
                 
-                  {!! Form::label('description','Name: ') !!}
-                  {!! Form::text('description') !!}
+                  {!! Form::label('description','Name: ') !!}<br>
+                  {!! Form::text('description') !!}<br>
 
-                  {!! Form::label('date','date: ') !!}
-                  {!! Form::text('date', '', array('id' => 'datepicker')) !!}
+                  {!! Form::label('date','date: ') !!}<br>
+                  {!! Form::text('date', 'date', array('id' => 'datepicker')) !!}<br>
 
-                  {!! Form::label('leads','Leads: ') !!}
-                  {!! Form::text('leads') !!}
+                  {!! Form::label('leads','Leads: ') !!}<br>
+                  {!! Form::text('leads') !!}<br>
 
-                  {!! Form::label('collaborators','Collaborators: ') !!}
-                  {!! Form::text('collaborators') !!}
+                  {!! Form::label('collaborators','Collaborators: ') !!}<br>
+                  {!! Form::text('collaborators') !!}<br>
 
-                  {!! Form::label('budget','budget: ') !!}
-                  {!! Form::text('budget') !!}       
+                  {!! Form::label('budget','budget: ') !!}<br>
+                  {!! Form::text('budget') !!}       <br>
                            
-                  {!! Form::label('projectPlanprojectPlan','projectPlan: ') !!}
-                  {!! Form::text('projectPlan') !!}  
+                  {!! Form::label('projectPlanprojectPlan','projectPlan: ') !!}<br>
+                  {!! Form::text('projectPlan') !!}  <br>
 
-                  {!! Form::label('successMeasured','successMeasured: ') !!}
-                  {!! Form::text('successMeasured') !!} 
+                  {!! Form::label('successMeasured','successMeasured: ') !!}<br>
+                  {!! Form::text('successMeasured') !!} <br>
 
-                  {!! Form::label('priority','priority: ') !!}
-                  {!! Form::text('priority') !!} 
+                  {!! Form::label('priority','priority: ') !!}<br>
+                  {!! Form::text('priority') !!} <br>
             </div>
 
-            <div class="form-group-two">
-                  {!! Form::submit('Add Action',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
-            </div>
+          
+                  {!! Form::submit('Add Action',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}
+           
 
             {!! Form::close() !!}
             </div>

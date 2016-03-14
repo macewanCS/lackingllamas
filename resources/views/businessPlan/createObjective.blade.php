@@ -13,21 +13,25 @@
 		{!! Form::open(['url'=>'businessplan']) !!}
 
 		<div class="form-group-one">
+
 			{!! Form::label('goal_id','Goal: ') !!}
+			<br>
 			{!! Form::select('goal_id',$goals)!!}
 
-			<br>
+
+			<br><br>
 			{!! Form::label('name','Name: ') !!}
+			<br>
 			{!! Form::text('name') !!}
-
-
-		</div>
-
-		<div class="form-group-two">
+			
 			{!! Form::submit('Add Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
+		
+
 		</div>
+
+	
 
 		{!! Form::close() !!}
-		</div>
+		
 	</div>
 @stop
