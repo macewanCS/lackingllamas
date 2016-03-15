@@ -20,17 +20,17 @@
     width: 26%;
     height:410px;
     background: white;
-    padding: 25px 10px 25px 25px;
+    padding: 25px 10px 25px 10px;
     border: 2px solid;
     border-color: grey;
-    margin-right: 10%;
+    margin-right: 8%;
     display: inline-block;
 }
 
 .tasksTable ul {
     list-style: none;
     position: relative;
-    right: 10mm;
+    right: 20px;
     bottom: 10mm;
     margin: -15px;
     height: 350px;
