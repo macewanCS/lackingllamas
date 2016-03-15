@@ -22,7 +22,7 @@
                 <img src ="http://d34rompce3lx70.cloudfront.net/wp-content/uploads/sites/18/2015/11/DesktopLogo_190x105.png?v=1455821533145582093014558209303">
                 <!-- TODO move EPL Logo to here. -->
             </a>
-            
+
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -49,18 +49,56 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
             <!-- Left Side Of Navbar -->
+
             <ul class="nav navbar-nav">
                 @if (Auth::guest())
-                    <li><div class ="navbar-text"><a href="{{ url('/home') }}">Home</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/teams') }}">Teams</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/departments') }}">Departments</a></div></li>
+                    @if (Request::path() == 'home')
+                        <li><div class="navbar-current"><a href="{{ url('/home') }}">Home</a></div></li>
+                    @else
+                        <li><div class="navbar-text"><a href="{{ url('/home') }}">Home</a></div></li>
+                    @endif
+
+                    @if (Request::path() == 'businessplan')
+                        <li><div class="navbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                    @else
+                        <li><div class="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                    @endif
+
+                    @if (Request::path() == 'teams')
+                        <li><div class="navbar-current"><a href="{{ url('/teams') }}">Groups</a></div></li>
+                    @else
+                        <li><div class="navbar-text"><a href="{{ url('/teams') }}">Groups</a></div></li>
+                    @endif
+
                 @else
-                    <li><div class ="navbar-text"><a href="{{ url('/dashboard') }}">Home</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/teams') }}">Teams</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/departments') }}">Departments</a></div></li>
+                    @if (Request::path() == 'dashboard')
+                        <li><div class="navbar-current"><a href="{{ url('/dashboard') }}">Dashboard</a></div></li>
+                    @else
+                        <li><div class="navbar-text"><a href="{{ url('/dashboard') }}">Dashboard</a></div></li>
+                    @endif
+
+                    @if (Request::path() == 'mytasks')
+                        <li><div class="navbar-current"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
+                    @else
+                        <li><div class="navbar-text"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
+                    @endif
+
+                    @if (Request::path() == 'businessplan')
+                        <li><div class="navbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                    @else
+                        <li><div class="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                    @endif
+                    @if (Request::path() == 'businessplan')
+                        <li><div class="navbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                    @else
+                        <li><div class="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                    @endif
+
+                    @if (Request::path() == 'teams')
+                        <li><div class="navbar-current"><a href="{{ url('/teams') }}">Groups</a></div></li>
+                    @else
+                        <li><div class="navbar-text"><a href="{{ url('/teams') }}">Groups</a></div></li>
+                    @endif
                     <li><div class ="navbar-text"><a href="{{ url('/myprofile') }}">My Profile</a></div></li>
                 @endif
 
@@ -74,7 +112,7 @@
 
         <!-- JavaScripts -->
 @yield('scripts')
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>
