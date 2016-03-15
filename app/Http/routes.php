@@ -60,6 +60,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('businessplan/createtask','BusinessPlanController@createTask');
     Route::post('businessplan','BusinessPlanController@store');
+    Route::get('businessplan/editgoal','BusinessPlanController@edit');
 
     //----------------------------
     Route::get('teams','TeamsController@teams');

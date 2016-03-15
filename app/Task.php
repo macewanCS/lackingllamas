@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class Task extends Model
 {
 
@@ -20,6 +20,9 @@ class Task extends Model
         'userId',
         'ident'
     ];
-
+    public function setDateAttribute($date)
+    {
+        $this->attributes['date'] = Carbon::createFromFormat('Y-m-d',$date);
+    }
 
 }
