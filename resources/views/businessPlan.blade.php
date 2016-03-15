@@ -12,7 +12,18 @@
 
 
 @section('content')
+
 <div id="mainDiv">
+
+ <div class="dropDown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/businessplan/creategoal">Create Goal</a>
+    <a href="/businessplan/createobjective">Create Objective</a>
+    <a href="/businessplan/createaction">Create Action</a>
+    <a href="/businessplan/createtask">Create Task</a>
+  </div>
+</div>
 
 <table id="grid-basic"  class="table table-condensed table-hover table-striped bootgrid-table">
 	<thead>
@@ -87,6 +98,11 @@
 
 <script>
 	$("#grid-basic").bootgrid();
+</script>
+<script>
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
 </script>
 
 @stop
