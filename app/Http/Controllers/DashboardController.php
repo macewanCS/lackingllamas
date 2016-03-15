@@ -12,9 +12,9 @@ class DashboardController extends Controller
 {
 
 
-    public function dashBoard()
+    public function dashBoard(Request $request)
     {
-        $tasks = Task::latest('date')->get();//tasks sorted by date TODO give only users tasks
+        $tasks = Task::latest('date')->where('userId', $request->user()->id)->get();//tasks sorted by date TODO give only users tasks
         return view('dashBoard', compact('tasks'));
     }
 

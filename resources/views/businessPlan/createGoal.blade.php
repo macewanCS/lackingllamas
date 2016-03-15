@@ -15,6 +15,7 @@
 		</div>
 
 		<div class="form-group-two">
+			<br><br>
 			{!! Form::submit('Add Goal',['class'=>'btn-primary form-control']) !!}
 		</div>
 
