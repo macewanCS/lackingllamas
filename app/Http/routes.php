@@ -47,7 +47,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('dashboard', 'DashboardController@dashBoard');
     Route::get('mytasks','MyTasksController@myTasks');
-    Route::get('notifications','NotificationsController@notifications');
     Route::get('businessplan','BusinessPlanController@businessPlan');
     Route::get('businessplan/creategoal','BusinessPlanController@createGoal');
     Route::post('businessplan','BusinessPlanController@storeGoal');
