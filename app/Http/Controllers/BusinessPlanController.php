@@ -46,7 +46,7 @@ class BusinessPlanController extends Controller
   {
     $goals = Goal::all();
     $input=Request::all();
-    $input['goal_id']
+    $input['goal_id'];
     foreach ($goals as $goal)
     {
       if($input['goal_id']==$goal->name)
