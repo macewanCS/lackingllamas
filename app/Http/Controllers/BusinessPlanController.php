@@ -54,13 +54,13 @@ class BusinessPlanController extends Controller
    public function store()
   {
     $input=Request::all();
-       if ((Request::has('bpid'))) {
+
+    if ((Request::has('bpid'))) {
 
       $input['bpid']=1;
-      Action::create($input);
+      Goal::create($input);
     }
-       if ((Request::has('goal_id'))) {
-
+   if ((Request::has('goal_id'))) {
       $input['goal_id']+=1;
       Objective::create($input);
     }

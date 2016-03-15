@@ -10,6 +10,47 @@
             </div>
         </div>
         <div class="inner">
+            <div class="notificationsTable">
+                <div class="notifications-inner">
+
+                    <ul>
+                        <li> <div class="notificationDate">A day ago </div>
+                                <a class="notificationsUser" href="#">Vicky Varga</a> commented on action <a href="#" class="notificationsItem">Support Team and Department projects</a>
+                        </li>
+                        <li> <div class="notificationDate">A day ago </div>
+                            <a class="notificationsUser" href="#">Vicky Varga</a> commented on task <a  href="#" class="notificationsItem">Support CMA's roll out of EDI with Midwest Tapes</a>
+                        </li>
+                        <li> <div class="notificationDate">A day ago </div>
+                            <a class="notificationsUser" href="#">Vicky Varga</a> edited action <a href="#" class="notificationsItem" >Support CMA's roll out of EDI with Midwest Tapes</a>
+                        </li>
+                        <li> <div class="notificationDate">A day ago </div>
+                            <a class="notificationsUser" href="#">Vicky Varga</a> commented on task <a href="#" class="notificationsItem">Support Team and Department projects</a>
+                        </li>
+                        <li> <div class="notificationDate">A day ago </div>
+                            <a class="notificationsUser" href="#">Vicky Varga</a> commented on task <a href="#" class="notificationsItem">Support Team and Department projects</a>
+                        </li>
+                        <li> <div class="notificationDate">A day ago </div>
+                            <a class="notificationsUser" href="#">Vicky Varga</a> edited action <a href="#" class="notificationsItem">Support FIN's 2016 PCI compliance work by developing and implementing required network changes and documentation</a>
+                        </li>
+                        <li> <div class="notificationDate">A day ago </div>
+                            <a class="notificationsUser" href="#">Vicky Varga</a> commented on action <a href="#" class="notificationsItem">Support Team and Department projects</a>
+                        </li>
+                        <li> <div class="notificationDate">A day ago </div>
+                            <a class="notificationsUser" href="#">Vicky Varga</a> commented on task <a  href="#" class="notificationsItem">Support CMA's roll out of EDI with Midwest Tapes</a>
+                        </li>
+                        <li> <div class="notificationDate">A day ago </div>
+                            <a class="notificationsUser" href="#">Vicky Varga</a> edited action <a href="#" class="notificationsItem" >Support CMA's roll out of EDI with Midwest Tapes</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="moreBtn">
+                    <div class="moreBtn-inner">
+                        More
+                    </div>
+                </button>
+            </div>
+        </div>
             <div class="tasksTable">
                 <div class = "tasks-inner">
                     <h2>My Tasks</h2>
@@ -27,31 +68,10 @@
 
             </div>
 
-            <div class="teamsTable">
-                <div class="teams-inner">
-                    <h2>My Teams & Departments</h2>
-                    <ul>
-                        <!-- TODO Add teams & departments dynamically to the dashboard -->
-                        <li>IT Services Department</li>
-                        <li>Events Team</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="notificationsTable">
-                <div class="notifications-inner">
-                    <h2>Notifications</h2>
-                    <ul>
-                        <li>'2016 Business Plan' was changed</li>
-                        <li>A task was changed</li>
-                    </ul>
-                    <div class="notificationsBtn"><a href="{{ url('/notifications') }}">View All</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div class="footer">
+
+
 
     </div>
+
 
 @stop
