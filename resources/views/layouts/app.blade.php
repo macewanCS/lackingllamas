@@ -88,11 +88,6 @@
                     @else
                         <li><div class="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
                     @endif
-                    @if (Request::path() == 'businessplan')
-                        <li><div class="navbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    @else
-                        <li><div class="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    @endif
 
                     @if (Request::path() == 'teams')
                         <li><div class="navbar-current"><a href="{{ url('/teams') }}">Groups</a></div></li>
