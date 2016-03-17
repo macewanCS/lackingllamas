@@ -5,7 +5,7 @@
 
 
 }
-.navbar-brand {
+.topbar-brand {
 
     margin-left: 300px;
 }
@@ -18,7 +18,7 @@
     position: relative;
 
 }
-.navbar-collapse {
+.topbar-collapse {
     width: 1900px;
     position: relative;
     margin-left: auto;
@@ -26,14 +26,14 @@
 
 }
 
-.navbar-nav ul {
+.topbar-nav ul {
 
 }
-.navbar-text {
+.topbar-text {
 
     display:inline;
 }
-.navbar-text a{
+.topbar-text a{
     padding-right: 10px;
     padding-left: 10px;
     border-right: 1px solid;
@@ -41,24 +41,24 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
 }
-.navbar-nav li{
+.topbar-nav li{
 
     text-align: center;
     display:inline;
     padding-bottom: 0.5mm;
 }
-.navbar-nav li:hover {
+.topbar-nav li:hover {
     border-bottom: 3px solid;
     border-bottom-color: blue;
 }
 
-.navbar-nav li:last-child a{
+.topbar-nav li:last-child a{
     border-right: none;
 }
-.navbar-text li:first-child{
+.topbar-text li:first-child{
     border-right: none;
 }
-.navbar-nav a{
+.topbar-nav a{
     text-align: center;
     margin-right:auto;
     margin-left:auto;
@@ -66,15 +66,15 @@
     color: rgb(63, 67, 68);
     text-decoration: none;
 }
-.navbar-nav {
+.topbar-nav {
     margin: 0 auto;
     width: 50%;
 
 }
-.navbar-brand {
+.topbar-brand {
 
 }
-.navbar-right {
+.topbar-right {
     width: 10%;
     display: inline-block;
     position: relative;
@@ -107,14 +107,14 @@
 }
 .dropdown-content a:hover {background-color: #f1f1f1}
 
-.navbar-right:hover .dropdown-content {
+.topbar-right:hover .dropdown-content {
     display: block;
 }
-.navbar-right:hover .dropbtn {
+.topbar-right:hover .dropbtn {
     background-color: rgb(214, 0, 54);
 }
 
-.navbar-nav img, img:hover {
+.topbar-nav img, img:hover {
     margin: auto;
     text-decoration:none;
 }

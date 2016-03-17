@@ -11,20 +11,20 @@
 <body id="app-layout">
 <!-- Styles -->
 {!! Html::style('css/style.css') !!}
-<nav class="navbar navbar-default">
+<nav class="topbar topbar-default">
     <div class="container-topbar">
 
 
-        <div class="navbar-header">
+        <div class="topbar-header">
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="topbar-brand" href="{{ url('/') }}">
                 <img src ="http://d34rompce3lx70.cloudfront.net/wp-content/uploads/sites/18/2015/11/DesktopLogo_190x105.png?v=1455821533145582093014558209303">
                 <!-- TODO move EPL Logo to here. -->
             </a>
             
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
+            <!-- Right Side Of topbar -->
+            <ul class="nav topbar-nav topbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <button class="dropbtn">
@@ -46,22 +46,22 @@
             </ul>
         </div>
 
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <div class="collapse topbar-collapse" id="app-topbar-collapse">
 
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
+            <!-- Left Side Of topbar -->
+            <ul class="nav topbar-nav">
                 @if (Auth::guest())
-                    <li><div class ="navbar-text"><a href="{{ url('/home') }}">Home</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/teams') }}">Teams</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/departments') }}">Departments</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/home') }}">Home</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/teams') }}">Teams</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/departments') }}">Departments</a></div></li>
                 @else
-                    <li><div class ="navbar-text"><a href="{{ url('/dashboard') }}">Home</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/teams') }}">Teams</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/departments') }}">Departments</a></div></li>
-                    <li><div class ="navbar-text"><a href="{{ url('/myprofile') }}">My Profile</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/dashboard') }}">Home</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/teams') }}">Teams</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/departments') }}">Departments</a></div></li>
+                    <li><div class ="topbar-text"><a href="{{ url('/myprofile') }}">My Profile</a></div></li>
                 @endif
 
             </ul>
