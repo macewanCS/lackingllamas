@@ -63,8 +63,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan/editgoal','BusinessPlanController@edit');
 
     //----------------------------
-    Route::get('teams','TeamsController@teams');
-    Route::get('departments','DepartmentsController@departments');
+    Route::get('teams_departments','TeamsDepartmentsController@show');
 
     Route::get('myprofile','MyProfileController@myProfile');
 });
