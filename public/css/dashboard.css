@@ -17,23 +17,25 @@
 }
 .tasksTable {
     float:right;
-    width: 26%;
-    height:410px;
+    width: 350px;
+    height: auto;
     background: white;
-    padding: 25px 10px 25px 25px;
+    padding: 25px 10px 25px 10px;
     border: 2px solid;
     border-color: grey;
-    margin-right: 10%;
     display: inline-block;
+    margin-top: 25px;
+    margin-right: 8%;
 }
 
 .tasksTable ul {
     list-style: none;
     position: relative;
-    right: 10mm;
+    right: 20px;
     bottom: 10mm;
     margin: -15px;
-    height: 350px;
+    height: auto;
+    min-height: 160px;
 }
 
 .tasksTable ul li{
@@ -66,6 +68,8 @@
 
     z-index: 9;
     font-weight: bold;
+    right: 10px;
+    width: 320px;
 }
 
 .taskDate {
@@ -75,8 +79,8 @@
 }
 
 .tasksBtn {
-    padding-top: 10px;
-    height: 30px;
+    /*!  */
+    /*!  */
 }
 .tasksBtn a {
     float: right;
@@ -143,31 +147,34 @@
 
 .notificationsTable {
     float:left;
-    width:50%;
+    width:580px;
     height:60%;
     background: white;
     padding: 25px 25px 25px 25px;
     display: inline-block;
-    margin-top: 40px;
+    margin-top: 25px;
     margin-left: 50px;
 
+    border: 2px solid;
+    border-color: grey;
 }
 .notifications-inner {
-    margin: 0 auto;
 
 }
 .notificationsTable ul {
     list-style: none;
-    position: relative;
+    /*!  */
     bottom: 10mm;
-    margin: -15px;
     height: 100%;
-    width: 80%;
+    width: 90%;
 
+    margin-left: -10px;
+    margin-top: -25px;
+    margin-bottom: 25px;
 }
 .notificationsTable h2{
     position: relative;
-    right: 6.7mm;
+    right: 25px;
     bottom: 10.3mm;
     padding: 10px 25px;
     color: #FFF;
@@ -184,15 +191,15 @@
 .notificationsTable ul li{
     font-size: smaller;
     font-weight: bold;
-    width: 100%;
     padding: 5mm 5mm 3mm 5mm;
 
     border-bottom: 1px solid #ccc;
     color: rgb(63, 67, 68);
 
 }
-.notificationsTable ul li:first-child{
-    border-top: 1px solid #ccc;
+.notificationsTable ul li:last-child{
+    
+    border-bottom: none;
 }
 
 .notificationsTable ul li:hover {
@@ -212,18 +219,19 @@
     position: relative;
 
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: grey;
+    background-color: #555;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 4px #999;
+    /*!  */
+    /*!  */
 
 
+    padding: 5px;
 }
 
 .moreBtn-inner {
@@ -235,13 +243,23 @@
     font-style: italic;
     font-size: x-small;
 }
+.notificationsUser {
+    text-decoration: none;
+}
+.notificationsUser:hover {
+    text-decoration: underline;
+}
+.notificationsItem {
+    text-decoration: none;
+}
+.notificationsItem:hover {
+    text-decoration: underline;
+}
 
 .welcomeTable h2 {
     position: relative;
-
     bottom: 10.3mm;
     padding: 10px 25px;
-    margin-top: 38px;
     color: #FFF;
     font-size: 16px;
     text-transform: uppercase;
@@ -250,4 +268,11 @@
 
     z-index: 9;
     font-weight: bold;
+}
+
+.dashboardContainer {
+    width: 1200px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }

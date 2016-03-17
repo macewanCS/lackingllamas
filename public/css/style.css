@@ -19,7 +19,7 @@
 
 }
 .topbar-collapse {
-    width: 1900px;
+    min-width: 1136px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
