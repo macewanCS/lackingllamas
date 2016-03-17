@@ -1,39 +1,136 @@
 
 #grid-basic {
     border-collapse: collapse;
+    font-family: sans-serif;
+    max-width: 1vw;
+    border: 1px solid rgba(175, 182, 205, 0.41);
+    font-size: 1.5em;
+    display: inline-block;
+    float: right;
     table-layout: auto;
-    font-family: Arial;
-    max-width: 1400px;
 }
 
-#grid-basic, td {
-    border: 1px solid grey;
-    background-color: white;
+#grid-basic td {
+    border: none;
+    background-color: rgba(219, 227, 252, 0.41);
     font-weight: bold;
     font-size: 100%;
+    color: black;
 }
 
 #grid-basic td.shrink {
     width:   1%;
 }
 
+.input-group {
+    float: right;
+    width: 15%;
+    align-content: center;
+    margin-top: 3px;
+    margin-left: 3%;
+}
+
+.actions {
+    float: right;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+}
+
+#mainDiv .actionBar .form-group{
+    margin: 0;
+
+}
+
 #grid-basic td.expand {
     width: 99%;
 }
 
-#grid-basic th {
+#grid-basic > thead > tr > th.text-left {
     border: none;
-    background-color: lightslategrey;
-    font-weight: bold;
-    font-size: 200%;
-    height: 50px;
+    background-color: #f3f5f5;
+    font-size: 120%;
+    height: 3vw;
     line-height: 50px;
-    color: white;
+    color: darkgray !important;
+    font-weight: lighter;
 }
-.bootgrid-table th>.column-header-anchor {
-    color: white !important;
+
+#grid-basic > thead > tr > th.text-left,
+#grid-basic > tbody > tr > td.text-left {
+    padding-right: 1vw;
 }
+
+#grid-basic > thead > tr > th.text-left > a {
+    color: grey !important;
+    font-weight: normal !important;
+}
+
 
 #mainDiv {
     background-color: white;
+    padding: 0 2vw;
+    margin: 1vw 2vw;
+    overflow: hidden;
+}
+
+.sideDiv {
+    float: right;
+    display: inline-block;
+    width: 20%;
+    max-width: 20%;
+    min-height: 100%;
+    background-color: white;
+    margin-top: 2.9%;
+    padding: 1%;
+}
+
+.tableDiv {
+    float: right;
+    display: inline-block;
+    max-width: 80%;
+
+}
+
+.black {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    color: white;
+    font-size: 130%;
+}
+
+
+
+.blue {
+    background-color: blue;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    color: white;
+    font-size: 130%
+}
+
+#text-left {
+    height: 100%
+}
+
+#grid-basic td .go {
+    background-color: lightgrey;
+    color: black;
+}
+
+.ico {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    align-content: center;
+    padding-left: 25%;
+    font-size: 200%;
+}
+
+#grid-basic > tbody > tr.success > td {
+    background-color: white !important;
+    color: black;
+    font-weight: normal;
 }
