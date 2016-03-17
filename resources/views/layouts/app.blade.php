@@ -39,6 +39,7 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </button>
                     <div class="dropdown-content">
+                        <a href="{{ url('/myprofile') }}"><i class="fa fa-btn fa-my-profile"></i>My Profile</a>
                         <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                     </div>
 
@@ -94,7 +95,6 @@
                     @else
                         <li><div class="navbar-text"><a href="{{ url('/teams') }}">Groups</a></div></li>
                     @endif
-                    <li><div class ="navbar-text"><a href="{{ url('/myprofile') }}">My Profile</a></div></li>
                 @endif
 
             </ul>
