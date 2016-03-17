@@ -52,31 +52,34 @@ class BusinessPlanController extends Controller
     return view('businessPlan.createTask',compact('actions'));
   }
    public function store()
-  {
-    $input=Request::all();
+   {
+       $input = Request::all();
 
-    if ((Request::has('bpid'))) {
+          
 
-      $input['bpid']=1;
-      Goal::create($input);
-    }
-   if ((Request::has('goal_id'))) {
-      $input['goal_id']+=1;
-      Objective::create($input);
-    }
-    if ((Request::has('objective_id'))) {
+               if (Request::has('bpid')) {
 
-      $input['objective_id']+=1;
-      Action::create($input);
-    }
-    if ((Request::has('action_id')))
-    {
-      $input['action_id']+=1;
-      Task::create($input);
-    }
- 
-    return redirect('businessplan');
-  }
+                   $input['bpid'] = 1;
+                   Goal::create($input);
+               }
+               if (Request::has('goal_id')) {
+                   $input['goal_id'] += 1;
+                   Objective::create($input);
+               }
+               if (Request::has('objective_id')) {
+
+                   $input['objective_id'] += 1;
+                   Action::create($input);
+               }
+               if (Request::has('action_id')) {
+                   $input['action_id'] += 1;
+                   Task::create($input);
+               }
+
+               return redirect('businessplan');
+           
+       
+   }
 }
 
        

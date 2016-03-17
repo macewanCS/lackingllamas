@@ -25,7 +25,7 @@
                   {!! Form::text('description') !!}<br>
 
                   {!! Form::label('date','date: ') !!}<br>
-                  {!! Form::text('date', 'date', array('id' => 'datepicker')) !!}<br>
+                  {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-control']) !!}<br>
 
                   {!! Form::label('leads','Leads: ') !!}<br>
                   {!! Form::text('leads') !!}<br>
