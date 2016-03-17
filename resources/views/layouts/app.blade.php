@@ -66,9 +66,9 @@
                     @endif
 
                     @if (Request::path() == 'teams')
-                        <li><div class="navbar-current"><a href="{{ url('/teams') }}">Groups</a></div></li>
+                        <li><div class="navbar-current"><a href="{{ url('/teams_departments') }}">Groups</a></div></li>
                     @else
-                        <li><div class="navbar-text"><a href="{{ url('/teams') }}">Groups</a></div></li>
+                        <li><div class="navbar-text"><a href="{{ url('/teams_departments') }}">Groups</a></div></li>
                     @endif
 
                 @else
