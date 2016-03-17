@@ -19,6 +19,7 @@
 
 }
 .topbar-collapse {
+    width: 50%;
     min-width: 1136px;
     position: relative;
     margin-left: auto;
