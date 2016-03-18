@@ -60,8 +60,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::patch('businessplan/{id}','BusinessPlanController@update');
     //Route::resource('businessplan','BusinessPlanController');
     //----------------------------
-    Route::get('teams','TeamsController@teams');
-    Route::get('departments','DepartmentsController@departments');
+    Route::get('teams_departments','TeamsDepartmentsController@show');
 
     Route::get('myprofile','MyProfileController@myProfile');
 });
