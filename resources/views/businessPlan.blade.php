@@ -137,7 +137,7 @@
                             if (column.id == "status"){
                                 var prog = row.status;
                                 if (prog < 0){
-                                    return "";
+                                    return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
                                 else if (prog == 0){
                                     return "<div class=\"ico\"></div>";
@@ -149,7 +149,7 @@
                                     return "<div class=\"ico\"><span class=\"fa fa-check\"></span></div>";
                                 }
                                 else {
-                                    return "";
+                                    return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
                             }
                             if (row.progress < 0){
