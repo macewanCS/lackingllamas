@@ -30,21 +30,25 @@
             <table id="grid-basic"  class="table table-condensed table-hover bootgrid-table">
                 <thead>
                 <tr>
-                    <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status">Prog</th>
-                    <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description of GOAT Element</th>
-                    <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Date</th>
+                    <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
+                    <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status"></th>
+                    <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
+                    <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="collabs" data-formatter="colorizer" data-header-css-class="collabs">Collaborators</th>
                     <th data-column-id="budget" data-formatter="colorizer" data-header-css-class="budget">Budget</th>
-                    <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success Measures</th>
+                    <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                     <th data-column-id="user" data-formatter="colorizer" data-header-css-class="user">User</th>
                     <th data-column-id="group" data-formatter="colorizer" data-header-css-class="group">Group</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($goals as $goal)
+                    <?php $test = true ?>
                     @foreach($objectives as $objective)
                         @if($objective->goal_id==$goal->id)
+                            <?php $test = false ?>
                             <tr>
+                                <td>{{$objective->ident}}</td>
                                 <td>-1</td>
                                 <td>{{$goal->name}}</td>
                                 <td></td>
@@ -58,6 +62,7 @@
                             @foreach($actions as $action)
                                 @if($action->objective_id==$objective->id)
                                     <tr>
+                                        <td>{{$action->ident}}</td>
                                         <td>{{$action->progress}}</td>
                                         <td>{{$action->description}}</td>
                                         <td>{{$action->date}}</td>
@@ -70,6 +75,7 @@
                                     @foreach($tasks as $task)
                                         @if($task->action_id==$action->id)
                                             <tr>
+                                                <td>{{$task->ident}}</td>
                                                 <td>{{$task->progress}}</td>
                                                 <td>{{$task->description}}</td>
                                                 <td>{{$task->date}}</td>
@@ -85,6 +91,20 @@
                             @endforeach
                         @endif
                     @endforeach
+                    @if ($test){
+                        <tr>
+                            <td>{{$goal->ident . '.1'}}</td>
+                            <td>-1</td>
+                            <td>{{$goal->name}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
@@ -99,8 +119,14 @@
     {!! Html::script('javascript/jquery.bootgrid.fa.js') !!}
 
     <script>
+        var rowIds = [];
         $("#grid-basic").bootgrid(
                 {
+                    selection: true,
+                    multiSelect: true,
+                    rowSelect: true,
+                    keepSelection: true,
+
                     formatters: {
                         colorizer: function (column, row) {
                             if (column.id == "status"){
@@ -109,7 +135,7 @@
                                     return "";
                                 }
                                 else if (prog == 0){
-                                    return "<div class=\"ico\"><span class=\"fa fa-minus-circle\"></span></div>";
+                                    return "<div class=\"ico\"></div>";
                                 }
                                 else if (prog == 1){
                                     return "<div class=\"ico\"><span class=\"fa fa-hourglass-1\"></span></div>";
@@ -138,7 +164,13 @@
                         }
                     }
                 }
-        );
+        ).on("selected.rs.jquery.bootgrid", function(e, rows){
+            var rowsIds = [];
+            for (var i = 0; i < rows.length; i++)
+            {
+                rowIds.push(rows[i].id);
+            }
+        });
     </script>
     <script>
         function myFunction() {
