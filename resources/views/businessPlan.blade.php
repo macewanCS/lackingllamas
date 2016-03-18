@@ -31,6 +31,7 @@
                 <thead>
                 <tr>
                     <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
+                    <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
                     <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status"></th>
                     <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
@@ -49,6 +50,7 @@
                             <?php $test = false ?>
                             <tr>
                                 <td>{{$objective->ident}}</td>
+                                <td>Objective</td>
                                 <td>-1</td>
                                 <td>{{$goal->name}}</td>
                                 <td></td>
@@ -63,6 +65,7 @@
                                 @if($action->objective_id==$objective->id)
                                     <tr>
                                         <td>{{$action->ident}}</td>
+                                        <td>Action</td>
                                         <td>{{$action->progress}}</td>
                                         <td>{{$action->description}}</td>
                                         <td>{{$action->date}}</td>
@@ -76,6 +79,7 @@
                                         @if($task->action_id==$action->id)
                                             <tr>
                                                 <td>{{$task->ident}}</td>
+                                                <td>Task</td>
                                                 <td>{{$task->progress}}</td>
                                                 <td>{{$task->description}}</td>
                                                 <td>{{$task->date}}</td>
@@ -94,6 +98,7 @@
                     @if ($test)
                         <tr>
                             <td>{{$goal->ident . '.1'}}</td>
+                            <td>Goal</td>
                             <td>-1</td>
                             <td>{{$goal->name}}</td>
                             <td></td>
