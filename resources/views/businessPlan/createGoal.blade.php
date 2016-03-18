@@ -12,6 +12,7 @@
 		<div class="form-group-one">
 			{!! Form::label('name','Name: ') !!}
 			{!! Form::text('name') !!}
+			{!! Form::hidden('bpid', 1) !!}
 		</div>
 
 		<div class="form-group-two">

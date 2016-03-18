@@ -16,7 +16,7 @@
 
         <div class="sideDiv">
             <div class="dropDown">
-                <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                <button onclick="myFunction()" class="dropbtn">Create</button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="/businessplan/creategoal">Create Goal</a>
                     <a href="/businessplan/createobjective">Create Objective</a>

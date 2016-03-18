@@ -54,12 +54,7 @@ class BusinessPlanController extends Controller
    public function store()
    {
        $input = Request::all();
-
-          
-
                if (Request::has('bpid')) {
-
-                   $input['bpid'] = 1;
                    Goal::create($input);
                }
                if (Request::has('goal_id')) {
@@ -79,6 +74,18 @@ class BusinessPlanController extends Controller
                return redirect('businessplan');
            
        
+   }
+   public function edit($id)
+   {
+      $goal = Goal::findOrFail($id);
+      return view('businessPlan.editGoal',compact('goal'));
+
+   }
+   public function update($id,Request $request )
+   {
+    $goal = Goal::findOrFail($id);
+    $goal->update($request->all());
+    return redirect('businessplan');
    }
 }
 
