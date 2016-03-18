@@ -10,7 +10,8 @@ use App\Task;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Request;
+
+use Illuminate\Http\Request;
 
 class BusinessPlanController extends Controller
 {
@@ -75,7 +76,7 @@ class BusinessPlanController extends Controller
            
        
    }
-   public function edit($id)
+   public function editGoal($id)
    {
       $goal = Goal::findOrFail($id);
       return view('businessPlan.editGoal',compact('goal'));
