@@ -25,7 +25,8 @@
 			{!! Form::text('name') !!}
 			
 			{!! Form::submit('Add Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
-		
+			{!! Form::hidden('teamOrDeptId', 1) !!}
+			{!! Form::hidden('bp', true) !!}
 
 		</div>
 

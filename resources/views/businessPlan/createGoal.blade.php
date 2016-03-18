@@ -13,6 +13,8 @@
 			{!! Form::label('name','Name: ') !!}
 			{!! Form::text('name') !!}
 			{!! Form::hidden('bpid', 1) !!}
+			{!! Form::hidden('teamOrDeptId', 1) !!}
+			{!! Form::hidden('bp', true) !!}
 		</div>
 
 		<div class="form-group-two">

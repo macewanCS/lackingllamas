@@ -44,6 +44,8 @@
 
                   {!! Form::label('priority','priority: ') !!}<br>
                   {!! Form::text('priority') !!} <br>
+                  {!! Form::hidden('teamOrDeptId', 1) !!}
+                  {!! Form::hidden('bp', true) !!}
             </div>
 
           
