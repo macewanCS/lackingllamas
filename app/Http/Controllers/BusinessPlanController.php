@@ -10,8 +10,8 @@ use App\Task;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Request;
 
-use Illuminate\Http\Request;
 
 class BusinessPlanController extends Controller
 {

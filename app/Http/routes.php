@@ -55,12 +55,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan/createaction','BusinessPlanController@createAction');
     Route::get('businessplan/createtask','BusinessPlanController@createTask');
     Route::post('businessplan','BusinessPlanController@store');
-    Route::get('businessplan/{id}/edit/goal','BusinessPlanController@edit');
+    Route::get('businessplan/{id}/edit/goal','BusinessPlanController@editGoal');
     Route::put('businessplan/{id}','BusinessPlanController@update');
     Route::patch('businessplan/{id}','BusinessPlanController@update');
     //Route::resource('businessplan','BusinessPlanController');
     //----------------------------
-    Route::get('teams_departments','TeamsDepartmentsController@show');
+    Route::get('teams','TeamsController@teams');
+    Route::get('departments','DepartmentsController@departments');
 
     Route::get('myprofile','MyProfileController@myProfile');
 });
