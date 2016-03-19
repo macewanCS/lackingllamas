@@ -23,7 +23,12 @@
                     <a href="/businessplan/createaction">Create Action</a>
                     <a href="/businessplan/createtask">Create Task</a>
                 </div>
+
+                <button onclick="getSelectedRowType()">Click me</button>
             </div>
+
+
+
         </div>
 
         <div class="tableDiv">
@@ -123,12 +128,12 @@
     {!! Html::script('javascript/jquery.bootgrid.js') !!}
     {!! Html::script('javascript/jquery.bootgrid.fa.js') !!}
 
-    <script>
+    <script type="text/javascript">
         var rowIds = [];
-        $("#grid-basic").bootgrid(
+        var grid = $("#grid-basic").bootgrid(
                 {
                     selection: true,
-                    multiSelect: true,
+                    multiSelect: false,
                     rowSelect: true,
                     keepSelection: true,
 
@@ -175,7 +180,18 @@
             {
                 rowIds.push(rows[i].id);
             }
+        }).on("deslected.rs.jquery.bootgrid", function (e, rows){
+            for (var i = 0; i < rows.length; i++)
+            {
+                rowIds.remove(rows[i].id);
+            }
         });
+
+        function getSelectedRowType(){
+            var rowId = grid.bootgrid("getSelectedRows")[0];
+            var row = grid.bootgrid("select", [rowId]);
+            alert(row[0].innerText);
+        }
     </script>
     <script>
         function myFunction() {

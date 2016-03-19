@@ -15,7 +15,7 @@
     border: none;
     background-color: rgba(219, 227, 252, 0.41);
     font-weight: bold;
-    font-size: 100%;
+    font-size: 0.5em;
     color: black;
 }
 
@@ -49,7 +49,7 @@
 #grid-basic > thead > tr > th.text-left {
     border: none;
     background-color: #f3f5f5;
-    font-size: 120%;
+    font-size: 1em;
     height: 3vw;
     line-height: 50px;
     color: darkgray !important;
