@@ -130,6 +130,7 @@
 
     <script type="text/javascript">
         var rowIds = [];
+        var selectedRow;
         var grid = $("#grid-basic").bootgrid(
                 {
                     selection: true,
@@ -185,12 +186,12 @@
             {
                 rowIds.remove(rows[i].id);
             }
+        }).on("click.rs.jquery.bootgrid", function(e, columns, row) {
+            selectedRow = row;
         });
 
         function getSelectedRowType(){
-            var rowId = grid.bootgrid("getSelectedRows")[0];
-            var row = grid.bootgrid("select", [rowId]);
-            alert(row[0].innerText);
+            return selectedRow;
         }
     </script>
     <script>
