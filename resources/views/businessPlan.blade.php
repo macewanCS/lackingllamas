@@ -142,6 +142,9 @@
                     multiSelect: false,
                     rowSelect: true,
                     keepSelection: true,
+                    columnSelection: false,
+                    rowCount: -1,
+                    caseSensitive: false,
 
                     formatters: {
                         colorizer: function (column, row) {
