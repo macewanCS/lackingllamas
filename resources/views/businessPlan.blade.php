@@ -196,7 +196,6 @@
         });
 
         function getSelectedRowType(){
-            alert(selectedRow.type);
             window.location.assign("/businessplan/"+selectedRow.id+"/edit/"+selectedRow.type);
         }
     </script>
