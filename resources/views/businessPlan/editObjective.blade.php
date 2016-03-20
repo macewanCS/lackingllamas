@@ -5,13 +5,10 @@
 	<div class="create-goal-container">
 		<div class="create-goal-inner">
 		<h2>
-			Create a Objective
+			Edit a Objective
 		</h2>
 
-
-		
-		{!! Form::open(['url'=>'businessplan']) !!}
-
+		{!! Form::model($objective,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $objective->id]]) !!}
 		<div class="form-group-one">
 
 			{!! Form::label('goal_id','Goal: ') !!}
@@ -33,7 +30,7 @@
 			</div>
 
 
-			{!! Form::submit('Add Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
+			{!! Form::submit('Edit Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
 		</div>
 
 	

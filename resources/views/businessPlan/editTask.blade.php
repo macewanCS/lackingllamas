@@ -8,12 +8,13 @@
             <div class="create-goal-inner">
             <h2>
                   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-                  Create a Task
+                  Edit a Task
             </h2>
 
 
             
-            {!! Form::open(['url'=>'businessplan']) !!}
+     
+             {!! Form::model($task,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $task->id]]) !!}
                   <div class="form-group-one">
 
                   {!! Form::label('action_id','Action: ') !!}<br>

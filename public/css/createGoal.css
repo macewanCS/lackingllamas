@@ -87,3 +87,14 @@ input#name {
     width: 220px;
 
 }
+#divBP:hover .text {
+
+    visibility:visible;
+}
+#divBP .text {
+
+position:relative;
+top:30px;
+left:0px;
+visibility:hidden;
+}

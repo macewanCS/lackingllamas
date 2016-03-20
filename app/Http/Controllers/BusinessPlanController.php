@@ -10,7 +10,8 @@ use App\Task;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Request;
+use Illuminate\Support\Facades\Request;
+
 
 class BusinessPlanController extends Controller
 {
@@ -54,12 +55,7 @@ class BusinessPlanController extends Controller
    public function store()
    {
        $input = Request::all();
-
-          
-
                if (Request::has('bpid')) {
-
-                   $input['bpid'] = 1;
                    Goal::create($input);
                }
                if (Request::has('goal_id')) {
@@ -67,7 +63,6 @@ class BusinessPlanController extends Controller
                    Objective::create($input);
                }
                if (Request::has('objective_id')) {
-
                    $input['objective_id'] += 1;
                    Action::create($input);
                }
@@ -79,6 +74,35 @@ class BusinessPlanController extends Controller
                return redirect('businessplan');
            
        
+   }
+   public function editGoal($id)
+   {
+      $goal = Goal::findOrFail($id);
+      return view('businessPlan.editGoal',compact('goal'));
+   }
+   public function editObjective($id)
+   {
+      $objective = Objective::findOrFail($id);
+      $goals = Goal::lists('name');
+      return view('businessPlan.editObjective',compact('objective','goals'));
+   }
+  public function editAction($id)
+   {
+      $action = Action::findOrFail($id);
+      $objectives = Objective::lists('name');
+      return view('businessPlan.editAction',compact('action','objectives'));
+   }
+   public function editTask($id)
+   {
+      $task = Task::findOrFail($id);
+      $actions = Action::lists('description');
+      return view('businessPlan.editTask',compact('task','actions'));
+   }
+   public function update($id,Request $request )
+   {
+    $goal = Goal::findOrFail($id);
+    $goal->update(Request::all());
+    return redirect('businessplan');
    }
 }
 
