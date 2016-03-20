@@ -2,7 +2,8 @@
 #grid-basic {
     border-collapse: collapse;
     font-family: sans-serif;
-    max-width: 1vw;
+    width: 100%;
+    max-width: 100%;
     border: 1px solid rgba(175, 182, 205, 0.41);
     font-size: 1.5em;
     display: inline-block;
@@ -14,7 +15,7 @@
     border: none;
     background-color: rgba(219, 227, 252, 0.41);
     font-weight: bold;
-    font-size: 100%;
+    font-size: 0.5em;
     color: black;
 }
 
@@ -48,7 +49,7 @@
 #grid-basic > thead > tr > th.text-left {
     border: none;
     background-color: #f3f5f5;
-    font-size: 120%;
+    font-size: 1em;
     height: 3vw;
     line-height: 50px;
     color: darkgray !important;
@@ -59,6 +60,16 @@
 #grid-basic > tbody > tr > td.text-left {
     padding-right: 1vw;
 
+}
+
+#grid-basic > tbody > tr {
+    max-height: 3em;
+    height: 3em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: inherit;
+    max-width: inherit;
 }
 
 #grid-basic > thead > tr > th.text-left > a {
@@ -77,8 +88,8 @@
 .sideDiv {
     float: right;
     display: inline-block;
-    width: 20%;
-    max-width: 20%;
+    width: 15%;
+    max-width: 15%;
     min-height: 100%;
     background-color: white;
     margin-top: 2.9%;
@@ -88,8 +99,8 @@
 .tableDiv {
     float: right;
     display: inline-block;
-    max-width: 80%;
-    width: 80% !important;
+    max-width: 85%;
+    width: 85% !important;
     overflow-x: auto;
 
 }
@@ -136,4 +147,21 @@
     background-color: white !important;
     color: black;
     font-weight: normal;
+}
+
+.select-cell .select-box{
+    height: 20px;
+    width: 20px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+#grid-basic > thead > tr > th.status {
+    width: 7.5%;
+    max-width: 7.5%;
+}
+
+#grid-basic > thead > tr > th.desc {
+    width: 25%;
+    max-width: 25%;
 }
