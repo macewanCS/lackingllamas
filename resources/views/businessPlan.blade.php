@@ -23,7 +23,12 @@
                     <a href="/businessplan/createaction">Create Action</a>
                     <a href="/businessplan/createtask">Create Task</a>
                 </div>
+
+                <button onclick="getSelectedRowType()">Click me</button>
             </div>
+
+
+
         </div>
 
         <div class="tableDiv">
@@ -31,6 +36,7 @@
                 <thead>
                 <tr>
                     <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
+                    <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
                     <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status"></th>
                     <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
@@ -49,6 +55,7 @@
                             <?php $test = false ?>
                             <tr>
                                 <td>{{$objective->ident}}</td>
+                                <td>Objective</td>
                                 <td>-1</td>
                                 <td>{{$goal->name}}</td>
                                 <td></td>
@@ -63,6 +70,7 @@
                                 @if($action->objective_id==$objective->id)
                                     <tr>
                                         <td>{{$action->ident}}</td>
+                                        <td>Action</td>
                                         <td>{{$action->progress}}</td>
                                         <td>{{$action->description}}</td>
                                         <td>{{$action->date}}</td>
@@ -76,6 +84,7 @@
                                         @if($task->action_id==$action->id)
                                             <tr>
                                                 <td>{{$task->ident}}</td>
+                                                <td>Task</td>
                                                 <td>{{$task->progress}}</td>
                                                 <td>{{$task->description}}</td>
                                                 <td>{{$task->date}}</td>
@@ -94,6 +103,7 @@
                     @if ($test)
                         <tr>
                             <td>{{$goal->ident . '.1'}}</td>
+                            <td>Goal</td>
                             <td>-1</td>
                             <td>{{$goal->name}}</td>
                             <td></td>
@@ -118,12 +128,13 @@
     {!! Html::script('javascript/jquery.bootgrid.js') !!}
     {!! Html::script('javascript/jquery.bootgrid.fa.js') !!}
 
-    <script>
+    <script type="text/javascript">
         var rowIds = [];
-        $("#grid-basic").bootgrid(
+        var selectedRow;
+        var grid = $("#grid-basic").bootgrid(
                 {
                     selection: true,
-                    multiSelect: true,
+                    multiSelect: false,
                     rowSelect: true,
                     keepSelection: true,
 
@@ -132,7 +143,7 @@
                             if (column.id == "status"){
                                 var prog = row.status;
                                 if (prog < 0){
-                                    return "";
+                                    return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
                                 else if (prog == 0){
                                     return "<div class=\"ico\"></div>";
@@ -144,7 +155,7 @@
                                     return "<div class=\"ico\"><span class=\"fa fa-check\"></span></div>";
                                 }
                                 else {
-                                    return "";
+                                    return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
                             }
                             if (row.progress < 0){
@@ -170,7 +181,18 @@
             {
                 rowIds.push(rows[i].id);
             }
+        }).on("deslected.rs.jquery.bootgrid", function (e, rows){
+            for (var i = 0; i < rows.length; i++)
+            {
+                rowIds.remove(rows[i].id);
+            }
+        }).on("click.rs.jquery.bootgrid", function(e, columns, row) {
+            selectedRow = row;
         });
+
+        function getSelectedRowType(){
+            return selectedRow;
+        }
     </script>
     <script>
         function myFunction() {
