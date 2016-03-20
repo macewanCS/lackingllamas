@@ -56,16 +56,21 @@
     font-weight: lighter;
 }
 
-#grid-basic > thead > tr > th.text-left,
+#grid-basic > thead > tr > th.text-left {
+    padding-right: 1vw;
+}
+
 #grid-basic > tbody > tr > td.text-left {
     padding-right: 1vw;
+    padding-top: 0.25%;
+    padding-bottom: 0.25%;
 
 }
 
 #grid-basic > tbody > tr {
-    max-height: 3em;
-    height: 3em;
-    white-space: nowrap;
+    max-height: 1.25em;
+    height: 1.25em;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     width: inherit;
@@ -105,35 +110,6 @@
 
 }
 
-.black {
-    background-color: black;
-    height: 100%;
-    width: 100%;
-    display: inline-block;
-    color: white;
-    font-size: 130%;
-}
-
-
-
-.blue {
-    background-color: blue;
-    height: 100%;
-    width: 100%;
-    display: inline-block;
-    color: white;
-    font-size: 130%
-}
-
-#text-left {
-    height: 100%
-}
-
-#grid-basic td .go {
-    background-color: lightgrey;
-    color: black;
-}
-
 .ico {
     height: 100%;
     width: 100%;
@@ -156,12 +132,49 @@
     min-width: 20px;
 }
 
+#grid-basic > tbody > tr > td,
+#grid-basic > tbody > tr > td > div {
+    width: inherit !important;
+    max-width: inherit !important;
+}
+
+
 #grid-basic > thead > tr > th.status {
+    width: 5%;
+    max-width: 5%;
+}
+
+#grid-basic > thead > tr > th.desc {
+    width: 22.5%;
+    max-width: 20%;
+}
+
+#grid-basic > thead > tr > th.date {
     width: 7.5%;
     max-width: 7.5%;
 }
 
-#grid-basic > thead > tr > th.desc {
+#grid-basic > thead > tr > th.collabs {
     width: 25%;
     max-width: 25%;
+}
+
+#grid-basic > thead > tr > th.budget {
+    width: 7.5%;
+    max-width: 7.5%;
+}
+
+#grid-basic > thead > tr > th.successM {
+    width: 17.5%;
+    max-width: 15.5%;
+}
+
+#grid-basic > thead > tr > th.group {
+    width: 7.5%;
+    max-width: 7.5%;
+}
+
+#grid-basic > thead > tr > th.user {
+    width: 7.5%;
+    max-width: 7.5%;
 }

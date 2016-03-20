@@ -163,19 +163,8 @@
                                     return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
                             }
-                            if (row.progress < 0){
-                                if (column.id == "desc"){
-                                    return "<div class=\"black go\">" + row[column.id] + "</div>";
-                                }
-                                else if (column.id == "collabs") {
-                                    return "<div class=\"blue go\">" + row[column.id] + "</div>";
-                                }
-                                else {
-                                    return "<div class=\"go\">" + row[column.id] + "</div>";
-                                }
-                            }
                             else {
-                                return row[column.id];
+                                return "<div>" + row[column.id] + "</div>";
                             }
                         }
                     }
@@ -192,11 +181,21 @@
                 rowIds.remove(rows[i].id);
             }
         }).on("click.rs.jquery.bootgrid", function(e, columns, row) {
-            selectedRow = row;
+            if (row == selectedRow) {
+                selectedRow = null;
+            }
+            else {
+                selectedRow = row;
+            }
         });
 
         function getSelectedRowType(){
-            window.location.assign("/businessplan/"+selectedRow.id+"/edit/"+selectedRow.type);
+            if (selectedRow == null){
+                alert('Please select a row first');
+            }
+            else {
+                window.location.assign("/businessplan/" + selectedRow.id + "/edit/" + selectedRow.type);
+            }
         }
     </script>
     <script>
