@@ -24,7 +24,7 @@
                     <a href="/businessplan/createtask">Create Task</a>
                 </div>
 
-                <button onclick="getSelectedRowType()">Click me</button>
+                <button onclick="getSelectedRowType()">Edit</button>
             </div>
 
 
@@ -57,7 +57,7 @@
                             <tr>
                                 <td>{{$objective->id}}</td>
                                 <td>{{$objective->ident}}</td>
-                                <td>Objective</td>
+                                <td>objective</td>
                                 <td>-1</td>
                                 <td>{{$goal->name}}</td>
                                 <td></td>
@@ -73,7 +73,7 @@
                                     <tr>
                                         <td>{{$action->id}}</td>
                                         <td>{{$action->ident}}</td>
-                                        <td>Action</td>
+                                        <td>action</td>
                                         <td>{{$action->progress}}</td>
                                         <td>{{$action->description}}</td>
                                         <td>{{$action->date}}</td>
@@ -88,7 +88,7 @@
                                             <tr>
                                                 <td>{{$task->id}}</td>
                                                 <td>{{$task->ident}}</td>
-                                                <td>Task</td>
+                                                <td>task</td>
                                                 <td>{{$task->progress}}</td>
                                                 <td>{{$task->description}}</td>
                                                 <td>{{$task->date}}</td>
@@ -108,7 +108,7 @@
                         <tr>
                             <td>{{$goal->id}}</td>
                             <td>{{$goal->ident . '.1'}}</td>
-                            <td>Goal</td>
+                            <td>goal</td>
                             <td>-1</td>
                             <td>{{$goal->name}}</td>
                             <td></td>
@@ -196,7 +196,8 @@
         });
 
         function getSelectedRowType(){
-            alert(selectedRow.id);
+            alert(selectedRow.type);
+            window.location.assign("/businessplan/"+selectedRow.id+"/edit/"+selectedRow.type);
         }
     </script>
     <script>
