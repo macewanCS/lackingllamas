@@ -35,6 +35,7 @@
             <table id="grid-basic"  class="table table-condensed table-hover bootgrid-table">
                 <thead>
                 <tr>
+                    <th data-column-id="id" data-formatter="colorizer" data-header-css-class="id" data-visible="false"></th>
                     <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
                     <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
                     <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status"></th>
@@ -54,6 +55,7 @@
                         @if($objective->goal_id==$goal->id)
                             <?php $test = false ?>
                             <tr>
+                                <td>{{$objective->id}}</td>
                                 <td>{{$objective->ident}}</td>
                                 <td>Objective</td>
                                 <td>-1</td>
@@ -69,6 +71,7 @@
                             @foreach($actions as $action)
                                 @if($action->objective_id==$objective->id)
                                     <tr>
+                                        <td>{{$action->id}}</td>
                                         <td>{{$action->ident}}</td>
                                         <td>Action</td>
                                         <td>{{$action->progress}}</td>
@@ -83,6 +86,7 @@
                                     @foreach($tasks as $task)
                                         @if($task->action_id==$action->id)
                                             <tr>
+                                                <td>{{$task->id}}</td>
                                                 <td>{{$task->ident}}</td>
                                                 <td>Task</td>
                                                 <td>{{$task->progress}}</td>
@@ -102,6 +106,7 @@
                     @endforeach
                     @if ($test)
                         <tr>
+                            <td>{{$goal->id}}</td>
                             <td>{{$goal->ident . '.1'}}</td>
                             <td>Goal</td>
                             <td>-1</td>
