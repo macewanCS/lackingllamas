@@ -191,7 +191,7 @@
         });
 
         function getSelectedRowType(){
-            return selectedRow;
+            alert(selectedRow.id);
         }
     </script>
     <script>
