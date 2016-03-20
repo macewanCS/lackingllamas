@@ -56,6 +56,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan/createtask','BusinessPlanController@createTask');
     Route::post('businessplan','BusinessPlanController@store');
     Route::get('businessplan/{id}/edit/goal','BusinessPlanController@editGoal');
+    Route::get('businessplan/{id}/edit/objective','BusinessPlanController@editObjective'); 
+    Route::get('businessplan/{id}/edit/action','BusinessPlanController@editAction');
+    Route::get('businessplan/{id}/edit/task','BusinessPlanController@editTask');   
     Route::put('businessplan/{id}','BusinessPlanController@update');
     Route::patch('businessplan/{id}','BusinessPlanController@update');
     //Route::resource('businessplan','BusinessPlanController');

@@ -14,11 +14,11 @@ class Objective extends Model
         'ident'
     ];
 
-
     public function getGoal($name) {
         $objectives = Objective::All();
         $objective = $objectives->where('name', $name)->first();
         $objective->toArray();
         return $objective->goal_id;
     }
+ 
 }

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 	{!! Html::style('css/createGoal.css') !!}
 	<div class="create-goal-container">
 		<div class="create-goal-inner">
@@ -14,9 +15,14 @@
 			{!! Form::text('name') !!}
 			{!! Form::hidden('bpid', 1) !!}
 			{!! Form::hidden('teamOrDeptId', 1) !!}
-			{!! Form::hidden('bp', true) !!}
+			
+	
+		<div id ="divBP">
+		{!! Form::label('bp','BusinessPlan: ') !!}
+		{!! Form::checkbox('bp', 1, true) !!}
+		<p class="text">Part of Business Plan? Checked means yes</p>
 		</div>
-
+		</div>
 		<div class="form-group-two">
 			<br><br>
 			{!! Form::submit('Add Goal',['class'=>'btn-primary form-control']) !!}

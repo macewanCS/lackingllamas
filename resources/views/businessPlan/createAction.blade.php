@@ -45,8 +45,12 @@
                   {!! Form::label('priority','priority: ') !!}<br>
                   {!! Form::text('priority') !!} <br>
                   {!! Form::hidden('teamOrDeptId', 1) !!}
-                  {!! Form::hidden('bp', true) !!}
-            </div>
+                  <div id ="test">
+                    {!! Form::label('bp','BusinessPlan: ') !!}
+                    {!! Form::checkbox('bp', 1, true) !!}
+                    <p class="divBP">Part of Business Plan? Checked means yes</p>
+                  </div>
+                  </div>
 
           
                   {!! Form::submit('Add Action',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}

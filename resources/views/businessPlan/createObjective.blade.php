@@ -24,10 +24,16 @@
 			<br>
 			{!! Form::text('name') !!}
 			
-			{!! Form::submit('Add Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
 			{!! Form::hidden('teamOrDeptId', 1) !!}
-			{!! Form::hidden('bp', true) !!}
+		
+			<div id ="divBP">
+				{!! Form::label('bp','BusinessPlan: ') !!}
+				{!! Form::checkbox('bp', 1, true) !!}
+				<p class="text">Part of Business Plan? Checked means yes</p>
+			</div>
 
+
+			{!! Form::submit('Add Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
 		</div>
 
 	

@@ -8,7 +8,7 @@
             <div class="create-goal-inner">
             <h2>
                   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-                  Create a Action
+                  Create a Task
             </h2>
 
 
@@ -44,7 +44,11 @@
                   {!! Form::label('priority','priority: ') !!}<br>
                   {!! Form::text('priority') !!} <br>
                   {!! Form::hidden('teamOrDeptId', 1) !!}
-                  {!! Form::hidden('bp', true) !!}
+    <div id ="divBP">
+    {!! Form::label('bp','BusinessPlan: ') !!}
+    {!! Form::checkbox('bp', 1, true) !!}
+    <p class="text">Part of Business Plan? Checked means yes</p>
+    </div>
             </div>
 
           

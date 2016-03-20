@@ -63,7 +63,6 @@ class BusinessPlanController extends Controller
                    Objective::create($input);
                }
                if (Request::has('objective_id')) {
-
                    $input['objective_id'] += 1;
                    Action::create($input);
                }
@@ -80,12 +79,29 @@ class BusinessPlanController extends Controller
    {
       $goal = Goal::findOrFail($id);
       return view('businessPlan.editGoal',compact('goal'));
-
+   }
+   public function editObjective($id)
+   {
+      $objective = Objective::findOrFail($id);
+      $goals = Goal::lists('name');
+      return view('businessPlan.editObjective',compact('objective','goals'));
+   }
+  public function editAction($id)
+   {
+      $action = Action::findOrFail($id);
+      $objectives = Objective::lists('name');
+      return view('businessPlan.editAction',compact('action','objectives'));
+   }
+   public function editTask($id)
+   {
+      $task = Task::findOrFail($id);
+      $actions = Action::lists('description');
+      return view('businessPlan.editTask',compact('task','actions'));
    }
    public function update($id,Request $request )
    {
     $goal = Goal::findOrFail($id);
-    $goal->update($request->all());
+    $goal->update(Request::all());
     return redirect('businessplan');
    }
 }
