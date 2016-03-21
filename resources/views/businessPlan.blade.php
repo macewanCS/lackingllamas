@@ -25,6 +25,7 @@
                 </div>
 
                 <button onclick="getSelectedRowType()">Edit</button>
+                <button onclick="searchGroup()">test</button>
             </div>
 
 
@@ -199,6 +200,13 @@
             else {
                 window.location.assign("/businessplan/" + selectedRow.id + "/edit/" + selectedRow.type);
             }
+        }
+
+        function searchGroup () {
+            grid.bootgrid("clearParams");
+            grid.bootgrid("addParams", "1", 10);
+            grid.bootgrid("addParams", "2", 9);
+            grid.bootgrid("searchByParams");
         }
     </script>
     <script>

@@ -178,3 +178,11 @@
     width: 7.5%;
     max-width: 7.5%;
 }
+
+#grid-basic .active {
+    background-color: lightgrey;
+}
+
+#grid-basic > tbody > tr > td > div.hidden {
+    visibility: hidden;
+}
