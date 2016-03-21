@@ -25,10 +25,12 @@
                 </div>
 
                 <button onclick="getSelectedRowType()">Edit</button>
-                <button onclick="searchGroup()">test</button>
+                <button onclick="searchGroup()">Edit</button>
             </div>
 
+            <div>
 
+            </div>
 
         </div>
 
@@ -206,7 +208,7 @@
             grid.bootgrid("clearParams");
             grid.bootgrid("addParams", "1", 10);
             grid.bootgrid("addParams", "2", 9);
-            grid.bootgrid("searchByParams");
+            grid.bootgrid("addParams", "1", 9);
         }
     </script>
     <script>
