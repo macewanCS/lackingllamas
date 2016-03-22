@@ -68,6 +68,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('myprofile','MyProfileController@myProfile');
     //Task Comment Routes
     Route::get('task/{id}', 'TaskCommentsController@taskComments');
+    Route::post('task/{id}', 'TaskCommentsController@store');
 
 });
 
