@@ -1,47 +1,51 @@
 @extends('layouts.app')
 
 @section('endHead')
-
+    {!! Html::style('css/taskComments.css') !!}
 @stop
 
 @section('content')
-    <div id="task-container">
+    <div class="task-container">
+    <div class="task-description-container">
+        <div class="task-description-inner">
 
         <div class="task-name">
-            {{$task->description}}
+            <h1>{{$task->description}}</h1>
         </div>
-
         <div class="task-collab">
-            {{$task->collaborators}}
+            Collaborators: {{$task->collaborators}}
         </div>
 
         <div class="task-date">
-            {{$task->date}}
+            Due: {{$task->date}}
         </div>
 
-
-
-        <div class="comment-container">
-            @foreach($comments as $comment)
-                <div class="comment-owner">
-                    {{\App\User::findOrFail($comment->user_ID)->name}}
-                </div>
-
-            <div class="comment-date">
-                {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+            <div class="comments-header">
+                <h3>Comments</h3>
             </div>
-                <div class="comment-content">
-                    {{$comment->description}} <br>
-                </div>
-            @endforeach
         </div>
+        <hr>
+        <ul class="comment-container">
+            <div class="task-comments-inner">
+            @foreach($comments as $comment)
+                <li class="comments">
+                    <div class="comment-header">
+                        <div class="comment-name">{{\App\User::findOrFail($comment->user_ID)->name}}</div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                    </div>
+                    <div class="comment-content">
+                        <br>
+                        {{$comment->description}} 
+                    </div>
+                </li>
+            @endforeach
+        </ul>
 
         <div class="comment-form">
             <h2> Commenting As {{Auth::user()->name}}</h2>
             {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
 
             {!! Form::label('description','Leave a Comment: ') !!}<br>
-            {!! Form::textarea('description') !!}
+            {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
 
             {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
 
@@ -56,6 +60,6 @@
                 @endforeach
             </ul>
         @endif
-
+        </div>
     </div>
 @stop
