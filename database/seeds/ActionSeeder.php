@@ -20,7 +20,7 @@ class ActionSeeder extends Seeder
                 'successMeasured' => 'Achieve an 90% satisfaction rating; Increase computer usage by 20%',
                 'progress' => 0,
                 'objective_id' => 1,
-                'teamOrDeptId' => 1,
+                'group' => 1,
                 'userId' => 1,
             ],
             ['description' => 'Establish a fine-free day to take place every second year.',
@@ -30,7 +30,7 @@ class ActionSeeder extends Seeder
                 'successMeasured' => '',
                 'progress' => 0,
                 'objective_id' => 2,
-                'teamOrDeptId' => 1,
+                'group' => 1,
                 'userId' => 1
             ],
              ['description' => 'Extend literacy van services to under served communities in Edmonton and surrounding areas.',
@@ -40,7 +40,7 @@ class ActionSeeder extends Seeder
                 'successMeasured' => 'Increased use and knowledge of EPL services in underserved communities',
                 'progress' => 0,
                  'objective_id' => 2,
-                 'teamOrDeptId' => 1,
+                 'group' => 1,
                  'userId' => 1
             ],
             ['description' => 'Live stream two forward thinking speaker series events in 2016',
@@ -50,7 +50,7 @@ class ActionSeeder extends Seeder
                 'successMeasured' => 'Over 500 people watching live and 5,000 video hits.',
                 'progress' => 2,
                 'objective_id' => 3,
-                'teamOrDeptId' => 1,
+                'group' => 1,
                 'userId' => 1
             ],
             ['description' => 'Host EPL Day celebrations at all branches on March 13, 2016.',
@@ -60,7 +60,7 @@ class ActionSeeder extends Seeder
                 'successMeasured' => 'Increase in customer visits year over year',
                 'progress' => 2,
                 'objective_id' => 4,
-                'teamOrDeptId' => 2,
+                'group' => 2,
                 'userId' => 1
             ],
             ['description' => 'Evaluate the 2016 event and create a proposal for the 2017 by November 30, 2016.',
@@ -70,7 +70,7 @@ class ActionSeeder extends Seeder
                 'successMeasured' => '',
                 'progress' => 2,
                 'objective_id' => 4,
-                'teamOrDeptId' => 2,
+                'group' => 2,
                 'userId' => 2
             ],
             ['description' => 'Host a guest speaker during Freedom to Read Week related to intellectual freedom',
@@ -80,7 +80,7 @@ class ActionSeeder extends Seeder
                 'successMeasured' => 'Sold out event, full venue and 100% sell through of fund development seats. ',
                 'progress' => 1,
                 'objective_id' => 5,
-                'teamOrDeptId' => 2,
+                'group' => 2,
                 'userId' => 4
             ],
             ['description' => 'Host Reza Aslan to speak on confronting islamaphobia on May 18, 2016',
@@ -90,7 +90,7 @@ class ActionSeeder extends Seeder
                 'successMeasured' => 'Sold out event, full venue and 100% sell through of fund development seats. ',
                 'progress' => 3,
                 'objective_id' => 5,
-                'teamOrDeptId' => 2,
+                'group' => 2,
                 'userId' => 3
             ],
         ]);

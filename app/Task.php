@@ -16,7 +16,7 @@ class Task extends Model
         'successMeasured',
         'progress',
         'action_id',
-        'teamOrDeptId',
+        'group',
         'userId',
         'ident'
     ];

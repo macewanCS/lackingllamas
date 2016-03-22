@@ -20,7 +20,7 @@ class TaskSeeder extends Seeder
                 'successMeasured' => '',
                 'progress' => 0,
                 'action_id' => 1,
-                'teamOrDeptId' => 1,
+                'group' => 1,
                 'userId' => 1
             ],
             ['description' => 'Upgrade LibOnline to the latest version (4.9)',
@@ -30,7 +30,7 @@ class TaskSeeder extends Seeder
                 'successMeasured' => '',
                 'progress' => 0,
                 'action_id' => 1,
-                'teamOrDeptId' => 1,
+                'group' => 1,
                 'userId' => 2
             ],
             ['description' => 'Provide planning assistance to the Customer Payments team to implement the necessary changes to support a Fine Free day',
@@ -40,7 +40,7 @@ class TaskSeeder extends Seeder
                 'successMeasured' => '',
                 'progress' => 0,
                 'action_id' => 2,
-                'teamOrDeptId' => 1,
+                'group' => 1,
                 'userId' => 2
             ],
             ['description' => 'Aid in the selection, purchase, and configuration of equipment for the fourth literacy van',
@@ -50,7 +50,7 @@ class TaskSeeder extends Seeder
                 'successMeasured' => '',
                 'progress' => 0,
                 'action_id' => 3,
-                'teamOrDeptId' => 1,
+                'group' => 1,
                 'userId' => 1
             ]
         ]);
