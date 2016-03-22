@@ -65,8 +65,11 @@ Route::group(['middleware' => 'web'], function () {
     //----------------------------
     Route::get('teams','TeamsController@teams');
     Route::get('departments','DepartmentsController@departments');
-
     Route::get('myprofile','MyProfileController@myProfile');
+    //Task Comment Routes
+    Route::get('task/{id}', 'TaskCommentsController@taskComments');
+    Route::post('task/{id}', 'TaskCommentsController@store');
+
 });
 
 
