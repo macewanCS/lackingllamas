@@ -26,6 +26,10 @@
                 <div class="comment-owner">
                     {{\App\User::findOrFail($comment->user_ID)->name}}
                 </div>
+
+            <div class="comment-date">
+                {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+            </div>
                 <div class="comment-content">
                     {{$comment->description}} <br>
                 </div>
@@ -43,6 +47,15 @@
 
             {!! Form::close() !!}
         </div>
+
+        @if ($errors->any())
+            <ul class="error-msg">
+
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
 
     </div>
 @stop
