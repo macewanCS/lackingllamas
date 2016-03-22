@@ -17,7 +17,7 @@ class Action extends Model
         'successMeasured',
         'progress',
         'objective_id',
-        'teamOrDeptId',
+        'group',
         'userId',
         'ident'
     ];

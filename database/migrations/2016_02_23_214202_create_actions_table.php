@@ -22,11 +22,11 @@ class CreateActionsTable extends Migration
             $table->integer('progress');
             $table->timestamps();
             $table->string('ident');
-            $table->integer('teamOrDeptId')->unsigned();
+            $table->integer('group')->unsigned();
             $table->integer('userId')->unsigned();
             $table->integer('objective_id')->unsigned();
             $table->foreign('objective_id')->references('id')->on('objectives');
-            $table->foreign('teamOrDeptId')->references('id')->on('teamsAndDepartments');
+            $table->foreign('group')->references('id')->on('groups');
             $table->foreign('userId')->references('id')->on('users');
         });
     }

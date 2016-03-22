@@ -7,6 +7,7 @@ use App\Goal;
 use App\Objective;
 use App\Action;
 use App\Task;
+use App\Group;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -29,7 +30,9 @@ class BusinessPlanController extends Controller
     }
   public function createGoal()
   {
-  	return view('businessPlan.createGoal');
+    $goals = Goal::all();
+    $groups = Group::lists('name');
+  	return view('businessPlan.createGoal',compact('goals','groups'));
   }
 
   public function createObjective()
@@ -56,6 +59,7 @@ class BusinessPlanController extends Controller
    {
        $input = Request::all();
                if (Request::has('bpid')) {
+                    $input['teamOrDeptId'] += 1;
                    Goal::create($input);
                }
                if (Request::has('goal_id')) {
@@ -78,6 +82,7 @@ class BusinessPlanController extends Controller
    public function editGoal($id)
    {
       $goal = Goal::findOrFail($id);
+    
       return view('businessPlan.editGoal',compact('goal'));
    }
    public function editObjective($id)
