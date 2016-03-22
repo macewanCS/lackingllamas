@@ -33,8 +33,8 @@ class CreateActionCommentsTable extends Migration
     public function down()
     {
         Schema::table('action_comments', function(Blueprint $table) {
-            $table->dropForeign('task_comments_user_ID_foreign');
-            $table->dropForeign('task_comments_action_ID_foreign');
+            $table->dropForeign('action_comments_user_ID_foreign');
+            $table->dropForeign('action_comments_action_ID_foreign');
         });
 
         Schema::drop('action_comments');

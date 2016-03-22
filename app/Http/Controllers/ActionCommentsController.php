@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Action;
 use App\ActionComments;
@@ -25,7 +25,7 @@ class ActionCommentsController extends Controller
     {
         $input = $request->all();
         $input['user_ID'] = Auth::user()->id;
-        $input['task_ID'] = $action_id;
+        $input['action_ID'] = $action_id;
         ActionComments::create($input);
 
         return Redirect::back()->with('message', 'Your comment was posted');
