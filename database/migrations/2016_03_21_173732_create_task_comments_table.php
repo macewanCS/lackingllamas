@@ -17,11 +17,11 @@ class CreateTaskCommentsTable extends Migration
             $table->text('description');
             $table->date('date');
             $table->timestamps();
-            $table->integer('userID')->unsigned();
-            $table->integer('taskID')->unsigned();
+            $table->integer('user_ID')->unsigned();
+            $table->integer('task_ID')->unsigned();
 
-            $table->foreign('userID')->references('id')->on('users');
-            $table->foreign('taskID')->references('id')->on('tasks');
+            $table->foreign('user_ID')->references('id')->on('users');
+            $table->foreign('task_ID')->references('id')->on('tasks');
          });
     }
 
@@ -33,8 +33,8 @@ class CreateTaskCommentsTable extends Migration
     public function down()
     {
         Schema::table('task_comments', function(Blueprint $table) {
-            $table->dropForeign('task_comments_userID_foreign');
-            $table->dropForeign('task_comments_taskID_foreign');
+            $table->dropForeign('task_comments_user_ID_foreign');
+            $table->dropForeign('task_comments_task_ID_foreign');
         });
 
         Schema::drop('task_comments');

@@ -8,7 +8,10 @@ use Carbon\Carbon;
 class TaskComments extends Model
 {
     protected $fillable = [
-        'description'
+        'description',
+        'date',
+        'user_ID',
+        'task_ID'
         ];
 
     public function setDateAttribute($date)
