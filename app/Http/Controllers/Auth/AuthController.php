@@ -28,8 +28,8 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-    protected $redirectAfterLogout = '/dashboard';
+    protected $redirectTo = '/businessplan';
+    protected $redirectAfterLogout = '/';
     protected $name = 'name';
 
     /**
@@ -70,5 +70,10 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function index()
+    {
+        return view('auth/login');
     }
 }
