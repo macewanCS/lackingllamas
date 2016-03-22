@@ -44,7 +44,7 @@
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'LoginController@login');
-    Route::get('dashboard', 'DashboardController@dashBoard');
+    //Route::get('dashboard', 'DashboardController@dashBoard');
     Route::get('mytasks','MyTasksController@myTasks');
     Route::get('businessplan','BusinessPlanController@businessPlan');
     //---------------------------
