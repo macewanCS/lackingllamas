@@ -28,8 +28,8 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-    protected $redirectAfterLogout = '/dashboard';
+    protected $redirectTo = '/businessplan';
+    protected $redirectAfterLogout = '/';
     protected $name = 'name';
 
     /**
