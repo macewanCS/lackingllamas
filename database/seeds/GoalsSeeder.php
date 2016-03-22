@@ -13,9 +13,9 @@ class GoalsSeeder extends Seeder
     public function run()
     {
         DB::table('goals')->insert([
-            ['name' => 'Transform Communities', 'bpid' => 1, 'teamOrDeptId' => 1, 'bp' => true],
-            ['name' => 'Evolve our Digital Environment', 'bpid' => 1, 'teamOrDeptId' => 1, 'bp' => true],
-            ['name' => 'Act as a catalyst for learning, discovery, and creating', 'bpid' => 1, 'teamOrDeptId' => 1, 'bp' => true]
+            ['name' => 'Transform Communities', 'bpid' => 1, 'group' => 1, 'bp' => true],
+            ['name' => 'Evolve our Digital Environment', 'bpid' => 1, 'group' => 1, 'bp' => true],
+            ['name' => 'Act as a catalyst for learning, discovery, and creating', 'bpid' => 1, 'group' => 1, 'bp' => true]
         ]);
 
         for ($i = 1; $i <= App\Goal::All()->Count(); $i++){

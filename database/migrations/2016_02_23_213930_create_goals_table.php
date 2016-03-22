@@ -17,11 +17,11 @@ class CreateGoalsTable extends Migration
             $table->string('name');
             $table->timestamps();
             $table->string('ident');
-            $table->integer('teamOrDeptId')->unsigned();
+            $table->integer('group')->unsigned();
             $table->boolean('bp');
             $table->integer('bpid')->unsigned();
             $table->foreign('bpid')->references('id')->on('businessPlans');
-            $table->foreign('teamOrDeptId')->references('id')->on('teamsAndDepartments');
+            $table->foreign('group')->references('id')->on('groups');
         });
     }
 
