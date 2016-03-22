@@ -13,10 +13,12 @@
 		<div class="form-group-one">
 			{!! Form::label('name','Name: ') !!}
 			{!! Form::text('name') !!}
-			{!! Form::hidden('bpid', 1) !!}
 			{!! Form::hidden('teamOrDeptId', 1) !!}
-			
-	
+			{!! Form::hidden('ident', 1) !!}
+			<br>
+			{!! Form::label('group','Group: ') !!}
+			{!! Form::select('group',$groups)!!}
+
 		<div id ="divBP">
 		{!! Form::label('bp','BusinessPlan: ') !!}
 		{!! Form::checkbox('bp', 1, true) !!}

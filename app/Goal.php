@@ -11,7 +11,7 @@ class Goal extends Model
         'name',
         'id',
         'bpid',
-        'teamOrDeptId',
+        'group',
         'bp',
         'ident'
 
