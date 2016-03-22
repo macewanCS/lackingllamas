@@ -70,6 +70,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('task/{id}', 'TaskCommentsController@taskComments');
     Route::post('task/{id}', 'TaskCommentsController@store');
 
+    //Action Comment Routes
+    Route::get('action/{id}', 'ActionCommentsController@actionComments');
+    Route::post('action/{id}', 'ActionCommentsController@store');
+
 });
 
 
