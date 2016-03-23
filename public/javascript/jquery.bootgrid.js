@@ -11,8 +11,6 @@
     // ====================
 
     var namespace = ".rs.jquery.bootgrid";
-    var searchColumn;
-    var searchParams = {};
 
     // GRID INTERNAL FUNCTIONS
     // =====================
@@ -153,49 +151,40 @@
         showLoading.call(this);
 
         function containsPhrase(row) {
-            var match = true;
-            if (Object.keys(searchParams).length > 0) {
-                console.log("Got in");
+            var innerMatch = false;
+            var outerMatch = true;
+            var searchMatch = false;
+            if (Object.keys(that.searchParams).length > 0) {
                 for (var index = 0; index < that.columns.length; index++) {
-                    if (searchParams[index.toString()] != null) {
-                        searchPattern = new RegExp(searchParams[index.toString()], (that.options.caseSensitive) ? "g" : "gi");
-                        column = that.columns[index];
-                        if (column.searchable && column.visible &&
-                            column.converter.to(row[column.id]).search(searchPattern) > -1) {
-                        }
-                        else {
-                            match = false;
-                            break;
+                    innerMatch = false;
+                    column = that.columns[index];
+                    if (column.searchable) {
+                        if (that.searchParams[index.toString()] != null) {
+                            for (var phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
+                                searchPattern = new RegExp(that.searchParams[index.toString()][phraseNum], (that.options.caseSensitive) ? "g" : "gi");
+                                if (column.converter.to(row[column.id]).search(searchPattern) > -1) {
+                                    innerMatch = true;
+                                    break;
+                                }
+                            }
+                            outerMatch = outerMatch && innerMatch;
                         }
                     }
+
                 }
             }
-            if (searchColumn < 0) {
-                var temp = false;
-                var column,
-                    searchPattern = new RegExp(that.searchPhrase, (that.options.caseSensitive) ? "g" : "gi");
-
-                for (var i = 0; i < that.columns.length; i++) {
-                    column = that.columns[i];
-                    if (column.searchable && column.visible &&
-                        column.converter.to(row[column.id]).search(searchPattern) > -1) {
-                        temp = true;
-                    }
-                }
-
-                match = temp;
-            }
-            else {
+            var column,
                 searchPattern = new RegExp(that.searchPhrase, (that.options.caseSensitive) ? "g" : "gi");
-                column = that.columns[searchColumn];
+
+            for (var i = 0; i < that.columns.length; i++) {
+                column = that.columns[i];
                 if (column.searchable && column.visible &&
                     column.converter.to(row[column.id]).search(searchPattern) > -1) {
+                    searchMatch = true;
                 }
-
-                match = false;
             }
 
-            return match;
+            return (outerMatch && searchMatch);
         }
 
         function update(rows, total) {
@@ -255,7 +244,7 @@
             this.xqr = $.ajax(settings);
         }
         else {
-            var rows = (this.searchPhrase.length > 0 || Object.keys(searchParams).length > 0) ? this.rows.where(containsPhrase) : this.rows,
+            var rows = (this.searchPhrase.length > 0 || Object.keys(that.searchParams).length > 0) ? this.rows.where(containsPhrase) : this.rows,
                 total = rows.length;
             if (this.rowCount !== -1) {
                 rows = rows.page(this.current, this.rowCount);
@@ -689,16 +678,6 @@
     }
 
     function executeSearch(phrase) {
-        searchColumn = -1;
-        if (this.searchPhrase !== phrase) {
-            this.current = 1;
-            this.searchPhrase = phrase;
-            loadData.call(this);
-        }
-    }
-
-    function executeSearchColumn(phrase, columnNum) {
-        searchColumn = columnNum;
         if (this.searchPhrase !== phrase) {
             this.current = 1;
             this.searchPhrase = phrase;
@@ -908,7 +887,6 @@
         this.rowCount = ($.isArray(rowCount)) ? rowCount[0] : rowCount;
         this.rows = [];
         this.searchPhrase = "";
-        searchColumn = -1;
         this.selectedRows = [];
         this.sortDictionary = {};
         this.total = 0;
@@ -921,6 +899,7 @@
         this.header = null;
         this.footer = null;
         this.xqr = null;
+        this.searchParams = {};
 
         // todo: implement cache
     };
@@ -1453,33 +1432,45 @@
         return this;
     };
 
-    Grid.prototype.searchColumn = function (phrase, columnNum) {
-        phrase = phrase || "";
-
-        executeSearchColumn.call(this, phrase, columnNum);
-
-        return this;
-    };
-
-    Grid.prototype.searchByParams = function () {
-
-        executeSearchByParams.call(this);
-
-        return this;
-    };
 
     Grid.prototype.addParams = function (phrase, columnNum) {
-        //phrase = phrase || "";
+        if (this.searchParams.hasOwnProperty(columnNum.toString())) {
+            this.searchParams[columnNum.toString()].push(phrase);
+            executeSearchByParams.call(this);
+        }
+        else {
+            this.searchParams[columnNum.toString()] = new Array();
+            this.searchParams[columnNum.toString()].push(phrase);
+            executeSearchByParams.call(this);
+        }
+        return this;
+    };
 
-        searchParams[columnNum.toString()] = phrase;
+    Grid.prototype.removeParams = function (phrase, columnNum) {
+        if(this.searchParams.hasOwnProperty(columnNum.toString())){
+            if (phrase == null){
+                delete this.searchParams[columnNum.toString()];
+            }
+            for (var dex = this.searchParams[columnNum.toString()].length - 1; dex >= 0; dex--){
+                if (this.searchParams[columnNum.toString()][dex] == phrase){
+                    var tempIndex = this.searchParams[columnNum.toString()].indexOf(phrase);
+                    if(tempIndex < 0) break;
+                    this.searchParams[columnNum.toString()].splice(tempIndex, 1);
+                    break;
+                }
+            }
+            executeSearchByParams.call(this);
+        }
 
         return this;
     };
 
     Grid.prototype.clearParams = function () {
-        searchParams = {};
+        this.searchParams = {};
+        executeSearchByParams.call(this);
         return this;
     };
+
 
 
     /**
