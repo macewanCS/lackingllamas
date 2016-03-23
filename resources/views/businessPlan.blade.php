@@ -37,8 +37,8 @@
                     <th data-column-id="id" data-formatter="colorizer" data-header-css-class="id" data-visible="false"></th>
                     <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
                     <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
-                    <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="status" data-visible="false"></th>
-                    <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status"></th>
+                    <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress"></th>
+                    <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status" data-visible="false"></th>
                     <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="collabs" data-formatter="colorizer" data-header-css-class="collabs">Collaborators</th>
