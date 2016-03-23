@@ -43,8 +43,7 @@
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::get('/', 'HomeController@index');
-    Route::get('/home', 'HomeController@index');
+    Route::get('/', 'LoginController@login');
     Route::get('dashboard', 'DashboardController@dashBoard');
     Route::get('mytasks','MyTasksController@myTasks');
     Route::get('businessplan','BusinessPlanController@businessPlan');
@@ -63,8 +62,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::patch('businessplan/{id}','BusinessPlanController@update');
     //Route::resource('businessplan','BusinessPlanController');
     //----------------------------
-    Route::get('teams','TeamsController@teams');
-    Route::get('departments','DepartmentsController@departments');
     Route::get('myprofile','MyProfileController@myProfile');
     //Task Comment Routes
     Route::get('task/{id}', 'TaskCommentsController@taskComments');
