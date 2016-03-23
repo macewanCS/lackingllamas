@@ -158,7 +158,7 @@
                 for (var index = 0; index < that.columns.length; index++) {
                     innerMatch = false;
                     column = that.columns[index];
-                    if (column.searchable && column.visible) {
+                    if (column.searchable) {
                         if (that.searchParams[index.toString()] != null) {
                             for (var phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
                                 searchPattern = new RegExp(that.searchParams[index.toString()][phraseNum], (that.options.caseSensitive) ? "g" : "gi");

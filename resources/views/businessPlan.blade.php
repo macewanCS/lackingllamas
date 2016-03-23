@@ -132,7 +132,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><div class="hidden">HAMBURGER</div></td>
+                            <td></td>
                         </tr>
                     @endif
                 @endforeach
