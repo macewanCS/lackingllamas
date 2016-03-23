@@ -186,3 +186,51 @@
 #grid-basic > tbody > tr > td > div.hidden {
     visibility: hidden;
 }
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.select-cell,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left
+{
+    background-color: inherit !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger
+{
+    background-color: white;
+}
+
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover
+{
+    background-color: #ebebeb !important;
+}
+
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.select-cell,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left
+{
+    background-color: inherit !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning
+{
+    background-color: #e3f6e0;
+}
+
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover
+{
+    background-color: #c8e6c3 !important;
+}
+
+.selector {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.selector > button.ui-multiselect {
+    width: 100% !important;
+}

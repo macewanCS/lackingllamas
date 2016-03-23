@@ -7,6 +7,7 @@ use App\Goal;
 use App\Objective;
 use App\Action;
 use App\Task;
+use App\User;
 use App\Group;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,9 @@ class BusinessPlanController extends Controller
     	$objectives = Objective::all();
     	$actions = Action::all();
     	$tasks = Task::all();
-        return view('businessPlan',compact('goals','objectives','actions','tasks'));
+        $users = User::all();
+        $groups = Group::all();
+        return view('businessPlan',compact('goals','objectives','actions','tasks', 'users', 'groups'));
     }
   public function createGoal()
   {
