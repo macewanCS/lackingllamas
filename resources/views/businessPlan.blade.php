@@ -41,6 +41,7 @@
                     <th data-column-id="id" data-formatter="colorizer" data-header-css-class="id" data-visible="false"></th>
                     <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
                     <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
+                    <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="status" data-visible="false"></th>
                     <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status"></th>
                     <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
@@ -61,7 +62,8 @@
                                 <td>{{$objective->id}}</td>
                                 <td>{{$objective->ident}}</td>
                                 <td>objective</td>
-                                <td>-1</td>
+                                <td></td>
+                                <td>1</td>
                                 <td>{{$goal->name}}</td>
                                 <td></td>
                                 <td>{{$objective->name}}</td>
@@ -78,6 +80,7 @@
                                         <td>{{$action->ident}}</td>
                                         <td>action</td>
                                         <td>{{$action->progress}}</td>
+                                        <td>2</td>
                                         <td>{{$action->description}}</td>
                                         <td>{{$action->date}}</td>
                                         <td>{{$action->collaborators}}</td>
@@ -93,6 +96,7 @@
                                                 <td>{{$task->ident}}</td>
                                                 <td>task</td>
                                                 <td>{{$task->progress}}</td>
+                                                <td>3</td>
                                                 <td>{{$task->description}}</td>
                                                 <td>{{$task->date}}</td>
                                                 <td>{{$task->collaborators}}</td>
@@ -112,7 +116,8 @@
                             <td>{{$goal->id}}</td>
                             <td>{{$goal->ident . '.1'}}</td>
                             <td>goal</td>
-                            <td>-1</td>
+                            <td></td>
+                            <td>0</td>
                             <td>{{$goal->name}}</td>
                             <td></td>
                             <td></td>
@@ -148,11 +153,17 @@
                     columnSelection: false,
                     rowCount: -1,
                     caseSensitive: false,
+                    statusMappings: {
+                      0: "Goal",
+                        1: "Objective",
+                        2: "Action",
+                        3: "Task"
+                    },
 
                     formatters: {
                         colorizer: function (column, row) {
-                            if (column.id == "status"){
-                                var prog = row.status;
+                            if (column.id == "progress"){
+                                var prog = row.progress;
                                 if (prog < 0){
                                     return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
