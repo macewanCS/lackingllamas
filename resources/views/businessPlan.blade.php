@@ -28,14 +28,6 @@
                 <button onclick="searchGroup()">Edit</button>
             </div>
 
-            <div>
-                {{$groups}}
-            </div>
-
-            <div>
-                {{$users[0]}}
-            </div>
-
         </div>
 
         <div class="tableDiv">
@@ -50,7 +42,7 @@
                     <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="collabs" data-formatter="colorizer" data-header-css-class="collabs">Collaborators</th>
-                    <th data-column-id="budget" data-formatter="colorizer" data-header-css-class="budget">Budget</th>
+                    <th data-column-id="budget" data-formatter="budget" data-header-css-class="budget">Budget</th>
                     <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                     <th data-column-id="user" data-formatter="colorizer" data-header-css-class="user">User</th>
                     <th data-column-id="group" data-formatter="colorizer" data-header-css-class="group">Group</th>
@@ -186,6 +178,16 @@
                             }
                             else {
                                 return "<div>" + row[column.id] + "</div>";
+                            }
+                        },
+                        budget: function (column, row) {
+                            if (column.id = "budget"){
+                                if (row[column.id] == "0"){
+                                    return "<div class=\"hidden\">" + row[column.id] + "</div>";
+                                }
+                                else {
+                                    return "<div>" + row[column.id] + "</div>";
+                                }
                             }
                         }
                     }
