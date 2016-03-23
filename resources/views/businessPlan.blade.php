@@ -2,11 +2,11 @@
 
 @section('endHead')
     {!! Html::style('css/businessPlan.css') !!}
-    {!! Html::style('http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css') !!}
-    {!!Html::style('http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css') !!}
+    {!! Html::style('css/font-awesome.css') !!}
     {!! Html::style('css/Template.css') !!}
+    {!! Html::style('javascript/jquery-ui/jquery-ui.css') !!}
     {!! Html::style('css/jquery.multiselect.css') !!}
-    {!! Html::style('css/jquery-ui.css') !!}
+    {!! Html::style('css/jquery.multiselect.filter.css') !!}
 @stop
 
 
@@ -132,7 +132,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
+                            <td><div class="hidden">HAMBURGER</div></td>
                         </tr>
                     @endif
                 @endforeach
@@ -143,11 +143,12 @@
 @stop
 
 @section('scripts')
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    {!! Html::script('javascript/jquery-2.0.3.min.js') !!}
+    {!! Html::script('javascript/jquery-ui/jquery-ui.js') !!}
     {!! Html::script('javascript/jquery.bootgrid.js') !!}
     {!! Html::script('javascript/jquery.bootgrid.fa.js') !!}
     {!! Html::script('javascript/jquery.multiselect.js') !!}
+    {!! Html::script('javascript/jquery.multiselect.filter.js') !!}
 
     <script type="text/javascript">
         var rowIds = [];
