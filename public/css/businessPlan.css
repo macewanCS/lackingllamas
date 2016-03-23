@@ -203,7 +203,7 @@
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover,
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover
 {
-    background-color: #f6f6f6 !important;
+    background-color: #ebebeb !important;
 }
 
 
@@ -223,5 +223,14 @@
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover,
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover
 {
-    background-color: lightgreen !important;
+    background-color: #c8e6c3 !important;
+}
+
+.selector {
+    margin-top: 5%;
+    
+}
+
+#mainDiv > div.sideDiv > div.selector > button.ui-multiselect {
+    width: 100% !important;
 }
