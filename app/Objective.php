@@ -9,7 +9,7 @@ class Objective extends Model
     protected $fillable = [
         'name',
         'goal_id',
-        'goal',
+        'group',
         'bp',
         'ident'
     ];

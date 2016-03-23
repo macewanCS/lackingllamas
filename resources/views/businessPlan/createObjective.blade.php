@@ -23,9 +23,10 @@
 			{!! Form::label('name','Name: ') !!}
 			<br>
 			{!! Form::text('name') !!}
-			
-			{!! Form::hidden('teamOrDeptId', 1) !!}
-		
+			{!! Form::hidden('id',$counted) !!}
+			{!! Form::hidden('ident',0) !!}
+			{!! Form::label('group','Group: ') !!}
+			{!! Form::select('group',$groups)!!}		
 			<div id ="divBP">
 				{!! Form::label('bp','BusinessPlan: ') !!}
 				{!! Form::checkbox('bp', 1, true) !!}

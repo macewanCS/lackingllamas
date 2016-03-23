@@ -13,8 +13,9 @@
 		<div class="form-group-one">
 			{!! Form::label('name','Name: ') !!}
 			{!! Form::text('name') !!}
-			{!! Form::hidden('teamOrDeptId', 1) !!}
-			{!! Form::hidden('ident', 1) !!}
+			{!! Form::hidden('ident',$counted) !!}
+			{!! Form::hidden('id',$counted) !!}
+			{!!Form::hidden('bpid',1) !!}
 			<br>
 			{!! Form::label('group','Group: ') !!}
 			{!! Form::select('group',$groups)!!}

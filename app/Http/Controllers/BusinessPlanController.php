@@ -12,6 +12,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
+use DB;
+//use Illuminate\Http\Request;
+//use Request;
 
 
 class BusinessPlanController extends Controller
@@ -32,13 +35,18 @@ class BusinessPlanController extends Controller
   {
     $goals = Goal::all();
     $groups = Group::lists('name');
-  	return view('businessPlan.createGoal',compact('goals','groups'));
+    $counted = count($goals)+1;
+  	return view('businessPlan.createGoal',compact('counted','groups'));
   }
 
   public function createObjective()
   {
     $goals = Goal::lists('name');
-    return view('businessPlan.createObjective',compact('goals'));
+    $objective = Objective::all();
+    $groups = Group::lists('name');
+    $counted = count($objective)+1;
+
+    return view('businessPlan.createObjective',compact('goals','counted','groups'));
   }
 
 
@@ -58,19 +66,29 @@ class BusinessPlanController extends Controller
    public function store()
    {
        $input = Request::all();
+       
+
                if (Request::has('bpid')) {
-                    $input['teamOrDeptId'] += 1;
-                   Goal::create($input);
+                    $input['group'] += 1;
+                    Goal::create($input);
                }
                if (Request::has('goal_id')) {
+
+                   $input['group'] += 1;
                    $input['goal_id'] += 1;
+                   $objectiveIdent = count(DB::table('objectives')->where('goal_id', $input['goal_id'])->get())+1;
+                   $goalIdent = $input['goal_id'];
+                   $input['ident'] ="$goalIdent.$objectiveIdent";
+                   //return $input['group'];
                    Objective::create($input);
                }
                if (Request::has('objective_id')) {
+                   $input['group'] += 1;
                    $input['objective_id'] += 1;
                    Action::create($input);
                }
                if (Request::has('action_id')) {
+                   $input['group'] += 1;
                    $input['action_id'] += 1;
                    Task::create($input);
                }
@@ -103,10 +121,10 @@ class BusinessPlanController extends Controller
       $actions = Action::lists('description');
       return view('businessPlan.editTask',compact('task','actions'));
    }
-   public function update($id,Request $request )
+   public function update($id,Request2 $request )
    {
     $goal = Goal::findOrFail($id);
-    $goal->update(Request::all());
+    $goal->update(Request2::all());
     return redirect('businessplan');
    }
 }

@@ -44,7 +44,10 @@
 
                   {!! Form::label('priority','priority: ') !!}<br>
                   {!! Form::text('priority') !!} <br>
-                  {!! Form::hidden('teamOrDeptId', 1) !!}
+                  {!! Form::hidden('id',$counted) !!}
+                  {!! Form::hidden('ident',0) !!}
+                  {!! Form::label('group','Group: ') !!}
+                  {!! Form::select('group',$groups)!!}
                   <div id ="test">
                     {!! Form::label('bp','BusinessPlan: ') !!}
                     {!! Form::checkbox('bp', 1, true) !!}
