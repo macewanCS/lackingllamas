@@ -1,4 +1,4 @@
-.task-container {
+.action-container {
     background:white;
     height: 100%;
     margin-left: auto;
@@ -13,13 +13,13 @@
 
 }
 
-.task-name h1{
+.action-name h1{
     font-weight:normal;
 
 
 }
 
-.task-description-inner {
+.action-description-inner {
     height: auto;
     top:0;
     bottom: 0;
@@ -35,7 +35,7 @@ hr {
 
 }
 
-.task-comments-inner {
+.action-comments-inner {
     height: auto;
     top:0;
     bottom: 0;
@@ -61,7 +61,7 @@ hr {
 .comment-container {
     list-style-type: none;
 }
-.task-comments-inner li {
+.action-comments-inner li {
 
     padding: 5mm 5mm 3mm 5mm;
     margin-bottom: 8px;

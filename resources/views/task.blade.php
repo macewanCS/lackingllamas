@@ -20,6 +20,8 @@
             Due: {{$task->date}}
         </div>
 
+            <div class="task-action"> Belongs to Action: {{\App\Action::findOrFail($task->action_id)->description}}</div>
+
             <div class="comments-header">
                 <h3>Comments</h3>
             </div>
