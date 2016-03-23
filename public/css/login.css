@@ -1,0 +1,19 @@
+
+
+.LoginRegister {
+    clear: left;
+    justify-content: center;
+    width: 250px;
+    height: 260px;
+    background: white;
+    padding: 25px 10px 25px 25px;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+    margin: 120px auto;
+}
+
+
+.LoginRegister-link {
+    text-align: center;
+}
