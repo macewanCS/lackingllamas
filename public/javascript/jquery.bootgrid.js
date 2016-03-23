@@ -170,6 +170,7 @@
                             outerMatch = outerMatch && innerMatch;
                         }
                     }
+
                 }
             }
             var column,
@@ -1452,11 +1453,12 @@
             }
             for (var dex = this.searchParams[columnNum.toString()].length - 1; dex >= 0; dex--){
                 if (this.searchParams[columnNum.toString()][dex] == phrase){
-                    delete this.searchParams[columnNum.toString()][dex];
+                    var tempIndex = this.searchParams[columnNum.toString()].indexOf(phrase);
+                    if(tempIndex < 0) break;
+                    this.searchParams[columnNum.toString()].splice(tempIndex, 1);
                     break;
                 }
             }
-            delete this.searchParams[columnNum.toString()];
             executeSearchByParams.call(this);
         }
 

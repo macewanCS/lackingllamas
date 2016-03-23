@@ -32,10 +32,10 @@
             <div class="selector">
                 <label>Shown Elements:</label>
                 <select id="GOAT" name="GOAT" multiple="multiple">
-                    <option value="1" selected="selected">Goals</option>
-                    <option value="2" selected="selected">Objectives</option>
-                    <option value="3" selected="selected">Actions</option>
-                    <option value="4" selected="selected">Task</option>
+                    <option value="Goal" selected="selected">Goals</option>
+                    <option value="Objective" selected="selected">Objectives</option>
+                    <option value="Action" selected="selected">Actions</option>
+                    <option value="Task" selected="selected">Task</option>
                 </select>
             </div>
 
@@ -68,7 +68,7 @@
                             <tr>
                                 <td>{{$objective->id}}</td>
                                 <td>{{$objective->ident}}</td>
-                                <td>objective</td>
+                                <td>Objective</td>
                                 <td></td>
                                 <td>1</td>
                                 <td>{{$goal->name}}</td>
@@ -85,7 +85,7 @@
                                     <tr>
                                         <td>{{$action->id}}</td>
                                         <td>{{$action->ident}}</td>
-                                        <td>action</td>
+                                        <td>Action</td>
                                         <td>{{$action->progress}}</td>
                                         <td>2</td>
                                         <td>{{$action->description}}</td>
@@ -101,7 +101,7 @@
                                             <tr>
                                                 <td>{{$task->id}}</td>
                                                 <td>{{$task->ident}}</td>
-                                                <td>task</td>
+                                                <td>Task</td>
                                                 <td>{{$task->progress}}</td>
                                                 <td>3</td>
                                                 <td>{{$task->description}}</td>
@@ -122,7 +122,7 @@
                         <tr>
                             <td>{{$goal->id}}</td>
                             <td>{{$goal->ident}}</td>
-                            <td>goal</td>
+                            <td>Goal</td>
                             <td></td>
                             <td>0</td>
                             <td>{{$goal->name}}</td>
@@ -238,7 +238,22 @@
             height: "auto",
             noneSelectedText: "Choose Element",
             selectedList: 0,
-            header: false
+            header: true,
+            click: function (event, ui) {
+                if (ui.checked){
+                    grid.bootgrid("addParams", ui.value, 2);
+                }
+                else {
+                    grid.bootgrid("removeParams", ui.value, 2);
+                }
+            }
+        });
+
+        $(document).ready(function () {
+           grid.bootgrid("addParams", "Goal", 2);
+           grid.bootgrid("addParams", "Objective", 2);
+           grid.bootgrid("addParams", "Action", 2);
+           grid.bootgrid("addParams", "Task", 2);
         });
     </script>
     <script>
