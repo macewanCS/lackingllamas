@@ -186,3 +186,42 @@
 #grid-basic > tbody > tr > td > div.hidden {
     visibility: hidden;
 }
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.select-cell,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left
+{
+    background-color: inherit !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger
+{
+    background-color: white;
+}
+
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover
+{
+    background-color: #f6f6f6 !important;
+}
+
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.select-cell,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left
+{
+    background-color: inherit !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning
+{
+    background-color: #e3f6e0;
+}
+
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover
+{
+    background-color: lightgreen !important;
+}
