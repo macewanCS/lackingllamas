@@ -43,7 +43,14 @@
 
                   {!! Form::label('priority','priority: ') !!}<br>
                   {!! Form::text('priority') !!} <br>
-                  {!! Form::hidden('teamOrDeptId', 1) !!}
+                  {!! Form::hidden('id',$counted) !!}
+                  {!! Form::hidden('ident',0) !!}
+                  {!! Form::label('group','Group: ') !!}<br>
+                  {!! Form::select('group',$groups)!!}<br>
+                  {!! Form::label('userId','userId: ') !!}<br>
+                  {!! Form::select('userId',$user)!!}<br>
+                  {!! Form::label('progress','Progress: ') !!}<br>
+                  {!! Form::text('progress') !!}       <br>
     <div id ="divBP">
     {!! Form::label('bp','BusinessPlan: ') !!}
     {!! Form::checkbox('bp', 1, true) !!}

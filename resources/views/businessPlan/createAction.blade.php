@@ -46,8 +46,13 @@
                   {!! Form::text('priority') !!} <br>
                   {!! Form::hidden('id',$counted) !!}
                   {!! Form::hidden('ident',0) !!}
-                  {!! Form::label('group','Group: ') !!}
-                  {!! Form::select('group',$groups)!!}
+                  {!! Form::label('group','Group: ') !!}<br>
+                  {!! Form::select('group',$groups)!!}<br>
+                  {!! Form::label('userId','userId: ') !!}<br>
+                  {!! Form::select('userId',$user)!!}<br>
+                  {!! Form::label('progress','Progress: ') !!}<br>
+                  {!! Form::text('progress') !!}       <br>
+                  
                   <div id ="test">
                     {!! Form::label('bp','BusinessPlan: ') !!}
                     {!! Form::checkbox('bp', 1, true) !!}
