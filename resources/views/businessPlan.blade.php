@@ -29,7 +29,11 @@
             </div>
 
             <div>
+                {{$groups}}
+            </div>
 
+            <div>
+                {{$users[0]}}
             </div>
 
         </div>
@@ -86,8 +90,8 @@
                                         <td>{{$action->collaborators}}</td>
                                         <td>{{$action->budget}}</td>
                                         <td>{{$action->successMeasured}}</td>
-                                        <td>{{$action->userId}}</td>
-                                        <td>{{$action->teamOrDeptId}}</td>
+                                        <td>{{$users[$action->userId - 1]->name}}</td>
+                                        <td>{{$groups[$action->group - 1]->name}}</td>
                                     </tr>
                                     @foreach($tasks as $task)
                                         @if($task->action_id==$action->id)
@@ -102,8 +106,8 @@
                                                 <td>{{$task->collaborators}}</td>
                                                 <td>{{$task->budget}}</td>
                                                 <td>{{$task->successMeasured}}</td>
-                                                <td>{{$task->userId}}</td>
-                                                <td>{{$task->teamOrDeptId}}</td>
+                                                <td>{{$users[$task->userId - 1]->name}}</td>
+                                                <td>{{$groups[$task->group - 1]->name}}</td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -114,7 +118,7 @@
                     @if ($test)
                         <tr>
                             <td>{{$goal->id}}</td>
-                            <td>{{$goal->ident . '.1'}}</td>
+                            <td>{{$goal->ident}}</td>
                             <td>goal</td>
                             <td></td>
                             <td>0</td>
