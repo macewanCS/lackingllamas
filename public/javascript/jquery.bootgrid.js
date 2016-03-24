@@ -1453,12 +1453,14 @@
             if (phrase == null){
                 delete this.searchParams[columnNum.toString()];
             }
-            for (var dex = this.searchParams[columnNum.toString()].length - 1; dex >= 0; dex--){
-                if (this.searchParams[columnNum.toString()][dex] == phrase){
-                    var tempIndex = this.searchParams[columnNum.toString()].indexOf(phrase);
-                    if(tempIndex < 0) break;
-                    this.searchParams[columnNum.toString()].splice(tempIndex, 1);
-                    break;
+            else {
+                for (var dex = this.searchParams[columnNum.toString()].length - 1; dex >= 0; dex--){
+                    if (this.searchParams[columnNum.toString()][dex] == phrase){
+                        var tempIndex = this.searchParams[columnNum.toString()].indexOf(phrase);
+                        if(tempIndex < 0) break;
+                        this.searchParams[columnNum.toString()].splice(tempIndex, 1);
+                        break;
+                    }
                 }
             }
             executeSearchByParams.call(this);
