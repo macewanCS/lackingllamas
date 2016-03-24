@@ -265,6 +265,7 @@
             }
         });
 
+        var collabMaxCount;
         var collabSelector = $("#collab").multiselect({
             selectedList: 0,
             header: true,
@@ -276,6 +277,9 @@
             click: function (event, ui) {
                 if (ui.checked){
                     grid.bootgrid("addParams", ui.value, 7);
+                    if (collabSelector.multiselect("getChecked").length == collabMaxCount){
+                        grid.bootgrid("addParams", "", 7);
+                    }
                 }
                 else {
                     grid.bootgrid("removeParams", "", 7);
@@ -302,6 +306,7 @@
            grid.bootgrid("addParams", "Action", 2);
            grid.bootgrid("addParams", "Task", 2);
             collabSelector.multiselect("checkAll");
+            collabMaxCount = collabSelector.multiselect("getChecked").length;
         });
     </script>
     <script>
