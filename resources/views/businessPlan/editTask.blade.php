@@ -47,12 +47,22 @@
 
                 <br>
                 {!! Form::label('priority','Priority: ', ['class' => 'edit-task-label']) !!}
-                {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br>
-                {!! Form::hidden('teamOrDeptId', 1) !!}
+                {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br><br>
+
+                  {!! Form::label('group','Group: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
+                  <br><br>
+                  {!! Form::label('userId','userId: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::select('userId',$user,null, array('class' => 'form-extras'))!!}
+                  <br><br>
+                  {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}       
+                  <br><br>
+
                 <div id ="divBP">
-                    {!! Form::label('bp','Business Plan: ') !!}
-                    {!! Form::checkbox('bp', 1, true) !!}
-                    <p class="text">Part of Business Plan? Checked means yes</p>
+                    {!! Form::label('bp','Non Business Plan Goal: ') !!}
+                    {!! Form::checkbox('bp', 1, false) !!}
+                    <p class="text">Checked to make it a Non Business Plan Goal?</p>
                 </div>
             </div>
 
