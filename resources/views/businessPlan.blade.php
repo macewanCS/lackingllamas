@@ -268,14 +268,17 @@
         var collabSelector = $("#collab").multiselect({
             selectedList: 0,
             header: true,
+            minWidth: "auto",
             position: {
-                my: 'right top'
+                my: 'right top',
+                at: 'right bottom'
             },
             click: function (event, ui) {
                 if (ui.checked){
                     grid.bootgrid("addParams", ui.value, 7);
                 }
                 else {
+                    grid.bootgrid("removeParams", "", 7);
                     grid.bootgrid("removeParams", ui.value, 7);
                 }
             },
@@ -286,6 +289,7 @@
                     @foreach($groups as $group)
                         grid.bootgrid("addParams", "{{$group->name}}", 7);
                     @endforeach
+                        grid.bootgrid("addParams", "", 7);
             },
             uncheckAll: function () {
                     grid.bootgrid("removeParams", undefined, 7);
