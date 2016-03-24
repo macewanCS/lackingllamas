@@ -14,49 +14,63 @@
 
             
             {!! Form::open(['url'=>'businessplan']) !!}
-                  <div class="form-group-one">
-
-                  {!! Form::label('action_id','Action: ') !!}<br>
-                  {!! Form::select('action_id',$actions,null, array('class' => 'form-control'))!!}<br>
-
-                
-                  {!! Form::label('description','Name: ') !!}<br>
-                  {!! Form::text('description') !!}<br>
-
-                  {!! Form::label('date','date: ') !!}<br>
-                  {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-control']) !!}<br>
-
-                  {!! Form::label('leads','Leads: ') !!}<br>
-                  {!! Form::text('leads') !!}<br>
-
-                  {!! Form::label('collaborators','Collaborators: ') !!}<br>
-                  {!! Form::text('collaborators') !!}<br>
-
-                  {!! Form::label('budget','budget: ') !!}<br>
-                  {!! Form::text('budget') !!}       <br>
-                           
-                  {!! Form::label('projectPlanprojectPlan','projectPlan: ') !!}<br>
-                  {!! Form::text('projectPlan') !!}  <br>
-
-                  {!! Form::label('successMeasured','successMeasured: ') !!}<br>
-                  {!! Form::text('successMeasured') !!} <br>
-
-                  {!! Form::label('priority','priority: ') !!}<br>
-                  {!! Form::text('priority') !!} <br>
                   {!! Form::hidden('id',$counted) !!}
                   {!! Form::hidden('ident',0) !!}
-                  {!! Form::label('group','Group: ') !!}<br>
-                  {!! Form::select('group',$groups)!!}<br>
-                  {!! Form::label('userId','userId: ') !!}<br>
-                  {!! Form::select('userId',$user)!!}<br>
-                  {!! Form::label('progress','Progress: ') !!}<br>
-                  {!! Form::text('progress') !!}       <br>
-    <div id ="divBP">
-    {!! Form::label('bp','BusinessPlan: ') !!}
-    {!! Form::checkbox('bp', 1, true) !!}
-    <p class="text">Part of Business Plan? Checked means yes</p>
-    </div>
-            </div>
+                  <div class="form-group-one">
+
+                  {!! Form::label('action_id','Action: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::select('action_id',$actions,null, array('class' => 'form-extras'))!!}
+                  <br><br>
+
+                
+                  {!! Form::label('description','Name: ', ['class' => 'edit-action-label']) !!}
+                  {!! Form::text('description', null, ['class' => 'edit-action-field']) !!}
+                  <br><br>
+
+                  {!! Form::label('date','Date: ', ['class' => 'edit-action-label']) !!}
+                  {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-extras']) !!}
+                  <br><br>
+
+                  {!! Form::label('leads','Leads: ', ['class' => 'edit-action-label']) !!}
+                  {!! Form::text('leads', null, ['class' => 'edit-action-field']) !!}
+                  <br><br>
+
+                  {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-action-label']) !!}
+                  {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}
+                  <br><br>
+
+                  {!! Form::label('budget','budget: ', ['class' => 'edit-action-label']) !!}
+                  {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       
+                  <br><br>
+                           
+                  {!! Form::label('projectPlanprojectPlan','projectPlan: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::text('projectPlan', null, ['class' => 'edit-action-field']) !!}  
+                  <br><br>
+
+                  {!! Form::label('successMeasured','Success Measured: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::text('successMeasured', null, ['class' => 'edit-action-field']) !!} 
+                  <br><br>
+
+                  {!! Form::label('priority','priority: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} 
+                  <br><br>
+
+                  {!! Form::label('group','Group: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
+                  <br><br>
+                  {!! Form::label('userId','userId: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::select('userId',$user,null, array('class' => 'form-extras'))!!}
+                  <br><br>
+                  {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}       
+                  <br><br>
+                  
+                <div id ="divBP">
+                    {!! Form::label('bp','Non Business Plan Goal: ') !!}
+                    {!! Form::checkbox('bp', 1, false) !!}
+                    <p class="text">Checked to make it a Non Business Plan Goal?</p>
+                </div>
+                  </div>
 
           
                   {!! Form::submit('Add Task',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}

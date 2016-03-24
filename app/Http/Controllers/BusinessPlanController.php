@@ -9,7 +9,6 @@ use App\Action;
 use App\Task;
 use App\User;
 use App\Group;
-use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -118,31 +117,36 @@ class BusinessPlanController extends Controller
    public function editGoal($id)
    {
       $goal = Goal::findOrFail($id);
-    
-      return view('businessPlan.editGoal',compact('goal'));
+      $groups = Group::lists('name');
+      return view('businessPlan.editGoal',compact('goal','groups'));
    }
    public function editObjective($id)
    {
       $objective = Objective::findOrFail($id);
       $goals = Goal::lists('name');
-      return view('businessPlan.editObjective',compact('objective','goals'));
+      $groups = Group::lists('name');
+      return view('businessPlan.editObjective',compact('objective','goals','groups'));
    }
   public function editAction($id)
    {
       $action = Action::findOrFail($id);
       $objectives = Objective::lists('name');
-      return view('businessPlan.editAction',compact('action','objectives'));
+      $groups = Group::lists('name');
+      $user = User::lists('name');
+      return view('businessPlan.editAction',compact('action','objectives','groups','user'));
    }
    public function editTask($id)
    {
       $task = Task::findOrFail($id);
       $actions = Action::lists('description');
-      return view('businessPlan.editTask',compact('task','actions'));
+      $groups = Group::lists('name');
+      $user = User::lists('name');
+      return view('businessPlan.editTask',compact('task','actions','groups','user'));
    }
-   public function update($id,Request2 $request )
+   public function update($id,Request $request )
    {
     $goal = Goal::findOrFail($id);
-    $goal->update(Request2::all());
+    $goal->update(Request::all());
     return redirect('businessplan');
    }
 }
