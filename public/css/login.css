@@ -1,19 +1,39 @@
 
 
 .LoginRegister {
-    clear: left;
     justify-content: center;
     width: 250px;
     height: 260px;
     background: white;
-    padding: 25px 10px 25px 25px;
+    /*padding: 25px 10px 25px 25px;
     box-shadow: 10px 10px 5px grey;
     border: 2px solid;
-    border-color: grey;
-    margin: 120px auto;
+    border-color: grey;*/
+    margin: -220px auto;
 }
 
 
 .LoginRegister-link {
     text-align: center;
+}
+
+.top-image {
+    display: block;
+    margin: 0 auto;
+    z-index: -1;
+}
+
+.form-control {
+    margin-left: 10px;
+
+    width: 80%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 12px;
+    height: 20px;
 }

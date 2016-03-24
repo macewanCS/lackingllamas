@@ -3,9 +3,10 @@
 {!! Html::style('css/style.css') !!}
 {!! Html::style('css/login.css') !!}
 
+<img class="top-image" src="https://cdn.yegishome.ca/places/4187/551cc0bd6623b-cover.png">
 <div class="LoginRegister">
     <div class="panel panel-default">
-        <div class="panel-heading">Login</div>
+        <!--<div class="panel-heading">Login</div>-->
         <div class="panel-body">
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
