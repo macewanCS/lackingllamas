@@ -1435,8 +1435,10 @@
 
     Grid.prototype.addParams = function (phrase, columnNum) {
         if (this.searchParams.hasOwnProperty(columnNum.toString())) {
-            this.searchParams[columnNum.toString()].push(phrase);
-            executeSearchByParams.call(this);
+            if (this.searchParams[columnNum.toString()].indexOf(phrase) < 0) {
+                this.searchParams[columnNum.toString()].push(phrase);
+                executeSearchByParams.call(this);
+            }
         }
         else {
             this.searchParams[columnNum.toString()] = new Array();
