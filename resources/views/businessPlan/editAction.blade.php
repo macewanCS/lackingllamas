@@ -3,64 +3,74 @@
 
 @section('content')
 
-      {!! Html::style('css/createGoal.css') !!}
-      <div class="create-action-container">
-            <div class="create-goal-inner">
-            <h2>
-                  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-                  Edit a Action
-            </h2>
+    {!! Html::style('css/createGoal.css') !!}
+    <div class="create-action-container">
+        <h1>
+            Edit a Action
+        </h1>
+        <hr>
+        <div class="create-goal-inner">
+
 
             {!! Form::model($action,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $action->id]]) !!}
             <div class="form-group-one">
 
-                  {!! Form::label('objective_id','Objective: ') !!}<br>
-                  {!! Form::select('objective_id',$objectives,null, array('class' => 'form-control'))!!}<br>
+                {!! Form::label('objective_id','Objective: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::select('objective_id',$objectives,null, array('class' => 'form-extras'))!!}<br>
 
-                
-                  {!! Form::label('description','Name: ') !!}<br>
-                  {!! Form::text('description') !!}<br>
+                <br>
+                {!! Form::label('description','Name: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::text('description', null, ['class' => 'edit-action-field']) !!}
 
-                  {!! Form::label('date','date: ') !!}<br>
-                  {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-control']) !!}<br>
+                <br><br>
+                {!! Form::label('date','Date: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-extras']) !!}<br>
 
-                  {!! Form::label('leads','Leads: ') !!}<br>
-                  {!! Form::text('leads') !!}<br>
+                <br>
+                {!! Form::label('leads','Leads: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::text('leads', null, ['class' => 'edit-action-field']) !!}<br>
 
-                  {!! Form::label('collaborators','Collaborators: ') !!}<br>
-                  {!! Form::text('collaborators') !!}<br>
+                <br>
+                {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
 
-                  {!! Form::label('budget','budget: ') !!}<br>
-                  {!! Form::text('budget') !!}       <br>
-                           
-                  {!! Form::label('projectPlanprojectPlan','projectPlan: ') !!}<br>
-                  {!! Form::text('projectPlan') !!}  <br>
+                <br>
+                {!! Form::label('budget','Budget: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       <br>
 
-                  {!! Form::label('successMeasured','successMeasured: ') !!}<br>
-                  {!! Form::text('successMeasured') !!} <br>
+                <br>
+                {!! Form::label('projectPlan','Project Plan: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::text('projectPlan', null, ['class' => 'edit-action-field']) !!}  <br>
 
-                  {!! Form::label('priority','priority: ') !!}<br>
-                  {!! Form::text('priority') !!} <br>
-                  {!! Form::hidden('teamOrDeptId', 1) !!}
-                  <div id ="test">
-                    {!! Form::label('bp','BusinessPlan: ') !!}
+                <br>
+                {!! Form::label('successMeasured','Success Measured: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::text('successMeasured', null, ['class' => 'edit-action-field']) !!} <br>
+
+                <br>
+                {!! Form::label('priority','Priority: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br>
+                {!! Form::hidden('teamOrDeptId', 1) !!}
+                <br>
+                <div id ="test">
+                    {!! Form::label('bp','Business Plan: ', ['class' => 'edit-action-label']) !!}
                     {!! Form::checkbox('bp', 1, true) !!}
-                    <p class="divBP">Part of Business Plan? Checked means yes</p>
-                  </div>
-                  </div>
 
-          
-                  {!! Form::submit('Edit Action',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}
-           
+                    <p class="divBP">Part of Business Plan? Checked means yes</p>
+                </div>
+            </div>
+
+
+            {!! Form::submit('Edit Action',['class'=>'btn-primary-action form-control ','data-toggle' => 'tooltip']) !!}
+
 
             {!! Form::close() !!}
-            </div>
-      </div>
+        </div>
+    </div>
 @stop
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>
+    $(function() {
+        $( "#datepicker" ).datepicker();
+    });
+</script>
