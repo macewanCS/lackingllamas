@@ -243,3 +243,25 @@
 #mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect {
     width: 100% !important;
 }
+
+.leadSelector {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.leadSelector > button.ui-multiselect {
+    width: 100% !important;
+}
+
+.groupSelector {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect {
+    width: 100% !important;
+}
+
+.filtering {
+    margin-top: 20px;
+}

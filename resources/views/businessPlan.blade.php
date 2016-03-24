@@ -29,8 +29,12 @@
                 <button onclick="getSelectedRowType()">Edit</button>
             </div>
 
+            <div class="filtering">
+                <label>Filter By:</label>
+            </div>
+
             <div class="goatSelector">
-                <label>Shown Elements:</label>
+                <label>Type: </label>
                 <select id="GOAT" name="GOAT" multiple="multiple">
                     <option value="Goal" selected="selected">Goals</option>
                     <option value="Objective" selected="selected">Objectives</option>
@@ -40,7 +44,7 @@
             </div>
 
             <div class="collabSelector">
-                <label>Shown Collaborators</label>
+                <label>Collaborators: </label>
                 <select id="collab" name="collab" multiple="multiple">
                     <optgroup label="Users">
                         @foreach($users as $user)
@@ -52,6 +56,24 @@
                             <option value="{{$group->name}}" selected="selected">{{$group->name}}</option>
                         @endforeach
                     </optgroup>
+                </select>
+            </div>
+
+            <div class="leadSelector">
+                <label>Leads: </label>
+                <select id="lead" name="lead" multiple="multiple">
+                    @foreach($users as $user)
+                        <option value="{{$user->name}}" selected="selected">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="groupSelector">
+                <label>Groups: </label>
+                <select id="group" name="group" multiple="multiple">
+                    @foreach($groups as $group)
+                        <option value="{{$group->name}}" selected="selected">{{$group->name}}</option>
+                    @endforeach
                 </select>
             </div>
 
@@ -297,6 +319,99 @@
             },
             uncheckAll: function () {
                     grid.bootgrid("removeParams", undefined, 7);
+            },
+            optgrouptoggle: function (event, ui) {
+                var values = $.map(ui.inputs, function (checkbox){
+                    return checkbox.value;
+                });
+                if (ui.checked) {
+                    for (var value in values) {
+                        if ((typeof values[value]) == "string") {
+                            grid.bootgrid("addParams", values[value], 7);
+                        }
+                    }
+                    if (collabSelector.multiselect("getChecked").length == collabMaxCount) {
+                        grid.bootgrid("addParams", "", 7);
+                    }
+                }
+                else {
+                    if (collabSelector.multiselect("getChecked").length == 0) {
+                        grid.bootgrid("removeParams", undefined, 7);
+                    }
+                    else {
+                        for (var value in values) {
+                            if ((typeof values[value]) == "string") {
+                                grid.bootgrid("removeParams", values[value], 7);
+                            }
+                        }
+                    }
+                }
+                grid.bootgrid("getParams");
+            }
+        }).multiselectfilter();
+
+        var leadMaxCount;
+        var leadSelector = $("#lead").multiselect({
+            selectedList: 0,
+            header: true,
+            minWidth: "auto",
+            position: {
+                my: 'right top',
+                at: 'right bottom'
+            },
+            click: function (event, ui) {
+                if (ui.checked) {
+                    grid.bootgrid("addParams", ui.value, 10);
+                    if (leadSelector.multiselect("getChecked").length == leadMaxCount){
+                        grid.bootgrid("addParams", "", 10);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", "", 10);
+                    grid.bootgrid("removeParams", ui.value, 10);
+                }
+            },
+            checkAll: function () {
+                @foreach($users as $user)
+                    grid.bootgrid("addParams", "{{$user->name}}", 10);
+                @endforeach
+                grid.bootgrid("addParams", "", 10);
+            },
+            uncheckAll: function () {
+                grid.bootgrid("removeParams", undefined, 10);
+            }
+        }).multiselectfilter();
+
+        var groupMaxCount;
+        var groupSelector = $("#group").multiselect({
+            selectedList: 0,
+            header: true,
+            minWidth: "auto",
+            position: {
+                my: 'right top',
+                at: 'right bottom'
+            },
+            click: function (event, ui) {
+                if (ui.checked) {
+                    grid.bootgrid("addParams", ui.value, 11);
+                    if (groupSelector.multiselect("getChecked").length == groupMaxCount){
+                        grid.bootgrid("addParams", "", 11);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", "", 11);
+                    grid.bootgrid("removeParams", ui.value, 11);
+                }
+            },
+            checkAll: function () {
+                @foreach($groups as $group)
+                    grid.bootgrid("addParams", "{{$group->name}}", 11);
+                @endforeach
+                grid.bootgrid("addParams", "", 11);
+            },
+            uncheckAll: function () {
+                grid.bootgrid("removeParams", undefined, 11);
+
             }
         }).multiselectfilter();
 
@@ -307,6 +422,10 @@
            grid.bootgrid("addParams", "Task", 2);
             collabSelector.multiselect("checkAll");
             collabMaxCount = collabSelector.multiselect("getChecked").length;
+            leadSelector.multiselect("checkAll");
+            leadMaxCount = leadSelector.multiselect("getChecked").length;
+            groupSelector.multiselect("checkAll");
+            groupMaxCount = groupSelector.multiselect("getChecked").length;
         });
     </script>
     <script>

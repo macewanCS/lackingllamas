@@ -1450,8 +1450,8 @@
 
     Grid.prototype.removeParams = function (phrase, columnNum) {
         if(this.searchParams.hasOwnProperty(columnNum.toString())){
-            if (phrase == null){
-                delete this.searchParams[columnNum.toString()];
+            if (phrase == null) {
+                 delete this.searchParams[columnNum.toString()];
             }
             else {
                 for (var dex = this.searchParams[columnNum.toString()].length - 1; dex >= 0; dex--){
@@ -1464,6 +1464,16 @@
                 }
             }
             executeSearchByParams.call(this);
+        }
+
+        return this;
+    };
+
+    Grid.prototype.getParams = function () {
+        for(var i = 0; i < 12; i++){
+            if(!(this.searchParams[i.toString()] == null)){
+                console.log(this.searchParams[i.toString()] + " at " + i);
+            }
         }
 
         return this;
