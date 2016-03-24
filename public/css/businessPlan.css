@@ -226,11 +226,20 @@
     background-color: #c8e6c3 !important;
 }
 
-.selector {
+.goatSelector {
     margin-top: 10%;
 
 }
 
-#mainDiv > div.sideDiv > div.selector > button.ui-multiselect {
+#mainDiv > div.sideDiv > div.goatSelector > button.ui-multiselect {
+    width: 100% !important;
+}
+
+.collabSelector {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect {
     width: 100% !important;
 }

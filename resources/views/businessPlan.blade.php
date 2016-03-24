@@ -29,13 +29,29 @@
                 <button onclick="getSelectedRowType()">Edit</button>
             </div>
 
-            <div class="selector">
+            <div class="goatSelector">
                 <label>Shown Elements:</label>
                 <select id="GOAT" name="GOAT" multiple="multiple">
                     <option value="Goal" selected="selected">Goals</option>
                     <option value="Objective" selected="selected">Objectives</option>
                     <option value="Action" selected="selected">Actions</option>
                     <option value="Task" selected="selected">Task</option>
+                </select>
+            </div>
+
+            <div class="collabSelector">
+                <label>Shown Collaborators</label>
+                <select id="collab" name="collab" multiple="multiple">
+                    <optgroup label="Users">
+                        @foreach($users as $user)
+                            <option value="{{$user->name}}" selected="selected">{{$user->name}}</option>
+                        @endforeach
+                    </optgroup>
+                    <optgroup label="Groups">
+                        @foreach($groups as $group)
+                            <option value="{{$group->name}}" selected="selected">{{$group->name}}</option>
+                        @endforeach
+                    </optgroup>
                 </select>
             </div>
 
@@ -238,7 +254,7 @@
             height: "auto",
             noneSelectedText: "Choose Element",
             selectedList: 0,
-            header: true,
+            header: "Choose element(s)",
             click: function (event, ui) {
                 if (ui.checked){
                     grid.bootgrid("addParams", ui.value, 2);
@@ -249,11 +265,39 @@
             }
         });
 
+        var collabSelector = $("#collab").multiselect({
+            selectedList: 0,
+            header: true,
+            position: {
+                my: 'right top'
+            },
+            click: function (event, ui) {
+                if (ui.checked){
+                    grid.bootgrid("addParams", ui.value, 7);
+                }
+                else {
+                    grid.bootgrid("removeParams", ui.value, 7);
+                }
+            },
+            checkAll: function () {
+                    @foreach($users as $user)
+                        grid.bootgrid("addParams", "{{$user->name}}", 7);
+                    @endforeach
+                    @foreach($groups as $group)
+                        grid.bootgrid("addParams", "{{$group->name}}", 7);
+                    @endforeach
+            },
+            uncheckAll: function () {
+                    grid.bootgrid("removeParams", undefined, 7);
+            }
+        }).multiselectfilter();
+
         $(document).ready(function () {
            grid.bootgrid("addParams", "Goal", 2);
            grid.bootgrid("addParams", "Objective", 2);
            grid.bootgrid("addParams", "Action", 2);
            grid.bootgrid("addParams", "Task", 2);
+            collabSelector.multiselect("checkAll");
         });
     </script>
     <script>
