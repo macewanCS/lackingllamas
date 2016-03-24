@@ -3,23 +3,25 @@
 @section('content')
 	{!! Html::style('css/createGoal.css') !!}
 	<div class="create-goal-container">
-		<div class="create-goal-inner">
-		<h2>
+		<h1>
 			Edit a Objective
-		</h2>
+		</h1>
+		<hr>
+		<div class="create-goal-inner">
+
 
 		{!! Form::model($objective,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $objective->id]]) !!}
 		<div class="form-group-one">
 
 			{!! Form::label('goal_id','Goal: ') !!}
-			<br>
-			{!! Form::select('goal_id',$goals)!!}
+
+			{!! Form::select('goal_id',$goals, null, ['class' => 'create-action-dropdown'])!!}
 
 
 			<br><br>
 			{!! Form::label('name','Name: ') !!}
-			<br>
-			{!! Form::text('name') !!}
+
+			{!! Form::text('name', null, ['class' => 'create-action-text-field']) !!}
 			
 			{!! Form::hidden('teamOrDeptId', 1) !!}
 		
