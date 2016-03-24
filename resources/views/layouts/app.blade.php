@@ -54,12 +54,6 @@
 
             <ul class="nav topbar-nav">
                 @if (Auth::guest())
-                    @if (Request::path() == 'home')
-                        <li><div class="topbar-current"><a href="{{ url('/home') }}">Home</a></div></li>
-                    @else
-                        <li><div class="topbar-text"><a href="{{ url('/home') }}">Home</a></div></li>
-                    @endif
-
                     @if (Request::path() == 'businessplan')
                         <li><div class="topbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
                     @else
@@ -73,12 +67,6 @@
                     @endif
 
                 @else
-                    @if (Request::path() == 'dashboard')
-                        <li><div class="topbar-current"><a href="{{ url('/dashboard') }}">Dashboard</a></div></li>
-                    @else
-                        <li><div class="topbar-text"><a href="{{ url('/dashboard') }}">Dashboard</a></div></li>
-                    @endif
-
                     @if (Request::path() == 'mytasks')
                         <li><div class="topbar-current"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
                     @else
