@@ -9,14 +9,17 @@
 		{!! Form::model($goal,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $goal->id]]) !!}
 
 		<div class="form-group-one">
-			{!! Form::label('name','Name: ') !!}
-			{!! Form::text('name',null, ['class' => 'create-goal-text-field']) !!}
-			{!! Form::hidden('bpid', 1) !!}
-		<div id ="divBP">
-			{!! Form::label('bp','BusinessPlan: ') !!}
-			{!! Form::checkbox('bp', 1, true) !!}
-		<p class="text">Part of Business Plan? Checked means yes</p>
-		</div>
+			{!! Form::label('name','Name:',['class' => 'edit-action-label']) !!}
+			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
+			<br><br>
+			{!! Form::label('group','Group:',['class' => 'edit-action-label']) !!}
+			{!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
+			<br><br>
+                <div id ="divBP">
+                    {!! Form::label('bp','Non Business Plan Goal: ') !!}
+                    {!! Form::checkbox('bp', 1, false) !!}
+                    <p class="text">Checked to make it a Non Business Plan Goal?</p>
+                </div>
 		</div>
 
 		<div class="form-group-two">
