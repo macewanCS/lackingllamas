@@ -29,13 +29,51 @@
                 <button onclick="getSelectedRowType()">Edit</button>
             </div>
 
-            <div class="selector">
-                <label>Shown Elements:</label>
+            <div class="filtering">
+                <label>Filter By:</label>
+            </div>
+
+            <div class="goatSelector">
+                <label>Type: </label>
                 <select id="GOAT" name="GOAT" multiple="multiple">
                     <option value="Goal" selected="selected">Goals</option>
                     <option value="Objective" selected="selected">Objectives</option>
                     <option value="Action" selected="selected">Actions</option>
                     <option value="Task" selected="selected">Task</option>
+                </select>
+            </div>
+
+            <div class="collabSelector">
+                <label>Collaborators: </label>
+                <select id="collab" name="collab" multiple="multiple">
+                    <optgroup label="Users">
+                        @foreach($users as $user)
+                            <option value="{{$user->name}}" selected="selected">{{$user->name}}</option>
+                        @endforeach
+                    </optgroup>
+                    <optgroup label="Groups">
+                        @foreach($groups as $group)
+                            <option value="{{$group->name}}" selected="selected">{{$group->name}}</option>
+                        @endforeach
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="leadSelector">
+                <label>Leads: </label>
+                <select id="lead" name="lead" multiple="multiple">
+                    @foreach($users as $user)
+                        <option value="{{$user->name}}" selected="selected">{{$user->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="groupSelector">
+                <label>Groups: </label>
+                <select id="group" name="group" multiple="multiple">
+                    @foreach($groups as $group)
+                        <option value="{{$group->name}}" selected="selected">{{$group->name}}</option>
+                    @endforeach
                 </select>
             </div>
 
@@ -48,15 +86,15 @@
                     <th data-column-id="id" data-formatter="colorizer" data-header-css-class="id" data-visible="false"></th>
                     <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
                     <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
-                    <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress"></th>
                     <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status" data-visible="false"></th>
                     <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
-                    <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
+                    <th data-column-id="user" data-formatter="colorizer" data-header-css-class="user">Lead</th>
+                    <th data-column-id="group" data-formatter="colorizer" data-header-css-class="group">Group</th>
                     <th data-column-id="collabs" data-formatter="colorizer" data-header-css-class="collabs">Collaborators</th>
                     <th data-column-id="budget" data-formatter="budget" data-header-css-class="budget">Budget</th>
                     <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
-                    <th data-column-id="user" data-formatter="colorizer" data-header-css-class="user">User</th>
-                    <th data-column-id="group" data-formatter="colorizer" data-header-css-class="group">Group</th>
+                    <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
+                    <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress">Prog.</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,9 +107,9 @@
                                 <td>{{$objective->id}}</td>
                                 <td>{{$objective->ident}}</td>
                                 <td>Objective</td>
-                                <td></td>
                                 <td>1</td>
-                                <td>{{$goal->name}}</td>
+                                <td>{{$goal->name}}:</td>
+                                <td></td>
                                 <td></td>
                                 <td>{{$objective->name}}</td>
                                 <td></td>
@@ -86,15 +124,15 @@
                                         <td>{{$action->id}}</td>
                                         <td>{{$action->ident}}</td>
                                         <td>Action</td>
-                                        <td>{{$action->progress}}</td>
                                         <td>2</td>
                                         <td>{{$action->description}}</td>
-                                        <td>{{$action->date}}</td>
+                                        <td>{{$users[$action->userId - 1]->name}}</td>
+                                        <td>{{$groups[$action->group - 1]->name}}</td>
                                         <td>{{$action->collaborators}}</td>
                                         <td>{{$action->budget}}</td>
                                         <td>{{$action->successMeasured}}</td>
-                                        <td>{{$users[$action->userId - 1]->name}}</td>
-                                        <td>{{$groups[$action->group - 1]->name}}</td>
+                                        <td>{{$action->date}}</td>
+                                        <td>{{$action->progress}}</td>
                                     </tr>
                                     @foreach($tasks as $task)
                                         @if($task->action_id==$action->id)
@@ -102,15 +140,15 @@
                                                 <td>{{$task->id}}</td>
                                                 <td>{{$task->ident}}</td>
                                                 <td>Task</td>
-                                                <td>{{$task->progress}}</td>
                                                 <td>3</td>
                                                 <td>{{$task->description}}</td>
-                                                <td>{{$task->date}}</td>
+                                                <td>{{$users[$task->userId - 1]->name}}</td>
+                                                <td>{{$groups[$task->group - 1]->name}}</td>
                                                 <td>{{$task->collaborators}}</td>
                                                 <td>{{$task->budget}}</td>
                                                 <td>{{$task->successMeasured}}</td>
-                                                <td>{{$users[$task->userId - 1]->name}}</td>
-                                                <td>{{$groups[$task->group - 1]->name}}</td>
+                                                <td>{{$task->date}}</td>
+                                                <td>{{$task->progress}}</td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -123,9 +161,9 @@
                             <td>{{$goal->id}}</td>
                             <td>{{$goal->ident}}</td>
                             <td>Goal</td>
-                            <td></td>
                             <td>0</td>
                             <td>{{$goal->name}}</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -155,10 +193,6 @@
         var selectedRow;
         var grid = $("#grid-basic").bootgrid(
                 {
-                    selection: true,
-                    multiSelect: false,
-                    rowSelect: true,
-                    keepSelection: true,
                     columnSelection: false,
                     rowCount: -1,
                     caseSensitive: false,
@@ -188,6 +222,9 @@
                                 else {
                                     return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
+                            }
+                            else if (column.id == "desc"){
+                                return "<div class=\"descript\">" + row[column.id] + "</div>";
                             }
                             else {
                                 return "<div>" + row[column.id] + "</div>";
@@ -238,7 +275,7 @@
             height: "auto",
             noneSelectedText: "Choose Element",
             selectedList: 0,
-            header: true,
+            header: "Choose element(s)",
             click: function (event, ui) {
                 if (ui.checked){
                     grid.bootgrid("addParams", ui.value, 2);
@@ -249,11 +286,145 @@
             }
         });
 
+        var collabMaxCount;
+        var collabSelector = $("#collab").multiselect({
+            selectedList: 0,
+            header: true,
+            minWidth: "auto",
+            position: {
+                my: 'right top',
+                at: 'right bottom'
+            },
+            click: function (event, ui) {
+                if (ui.checked){
+                    grid.bootgrid("addParams", ui.value, 7);
+                    if (collabSelector.multiselect("getChecked").length == collabMaxCount){
+                        grid.bootgrid("addParams", "", 7);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", "", 7);
+                    grid.bootgrid("removeParams", ui.value, 7);
+                }
+            },
+            checkAll: function () {
+                    @foreach($users as $user)
+                        grid.bootgrid("addParams", "{{$user->name}}", 7);
+                    @endforeach
+                    @foreach($groups as $group)
+                        grid.bootgrid("addParams", "{{$group->name}}", 7);
+                    @endforeach
+                        grid.bootgrid("addParams", "", 7);
+            },
+            uncheckAll: function () {
+                    grid.bootgrid("removeParams", undefined, 7);
+            },
+            optgrouptoggle: function (event, ui) {
+                var values = $.map(ui.inputs, function (checkbox){
+                    return checkbox.value;
+                });
+                if (ui.checked) {
+                    for (var value in values) {
+                        if ((typeof values[value]) == "string") {
+                            grid.bootgrid("addParams", values[value], 7);
+                        }
+                    }
+                    if (collabSelector.multiselect("getChecked").length == collabMaxCount) {
+                        grid.bootgrid("addParams", "", 7);
+                    }
+                }
+                else {
+                    if (collabSelector.multiselect("getChecked").length == 0) {
+                        grid.bootgrid("removeParams", undefined, 7);
+                    }
+                    else {
+                        for (var value in values) {
+                            if ((typeof values[value]) == "string") {
+                                grid.bootgrid("removeParams", values[value], 7);
+                            }
+                        }
+                    }
+                }
+                grid.bootgrid("getParams");
+            }
+        }).multiselectfilter();
+
+        var leadMaxCount;
+        var leadSelector = $("#lead").multiselect({
+            selectedList: 0,
+            header: true,
+            minWidth: "auto",
+            position: {
+                my: 'right top',
+                at: 'right bottom'
+            },
+            click: function (event, ui) {
+                if (ui.checked) {
+                    grid.bootgrid("addParams", ui.value, 10);
+                    if (leadSelector.multiselect("getChecked").length == leadMaxCount){
+                        grid.bootgrid("addParams", "", 10);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", "", 10);
+                    grid.bootgrid("removeParams", ui.value, 10);
+                }
+            },
+            checkAll: function () {
+                @foreach($users as $user)
+                    grid.bootgrid("addParams", "{{$user->name}}", 10);
+                @endforeach
+                grid.bootgrid("addParams", "", 10);
+            },
+            uncheckAll: function () {
+                grid.bootgrid("removeParams", undefined, 10);
+            }
+        }).multiselectfilter();
+
+        var groupMaxCount;
+        var groupSelector = $("#group").multiselect({
+            selectedList: 0,
+            header: true,
+            minWidth: "auto",
+            position: {
+                my: 'right top',
+                at: 'right bottom'
+            },
+            click: function (event, ui) {
+                if (ui.checked) {
+                    grid.bootgrid("addParams", ui.value, 11);
+                    if (groupSelector.multiselect("getChecked").length == groupMaxCount){
+                        grid.bootgrid("addParams", "", 11);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", "", 11);
+                    grid.bootgrid("removeParams", ui.value, 11);
+                }
+            },
+            checkAll: function () {
+                @foreach($groups as $group)
+                    grid.bootgrid("addParams", "{{$group->name}}", 11);
+                @endforeach
+                grid.bootgrid("addParams", "", 11);
+            },
+            uncheckAll: function () {
+                grid.bootgrid("removeParams", undefined, 11);
+
+            }
+        }).multiselectfilter();
+
         $(document).ready(function () {
            grid.bootgrid("addParams", "Goal", 2);
            grid.bootgrid("addParams", "Objective", 2);
            grid.bootgrid("addParams", "Action", 2);
            grid.bootgrid("addParams", "Task", 2);
+            collabSelector.multiselect("checkAll");
+            collabMaxCount = collabSelector.multiselect("getChecked").length;
+            leadSelector.multiselect("checkAll");
+            leadMaxCount = leadSelector.multiselect("getChecked").length;
+            groupSelector.multiselect("checkAll");
+            groupMaxCount = groupSelector.multiselect("getChecked").length;
         });
     </script>
     <script>
