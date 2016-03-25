@@ -76,6 +76,14 @@
                 </select>
             </div>
 
+            <div class="datePicker">
+                <label class="dateTitle">Due Date: </label>
+                <label class="dateLabel">From: </label>
+                <input title="From: " type="text" id="datePicker" class="picker">
+                <label class="dateLabel">To: </label>
+                <input title="To: " type="text" id="datePicker2" class="picker">
+            </div>
+
         </div>
 
         <div class="tableDiv">
@@ -352,24 +360,24 @@
             },
             click: function (event, ui) {
                 if (ui.checked) {
-                    grid.bootgrid("addParams", ui.value, 10);
+                    grid.bootgrid("addParams", ui.value, 5);
                     if (leadSelector.multiselect("getChecked").length == leadMaxCount){
-                        grid.bootgrid("addParams", "", 10);
+                        grid.bootgrid("addParams", "", 5);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 10);
-                    grid.bootgrid("removeParams", ui.value, 10);
+                    grid.bootgrid("removeParams", "", 5);
+                    grid.bootgrid("removeParams", ui.value, 5);
                 }
             },
             checkAll: function () {
                 @foreach($users as $user)
-                    grid.bootgrid("addParams", "{{$user->name}}", 10);
+                    grid.bootgrid("addParams", "{{$user->name}}", 5);
                 @endforeach
-                grid.bootgrid("addParams", "", 10);
+                grid.bootgrid("addParams", "", 5);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 10);
+                grid.bootgrid("removeParams", undefined, 5);
             }
         }).multiselectfilter();
 
@@ -384,27 +392,41 @@
             },
             click: function (event, ui) {
                 if (ui.checked) {
-                    grid.bootgrid("addParams", ui.value, 11);
+                    grid.bootgrid("addParams", ui.value, 6);
                     if (groupSelector.multiselect("getChecked").length == groupMaxCount){
-                        grid.bootgrid("addParams", "", 11);
+                        grid.bootgrid("addParams", "", 6);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 11);
-                    grid.bootgrid("removeParams", ui.value, 11);
+                    grid.bootgrid("removeParams", "", 6);
+                    grid.bootgrid("removeParams", ui.value, 6);
                 }
             },
             checkAll: function () {
                 @foreach($groups as $group)
-                    grid.bootgrid("addParams", "{{$group->name}}", 11);
+                    grid.bootgrid("addParams", "{{$group->name}}", 6);
                 @endforeach
-                grid.bootgrid("addParams", "", 11);
+                grid.bootgrid("addParams", "", 6);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 11);
+                grid.bootgrid("removeParams", undefined, 6);
 
             }
         }).multiselectfilter();
+
+        $("#datePicker").datepicker({
+            dateFormat: "yy-mm-dd",
+            onClose: function (dateText, inst) {
+                if (dateText != ""){
+                    grid.bootgrid("addParams", dateText, 10);
+                }
+            }
+        });
+
+
+        $("#datePicker2").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
 
         $(document).ready(function () {
            grid.bootgrid("addParams", "Goal", 2);

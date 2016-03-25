@@ -267,6 +267,29 @@
 
 }
 
+#mainDiv > div.sideDiv > div.datePicker {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.datePicker > input.picker {
+    width: 100% !important;
+}
+
+.datePicker {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.datePicker > label.dateTitle {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.datePicker > label.dateLabel {
+    font-weight: normal;
+    font-size: small;
+
+}
+
 #mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect {
     width: 100% !important;
 }
