@@ -35,7 +35,7 @@ class ActionSeeder extends Seeder
             ],
              ['description' => 'Extend literacy van services to under served communities in Edmonton and surrounding areas.',
                  'date' => Carbon::createFromDate(2015, 1, 1, 'America/Toronto'),
-                'collaborators' => 'wMarketing',
+                'collaborators' => 'Marketing',
                 'budget' => 0,
                 'successMeasured' => 'Increased use and knowledge of EPL services in underserved communities',
                 'progress' => 0,
