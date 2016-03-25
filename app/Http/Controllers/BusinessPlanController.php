@@ -145,8 +145,23 @@ class BusinessPlanController extends Controller
    }
    public function update($id,Request $request )
    {
-    $goal = Goal::findOrFail($id);
-    $goal->update(Request::all());
+
+      if (Request::has('bpid')) {
+        $goal = Goal::findOrFail($id);
+        $goal->update(Request::all());
+      }
+      if (Request::has('goal_id')) {
+        $objective = Objective::findOrFail($id);
+        $objective->update(Request::all());
+      }
+      if (Request::has('objective_id')) {
+        $action = Action::findOrFail($id);
+        $action->update(Request::all());
+      }
+      if (Request::has('action_id')) {
+        $task = Task::findOrFail($id);
+        $task->update(Request::all());
+      }
     return redirect('businessplan');
    }
 }
