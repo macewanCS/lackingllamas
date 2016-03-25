@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Action;
+use App\Task;
 use App\ActionComments;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,8 @@ class ActionCommentsController extends Controller
         $comments = $actionComment->getComments($id);
 
         $action = Action::findOrFail($id);
-
-        return view('action', compact('comments', 'action'));
+        $tasks =  Task::all()->where('action_id', $id);
+        return view('action', compact('comments', 'action', 'tasks'));
     }
 
     public function store($action_id, Requests\CommentActionRequest $request)

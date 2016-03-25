@@ -25,7 +25,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    width: 1000px;
+    width: 1200px;
     position: relative;
     margin: auto;
 }
@@ -75,4 +75,84 @@ hr {
 
 .comment-text-area {
     width:100%;
+}
+.action-objective a {
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #89ba38;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 3px;
+    display: inline-block;
+}
+
+.action-lead a {
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #0074D9;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 3px;
+    display: inline-block;
+}
+
+.action-list {
+    list-style-type: none;
+
+
+}
+
+.action-list li {
+
+    margin-top: 3px;
+}
+p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+label {
+    margin-right: 10px;
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 150px;
+    text-align: right;
+}
+
+.action-collab a {
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #B10DC9;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 3px;
+    display: inline-block;
+}
+
+.action-tasks a{
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #FFDC00;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 3px;
+    display: inline-block;
+}
+
+.comment-label {
+    font-style: italic;
+    color: grey;
 }
