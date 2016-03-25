@@ -160,11 +160,28 @@
                     column = that.columns[index];
                     if (column.searchable) {
                         if (that.searchParams[index.toString()] != null) {
-                            for (var phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
-                                searchPattern = new RegExp(that.searchParams[index.toString()][phraseNum], (that.options.caseSensitive) ? "g" : "gi");
-                                if (column.converter.to(row[column.id]).search(searchPattern) > -1) {
-                                    innerMatch = true;
-                                    break;
+                            var phraseNum;
+                            if (that.constraints[index.toString()] != null){
+                                for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
+                                    if (that.constraints[index.toString][phraseNum] == "greater") {
+                                        if (row[column.id] >= that.searchParams[index.toString()][phraseNum]){
+                                            innerMatch = true;
+                                        }
+                                    }
+                                    else {
+                                        if (row[column.id] <= that.searchParams[index.toString()][phraseNum]){
+                                            innerMatch = true;
+                                        }
+                                    }
+                                }
+                            }
+                            else {
+                                for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
+                                    searchPattern = new RegExp(that.searchParams[index.toString()][phraseNum], (that.options.caseSensitive) ? "g" : "gi");
+                                    if (column.converter.to(row[column.id]).search(searchPattern) > -1) {
+                                        innerMatch = true;
+                                        break;
+                                    }
                                 }
                             }
                             outerMatch = outerMatch && innerMatch;
@@ -900,6 +917,7 @@
         this.footer = null;
         this.xqr = null;
         this.searchParams = {};
+        this.constraints = {};
 
         // todo: implement cache
     };
@@ -1464,6 +1482,27 @@
                 }
             }
             executeSearchByParams.call(this);
+        }
+
+        return this;
+    };
+
+    Grid.prototype.addContraint = function (constraint, columnNum) {
+        if (constraint != null){
+            if (this.constraints.hasOwnProperty(columnNum.toString())){
+                if (this.constraints[columnNum.toString()].indexOf(constraint) < 0){
+                    this.constraints[columnNum.toString()].push(constraint);
+                    executeSearchByParams.call(this);
+                }
+            }
+            else {
+                this.constraints[columnNum.toString()] = new Array();
+                this.constraints[columnNum.toString()].push(constraint);
+                executeSearchByParams.call(this);
+            }
+        }
+        else {
+            delete this.constraints[columnNum.toString()];
         }
 
         return this;
