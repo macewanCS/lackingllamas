@@ -6,78 +6,105 @@
 
 @section('content')
     <div class="task-container">
-    <div class="task-description-container">
-        <div class="task-description-inner">
+        <div class="task-description-container">
+            <div class="task-description-inner">
+                <div class="task-name">
+                    <h1>{{$task->description}}</h1>
+                </div>
+                <ul class="task-list">
 
-        <div class="task-name">
-            <h1>{{$task->description}}</h1>
-        </div>
-        <div class="task-collab">
-            Collaborators: {{$task->collaborators}}
-        </div>
+                    <li><div class="task-action"> <label>Action </label> <a href="{{url('/action', $task->action_id)}}"> {{\App\Action::findOrFail($task->action_id)->description}} </a></div></li>
 
-        <div class="task-date">
-            Due: {{$task->date}}
-        </div>
+                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/profile')}}"> {{\App\User::findOrFail($task->userId)->name}} </a> </div></li><!-- TODO: Link to profiles -->
 
-            <div class="task-budget">
-                Budget: ${{$task->budget}}
+                    <li><div class="task-collab">
+                            <label>Collaborators </label>
+
+                            @if (empty($task->collaborators))
+                                N/A
+                            @else
+                                @foreach (explode(', ', $task->collaborators) as $colab)
+                                    <a href="{{url('/profile')}}"> {{ $colab }} </a> <!-- TODO: Link to collab's profiles -->
+                                @endforeach
+                            @endif
+
+                        </div></li>
+
+                    <li><div class="task-date">
+                            <label>Due </label> <p>{{$task->date}} </p>
+                            @if ($task->date < \Carbon\Carbon::now())
+                                <style media="screen" type="text/css">
+                                    .task-date p {
+                                        color: #FF4136;
+                                    }
+                                </style>
+                            @endif
+                        </div></li>
+
+                    <li><div class="task-budget">
+                            <label>Budget </label> <p>${{$task->budget}}</p>
+                        </div></li>
+
+                    <li><div class="task-success">
+                            <label>Success Measured </label> <p>
+                                @if (empty($task->successMeasured))
+                                    N/A
+                                @else
+                                    {{$task->successMeasured}}
+                                @endif</p>
+                        </div></li>
+
+                    <li><div class="task-progress">
+                            <label>Progress </label> <p>
+                                @if (empty($task->progress))
+                                    Not Started
+                                @else
+                                    {{$task->progress}}
+                                @endif
+                            </p></div></li>
+
+                </ul>
+
+                <div class="comments-header">
+                    <h3>Comments</h3>
+                </div>
             </div>
-
-            <div class="task-success">
-                Success Measured: {{$task->successMeasured}}
-            </div>
-
-            <div class="task-lead">
-                Lead: {{\App\User::findOrFail($task->userId)->name}}
-            </div>
-
-            <div class="task-progress">
-                Progress: {{$task->progress}}
-            </div>
-
-            <div class="task-action"> Belongs to Action:<a href="{{url('/action', $task->action_id)}}"> {{\App\Action::findOrFail($task->action_id)->description}} </a></div>
-
-            <div class="comments-header">
-                <h3>Comments</h3>
-            </div>
-        </div>
-        <hr>
-        <ul class="comment-container">
-            <div class="task-comments-inner">
-            @foreach($comments as $comment)
-                <li class="comments">
-                    <div class="comment-header">
-                        <div class="comment-name">{{\App\User::findOrFail($comment->user_ID)->name}}</div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
-                    </div>
-                    <div class="comment-content">
-                        <br>
-                        {{$comment->description}} 
-                    </div>
-                </li>
-            @endforeach
-        </ul>
-
-        <div class="comment-form">
-            <h2> Commenting As {{Auth::user()->name}}</h2>
-            {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
-
-            {!! Form::label('description','Leave a Comment: ') !!}<br>
-            {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
-
-            {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
-
-            {!! Form::close() !!}
-        </div>
-
-        @if ($errors->any())
-            <ul class="error-msg">
-
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
+            <hr>
+            <ul class="comment-container">
+                <div class="task-comments-inner">
+                    @foreach($comments as $comment)
+                        <li class="comments">
+                            <div class="comment-header">
+                                <div class="comment-name"><a href="{{url('/profile')}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                            </div>
+                            <div class="comment-content">
+                                <br>
+                                {{$comment->description}}
+                            </div>
+                        </li>
                 @endforeach
             </ul>
-        @endif
+
+            <div class="comment-form">
+
+                {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
+
+                {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
+                {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
+
+                {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
+
+                {!! Form::close() !!}
+            </div>
+
+            @if ($errors->any())
+                <ul class="error-msg">
+
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
 @stop
