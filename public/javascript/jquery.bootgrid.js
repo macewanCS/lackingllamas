@@ -163,7 +163,7 @@
                             var phraseNum;
                             if (that.constraints[index.toString()] != null){
                                 for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
-                                    if (that.constraints[index.toString][phraseNum] == "greater") {
+                                    if (that.constraints[index.toString()][phraseNum] == "greater") {
                                         if (row[column.id] >= that.searchParams[index.toString()][phraseNum]){
                                             innerMatch = true;
                                         }
@@ -1487,7 +1487,7 @@
         return this;
     };
 
-    Grid.prototype.addContraint = function (constraint, columnNum) {
+    Grid.prototype.addConstraint = function (constraint, columnNum) {
         if (constraint != null){
             if (this.constraints.hasOwnProperty(columnNum.toString())){
                 if (this.constraints[columnNum.toString()].indexOf(constraint) < 0){

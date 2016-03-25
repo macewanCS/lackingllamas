@@ -419,6 +419,7 @@
             onClose: function (dateText, inst) {
                 if (dateText != ""){
                     grid.bootgrid("addParams", dateText, 10);
+                    grid.bootgrid("addConstraint", "greater", 10);
                 }
             }
         });
