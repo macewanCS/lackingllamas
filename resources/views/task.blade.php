@@ -20,7 +20,23 @@
             Due: {{$task->date}}
         </div>
 
-            <div class="task-action"> Belongs to Action: {{\App\Action::findOrFail($task->action_id)->description}}</div>
+            <div class="task-budget">
+                Budget: ${{$task->budget}}
+            </div>
+
+            <div class="task-success">
+                Success Measured: {{$task->successMeasured}}
+            </div>
+
+            <div class="task-lead">
+                Lead: {{\App\User::findOrFail($task->userId)->name}}
+            </div>
+
+            <div class="task-progress">
+                Progress: {{$task->progress}}
+            </div>
+
+            <div class="task-action"> Belongs to Action:<a href="{{url('/action', $task->action_id)}}"> {{\App\Action::findOrFail($task->action_id)->description}} </a></div>
 
             <div class="comments-header">
                 <h3>Comments</h3>
