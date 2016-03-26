@@ -12,12 +12,16 @@
 			{!! Form::hidden('id',$counted) !!}
 			{!!Form::hidden('bpid',1) !!}
 		<div class="form-group-one">
+			{!! Form::label('bpid','BP:',['class' => 'edit-action-label']) !!}
+			{!! Form::select('bpid',$bp,null, array('class' => 'form-extras'))!!}
+			<br><br>
 			{!! Form::label('name','Name:',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>
 			{!! Form::label('group','Group:',['class' => 'edit-action-label']) !!}
 			{!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
 			<br><br>
+
                 <div id ="divBP">
                     {!! Form::label('bp','Non Business Plan Goal: ') !!}
                     {!! Form::checkbox('bp', 1, false) !!}

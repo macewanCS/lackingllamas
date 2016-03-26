@@ -12,11 +12,11 @@ class CreateBusinessPlanTable extends Migration
      */
     public function up()
     {
-        Schema::create('businessPlans', function (Blueprint $table){
+        Schema::create('business_plans', function (Blueprint $table){
             $table->increments('id');
             $table->string('name');
             $table->date('created');
-            $table->date('ending');
+            $table->date('ending')->nullable();
             $table->timestamps();
         });
     }
