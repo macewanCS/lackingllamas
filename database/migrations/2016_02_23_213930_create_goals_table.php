@@ -20,7 +20,7 @@ class CreateGoalsTable extends Migration
             $table->integer('group')->unsigned();
             $table->boolean('bp');
             $table->integer('bpid')->unsigned();
-            $table->foreign('bpid')->references('id')->on('businessPlans');
+            $table->foreign('bpid')->references('id')->on('business_plans');
             $table->foreign('group')->references('id')->on('groups');
         });
     }

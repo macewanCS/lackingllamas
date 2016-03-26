@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\BusinessPlan;
 use App\Goal;
 use App\Objective;
 use App\Action;
@@ -26,20 +26,30 @@ class BusinessPlanController extends Controller
 
  public function businessPlan()
     {
+      $bp = BusinessPlan::all();
     	$goals = Goal::all();
     	$objectives = Objective::all();
     	$actions = Action::all();
     	$tasks = Task::all();
         $users = User::all();
         $groups = Group::all();
-        return view('businessPlan',compact('goals','objectives','actions','tasks', 'users', 'groups'));
+        return view('businessPlan',compact('goals','objectives','actions','tasks', 'users', 'groups','bp'));
     }
+  public function createBP()
+  {
+    $bp = BusinessPlan::all();
+    $counted = count($bp)+1;
+    //$groups = Group::lists('name');
+    //$counted = count($goals)+1;
+    return view('businessPlan.createBP',compact('counted'));
+  }
   public function createGoal()
   {
+    $bp = BusinessPlan::lists('name');
     $goals = Goal::all();
     $groups = Group::lists('name');
     $counted = count($goals)+1;
-  	return view('businessPlan.createGoal',compact('counted','groups'));
+  	return view('businessPlan.createGoal',compact('counted','groups','bp'));
   }
 
   public function createObjective()
@@ -76,9 +86,12 @@ class BusinessPlanController extends Controller
    {
        $input = Request::all();
        
-
+               if (Request::has('created')) {
+                    BusinessPlan::create($input);
+               }
                if (Request::has('bpid')) {
                     $input['group'] += 1;
+                    $input['bpid'] += 1;
                     Goal::create($input);
                }
                if (Request::has('goal_id')) {
@@ -114,11 +127,18 @@ class BusinessPlanController extends Controller
            
        
    }
+   public function editBP($id)
+   {
+      $bp = BusinessPlan::findOrFail($id);
+      return view('businessPlan.editBP',compact('bp'));
+   }
    public function editGoal($id)
    {
+
       $goal = Goal::findOrFail($id);
       $groups = Group::lists('name');
-      return view('businessPlan.editGoal',compact('goal','groups'));
+      $bp = BusinessPlan::lists('name');
+      return view('businessPlan.editGoal',compact('goal','groups','bp'));
    }
    public function editObjective($id)
    {
@@ -145,22 +165,38 @@ class BusinessPlanController extends Controller
    }
    public function update($id,Request $request )
    {
+      $input = Request::all();
+      if(Request::has('created')){
+      $bp = BusinessPlan::all();
+      $bp->update($input);
 
+      }
       if (Request::has('bpid')) {
+
         $goal = Goal::findOrFail($id);
-        $goal->update(Request::all());
+        $input['group'] += 1;
+        $input['bpid'] += 1;      
+        $goal->update($request);
       }
       if (Request::has('goal_id')) {
         $objective = Objective::findOrFail($id);
-        $objective->update(Request::all());
+        $input['group'] += 1;
+        $input['goal_id'] += 1;  
+        $objective->update($input);
       }
       if (Request::has('objective_id')) {
         $action = Action::findOrFail($id);
+        $input['group'] += 1;
+        $input['objective_id'] += 1;
+        $input['userId'] += 1; 
         $action->update(Request::all());
       }
       if (Request::has('action_id')) {
         $task = Task::findOrFail($id);
-        $task->update(Request::all());
+        $input['group'] += 1;
+        $input['action_id'] += 1;
+        $input['userId'] += 1; 
+        $task->update($input);
       }
     return redirect('businessplan');
    }

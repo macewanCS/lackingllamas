@@ -49,11 +49,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan','BusinessPlanController@businessPlan');
     //---------------------------
     //create goat routes
+    Route::get('businessplan/createbp','BusinessPlanController@createBP');
     Route::get('businessplan/creategoal','BusinessPlanController@createGoal');
     Route::get('businessplan/createobjective','BusinessPlanController@createObjective');
     Route::get('businessplan/createaction','BusinessPlanController@createAction');
     Route::get('businessplan/createtask','BusinessPlanController@createTask');
     Route::post('businessplan','BusinessPlanController@store');
+    Route::get('businessplan/{id}/edit/bp','BusinessPlanController@editBP');
     Route::get('businessplan/{id}/edit/Goal','BusinessPlanController@editGoal');
     Route::get('businessplan/{id}/edit/Objective','BusinessPlanController@editObjective'); 
     Route::get('businessplan/{id}/edit/Action','BusinessPlanController@editAction');

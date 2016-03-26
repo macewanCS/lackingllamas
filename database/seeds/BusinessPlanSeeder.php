@@ -12,7 +12,7 @@ class BusinessPlanSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('businessPlans')->insert([
+        DB::table('business_plans')->insert([
             [
                 'name' => 'Business Plan 2012 - 2016',
                 'created' => Carbon::createFromDate(2012, 1, 1, 'America/Toronto'),
