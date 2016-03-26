@@ -5,18 +5,23 @@
 @stop
 
 @section('content')
+
     <div class="action-container">
+        @if ($action->userId == Auth::id())
+            <span class="edit"><button type="edit-button">Edit Action</button> </span>
+        @endif
         <div class="action-description-container">
             <div class="action-description-inner">
                 <div class="action-name">
                     <h1>{{$action->description}}</h1>
+
                 </div>
                 <ul class="action-list">
 
                     <li><div class="action-objective">
-                            <label>Objective</label><a href="{{url('/businessplan')}}"> {{\App\Objective::findOrFail($action->objective_id)->name}} </a></div></li>
+                            <label>Objective</label><a href="{{url('/businessplan')}}"> {{\App\Objective::find($action->objective_id)->name}} </a></div></li>
 
-                    <li><div class="action-lead"><label>Lead </label><a href="{{url('/profile')}}"> {{\App\User::findOrFail($action->userId)->name}} </a> </div></li><!-- TODO: Link to profiles -->
+                    <li><div class="action-lead"><label>Lead </label><a href="{{url('/profile')}}"> {{\App\User::find($action->userId)->name}} </a> </div></li><!-- TODO: Link to profiles -->
 
                     <li><div class="action-tasks"><label>Tasks </label>
                             @if(sizeof($tasks) < 1)

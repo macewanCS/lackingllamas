@@ -15,9 +15,21 @@
 
 .action-name h1{
     font-weight:normal;
+    display: inline;
 
 
 }
+
+.action-name:hover > .edit {
+    visibility: visible;
+}
+
+
+.action-name {
+    margin-top: 20px;
+
+}
+
 
 .action-description-inner {
     height: auto;
@@ -156,3 +168,11 @@ label {
     font-style: italic;
     color: grey;
 }
+
+.edit {
+    margin-right: 20%;
+    margin-top: 1.5%;
+    display: inline;
+    float: right;
+}
+

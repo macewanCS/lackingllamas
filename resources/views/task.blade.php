@@ -15,7 +15,7 @@
 
                     <li><div class="task-action"> <label>Action </label> <a href="{{url('/action', $task->action_id)}}"> {{\App\Action::findOrFail($task->action_id)->description}} </a></div></li>
 
-                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/profile')}}"> {{\App\User::findOrFail($task->userId)->name}} </a> </div></li><!-- TODO: Link to profiles -->
+                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/profile')}}"> {{\App\User::find($task->userId)->name}}</a> </div></li><!-- TODO: Link to profiles -->
 
                     <li><div class="task-collab">
                             <label>Collaborators </label>
