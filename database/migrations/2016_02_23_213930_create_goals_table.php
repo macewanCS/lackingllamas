@@ -35,11 +35,11 @@ class CreateGoalsTable extends Migration
         if(Schema::hasTable('objectives')) {
             Schema::table('objectives', function (Blueprint $table) {
                 $table->dropForeign('objectives_goal_id_foreign');
-                $table->dropForeign('objectives_teamOrDeptId_foreign');
+                $table->dropForeign('objectives_group_foreign');
             });
         }
         Schema::table('goals', function(Blueprint $table) {
-            $table->dropForeign('goals_teamOrDeptId_foreign');
+            $table->dropForeign('goals_group_foreign');
         });
         Schema::drop('goals');
     }

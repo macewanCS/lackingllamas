@@ -47,7 +47,7 @@ class CreateActionsTable extends Migration
          }
         Schema::table('actions', function (Blueprint $table) {
             $table->dropForeign('actions_objective_id_foreign');
-            $table->dropForeign('actions_teamOrDeptId_foreign');
+            $table->dropForeign('actions_group_foreign');
             $table->dropForeign('actions_userId_foreign');
         });
         Schema::drop('actions');

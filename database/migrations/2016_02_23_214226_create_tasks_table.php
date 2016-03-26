@@ -40,7 +40,7 @@ class CreateTasksTable extends Migration
     {
         Schema::table('tasks', function(Blueprint $table) {
             $table->dropForeign('tasks_action_id_foreign');
-            $table->dropForeign('tasks_teamOrDeptId_foreign');
+            $table->dropForeign('tasks_group_foreign');
             $table->dropForeign('tasks_userId_foreign');
         });
         Schema::drop('tasks');
