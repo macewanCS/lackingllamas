@@ -27,10 +27,6 @@
                 {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-extras']) !!}<br>
 
                 <br>
-                {!! Form::label('leads','Leads: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::text('leads', null, ['class' => 'edit-action-field']) !!}<br>
-
-                <br>
                 {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-action-label']) !!}
                 {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
 
@@ -51,10 +47,10 @@
                 {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br>
                 <br>
 
-                {!! Form::label('group','Group: ',['class' => 'edit-action-label']) !!}
+                {!! Form::label('group','Departments Teams: ',['class' => 'edit-action-label']) !!}
                 {!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
                 <br><br>
-                {!! Form::label('userId','userId: ',['class' => 'edit-action-label']) !!}
+                {!! Form::label('userId','Leads: ',['class' => 'edit-action-label']) !!}
                 {!! Form::select('userId',$user,null, array('class' => 'form-extras'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
