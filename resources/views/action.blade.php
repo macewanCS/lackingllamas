@@ -8,7 +8,10 @@
 
     <div class="action-container">
         @if ($action->userId == Auth::id())
-            <span class="edit"><button type="edit-button">Edit Action</button> </span>
+
+            <a class="edit" href="{{ url('/action',$action->id) }}/edit">
+                {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
+            </a>
         @endif
         <div class="action-description-container">
             <div class="action-description-inner">
