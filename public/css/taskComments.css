@@ -25,10 +25,11 @@
     bottom: 0;
     left: 0;
     right: 0;
-    width: 1000px;
+    width: 1200px;
     position: relative;
-
     margin: auto;
+
+
 }
 
 hr {
@@ -60,6 +61,7 @@ hr {
 
 .comment-container {
     list-style-type: none;
+    padding-left: 0px;
 }
 .task-comments-inner li {
 
@@ -71,10 +73,89 @@ hr {
 
 .comment-name {
 
-    display: inline;
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #0074D9;
+    color: #000;
+    text-decoration: none;
     font-weight: bold;
+    padding: 3px;
+    display: inline-block;
+}
+.comment-name a {
+    text-decoration: none;
+    color: black;
 }
 
 .comment-text-area {
     width:100%;
+}
+
+.task-action a {
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #89ba38;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 3px;
+    display: inline-block;
+}
+
+.task-lead a {
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #0074D9;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 3px;
+    display: inline-block;
+}
+
+.task-list {
+    list-style-type: none;
+
+
+}
+
+.task-list li {
+
+    margin-top: 3px;
+}
+p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+label {
+    margin-right: 10px;
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 150px;
+    text-align: right;
+}
+
+.task-collab a {
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #B10DC9;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 3px;
+    display: inline-block;
+}
+
+.comment-label {
+    font-style: italic;
+    color: grey;
 }

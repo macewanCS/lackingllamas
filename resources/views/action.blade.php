@@ -8,22 +8,74 @@
     <div class="action-container">
         <div class="action-description-container">
             <div class="action-description-inner">
-
                 <div class="action-name">
                     <h1>{{$action->description}}</h1>
                 </div>
-                <div class="action-collab">
-                    Collaborators: {{$action->collaborators}}
-                </div>
+                <ul class="action-list">
 
-                <div class="action-date">
-                    Due: {{$action->date}}
-                </div>
+                    <li><div class="action-objective">
+                            <label>Objective</label><a href="{{url('/businessplan')}}"> {{\App\Objective::findOrFail($action->objective_id)->name}} </a></div></li>
 
-                <div class="action-objective"> Belongs to Objective: {{\App\Objective::findOrFail($action->objective_id)->name}}</div>
-                <div class="action-tasks">
-                    Tasks:
-                </div>
+                    <li><div class="action-lead"><label>Lead </label><a href="{{url('/profile')}}"> {{\App\User::findOrFail($action->userId)->name}} </a> </div></li><!-- TODO: Link to profiles -->
+
+                    <li><div class="action-tasks"><label>Tasks </label>
+                            @if(sizeof($tasks) < 1)
+                                N/A
+                            @else
+                                @foreach ($tasks as $task)
+                                    <a href="{{url('/task', $task->id)}}"> {{str_limit($task->description, $limit = 20, $end = '...')}}</a>
+                                @endforeach
+                            @endif
+                        </div></li>
+                    <li><div class="action-collab">
+                            <label>Collaborators </label>
+
+                            @if (empty($action->collaborators))
+                                N/A
+                            @else
+                                @foreach (explode(', ', $action->collaborators) as $colab)
+                                    <a href="{{url('/profile')}}"> {{ $colab }} </a> <!-- TODO: Link to collab's profiles -->
+                                @endforeach
+                            @endif
+
+                        </div></li>
+
+                    <li><div class="action-date">
+                            <label>Due </label> <p>{{$action->date}} </p>
+                            @if ($action->date < \Carbon\Carbon::now())
+                                <style media="screen" type="text/css">
+                                    .action-date p {
+                                        color: #FF4136;
+                                    }
+                                </style>
+                            @endif
+                        </div></li>
+
+                    <li><div class="action-budget">
+                            <label>Budget </label> <p>${{$action->budget}}</p>
+                        </div></li>
+
+                    <li><div class="action-success">
+                            <label>Success Measured </label> <p>
+                                @if (empty($action->successMeasured))
+                                    N/A
+                                @else
+                                    {{$action->successMeasured}}
+                                @endif</p>
+                        </div></li>
+
+                    <li><div class="action-progress">
+                            <label>Progress </label> <p>
+                                @if (empty($action->progress))
+                                    Not Started
+                                @else
+                                    {{$action->progress}}
+                                @endif
+                            </p></div></li>
+
+                </ul>
+
+
                 <div class="comments-header">
                     <h3>Comments</h3>
                 </div>
@@ -45,10 +97,9 @@
             </ul>
 
             <div class="comment-form">
-                <h2> Commenting As {{Auth::user()->name}}</h2>
                 {!! Form::open(array('action' => array('ActionCommentsController@store', $action->id))) !!}
 
-                {!! Form::label('description','Leave a Comment: ') !!}<br>
+                {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
                 {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
 
                 {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
