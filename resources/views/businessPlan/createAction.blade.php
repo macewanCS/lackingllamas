@@ -54,7 +54,7 @@
                   {!! Form::label('group','Departments Teams: ',['class' => 'edit-action-label']) !!}
                   {!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
                   <br><br>
-                  {!! Form::label('userId','Leads: ',['class' => 'edit-action-label']) !!}
+                  {!! Form::label('userId','Lead: ',['class' => 'edit-action-label']) !!}
                   {!! Form::select('userId',$user,null, array('class' => 'form-extras'))!!}
                   <br><br>
                   {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
