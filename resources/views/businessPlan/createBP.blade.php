@@ -8,13 +8,14 @@
 		<hr>
 		<div class="create-goal-inner">
 		{!! Form::open(['url'=>'businessplan']) !!}
+		{!! Form::hidden('id',$counted) !!}
 		<div class="form-group-one">
 			{!! Form::label('name','Name:',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 
 			<br><br>
             {!! Form::label('created','Date: ', ['class' => 'edit-action-label']) !!}
-            {!! Form::input('created','date', date('Y-m-d'), ['class' => 'form-extras']) !!}
+            {!! Form::input('created','created', date('Y-m-d'), ['class' => 'form-extras']) !!}
             <br><br>
   
 		</div>

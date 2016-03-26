@@ -38,9 +38,10 @@ class BusinessPlanController extends Controller
   public function createBP()
   {
     $bp = BusinessPlan::all();
+    $counted = count($bp)+1;
     //$groups = Group::lists('name');
     //$counted = count($goals)+1;
-    return view('businessPlan.createBP',compact('bp'));
+    return view('businessPlan.createBP',compact('counted'));
   }
   public function createGoal()
   {

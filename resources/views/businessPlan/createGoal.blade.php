@@ -10,7 +10,7 @@
 		{!! Form::open(['url'=>'businessplan']) !!}
 			{!! Form::hidden('ident',$counted) !!}
 			{!! Form::hidden('id',$counted) !!}
-			{!!Form::hidden('bpid',1) !!}
+
 		<div class="form-group-one">
 			{!! Form::label('bpid','BP:',['class' => 'edit-action-label']) !!}
 			{!! Form::select('bpid',$bp,null, array('class' => 'form-extras'))!!}
