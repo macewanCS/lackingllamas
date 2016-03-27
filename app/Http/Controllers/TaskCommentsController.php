@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\TaskComments;
 use App\Task;
-use Illuminate\Support\Facades\Request;
+use App\Action;
+use App\Group;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class TaskCommentsController extends Controller
@@ -15,7 +18,6 @@ class TaskCommentsController extends Controller
     {
         $taskComment = new TaskComments;
         $comments = $taskComment->getComments($id);
-        //$comments = TaskComments::lists('description')->where('task_ID', $id)->all();
         $task = Task::findOrFail($id);
 
         return view('task', compact('comments', 'task'));
@@ -30,4 +32,24 @@ class TaskCommentsController extends Controller
 
         return Redirect::back()->with('message', 'Your comment was posted');
     }
+    public function editTaskFromComments($id, Requests\EditTaskRequest $request)
+    {
+        $task = Task::findOrFail($id);
+        $actions = Action::lists('description');
+        $groups = Group::lists('name');
+        $user = User::lists('name');
+
+        return view('editTaskComments',compact('task','actions','groups','user'));
+    }
+    public function updateTask($id, Request $request)
+    {
+        $input = $request->all();
+        $taskComment = new TaskComments;
+        $comments = $taskComment->getComments($id);
+        $task = Task::findOrFail($id);
+        $task->update($input);
+
+        return view('task', compact('comments', 'task'));
+    }
+
 }

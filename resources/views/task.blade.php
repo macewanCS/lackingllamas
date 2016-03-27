@@ -6,6 +6,14 @@
 
 @section('content')
     <div class="task-container">
+        @if (Auth::check())
+            @if ($task->userId == Auth::id())
+
+                <a class="edit" href="{{ url('/task',$task->id) }}/edit">
+                    {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
+                </a>
+            @endif
+        @endif
         <div class="task-description-container">
             <div class="task-description-inner">
                 <div class="task-name">
@@ -31,7 +39,7 @@
                         </div></li>
 
                     <li><div class="task-date">
-                            <label>Due </label> <p>{{$task->date}} </p>
+                            <label>Due </label> <p>{{str_limit($task->date, $limit = 10, $end ='')}} </p>
                             @if ($task->date < \Carbon\Carbon::now())
                                 <style media="screen" type="text/css">
                                     .task-date p {

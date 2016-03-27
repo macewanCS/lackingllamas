@@ -68,7 +68,8 @@ Route::group(['middleware' => 'web'], function () {
     //Task Comment Routes
     Route::get('task/{id}', 'TaskCommentsController@taskComments');
     Route::post('task/{id}', 'TaskCommentsController@store');
-    //Route::get('task/{id}/edit', 'BusinessPlanController@editTaskFromComments');
+    Route::get('task/{id}/edit', 'TaskCommentsController@editTaskFromComments');
+    Route::patch('task/{id}', 'TaskCommentsController@updateTask');
 
     //Action Comment Routes
     Route::get('action/{id}', 'ActionCommentsController@actionComments');

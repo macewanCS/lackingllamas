@@ -1,49 +1,50 @@
-@extends('layouts.app')
 
+@extends('layouts.app')
 
 @section('content')
 
     {!! Html::style('css/createGoal.css') !!}
     <div class="create-action-container">
         <h1>
-            Edit a Action
+            Edit a Task
         </h1>
         <hr>
         <div class="create-goal-inner">
-            {!! Form::model($action,['method' => 'PATCH', 'action' => ['ActionCommentsController@updateAction', $action->id]]) !!}
+
+            {!! Form::model($task,['method' => 'PATCH', 'action' => ['TaskCommentsController@updateTask', $task->id]]) !!}
             <div class="form-group-one">
 
-                {!! Form::label('objective_id','Objective: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::select('objective_id',$objectives,null, array('class' => 'form-extras'))!!}<br>
+                {!! Form::label('action_id','Action: ', ['class' => 'edit-task-label']) !!}
+                {!! Form::select('action_id',$actions,null, array('class' => 'form-extras')) !!}<br>
 
                 <br>
-                {!! Form::label('description','Name: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::text('description', null, ['class' => 'edit-action-field']) !!}
+                {!! Form::label('description','Name: ', ['class' => 'edit-task-label']) !!}
+                {!! Form::text('description', null, ['class' => 'edit-action-field']) !!}<br>
 
-                <br><br>
-                {!! Form::label('date','Date: ', ['class' => 'edit-action-label']) !!}
+                <br>
+                {!! Form::label('date','Date: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-extras']) !!}<br>
 
                 <br>
-                {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-action-label']) !!}
+
+                {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
 
                 <br>
-                {!! Form::label('budget','Budget: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::label('budget','Budget: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       <br>
 
                 <br>
-                {!! Form::label('projectPlan','Project Plan: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::label('projectPlan','Project Plan: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('projectPlan', null, ['class' => 'edit-action-field']) !!}  <br>
 
                 <br>
-                {!! Form::label('successMeasured','Success Measured: ', ['class' => 'edit-action-label']) !!}
+                {!! Form::label('successMeasured','Success Measured: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('successMeasured', null, ['class' => 'edit-action-field']) !!} <br>
 
                 <br>
-                {!! Form::label('priority','Priority: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br>
-                <br>
+                {!! Form::label('priority','Priority: ', ['class' => 'edit-task-label']) !!}
+                {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br><br>
 
                 {!! Form::label('group','Departments Teams: ',['class' => 'edit-action-label']) !!}
                 {!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
@@ -57,7 +58,9 @@
 
 
 
-            {!! Form::submit('Submit Changes',['class'=>'btn-primary-action form-control ','data-toggle' => 'tooltip']) !!}
+            {!! Form::submit('Submit Changes',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}
+
+
 
 
             {!! Form::close() !!}
@@ -71,4 +74,3 @@
         $( "#datepicker" ).datepicker();
     });
 </script>
-

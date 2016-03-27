@@ -51,7 +51,7 @@
                         </div></li>
 
                     <li><div class="action-date">
-                            <label>Due </label> <p>{{$action->date}} </p>
+                            <label>Due </label> <p>{{str_limit($action->date, $limit = 10, $end ='')}} </p>
                             @if ($action->date < \Carbon\Carbon::now())
                                 <style media="screen" type="text/css">
                                     .action-date p {

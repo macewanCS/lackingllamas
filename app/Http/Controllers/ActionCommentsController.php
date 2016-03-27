@@ -35,7 +35,7 @@ class ActionCommentsController extends Controller
 
         return Redirect::back()->with('message', 'Your comment was posted');
     }
-    public function editActionFromComments($id)
+    public function editActionFromComments($id, Requests\EditActionRequest $request)
     {
         $action = Action::findOrFail($id);
         $objectives = Objective::lists('name');
@@ -56,12 +56,5 @@ class ActionCommentsController extends Controller
         return view('action', compact('comments', 'action', 'tasks'));
     }
 
-    public function editTaskFromComments($id)
-    {
-        $task = Task::findOrFail($id);
-        $actions = Action::lists('description');
-        $groups = Group::lists('name');
-        $user = User::lists('name');
-        return view('task/{id}/edit',compact('task','actions','groups','user'));
-    }
+
 }
