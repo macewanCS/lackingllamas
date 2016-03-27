@@ -59,7 +59,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan/{id}/edit/Goal','BusinessPlanController@editGoal');
     Route::get('businessplan/{id}/edit/Objective','BusinessPlanController@editObjective'); 
     Route::get('businessplan/{id}/edit/Action','BusinessPlanController@editAction');
-    Route::get('businessplan/{id}/edit/Task','BusinessPlanController@editTask');   
+    Route::get('businessplan/{id}/edit/Task','BusinessPlanController@editTask');
     Route::put('businessplan/{id}','BusinessPlanController@update');
     Route::patch('businessplan/{id}','BusinessPlanController@update');
     //Route::resource('businessplan','BusinessPlanController');
@@ -68,11 +68,13 @@ Route::group(['middleware' => 'web'], function () {
     //Task Comment Routes
     Route::get('task/{id}', 'TaskCommentsController@taskComments');
     Route::post('task/{id}', 'TaskCommentsController@store');
+    //Route::get('task/{id}/edit', 'BusinessPlanController@editTaskFromComments');
 
     //Action Comment Routes
     Route::get('action/{id}', 'ActionCommentsController@actionComments');
     Route::post('action/{id}', 'ActionCommentsController@store');
-
+    Route::get('action/{id}/edit', 'ActionCommentsController@editActionFromComments');
+    Route::patch('action/{id}', 'ActionCommentsController@updateAction');
 });
 
 

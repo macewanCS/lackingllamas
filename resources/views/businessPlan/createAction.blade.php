@@ -13,6 +13,7 @@
           <hr>
            <div class="create-goal-inner">           
             {!! Form::open(['url'=>'businessplan']) !!}
+
                  {!! Form::hidden('id',$counted) !!}
                  {!! Form::hidden('ident',0) !!}
             <div class="form-group-one">
