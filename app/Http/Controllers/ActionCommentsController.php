@@ -19,8 +19,6 @@ class ActionCommentsController extends Controller
     {
         $actionComment = new ActionComments;
         $comments = $actionComment->getComments($id);
-
-        //$action = Action::findOrFail($id);
         $action = Action::find($id);
         $tasks =  Task::all()->where('action_id', $id);
 
@@ -48,10 +46,13 @@ class ActionCommentsController extends Controller
     public function updateAction($id, Request $request)
     {
         $input = $request->all();
+        $actionComment = new ActionComments;
+        $comments = $actionComment->getComments($id);
         $action = Action::findOrFail($id);
-        dd($input);
         $action->update($input);
-        return redirect('action', $id);
+        $tasks =  Task::all()->where('action_id', $id);
+
+        return view('action', compact('comments', 'action', 'tasks'));
     }
 
     public function editTaskFromComments($id)
