@@ -1,6 +1,6 @@
 .action-container {
     background:white;
-    height: 100%;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -47,7 +47,7 @@ hr {
 }
 
 .action-comments-inner {
-    height: auto;
+    height: 100%;
     top:0;
     bottom: 0;
     left: 0;
@@ -65,6 +65,7 @@ hr {
     width: 1000px;
     position: relative;
     margin: auto;
+    margin-bottom: 5%;
 }
 
 .comment-container {
