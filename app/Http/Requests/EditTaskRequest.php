@@ -15,7 +15,11 @@ class EditTaskRequest extends Request
     public function authorize()
     {
         $taskid = $this->route('id');
-        Return (Auth::user()->id == Task::find($taskid)->userId);
+        if (Auth::check())
+            Return (Auth::user()->id == Task::find($taskid)->userId);
+        else {
+            Return false;
+        }
     }
 
     /**

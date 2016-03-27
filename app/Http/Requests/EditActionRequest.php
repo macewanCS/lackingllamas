@@ -16,7 +16,11 @@ class EditActionRequest extends Request
     public function authorize()
     {
         $actionid = $this->route('id');
-        Return (Auth::user()->id == Action::find($actionid)->userId);
+        if (Auth::check())
+            Return (Auth::user()->id == Action::find($actionid)->userId);
+        else {
+            return false;
+        }
     }
 
     /**
