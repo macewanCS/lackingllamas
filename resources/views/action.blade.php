@@ -26,7 +26,7 @@
                     <li><div class="action-objective">
                             <label>Objective</label><a href="{{url('/businessplan')}}"> {{\App\Objective::find($action->objective_id)->name}} </a></div></li>
 
-                    <li><div class="action-lead"><label>Lead </label><a href="{{url('/profile')}}"> {{\App\User::find($action->userId)->name}} </a> </div></li><!-- TODO: Link to profiles -->
+                    <li><div class="action-lead"><label>Lead </label><a href="{{url('/businessplan')}}"> {{\App\User::find($action->userId)->name}} </a> </div></li><!-- TODO: Link to businessplan filtered by lead -->
 
                     <li><div class="action-tasks"><label>Tasks </label>
                             @if(sizeof($tasks) < 1)
@@ -44,7 +44,7 @@
                                 N/A
                             @else
                                 @foreach (explode(', ', $action->collaborators) as $colab)
-                                    <a href="{{url('/profile')}}"> {{ $colab }} </a> <!-- TODO: Link to collab's profiles -->
+                                    <a href="{{url('/businessplan')}}"> {{ $colab }} </a> <!-- TODO: Link to businessplan filtered by collabs -->
                                 @endforeach
                             @endif
 
@@ -96,15 +96,15 @@
                     @foreach($comments as $comment)
                         <li class="comments">
                             <div class="comment-header">
-                                <div class="comment-name">{{\App\User::findOrFail($comment->user_ID)->name}}</div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                                <div class="comment-name"><a href="{{url('/businessplan')}}">{{\App\User::findOrFail($comment->user_ID)->name}}</a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
                             </div>
                             <div class="comment-content">
                                 <br>
                                 {{$comment->description}}
                             </div>
                         </li>
+                    @endforeach
                 </div>
-                @endforeach
             </ul>
             @if (Auth::check())
                 <div class="comment-form">
