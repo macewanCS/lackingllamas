@@ -24,8 +24,36 @@ class BusinessPlanController extends Controller
   //page does not require login
   public function __construct() {}
 
+  public function test()
+  {
+    // $users = DB::select('select * from users where active = ?', [1]);
+    //ORDER BY ident;
+    // EXISTS (SELECT * FROM t2)
+   // $bp = BusinessPlan::all();
+    //$goal = Goal::all();
+    //$objective = Objective::all();
+    //$action = Action::all();
+
+    //$task = Task::all();
+   // $comments = Post::find(1)->comments;
+    // $roles = DB::select('select goals.name, goals.ident from goals union all select objectives.name, objectives.ident from objectives');
+    //union all select actions.description, action.ident from actions'
+    $roles = DB::select('select * from (select null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = 1 union all select null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = 1 union all select actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = 1 union all select tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = 1)a order by ident');
+     // ->where('id', 1)
+    //>get();
+   // $roles = json_decode($roles);
+//print $obj->{'foo-bar'}; 
+    foreach($roles as $role)
+{
+   return $role['name'];
+}
+    return $roles;
+
+  }
+
  public function businessPlan()
     {
+        $bpPlan = DB::select('select * from (select null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = 1 union all select null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = 1 union all select actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = 1 union all select tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = 1)a order by ident');
       $bp = BusinessPlan::all();
     	$goals = Goal::all();
     	$objectives = Objective::all();
@@ -33,7 +61,7 @@ class BusinessPlanController extends Controller
     	$tasks = Task::all();
         $users = User::all();
         $groups = Group::all();
-        return view('businessPlan',compact('goals','objectives','actions','tasks', 'users', 'groups','bp'));
+        return view('businessPlan',compact('goals','objectives','actions','tasks', 'users', 'groups','bp','bpPlan'));
     }
   public function createBP()
   {
