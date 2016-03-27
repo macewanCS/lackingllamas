@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ActionCommentsController extends Controller
 {
+    public function __construct() {}
     public function actionComments($id)
     {
         $actionComment = new ActionComments;

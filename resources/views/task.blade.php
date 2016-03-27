@@ -82,28 +82,30 @@
                                 {{$comment->description}}
                             </div>
                         </li>
-                @endforeach
-            </ul>
-
-            <div class="comment-form">
-
-                {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
-
-                {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
-                {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
-
-                {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
-
-                {!! Form::close() !!}
-            </div>
-
-            @if ($errors->any())
-                <ul class="error-msg">
-
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
                     @endforeach
-                </ul>
+                </div>
+            </ul>
+            @if (!Auth::guest())
+                <div class="comment-form">
+
+                    {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
+
+                    {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
+                    {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
+
+                    {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
+
+                    {!! Form::close() !!}
+                </div>
+
+                @if ($errors->any())
+                    <ul class="error-msg">
+
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
             @endif
         </div>
     </div>

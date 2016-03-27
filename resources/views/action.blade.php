@@ -7,11 +7,13 @@
 @section('content')
 
     <div class="action-container">
-        @if ($action->userId == Auth::id())
+        @if (Auth::check())
+            @if ($action->userId == Auth::id())
 
-            <a class="edit" href="{{ url('/action',$action->id) }}/edit">
-                {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
-            </a>
+                <a class="edit" href="{{ url('/action',$action->id) }}/edit">
+                    {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
+                </a>
+            @endif
         @endif
         <div class="action-description-container">
             <div class="action-description-inner">
@@ -101,27 +103,29 @@
                                 {{$comment->description}}
                             </div>
                         </li>
+                </div>
                 @endforeach
             </ul>
+            @if (Auth::check())
+                <div class="comment-form">
+                    {!! Form::open(array('action' => array('ActionCommentsController@store', $action->id))) !!}
 
-            <div class="comment-form">
-                {!! Form::open(array('action' => array('ActionCommentsController@store', $action->id))) !!}
+                    {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
+                    {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
 
-                {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
-                {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
+                    {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
 
-                {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
+                    {!! Form::close() !!}
+                </div>
 
-                {!! Form::close() !!}
-            </div>
+                @if ($errors->any())
+                    <ul class="error-msg">
 
-            @if ($errors->any())
-                <ul class="error-msg">
-
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
             @endif
         </div>
     </div>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskCommentsController extends Controller
 {
+    public function __construct() {}
     public function taskComments($id)
     {
         $taskComment = new TaskComments;
