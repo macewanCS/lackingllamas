@@ -8,7 +8,7 @@
             <div class="options-container">
                 {!! Form::label('search','Search ', ['class' => 'options-search-bar']) !!}
                 {!! Form::text('search', null, ['class' => 'options-search-field']) !!}
-
+                {!! Form::submit('Go',['class'=>'options-search-button']) !!}
 
                 <div class="options-checkboxes">
                     {!! Form::label('teamsBox','Teams ', ['class' => 'options-teams-box']) !!}
@@ -47,7 +47,7 @@
             </div>
 
             <div class="group-details">
-
+                <h2></h2>
             </div>
         </div>
 

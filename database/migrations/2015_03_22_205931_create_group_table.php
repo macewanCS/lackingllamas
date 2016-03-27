@@ -19,6 +19,9 @@ class CreateGroupTable extends Migration
             $table->integer('budget');
             $table->timestamps();
             $table->boolean('team');
+            $table->integer('user_ID')->unsigned();
+
+            $table->foreign('user_ID')->references('id')->on('users');
         });
     }
 
@@ -29,6 +32,9 @@ class CreateGroupTable extends Migration
      */
     public function down()
     {
+        Schema::table('task_comments', function(Blueprint $table) {
+            $table->dropForeign('task_comments_user_ID_foreign');
+        });
         Schema::drop('groups');
     }
 }

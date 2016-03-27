@@ -11,6 +11,7 @@ class Group extends Model
         'name',
         'description',
         'budget',
+        'user_ID',
         'team'
     ];
 }
