@@ -40,7 +40,6 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </button>
                     <div class="dropdown-content">
-                        <a href="{{ url('/myprofile') }}"><i class="fa fa-btn fa-my-profile"></i>My Profile</a>
                         <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                     </div>
 
