@@ -15,7 +15,7 @@
             <div class="form-group-one">
 
                 {!! Form::label('action_id','Action: ', ['class' => 'edit-task-label']) !!}
-                {!! Form::select('action_id',$actions,null, array('class' => 'form-extras')) !!}<br>
+                {!! Form::text('action_id', App\Action::find($task->action_id)->description, ['class' => 'edit-action-field', 'disabled' => 'disabled']) !!}<br>
 
                 <br>
                 {!! Form::label('description','Name: ', ['class' => 'edit-task-label']) !!}
@@ -23,7 +23,7 @@
 
                 <br>
                 {!! Form::label('date','Date: ', ['class' => 'edit-task-label']) !!}
-                {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-extras']) !!}<br>
+                {!! Form::input('date','date', $task->date, ['class' => 'form-extras']) !!}<br>
 
                 <br>
 
@@ -50,7 +50,7 @@
                 {!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
                 <br><br>
                 {!! Form::label('userId','Lead: ',['class' => 'edit-action-label']) !!}
-                {!! Form::select('userId',$user,null, array('class' => 'form-extras'))!!}
+                {!! Form::select('userId',$user,null, array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
                 {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}

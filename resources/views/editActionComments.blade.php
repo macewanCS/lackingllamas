@@ -14,7 +14,7 @@
             <div class="form-group-one">
 
                 {!! Form::label('objective_id','Objective: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::select('objective_id',$objectives,null, array('class' => 'form-extras'))!!}<br>
+                {!! Form::text('objective_id',App\Objective::find($action->objective_id)->name, array('class' => 'form-extras','disabled' => 'disabled'))!!}<br>
 
                 <br>
                 {!! Form::label('description','Name: ', ['class' => 'edit-action-label']) !!}
@@ -22,7 +22,7 @@
 
                 <br><br>
                 {!! Form::label('date','Date: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-extras']) !!}<br>
+                {!! Form::input('date','date', $action->date, ['class' => 'form-extras']) !!}<br>
 
                 <br>
                 {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-action-label']) !!}
@@ -49,7 +49,7 @@
                 {!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
                 <br><br>
                 {!! Form::label('userId','Lead: ',['class' => 'edit-action-label']) !!}
-                {!! Form::select('userId',$user,null, array('class' => 'form-extras'))!!}
+                {!! Form::select('userId',$user,null, array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
                 {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}
