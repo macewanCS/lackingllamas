@@ -30,8 +30,8 @@
 
 .topbar-current {
     display: inline;
-    border-bottom: 4px solid;
-    border-bottom-color: blue;
+    text-shadow: 0 0 1px blue;
+
 }
 
 .topbar-text a{
@@ -41,11 +41,14 @@
     border-right-color: rgb(204, 202, 200);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
+    border-spacing: 10px;
+
 }
 .topbar-nav li{
     text-align: center;
     display:inline;
     padding-bottom: 0.5mm;
+
 }
 
 
@@ -61,8 +64,7 @@
 
 
 .topbar-nav li:hover {
-    border-bottom: 3.5px solid;
-    border-bottom-color: blue;
+    text-shadow: 0 0 1px blue;
 }
 
 .topbar-nav li:last-child a{

@@ -6,6 +6,14 @@
 
 @section('content')
     <div class="task-container">
+        @if (Auth::check())
+            @if ($task->userId == Auth::id())
+
+                <a class="edit" href="{{ url('/task',$task->id) }}/edit">
+                    {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
+                </a>
+            @endif
+        @endif
         <div class="task-description-container">
             <div class="task-description-inner">
                 <div class="task-name">
@@ -15,7 +23,7 @@
 
                     <li><div class="task-action"> <label>Action </label> <a href="{{url('/action', $task->action_id)}}"> {{\App\Action::findOrFail($task->action_id)->description}} </a></div></li>
 
-                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/profile')}}"> {{\App\User::findOrFail($task->userId)->name}} </a> </div></li><!-- TODO: Link to profiles -->
+                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/businessplan')}}"> {{\App\User::find($task->userId)->name}}</a> </div></li><!-- TODO: Link to businessplan filtered by lead -->
 
                     <li><div class="task-collab">
                             <label>Collaborators </label>
@@ -24,14 +32,14 @@
                                 N/A
                             @else
                                 @foreach (explode(', ', $task->collaborators) as $colab)
-                                    <a href="{{url('/profile')}}"> {{ $colab }} </a> <!-- TODO: Link to collab's profiles -->
+                                    <a href="{{url('/businessplan')}}"> {{ $colab }} </a> <!-- TODO: Link to businessplan filtered by collabs -->
                                 @endforeach
                             @endif
 
                         </div></li>
 
                     <li><div class="task-date">
-                            <label>Due </label> <p>{{$task->date}} </p>
+                            <label>Due </label> <p>{{str_limit($task->date, $limit = 10, $end ='')}} </p>
                             @if ($task->date < \Carbon\Carbon::now())
                                 <style media="screen" type="text/css">
                                     .task-date p {
@@ -75,35 +83,37 @@
                     @foreach($comments as $comment)
                         <li class="comments">
                             <div class="comment-header">
-                                <div class="comment-name"><a href="{{url('/profile')}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                                <div class="comment-name"><a href="{{url('/businessplan')}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
                             </div>
                             <div class="comment-content">
                                 <br>
                                 {{$comment->description}}
                             </div>
                         </li>
-                @endforeach
-            </ul>
-
-            <div class="comment-form">
-
-                {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
-
-                {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
-                {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
-
-                {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
-
-                {!! Form::close() !!}
-            </div>
-
-            @if ($errors->any())
-                <ul class="error-msg">
-
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
                     @endforeach
-                </ul>
+                </div>
+            </ul>
+            @if (!Auth::guest())
+                <div class="comment-form">
+
+                    {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
+
+                    {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
+                    {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
+
+                    {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
+
+                    {!! Form::close() !!}
+                </div>
+
+                @if ($errors->any())
+                    <ul class="error-msg">
+
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
             @endif
         </div>
     </div>
