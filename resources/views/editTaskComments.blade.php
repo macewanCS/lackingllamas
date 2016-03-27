@@ -46,11 +46,11 @@
                 {!! Form::label('priority','Priority: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br><br>
 
-                {!! Form::label('group','Departments Teams: ',['class' => 'edit-action-label']) !!}
-                {!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
+                {!! Form::label('group','Group Lead: ',['class' => 'edit-action-label']) !!}
+                {!! Form::text('group',App\Group::find($task->group)->name,array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
                 <br><br>
-                {!! Form::label('userId','Lead: ',['class' => 'edit-action-label']) !!}
-                {!! Form::select('userId',$user,null, array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
+                {!! Form::label('userId','User Lead: ',['class' => 'edit-action-label']) !!}
+                {!! Form::text('userId',App\User::find($task->userId)->name, array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
                 {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}

@@ -60,9 +60,9 @@
                     @endif
 
                     @if (Request::path() == 'teams')
-                        <li><div class="topbar-current"><a href="{{ url('/teams_departments') }}">Groups</a></div></li>
+                        <li><div class="topbar-current"><a href="{{ url('/groups') }}">Groups</a></div></li>
                     @else
-                        <li><div class="topbar-text"><a href="{{ url('/teams_departments') }}">Groups</a></div></li>
+                        <li><div class="topbar-text"><a href="{{ url('/groups') }}">Groups</a></div></li>
                     @endif
 
                 @else
