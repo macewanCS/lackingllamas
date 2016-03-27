@@ -76,6 +76,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('action/{id}', 'ActionCommentsController@store');
     Route::get('action/{id}/edit', 'ActionCommentsController@editActionFromComments');
     Route::patch('action/{id}', 'ActionCommentsController@updateAction');
+
+    //Group Routes
+    Route::get('groups', 'GroupController@groups');
 });
 
 
