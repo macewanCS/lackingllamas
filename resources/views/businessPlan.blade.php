@@ -414,19 +414,35 @@
             }
         }).multiselectfilter();
 
-        $("#datePicker").datepicker({
+        var date1 = $("#datePicker").datepicker({
             dateFormat: "yy-mm-dd",
+            showButtonPanel: true,
             onClose: function (dateText, inst) {
                 if (dateText != ""){
+                    grid.bootgrid("removeParams", undefined, 10);
+                    grid.bootgrid("addConstraint", undefined, 10);
                     grid.bootgrid("addParams", dateText, 10);
                     grid.bootgrid("addConstraint", "greater", 10);
+                    if (date2.datepicker("getDate") != "") {
+                        grid.bootgrid("addParams", date2.datepicker("getDate"), 10);
+                        grid.bootgrid("addConstraint", "lesser", 10);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", undefined, 10);
+                    grid.bootgrid("addConstraint", undefined, 10);
+                    if (date2.datepicker("getDate") != "") {
+                        grid.bootgrid("addParams", date2.datepicker("getDate"), 10);
+                        grid.bootgrid("addConstraint", "lesser", 10);
+                    }
                 }
             }
         });
 
 
-        $("#datePicker2").datepicker({
-            dateFormat: "yy-mm-dd"
+        var date2 = $("#datePicker2").datepicker({
+            dateFormat: "yy-mm-dd",
+            showButtonPanel: true
         });
 
         $(document).ready(function () {
@@ -440,6 +456,8 @@
             leadMaxCount = leadSelector.multiselect("getChecked").length;
             groupSelector.multiselect("checkAll");
             groupMaxCount = groupSelector.multiselect("getChecked").length;
+            grid.bootgrid("addConstraint", "greater", 10);
+            grid.bootgrid("addConstraint", "lesser", 10);
         });
     </script>
     <script>
