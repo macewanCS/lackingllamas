@@ -6,10 +6,6 @@
     <div class="groups-container">
         <div class="groups-container-inner">
             <div class="options-container">
-                {!! Form::label('search','Search ', ['class' => 'options-search-bar']) !!}
-                {!! Form::text('search', null, ['class' => 'options-search-field']) !!}
-                {!! Form::submit('Go',['class'=>'options-search-button']) !!}
-
                 <div class="options-checkboxes">
                     {!! Form::label('teamsBox','Teams ', ['class' => 'options-teams-box']) !!}
                     {!! Form::checkbox('teamsBox', 1, true) !!}
@@ -18,9 +14,9 @@
                     {!! Form::checkbox('departmentsBox', 1, true) !!}
                 </div>
                 <br>
-                <div class="search-results">
-                    Results
-                    <hr>
+                Results
+                <hr>
+                <div id="search-results">
                     @foreach($groups as $group)
                         <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;">{{$group->name}}</a>
                         <br>
@@ -43,13 +39,15 @@
                     @endforeach
                 </div>
                 <hr>
+                <h2>Roster</h2>
+                <hr>
                 <div id="group-users">
-                @foreach ($rosters as $roster)
-                    @if ($roster->group_ID == $groups[0]['id'])
-                        <div class="roster-names">{{$users->find($roster->user_ID)->name}}</div>
+                    @foreach ($rosters as $roster)
+                        @if ($roster->group_ID == $groups[0]['id'])
+                            <div class="roster-names">{{$users->find($roster->user_ID)->name}}</div>
 
-                    @endif
-                @endforeach
+                        @endif
+                    @endforeach
                 </div>
             </div>
 
@@ -73,12 +71,12 @@
             var userContent = '';
             for (var i = 0; i < actionsArray.length; i++)
                 if (actionsArray[i].group == id)
-                        actionContent+="<div class='action-content'>" + actionsArray[i].description + "</div>";
+                    actionContent+="<div class='action-content'>" + actionsArray[i].description + "</div>";
 
             for (var j = 0; j < usersArray.length; j++)
                 for (var k = 0; k < rostersArray.length; k++)
                     if ((usersArray[j].id == rostersArray[k].user_ID) && (rostersArray[k].group_ID == id))
-                            userContent+="<div class='user-content'>" + usersArray[j].name + "</div>";
+                        userContent+="<div class='user-content'>" + usersArray[j].name + "</div>";
 
             userText.innerHTML = userContent;
             actionText.innerHTML = "Actions: " + actionContent;
@@ -87,5 +85,8 @@
             budgetText.innerHTML = "Budget: " + budget;
             leadText.innerHTML = "Lead: " + lead;
         }
+
+
     </script>
+
 @stop
