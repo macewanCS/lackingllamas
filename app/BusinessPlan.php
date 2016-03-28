@@ -16,4 +16,6 @@ class BusinessPlan extends Model
     {
          return $this->hasMany('App\Goal', 'bpid');
     }
+
+
 }

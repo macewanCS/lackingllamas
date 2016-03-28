@@ -15,7 +15,6 @@
 
 @section('content')
     <div id="mainDiv">
-
         <div class="sideDiv">
             <div class="dropDown">
                 <button onclick="myFunction()" class="dropbtn">Create</button>
@@ -98,82 +97,74 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($goals as $goal)
-                    <?php $test = true ?>
-                    @foreach($objectives as $objective)
-                        @if($objective->goal_id==$goal->id)
-                            <?php $test = false ?>
-                            <tr>
-                                <td>{{$objective->id}}</td>
-                                <td>{{$objective->ident}}</td>
-                                <td>Objective</td>
-                                <td>1</td>
-                                <td>{{$goal->name}}:</td>
-                                <td></td>
-                                <td></td>
-                                <td>{{$objective->name}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            @foreach($actions as $action)
-                                @if($action->objective_id==$objective->id)
-                                    <tr>
-                                        <td>{{$action->id}}</td>
-                                        <td>{{$action->ident}}</td>
-                                        <td>Action</td>
-                                        <td>2</td>
-                                        <td>{{$action->description}}</td>
-                                        <td>{{$users[$action->userId - 1]->name}}</td>
-                                        <td>{{$groups[$action->group - 1]->name}}</td>
-                                        <td>{{$action->collaborators}}</td>
-                                        <td>{{$action->budget}}</td>
-                                        <td>{{$action->successMeasured}}</td>
-                                        <td>{{$action->date}}</td>
-                                        <td>{{$action->progress}}</td>
-                                    </tr>
-                                    @foreach($tasks as $task)
-                                        @if($task->action_id==$action->id)
-                                            <tr>
-                                                <td>{{$task->id}}</td>
-                                                <td>{{$task->ident}}</td>
-                                                <td>Task</td>
-                                                <td>3</td>
-                                                <td>{{$task->description}}</td>
-                                                <td>{{$users[$task->userId - 1]->name}}</td>
-                                                <td>{{$groups[$task->group - 1]->name}}</td>
-                                                <td>{{$task->collaborators}}</td>
-                                                <td>{{$task->budget}}</td>
-                                                <td>{{$task->successMeasured}}</td>
-                                                <td>{{$task->date}}</td>
-                                                <td>{{$task->progress}}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                @endif
-                            @endforeach
-                        @endif
-                    @endforeach
-                    @if ($test)
-                        <tr>
-                            <td>{{$goal->id}}</td>
-                            <td>{{$goal->ident}}</td>
-                            <td>Goal</td>
-                            <td>0</td>
-                            <td>{{$goal->name}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    @endif
-                @endforeach
+     @foreach($bpPlans as $bp)
+        @if(strlen($bp->ident)==1)
+        <tr>
+            <td>{{$bp->id}}</td>
+            <td>{{$bp->ident}}</td>
+            <td>Goal</td>
+            <td>0</td>
+            <td>{{$bp->name}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @endif
+         @if(strlen($bp->ident)==3)
+            <tr>
+                <td>{{$bp->id}}</td>
+                <td>{{$bp->ident}}</td>
+                <td>Objective</td>
+                <td>1</td>
+                <td>{{$bp->name}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        @endif 
+          @if(strlen($bp->ident)==5)
+            <tr>
+                <td>{{$bp->id}}</td>
+                <td>{{$bp->ident}}</td>
+                <td>Action</td>
+                <td>2</td>
+                <td>{{$bp->description}}</td>
+                <td>{{$users[$bp->userId - 1]->name}}</td>
+                <td>{{$groups[$bp->group - 1]->name}}</td>
+                <td>{{$bp->collaborators}}</td>
+                <td>{{$bp->budget}}</td>
+                <td>{{$bp->successMeasured}}</td>
+                <td>{{$bp->date}}</td>
+                <td>{{$bp->progress}}</td>
+            </tr>         
+        @endif
+        @if(strlen($bp->ident)==7)
+        <tr>
+            <td>{{$bp->id}}</td>
+            <td>{{$bp->ident}}</td>
+            <td>Task</td>
+            <td>3</td>
+            <td>{{$bp->description}}</td>
+            <td>{{$users[$bp->userId - 1]->name}}</td>
+            <td>{{$groups[$bp->group - 1]->name}}</td>
+            <td>{{$bp->collaborators}}</td>
+            <td>{{$bp->budget}}</td>
+            <td>{{$bp->successMeasured}}</td>
+            <td>{{$bp->date}}</td>
+            <td>{{$bp->progress}}</td>
+        </tr>         
+        @endif
+    @endforeach
                 </tbody>
             </table>
         </div>
