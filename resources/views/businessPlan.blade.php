@@ -97,6 +97,7 @@
                 </tr>
                 </thead>
                 <tbody>
+         
      @foreach($bpPlans as $bp)
         @if(strlen($bp->ident)==1)
         <tr>
