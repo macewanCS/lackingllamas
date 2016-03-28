@@ -22,19 +22,18 @@
                     Results
                     <hr>
                     @foreach($groups->lists('name') as $group)
+                        <a href="#" id="link-result" onclick="display(this);return false;">{{$group}}</a>
                         <br>
-                        <a href="#" class="list-group">{{$group}}</a>
                     @endforeach
                 </div>
             </div>
 
             <div class="roster-container">
-                <h2>Roster</h2>
+                <h2 id="group-name">{{$groups[0]['name']}}</h2>
                 <hr>
-                <div class="group-name">{{$groups[0]['name']}}</div>
-                <div class="group-description">Description: {{$groups[0]['description']}}</div>
-                <div class="group-budget">Budget: {{$groups[0]['budget']}}</div>
-                <div class="group-actions">Actions: <br>
+                <div id="group-description">Description: {{$groups[0]['description']}}</div>
+                <div id="group-budget">Budget: {{$groups[0]['budget']}}</div>
+                <div id="group-actions">Actions: <br>
                 @foreach ($actions as $action)
                     @if ($action->group == $groups[0]['id'])
                         {{$action->description}}
@@ -43,13 +42,23 @@
                 @endforeach
                 </div>
                 <hr>
-                <!-- TODO: add migration for groups to connect users to groups -->
+                @foreach ($rosters as $roster)
+                    @if ($roster->group_ID == $groups[0]['id'])
+                        <div class="roster-names">{{$users->find($roster->user_ID)->name}}</div>
+
+                    @endif
+                @endforeach
             </div>
 
-            <div class="group-details">
-                <h2></h2>
-            </div>
         </div>
 
     </div>
+    <script>
+        function display(element) {
+                var $name = element.innerHTML;
+                var headerText = document.getElementById("group-name");
+                headerText.innerHTML = $name;
+
+        }
+    </script>
 @stop
