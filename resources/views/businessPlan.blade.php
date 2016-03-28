@@ -84,6 +84,15 @@
                 <input title="To: " type="text" id="datePicker2" class="picker">
             </div>
 
+            <div class="budgetBox">
+                <label class="budgetTitle">Budget: </label>
+                <label class="budgetLabel">Greater Than: </label>
+                <textarea class="ta" id="budgetFrom" cols="10" rows="1"></textarea>
+                <label class="budgetLabel">Less Than: </label>
+                <textarea class="ta" id="budgetTo" cols="10" rows="1"></textarea>
+
+            </div>
+
         </div>
 
         <div class="tableDiv">
@@ -462,6 +471,65 @@
                     if (document.getElementById("datePicker").value != "") {
                         grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
                         grid.bootgrid("addConstraint", "greater", 10);
+                    }
+                }
+                grid.bootgrid("getParams");
+            }
+        });
+
+        var oldFromText = "";
+        var budgetFrom = $("#budgetFrom").on("change keyup paste", function (){
+            var currentFromText = $(this).val();
+            if (currentFromText == oldFromText){
+                    return;
+            }
+            else {
+                    oldFromText = currentFromText;
+                    if (currentFromText != ""){
+                        grid.bootgrid("removeParams", undefined, 8);
+                        grid.bootgrid("addConstraint", undefined, 8);
+                        grid.bootgrid("addParams", currentFromText, 8);
+                        grid.bootgrid("addConstraint", "greater", 8);
+                        if (budgetTo.val() != ""){
+                            grid.bootgrid("addParams", budgetTo.val(), 8);
+                            grid.bootgrid("addConstraint", "lesser", 8);
+                        }
+                    }
+                    else {
+                        grid.bootgrid("removeParams", undefined, 8);
+                        grid.bootgrid("addConstraint", undefined, 8);
+                        if (budgetTo.val() != ""){
+                            grid.bootgrid("addParams", budgetTo.val(), 8);
+                            grid.bootgrid("addConstraint", "lesser", 8);
+                        }
+                    }
+            }
+        });
+
+        var oldToText = "";
+        var budgetTo = $("#budgetTo").on("change keyup paste", function (){
+            var currentToText = $(this).val();
+            if (currentToText == oldToText){
+                return;
+            }
+            else {
+                oldToText = currentToText;
+                if (currentToText != ""){
+                    grid.bootgrid("removeParams", undefined, 8);
+                    grid.bootgrid("addConstraint", undefined, 8);
+                    grid.bootgrid("addParams", currentToText, 8);
+                    grid.bootgrid("addConstraint", "lesser", 8);
+                    if (budgetFrom.val() != ""){
+                        grid.bootgrid("addParams", budgetFrom.val(), 8);
+                        grid.bootgrid("addConstraint", "greater", 8);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", undefined, 8);
+                    grid.bootgrid("addConstraint", undefined, 8);
+                    if (budgetFrom.val() != ""){
+                        grid.bootgrid("addParams", budgetFrom.val(), 8);
+                        grid.bootgrid("addConstraint", "greater", 8);
                     }
                 }
                 grid.bootgrid("getParams");

@@ -173,6 +173,7 @@
                                     }
                                     else {
                                         if (row[column.id] <= that.searchParams[index.toString()][phraseNum]){
+                                            console.log(row[column.id] = " is less than " + that.searchParams[index.toString()][phraseNum]);
                                             constraintsMatch = true;
                                         }
                                     }

@@ -290,6 +290,21 @@
 
 }
 
+.budgetBox {
+    margin-top: 10%;
+}
+
+#mainDiv > div.sideDiv > div.budgetBox > textarea.ta {
+    width: 100% !important;
+    resize: none;
+}
+
+#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel {
+    font-weight: normal;
+    font-size: small;
+
+}
+
 #mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect {
     width: 100% !important;
 }
