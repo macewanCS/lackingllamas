@@ -21,8 +21,8 @@
                 <div class="search-results">
                     Results
                     <hr>
-                    @foreach($groups->lists('name') as $group)
-                        <a href="#" id="link-result" onclick="display(this);return false;">{{$group}}</a>
+                    @foreach($groups as $group)
+                        <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}');return false;">{{$group->name}}</a>
                         <br>
                     @endforeach
                 </div>
@@ -31,15 +31,16 @@
             <div class="roster-container">
                 <h2 id="group-name">{{$groups[0]['name']}}</h2>
                 <hr>
+                <div id="group-lead">Lead: {{$users->find($groups[0]['user_ID'])->name}}</div>
                 <div id="group-description">Description: {{$groups[0]['description']}}</div>
                 <div id="group-budget">Budget: {{$groups[0]['budget']}}</div>
                 <div id="group-actions">Actions: <br>
-                @foreach ($actions as $action)
-                    @if ($action->group == $groups[0]['id'])
-                        {{$action->description}}
-                        <br>
-                    @endif
-                @endforeach
+                    @foreach ($actions as $action)
+                        @if ($action->group == $groups[0]['id'])
+                            {{$action->description}}
+                            <br>
+                        @endif
+                    @endforeach
                 </div>
                 <hr>
                 @foreach ($rosters as $roster)
@@ -54,11 +55,18 @@
 
     </div>
     <script>
-        function display(element) {
-                var $name = element.innerHTML;
-                var headerText = document.getElementById("group-name");
-                headerText.innerHTML = $name;
+        function display(element, lead, description, budget) {
 
+            var $name = element.innerHTML;
+            var headerText = document.getElementById("group-name");
+            var descriptionText = document.getElementById("group-description");
+            var leadText = document.getElementById("group-lead");
+            var budgetText = document.getElementById("group-budget");
+
+            headerText.innerHTML = $name;
+            descriptionText.innerHTML = "Description: " + description;
+            budgetText.innerHTML = "Budget: " + budget;
+            leadText.innerHTML = "Lead: " + lead;
         }
     </script>
 @stop
