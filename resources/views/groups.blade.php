@@ -22,7 +22,7 @@
                     Results
                     <hr>
                     @foreach($groups as $group)
-                        <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}');return false;">{{$group->name}}</a>
+                        <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($users)}}', '{{$group->id}}');return false;">{{$group->name}}</a>
                         <br>
                     @endforeach
                 </div>
@@ -55,14 +55,22 @@
 
     </div>
     <script>
-        function display(element, lead, description, budget) {
+        function display(element, lead, description, budget, actions, users, id) {
 
             var $name = element.innerHTML;
             var headerText = document.getElementById("group-name");
             var descriptionText = document.getElementById("group-description");
             var leadText = document.getElementById("group-lead");
             var budgetText = document.getElementById("group-budget");
+            var actionText = document.getElementById("group-actions");
+            var actionsArray = JSON.parse(actions);
+            var usersArray = JSON.parse(users);
+            var actionContent = '';
+            for (var i = 0; i < actionsArray.length; i++)
+                if (actionsArray[i].group == id)
+                        actionContent+="<div class='action-content'>" + actionsArray[i].description + "</div>";
 
+            actionText.innerHTML = "Actions: " + actionContent;
             headerText.innerHTML = $name;
             descriptionText.innerHTML = "Description: " + description;
             budgetText.innerHTML = "Budget: " + budget;

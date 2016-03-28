@@ -29,11 +29,11 @@ class CreateRostersTable extends Migration
      */
     public function down()
     {
-        Schema::table('task_comments', function(Blueprint $table) {
+        Schema::table('rosters', function(Blueprint $table) {
             $table->dropForeign('rosters_user_ID_foreign');
             $table->dropForeign('rosters_group_ID_foreign');
         });
 
-        Schema::drop('groups');
+        Schema::drop('rosters');
     }
 }
