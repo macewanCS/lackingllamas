@@ -49,6 +49,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan','BusinessPlanController@businessPlan');
     //---------------------------
     //create goat routes
+    Route::get('test','BusinessPlanController@test');
     Route::get('businessplan/createbp','BusinessPlanController@createBP');
     Route::get('businessplan/creategoal','BusinessPlanController@createGoal');
     Route::get('businessplan/createobjective','BusinessPlanController@createObjective');
