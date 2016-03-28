@@ -105,14 +105,15 @@
                 </tr>
                 </thead>
                 <tbody>
-         
      @foreach($bpPlans as $bp)
-        @if(strlen($bp->ident)==1)
+        @if(substr_count($bp->ident, ".")==0)
+        @if($temp = $bp->name)
+        @endif
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
             <td>Goal</td>
-            <td>0</td>
+            <td>1</td>
             <td>{{$bp->name}}</td>
             <td></td>
             <td></td>
@@ -124,16 +125,16 @@
             <td></td>
         </tr>
         @endif
-         @if(strlen($bp->ident)==3)
+         @if(substr_count($bp->ident, ".")==1)
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
                 <td>Objective</td>
                 <td>1</td>
+                <td>{{$temp}}</td>
+                <td>--</td>
+                <td>--</td>
                 <td>{{$bp->name}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -141,7 +142,7 @@
                 <td></td>
             </tr>
         @endif 
-          @if(strlen($bp->ident)==5)
+          @if(substr_count($bp->ident, ".")==2)
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
@@ -157,7 +158,7 @@
                 <td>{{$bp->progress}}</td>
             </tr>         
         @endif
-        @if(strlen($bp->ident)==7)
+        @if(substr_count($bp->ident, ".")==3)
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
@@ -423,16 +424,16 @@
                     grid.bootgrid("addConstraint", undefined, 10);
                     grid.bootgrid("addParams", dateText, 10);
                     grid.bootgrid("addConstraint", "greater", 10);
-                    if (date2.datepicker("getDate") != "") {
-                        grid.bootgrid("addParams", date2.datepicker("getDate"), 10);
+                    if (document.getElementById("datePicker2").value != "") {
+                        grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
                         grid.bootgrid("addConstraint", "lesser", 10);
                     }
                 }
                 else {
                     grid.bootgrid("removeParams", undefined, 10);
                     grid.bootgrid("addConstraint", undefined, 10);
-                    if (date2.datepicker("getDate") != "") {
-                        grid.bootgrid("addParams", date2.datepicker("getDate"), 10);
+                    if (document.getElementById("datePicker2").value != "") {
+                        grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
                         grid.bootgrid("addConstraint", "lesser", 10);
                     }
                 }
@@ -442,7 +443,29 @@
 
         var date2 = $("#datePicker2").datepicker({
             dateFormat: "yy-mm-dd",
-            showButtonPanel: true
+            showButtonPanel: true,
+            onClose: function (dateText, inst) {
+                if (dateText != ""){
+                    grid.bootgrid("removeParams", undefined, 10);
+                    grid.bootgrid("addConstraint", undefined, 10);
+                    grid.bootgrid("addParams", dateText, 10);
+                    grid.bootgrid("addConstraint", "lesser", 10);
+                    if (document.getElementById("datePicker").value != "") {
+                        console.log(date1.datepicker("widget"));
+                        grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
+                        grid.bootgrid("addConstraint", "greater", 10);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", undefined, 10);
+                    grid.bootgrid("addConstraint", undefined, 10);
+                    if (document.getElementById("datePicker").value != "") {
+                        grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
+                        grid.bootgrid("addConstraint", "greater", 10);
+                    }
+                }
+                grid.bootgrid("getParams");
+            }
         });
 
         $(document).ready(function () {
@@ -456,8 +479,6 @@
             leadMaxCount = leadSelector.multiselect("getChecked").length;
             groupSelector.multiselect("checkAll");
             groupMaxCount = groupSelector.multiselect("getChecked").length;
-            grid.bootgrid("addConstraint", "greater", 10);
-            grid.bootgrid("addConstraint", "lesser", 10);
         });
     </script>
     <script>

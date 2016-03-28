@@ -154,6 +154,7 @@
             var innerMatch = false;
             var outerMatch = true;
             var searchMatch = false;
+            var constraintsMatch = false;
             if (Object.keys(that.searchParams).length > 0) {
                 for (var index = 0; index < that.columns.length; index++) {
                     innerMatch = false;
@@ -162,18 +163,22 @@
                         if (that.searchParams[index.toString()] != null) {
                             var phraseNum;
                             if (that.constraints[index.toString()] != null){
+                                innerMatch = true;
                                 for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
+                                    constraintsMatch = false;
                                     if (that.constraints[index.toString()][phraseNum] == "greater") {
                                         if (row[column.id] >= that.searchParams[index.toString()][phraseNum]){
-                                            innerMatch = true;
+                                            constraintsMatch = true;
                                         }
                                     }
                                     else {
                                         if (row[column.id] <= that.searchParams[index.toString()][phraseNum]){
-                                            innerMatch = true;
+                                            constraintsMatch = true;
                                         }
                                     }
+                                    innerMatch = innerMatch && constraintsMatch;
                                 }
+
                             }
                             else {
                                 for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
