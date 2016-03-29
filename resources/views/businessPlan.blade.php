@@ -259,16 +259,21 @@
                         },
                         "commands": function(column, row)
                         {
-                            return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                                    "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                            return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                    "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button>";
                         }
                     }
                 }
         ).on("selected.rs.jquery.bootgrid", function(e, rows){
+            console.log("selected");
             var rowsIds = [];
             for (var i = 0; i < rows.length; i++)
             {
                 rowIds.push(rows[i].id);
+                if (i = rows.length - 1){
+                    selectedRow = rows[i];
+                    getSelectedRowType();
+                }
             }
         }).on("deslected.rs.jquery.bootgrid", function (e, rows){
             for (var i = 0; i < rows.length; i++)
@@ -287,10 +292,13 @@
             /* Executes after data is loaded and rendered */
             grid.find(".command-edit").on("click", function(e)
             {
-                getSelectedRowType();
+                grid.bootgrid("deselect");
+                grid.bootgrid("select", [$(this).data("row-id")]);
+
             }).end().find(".command-delete").on("click", function(e)
             {
-
+                grid.bootgrid("remove", [$(this).data("row-id")]);
+                //TODO: ADD the actual AJAX to delete the row from the database
             });
         });
 

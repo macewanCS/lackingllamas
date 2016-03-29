@@ -1572,9 +1572,10 @@
                 {
                     for (i = 0; i < this.currentRows.length; i++)
                     {
-                        if (this.currentRows[i][this.identifier] === id)
+                        if (this.currentRows[i][this.identifier] == id)
                         {
                             selectedRows.push(this.currentRows[i]);
+                            console.log(this.currentRows[i]);
                             this.selectedRows.push(id);
                             break;
                         }
