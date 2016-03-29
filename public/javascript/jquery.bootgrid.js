@@ -1434,7 +1434,7 @@
                     id = rowIds[i];
 
                     for (var j = 0; j < this.rows.length; j++) {
-                        if (this.rows[j][this.identifier] === id) {
+                        if (this.rows[j][this.identifier] == id) {
                             removedRows.push(this.rows[j]);
                             this.rows.splice(j, 1);
                             break;
