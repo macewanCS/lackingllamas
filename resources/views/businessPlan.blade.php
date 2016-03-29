@@ -211,7 +211,10 @@
                         'X-CSRF-Token': $('input[name="_token"]').val()
                     }
                 });
-
+        var maxGoals;
+        var maxObj;
+        var maxActions;
+        var maxTasks;
         var date1;
         var date2;
         var grid = $("#grid-basic").bootgrid(
@@ -288,19 +291,54 @@
             }).end().find(".command-delete").on("click", function(e)
             {
                 var row = grid.bootgrid("getRowData", $(this).data("row-id"));
-                grid.bootgrid("remove", [$(this).data("row-id")]);
                 var token = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: "POST",
                     url: "/businessplan/" + row.id +"/delete/" + row.type,
                     data: {_token:token}
                 });
+                grid.bootgrid("remove", [$(this).data("row-id")]);
+                cascadeDeletes(row.ident);
             }).end().find(".command-note").on("click", function(e)
             {
                 var row = grid.bootgrid("getRowData", $(this).data("row-id"));
                 window.location.assign("/" + row.type.toLowerCase() + "/" + row.id);
             });
         });
+
+        function cascadeDeletes (ident) {
+            ident = String(ident);
+            var depth = 3 - (ident.split(".").length - 1);
+            var i = 1, j = 1, k = 1;
+            while(i < maxObj){
+                if (grid.bootgrid("getRowData", ident + "." + i) == null){
+                    i++;
+                    j = 1;
+                    continue;
+                }
+                grid.bootgrid("remove", [ident + "." + i]);
+                while(j < maxActions) {
+                    if (grid.bootgrid("getRowData", ident + "." + i + "." + j) == null){
+                        j++;
+                        k = 1;
+                        continue;
+                    }
+                    grid.bootgrid("remove", [ident + "." + i + "." + j]);
+                    while(k < maxTasks) {
+                        if (grid.bootgrid("getRowData", ident + "." + i + "." + j + "." + k) == null) {
+                            k++;
+                            continue;
+                        }
+                        grid.bootgrid("remove", [ident + "." + i + "." + j + "." + k]);
+                        k++;
+                    }
+                    j++;
+                    k = 1;
+                }
+                i++;
+                j = 1;
+            }
+        }
 
         var goatSelector = $("#GOAT").multiselect({
             height: "auto",
@@ -584,7 +622,7 @@
                 }
             });
         }
-        
+
 
         $(document).ready(function () {
            grid.bootgrid("addParams", "Goal", 2);
@@ -599,6 +637,12 @@
             groupSelector.multiselect("uncheckAll");
             setupDate1();
             setupDate2();
+            var rowCount = grid.bootgrid("getTotalRowCount");
+            console.log(rowCount);
+            maxGoals = Math.ceil(rowCount * 0.15);
+            maxObj = Math.ceil(rowCount * 0.35);
+            maxActions = Math.ceil(rowCount * 0.65);
+            maxTasks = Math.ceil(rowCount * 0.75);
         });
     </script>
     <script>
