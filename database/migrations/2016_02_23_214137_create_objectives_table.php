@@ -20,7 +20,7 @@ class CreateObjectivesTable extends Migration
             $table->integer('group')->unsigned();
             $table->boolean('bp');
             $table->integer('goal_id')->unsigned();
-            $table->foreign('goal_id')->references('id')->on('goals');
+            $table->foreign('goal_id')->references('id')->on('goals')->onDelete('cascade');
               $table->foreign('group')->references('id')->on('groups');
         });
     }

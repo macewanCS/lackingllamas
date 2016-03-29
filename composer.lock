@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bb225bd7483e65253ca992e860b6eba1",
+    "hash": "5695c0882ce8457d8cd7e388242d4f00",
     "content-hash": "2ad1c34766de845cf0e574fd48f1a6af",
     "packages": [
         {
@@ -371,16 +371,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.26",
+            "version": "v5.2.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b73ac62506c5c2bd49d87fcb1089f7759431e173"
+                "reference": "ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b73ac62506c5c2bd49d87fcb1089f7759431e173",
-                "reference": "b73ac62506c5c2bd49d87fcb1089f7759431e173",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a",
+                "reference": "ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a",
                 "shasum": ""
             },
             "require": {
@@ -495,7 +495,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-03-25 17:12:52"
+            "time": "2016-03-29 13:32:58"
         },
         {
             "name": "laravelcollective/html",

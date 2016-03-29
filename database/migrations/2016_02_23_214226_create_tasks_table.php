@@ -25,7 +25,7 @@ class CreateTasksTable extends Migration
             $table->integer('group')->unsigned();
             $table->integer('userId')->unsigned();
             $table->integer('action_id')->unsigned();
-            $table->foreign('action_id')->references('id')->on('actions');
+            $table->foreign('action_id')->references('id')->on('actions')->onDelete('cascade');
             $table->foreign('group')->references('id')->on('groups');
             $table->foreign('userId')->references('id')->on('users');
         });

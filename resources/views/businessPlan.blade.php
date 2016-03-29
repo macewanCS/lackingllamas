@@ -25,7 +25,6 @@
                     <a href="/businessplan/createtask">Create Task</a>
                 </div>
 
-                <button onclick="getSelectedRowType()">Edit</button>
             </div>
 
             <div class="filtering">
@@ -114,8 +113,8 @@
                     <th data-column-id="budget" data-formatter="budget" data-header-css-class="budget">Budget</th>
                     <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
-                    <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress">Prog.</th>
-                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Modify</th>
+                    <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress" data-sortable="false">Prog.</th>
+                    <th data-column-id="commands" data-formatter="commands" data-header-css-class="commands" data-sortable="false">Utilities</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -204,8 +203,15 @@
     {!! Html::script('javascript/jquery.multiselect.filter.js') !!}
 
     <script type="text/javascript">
-        var rowIds = [];
-        var selectedRow;
+        // CSRF protection
+        $.ajaxSetup(
+                {
+                    headers:
+                    {
+                        'X-CSRF-Token': $('input[name="_token"]').val()
+                    }
+                });
+
         var date1;
         var date2;
         var grid = $("#grid-basic").bootgrid(
@@ -257,51 +263,44 @@
                                 }
                             }
                         },
-                        "commands": function(column, row)
-                        {
-                            return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                                    "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                        "commands": function(column, row) {
+                            if (row["type"] == "Action" || row["type"] == "Task") {
+                                return "<button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> " +
+                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                            }
+                            else {
+                                return  "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                            }
                         }
                     }
                 }
-        ).on("selected.rs.jquery.bootgrid", function(e, rows){
-            var rowsIds = [];
-            for (var i = 0; i < rows.length; i++)
-            {
-                rowIds.push(rows[i].id);
-            }
-        }).on("deslected.rs.jquery.bootgrid", function (e, rows){
-            for (var i = 0; i < rows.length; i++)
-            {
-                rowIds.remove(rows[i].id);
-            }
-        }).on("click.rs.jquery.bootgrid", function(e, columns, row) {
-            if (row == selectedRow) {
-                selectedRow = null;
-            }
-            else {
-                selectedRow = row;
-            }
-        }).on("loaded.rs.jquery.bootgrid", function()
+        ).on("loaded.rs.jquery.bootgrid", function()
         {
             /* Executes after data is loaded and rendered */
             grid.find(".command-edit").on("click", function(e)
             {
-                getSelectedRowType();
+                var row = grid.bootgrid("getRowData", $(this).data("row-id"));
+                window.location.assign("/businessplan/" + row.id + "/edit/" + row.type);
+
+
             }).end().find(".command-delete").on("click", function(e)
             {
-
+                var row = grid.bootgrid("getRowData", $(this).data("row-id"));
+                grid.bootgrid("remove", [$(this).data("row-id")]);
+                var token = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: "POST",
+                    url: "/businessplan/" + row.id +"/delete/" + row.type,
+                    data: {_token:token}
+                });
+            }).end().find(".command-note").on("click", function(e)
+            {
+                var row = grid.bootgrid("getRowData", $(this).data("row-id"));
+                window.location.assign("/" + row.type.toLowerCase() + "/" + row.id);
             });
         });
-
-        function getSelectedRowType(){
-            if (selectedRow == null){
-                alert('Please select a row first');
-            }
-            else {
-                window.location.assign("/businessplan/" + selectedRow.id + "/edit/" + selectedRow.type);
-            }
-        }
 
         var goatSelector = $("#GOAT").multiselect({
             height: "auto",
@@ -575,7 +574,17 @@
             setupDate2();
             document.getElementById("budgetFrom").value = "";
             document.getElementById("budgetTo").value = "";
+            grid.bootgrid("sort");
+            grid.bootgrid("sortRows", function (a, b){
+                if (a.ident >= b.ident) {
+                    return 1;
+                }
+                    else {
+                    return -1;
+                }
+            });
         }
+        
 
         $(document).ready(function () {
            grid.bootgrid("addParams", "Goal", 2);

@@ -17,9 +17,13 @@ class ObjectivesSeeder extends Seeder
             ['name' => 'We Reduce barriers to accessing library services', 'goal_id' => 1, 'group' => 1, 'bp' => true],
             ['name' => 'Online services are highly used and valued', 'goal_id' => 2, 'group' => 1, 'bp' => true],
             ['name' => 'Together with our community we provide successful, meaningful services that are highly rates and heavily used', 'goal_id' => 1, 'group' => 2, 'bp' => true],
-            ['name' => 'Edmontonians view EPL as integral to their lifelong formal and informal learning.', 'goal_id' => 3, 'group' => 2, 'bp' => true]
+            ['name' => 'Edmontonians view EPL as integral to their lifelong formal and informal learning.', 'goal_id' => 3, 'group' => 2, 'bp' => true],
+            ['name' => 'Promote upcoming technology', 'goal_id' => 2, 'group' => 3, 'bp' => true],
+            ['name' => 'Increase eBook availability', 'goal_id' => 2, 'group' => 7, 'bp' => true],
+            ['name' => 'Design new EPL logo for 2017', 'goal_id'=> 4, 'group' => 3, 'bp' => true]
         ]);
 
+        //Generate Idents for Objectives.
         for ($j = 1; $j <= App\Goal::All()->Count(); $j++){
             global $goal;
             $goal = DB::table('goals')->where('id', $j)->first();

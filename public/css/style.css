@@ -4,24 +4,26 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.topbar-brand {
-    margin-left: 650px;
+
+.topbar-default {
+    width: 100%;
+    background: white;
+    box-shadow: 0 5px 2px -2px gray;
 }
 
 .container-topbar {
-    width: 100%;
-    height: 128px;
+    width: 1500px;
+    height: 112px;
     background:white;
-    box-shadow: 0 5px 2px -2px gray;
     position: relative;
+    margin: 0 auto;
 }
 
 .topbar-collapse {
     width: 50%;
-    min-width: 1136px;
+    min-width: 2000px;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 }
 
 .topbar-text {
@@ -70,9 +72,15 @@
 .topbar-nav li:last-child a{
     border-right: none;
 }
-.topbar-text li:first-child{
+.topbar-nav li:first-child a {
     border-right: none;
 }
+.top-bar text a:first-child {
+    border-right: none;
+    padding-right: 100px;
+}
+
+
 .topbar-nav a{
     text-align: center;
     margin-right:auto;
@@ -83,14 +91,17 @@
 .topbar-nav {
     margin: 0 auto;
     width: 50%;
+    float: left;
 
 }
 
 .topbar-right {
-    width: 10%;
+    width: 15%;
     display: inline-block;
     position: relative;
-    float: right;
+    float:right;
+    margin-top: -6%;
+    margin-left: 500px;
 }
 
 .dropbtn {
@@ -100,6 +111,8 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+
+
 }
 .dropdown-content {
     z-index: 99;
@@ -124,9 +137,10 @@
     background-color: rgb(214, 0, 54);
 }
 
-.topbar-nav img, img:hover {
-    margin: auto;
-    text-decoration:none;
+
+
+.topbar-nav img {
+    text-decoration: none;
 }
 
 .panel-heading {
@@ -172,3 +186,6 @@
     cursor: pointer;
 }
 
+.topbar-img {
+    margin-right: 50px;
+}

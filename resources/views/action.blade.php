@@ -5,7 +5,6 @@
 @stop
 
 @section('content')
-
     <div class="action-container">
         @if (Auth::check())
             @if ($action->userId == Auth::id())
@@ -27,6 +26,8 @@
                             <label>Objective</label><a href="{{url('/businessplan')}}"> {{\App\Objective::find($action->objective_id)->name}} </a></div></li>
 
                     <li><div class="action-lead"><label>Lead </label><a href="{{url('/businessplan')}}"> {{\App\User::find($action->userId)->name}} </a> </div></li><!-- TODO: Link to businessplan filtered by lead -->
+
+                    <li><div class="action-group-lead"><label>Group Lead</label><a href="{{'/businessplan'}}"> {{\App\Group::find($action->group)->name}}</a></div></li>
 
                     <li><div class="action-tasks"><label>Tasks </label>
                             @if(sizeof($tasks) < 1)
@@ -82,7 +83,6 @@
                                     {{$action->progress}}
                                 @endif
                             </p></div></li>
-
                 </ul>
 
 
@@ -129,4 +129,8 @@
             @endif
         </div>
     </div>
+@stop
+
+@section('scripts')
+    {!! Html::script('javascript/jquery-2.0.3.min.js') !!}
 @stop

@@ -10,6 +10,7 @@
     border-color: grey;
     margin-top: 25px;
     display: inline;
+    height: 100%;
 
 }
 
@@ -102,6 +103,18 @@ hr {
     text-decoration: none;
     font-weight: bold;
 
+    padding: 3px;
+    display: inline-block;
+}
+
+.task-group-lead a {
+    border: solid 2px #aaa;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #FF4136;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
     padding: 3px;
     display: inline-block;
 }
