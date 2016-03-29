@@ -94,7 +94,7 @@
             </div>
 
             <div class="Clear">
-                <button onclick="clearFilters()">Reset Filtering</button>
+                <button id="resetButton" onclick="clearFilters()">Reset Filtering</button>
             </div>
 
         </div>

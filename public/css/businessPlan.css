@@ -311,10 +311,16 @@
 
 #mainDiv > div.sideDiv > div.Clear {
     margin-top: 10%;
+    height: 3vw;
 }
 
 #mainDiv > div.sideDiv > div.Clear > button {
     float: right;
+    -webkit-appearance: button;
+    cursor: pointer;
+    background-color: rgb(245, 0, 54);
+    color: white;
+    height: 100%;
 }
 
 #mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect {
