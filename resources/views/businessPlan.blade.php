@@ -520,6 +520,7 @@
                     grid.bootgrid("addParams", currentToText, 8);
                     grid.bootgrid("addConstraint", "lesser", 8);
                     if (budgetFrom.val() != ""){
+                        console.log(budgetFrom.val());
                         grid.bootgrid("addParams", budgetFrom.val(), 8);
                         grid.bootgrid("addConstraint", "greater", 8);
                     }

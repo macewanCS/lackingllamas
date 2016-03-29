@@ -167,14 +167,27 @@
                                 for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
                                     constraintsMatch = false;
                                     if (that.constraints[index.toString()][phraseNum] == "greater") {
-                                        if (row[column.id] >= that.searchParams[index.toString()][phraseNum]){
-                                            constraintsMatch = true;
+                                        if (!isNaN(Number(row[column.id])) && !isNaN(Number(that.searchParams[index.toString()][phraseNum]))) {
+                                            if (Number(row[column.id]) >= Number(that.searchParams[index.toString()][phraseNum])) {
+                                                constraintsMatch = true;
+                                            }
+                                        }
+                                        else {
+                                            if (row[column.id] >= that.searchParams[index.toString()][phraseNum]) {
+                                                constraintsMatch = true;
+                                            }
                                         }
                                     }
                                     else {
-                                        if (row[column.id] <= that.searchParams[index.toString()][phraseNum]){
-                                            console.log(row[column.id] = " is less than " + that.searchParams[index.toString()][phraseNum]);
-                                            constraintsMatch = true;
+                                        if (!isNaN(Number(row[column.id])) && !isNaN(Number(that.searchParams[index.toString()][phraseNum]))) {
+                                            if (Number(row[column.id]) <= Number(that.searchParams[index.toString()][phraseNum])) {
+                                                constraintsMatch = true;
+                                            }
+                                        }
+                                        else {
+                                            if (row[column.id] <= that.searchParams[index.toString()][phraseNum]) {
+                                                constraintsMatch = true;
+                                            }
                                         }
                                     }
                                     innerMatch = innerMatch && constraintsMatch;
