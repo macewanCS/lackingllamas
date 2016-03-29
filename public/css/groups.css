@@ -76,3 +76,22 @@
     list-style: none;
     border-bottom: none;
 }
+
+/*action tasks content*/
+.action-task-content {
+    margin: 2px;
+}
+
+.action-task-content-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.action-task-content-link:hover {
+    background: lightblue;
+}
+
+.roster-headers {
+    text-align: center;
+}

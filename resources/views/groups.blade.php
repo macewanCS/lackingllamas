@@ -35,31 +35,31 @@
                 <div class="group-elements" id="group-description">Description: {{$groups[0]['description']}}</div>
                 <div class="group-elements" id="group-budget">Budget: ${{$groups[0]['budget']}}.00</div>
                 <hr>
-                <h2>Actions</h2>
+                <h2 class="roster-headers">Actions</h2>
                 <hr>
                 <div id="group-actions">
                     @foreach ($actions as $action)
                         @if ($action->group == $groups[0]['id'])
-                            <div class="action-content">
-                                <a href="{{url('/task', $action->id)}}">{{$action->description}}</a>
+                            <div class="action-task-content">
+                                <a class="action-task-content-link" href="{{url('/task', $action->id)}}">{{$action->description}}</a>
                             </div>
                         @endif
                     @endforeach
                 </div>
                 <hr>
-                <h2>Tasks</h2>
+                <h2 class="roster-headers">Tasks</h2>
                 <hr>
                 <div id="group-tasks">
                     @foreach ($tasks as $task)
                         @if ($task->group == $groups[0]['id'])
-                            <div class='task-content'>
-                                <a href="{{url('/task', $task->id)}}">{{$task->description}}</a>
+                            <div class="action-task-content">
+                                <a class="action-task-content-link" href="{{url('/task', $task->id)}}">{{$task->description}}</a>
                             </div>
                         @endif
                     @endforeach
                 </div>
                 <hr>
-                <h2>Roster</h2>
+                <h2 class="roster-headers">Roster</h2>
                 <hr>
                 <div id="group-users">
                     @foreach ($rosters as $roster)
@@ -95,11 +95,11 @@
 
             for (var i = 0; i < actionsArray.length; i++)
                 if (actionsArray[i].group == id)
-                    actionContent+="<div class='action-content'> <a href=\"action/" + actionsArray[i].id + "\">" + actionsArray[i].description + "</a> </div>";
+                    actionContent+="<div class='action-task-content'> <a class='action-task-content-link' href=\"action/" + actionsArray[i].id + "\">" + actionsArray[i].description + "</a> </div>";
 
             for (var i = 0; i < tasksArray.length; i++)
                 if (tasksArray[i].group == id)
-                    taskContent+="<div class='task-content'> <a href=\"task/" + tasksArray[i].id + "\">" + tasksArray[i].description + "</a> </div>";
+                    taskContent+="<div class='action-task-content'> <a class='action-task-content-link' href=\"task/" + tasksArray[i].id + "\">" + tasksArray[i].description + "</a> </div>";
 
             for (var j = 0; j < usersArray.length; j++)
                 for (var k = 0; k < rostersArray.length; k++)
