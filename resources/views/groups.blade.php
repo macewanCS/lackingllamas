@@ -40,8 +40,9 @@
                 <div id="group-actions">
                     @foreach ($actions as $action)
                         @if ($action->group == $groups[0]['id'])
-                            {{$action->description}}
-                            <br>
+                            <div class="action-content">
+                                <a href="{{url('/task', $action->id)}}">{{$action->description}}</a>
+                            </div>
                         @endif
                     @endforeach
                 </div>
@@ -51,8 +52,9 @@
                 <div id="group-tasks">
                     @foreach ($tasks as $task)
                         @if ($task->group == $groups[0]['id'])
-                            {{$task->description}}
-                            <br>
+                            <div class='task-content'>
+                                <a href="{{url('/task', $task->id)}}">{{$task->description}}</a>
+                            </div>
                         @endif
                     @endforeach
                 </div>
@@ -72,7 +74,7 @@
         </div>
 
     </div>
-    <script>
+    <script type="text/javascript">
         function display(element, lead, description, budget, actions, tasks, users, id, rosters) {
 
             var $name = element.innerHTML;
@@ -112,8 +114,5 @@
             budgetText.innerHTML = "Budget: $" + budget + ".00";
             leadText.innerHTML = "Lead: " + lead;
         }
-
-
     </script>
-
 @stop
