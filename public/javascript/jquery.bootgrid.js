@@ -1547,6 +1547,14 @@
     };
 
 
+    Grid.prototype.getRowData = function (rowId) {
+        for(var i = this.currentRows.length - 1; i >= 0; i--){
+            if (this.currentRows[i][this.identifier] == rowId){
+                return this.currentRows[i];
+            }
+        }
+    };
+
 
     /**
      * Selects rows by ids. Selects all visible rows if no ids are provided.

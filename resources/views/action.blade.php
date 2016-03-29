@@ -5,7 +5,6 @@
 @stop
 
 @section('content')
-
     <div class="action-container">
         @if (Auth::check())
             @if ($action->userId == Auth::id())
@@ -129,4 +128,8 @@
             @endif
         </div>
     </div>
+@stop
+
+@section('scripts')
+    {!! Html::script('javascript/jquery-2.0.3.min.js') !!}
 @stop
