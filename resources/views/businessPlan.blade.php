@@ -76,6 +76,27 @@
                 </select>
             </div>
 
+            <div class="datePicker">
+                <label class="dateTitle">Due Date: </label>
+                <label class="dateLabel">From: </label>
+                <input title="From: " type="text" id="datePicker" class="picker">
+                <label class="dateLabel">To: </label>
+                <input title="To: " type="text" id="datePicker2" class="picker">
+            </div>
+
+            <div class="budgetBox">
+                <label class="budgetTitle">Budget: </label>
+                <label class="budgetLabel">Greater Than: </label>
+                <textarea class="ta" id="budgetFrom" cols="10" rows="1"></textarea>
+                <label class="budgetLabel">Less Than: </label>
+                <textarea class="ta" id="budgetTo" cols="10" rows="1"></textarea>
+
+            </div>
+
+            <div class="Clear">
+                <button id="resetButton" onclick="clearFilters()">Reset Filtering</button>
+            </div>
+
         </div>
 
         <div class="tableDiv">
@@ -94,17 +115,19 @@
                     <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress">Prog.</th>
+                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Modify</th>
                 </tr>
                 </thead>
                 <tbody>
-         
      @foreach($bpPlans as $bp)
-        @if(strlen($bp->ident)==1)
+        @if(substr_count($bp->ident, ".")==0)
+        @if($temp = $bp->name)
+        @endif
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
             <td>Goal</td>
-            <td>0</td>
+            <td>1</td>
             <td>{{$bp->name}}</td>
             <td></td>
             <td></td>
@@ -116,16 +139,16 @@
             <td></td>
         </tr>
         @endif
-         @if(strlen($bp->ident)==3)
+         @if(substr_count($bp->ident, ".")==1)
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
                 <td>Objective</td>
                 <td>1</td>
+                <td>{{$temp}}</td>
+                <td>--</td>
+                <td>--</td>
                 <td>{{$bp->name}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -133,7 +156,7 @@
                 <td></td>
             </tr>
         @endif 
-          @if(strlen($bp->ident)==5)
+          @if(substr_count($bp->ident, ".")==2)
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
@@ -149,7 +172,7 @@
                 <td>{{$bp->progress}}</td>
             </tr>         
         @endif
-        @if(strlen($bp->ident)==7)
+        @if(substr_count($bp->ident, ".")==3)
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
@@ -183,6 +206,8 @@
     <script type="text/javascript">
         var rowIds = [];
         var selectedRow;
+        var date1;
+        var date2;
         var grid = $("#grid-basic").bootgrid(
                 {
                     columnSelection: false,
@@ -231,6 +256,11 @@
                                     return "<div>" + row[column.id] + "</div>";
                                 }
                             }
+                        },
+                        "commands": function(column, row)
+                        {
+                            return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                    "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
                         }
                     }
                 }
@@ -252,6 +282,16 @@
             else {
                 selectedRow = row;
             }
+        }).on("loaded.rs.jquery.bootgrid", function()
+        {
+            /* Executes after data is loaded and rendered */
+            grid.find(".command-edit").on("click", function(e)
+            {
+                getSelectedRowType();
+            }).end().find(".command-delete").on("click", function(e)
+            {
+
+            });
         });
 
         function getSelectedRowType(){
@@ -337,7 +377,6 @@
                         }
                     }
                 }
-                grid.bootgrid("getParams");
             }
         }).multiselectfilter();
 
@@ -352,24 +391,24 @@
             },
             click: function (event, ui) {
                 if (ui.checked) {
-                    grid.bootgrid("addParams", ui.value, 10);
+                    grid.bootgrid("addParams", ui.value, 5);
                     if (leadSelector.multiselect("getChecked").length == leadMaxCount){
-                        grid.bootgrid("addParams", "", 10);
+                        grid.bootgrid("addParams", "", 5);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 10);
-                    grid.bootgrid("removeParams", ui.value, 10);
+                    grid.bootgrid("removeParams", "", 5);
+                    grid.bootgrid("removeParams", ui.value, 5);
                 }
             },
             checkAll: function () {
                 @foreach($users as $user)
-                    grid.bootgrid("addParams", "{{$user->name}}", 10);
+                    grid.bootgrid("addParams", "{{$user->name}}", 5);
                 @endforeach
-                grid.bootgrid("addParams", "", 10);
+                grid.bootgrid("addParams", "", 5);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 10);
+                grid.bootgrid("removeParams", undefined, 5);
             }
         }).multiselectfilter();
 
@@ -384,39 +423,173 @@
             },
             click: function (event, ui) {
                 if (ui.checked) {
-                    grid.bootgrid("addParams", ui.value, 11);
+                    grid.bootgrid("addParams", ui.value, 6);
                     if (groupSelector.multiselect("getChecked").length == groupMaxCount){
-                        grid.bootgrid("addParams", "", 11);
+                        grid.bootgrid("addParams", "", 6);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 11);
-                    grid.bootgrid("removeParams", ui.value, 11);
+                    grid.bootgrid("removeParams", "", 6);
+                    grid.bootgrid("removeParams", ui.value, 6);
                 }
             },
             checkAll: function () {
                 @foreach($groups as $group)
-                    grid.bootgrid("addParams", "{{$group->name}}", 11);
+                    grid.bootgrid("addParams", "{{$group->name}}", 6);
                 @endforeach
-                grid.bootgrid("addParams", "", 11);
+                grid.bootgrid("addParams", "", 6);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 11);
+                grid.bootgrid("removeParams", undefined, 6);
 
             }
         }).multiselectfilter();
+
+
+        function setupDate1 () {
+            date1 = $("#datePicker").datepicker({
+                dateFormat: "yy-mm-dd",
+                showButtonPanel: true,
+                onClose: function (dateText, inst) {
+                    if (dateText != "") {
+                        grid.bootgrid("removeParams", undefined, 10);
+                        grid.bootgrid("addConstraint", undefined, 10);
+                        grid.bootgrid("addParams", dateText, 10);
+                        grid.bootgrid("addConstraint", "greater", 10);
+                        if (document.getElementById("datePicker2").value != "") {
+                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
+                            grid.bootgrid("addConstraint", "lesser", 10);
+                        }
+                    }
+                    else {
+                        grid.bootgrid("removeParams", undefined, 10);
+                        grid.bootgrid("addConstraint", undefined, 10);
+                        if (document.getElementById("datePicker2").value != "") {
+                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
+                            grid.bootgrid("addConstraint", "lesser", 10);
+                        }
+                    }
+                }
+            });
+        }
+
+        function setupDate2 () {
+            date2 = $("#datePicker2").datepicker({
+                dateFormat: "yy-mm-dd",
+                showButtonPanel: true,
+                onClose: function (dateText, inst) {
+                    if (dateText != "") {
+                        grid.bootgrid("removeParams", undefined, 10);
+                        grid.bootgrid("addConstraint", undefined, 10);
+                        grid.bootgrid("addParams", dateText, 10);
+                        grid.bootgrid("addConstraint", "lesser", 10);
+                        if (document.getElementById("datePicker").value != "") {
+                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
+                            grid.bootgrid("addConstraint", "greater", 10);
+                        }
+                    }
+                    else {
+                        grid.bootgrid("removeParams", undefined, 10);
+                        grid.bootgrid("addConstraint", undefined, 10);
+                        if (document.getElementById("datePicker").value != "") {
+                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
+                            grid.bootgrid("addConstraint", "greater", 10);
+                        }
+                    }
+                }
+            });
+        }
+        var oldFromText = "";
+        var budgetFrom = $("#budgetFrom").on("change keyup paste", function (){
+            var currentFromText = $(this).val();
+            if (currentFromText == oldFromText){
+                    return;
+            }
+            else {
+                    oldFromText = currentFromText;
+                    if (currentFromText != ""){
+                        grid.bootgrid("removeParams", undefined, 8);
+                        grid.bootgrid("addConstraint", undefined, 8);
+                        grid.bootgrid("addParams", currentFromText, 8);
+                        grid.bootgrid("addConstraint", "greater", 8);
+                        if (budgetTo.val() != ""){
+                            grid.bootgrid("addParams", budgetTo.val(), 8);
+                            grid.bootgrid("addConstraint", "lesser", 8);
+                        }
+                    }
+                    else {
+                        grid.bootgrid("removeParams", undefined, 8);
+                        grid.bootgrid("addConstraint", undefined, 8);
+                        if (budgetTo.val() != ""){
+                            grid.bootgrid("addParams", budgetTo.val(), 8);
+                            grid.bootgrid("addConstraint", "lesser", 8);
+                        }
+                    }
+            }
+        });
+
+        var oldToText = "";
+        var budgetTo = $("#budgetTo").on("change keyup paste", function (){
+            var currentToText = $(this).val();
+            if (currentToText == oldToText){
+                return;
+            }
+            else {
+                oldToText = currentToText;
+                if (currentToText != ""){
+                    grid.bootgrid("removeParams", undefined, 8);
+                    grid.bootgrid("addConstraint", undefined, 8);
+                    grid.bootgrid("addParams", currentToText, 8);
+                    grid.bootgrid("addConstraint", "lesser", 8);
+                    if (budgetFrom.val() != ""){
+                        grid.bootgrid("addParams", budgetFrom.val(), 8);
+                        grid.bootgrid("addConstraint", "greater", 8);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", undefined, 8);
+                    grid.bootgrid("addConstraint", undefined, 8);
+                    if (budgetFrom.val() != ""){
+                        grid.bootgrid("addParams", budgetFrom.val(), 8);
+                        grid.bootgrid("addConstraint", "greater", 8);
+                    }
+                }
+            }
+        });
+
+        function clearFilters () {
+            grid.bootgrid("clearParams");
+            goatSelector.multiselect("checkAll");
+            grid.bootgrid("addParams", "Goal", 2);
+            grid.bootgrid("addParams", "Objective", 2);
+            grid.bootgrid("addParams", "Action", 2);
+            grid.bootgrid("addParams", "Task", 2);
+            collabSelector.multiselect("uncheckAll");
+            leadSelector.multiselect("uncheckAll");
+            groupSelector.multiselect("uncheckAll");
+            date1.datepicker("destroy");
+            date2.datepicker("destroy");
+            document.getElementById("datePicker").value = "";
+            document.getElementById("datePicker2").value = "";
+            setupDate1();
+            setupDate2();
+            document.getElementById("budgetFrom").value = "";
+            document.getElementById("budgetTo").value = "";
+        }
 
         $(document).ready(function () {
            grid.bootgrid("addParams", "Goal", 2);
            grid.bootgrid("addParams", "Objective", 2);
            grid.bootgrid("addParams", "Action", 2);
            grid.bootgrid("addParams", "Task", 2);
-            collabSelector.multiselect("checkAll");
             collabMaxCount = collabSelector.multiselect("getChecked").length;
-            leadSelector.multiselect("checkAll");
+            collabSelector.multiselect("uncheckAll");
             leadMaxCount = leadSelector.multiselect("getChecked").length;
-            groupSelector.multiselect("checkAll");
+            leadSelector.multiselect("uncheckAll");
             groupMaxCount = groupSelector.multiselect("getChecked").length;
+            groupSelector.multiselect("uncheckAll");
+            setupDate1();
+            setupDate2();
         });
     </script>
     <script>

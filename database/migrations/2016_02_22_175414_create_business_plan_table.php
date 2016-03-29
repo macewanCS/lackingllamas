@@ -33,6 +33,6 @@ class CreateBusinessPlanTable extends Migration
                 $table->dropForeign('goals_bpid_foreign');
             });
         }
-        Schema::drop('businessPlans');
+        Schema::drop('business_plans');
     }
 }

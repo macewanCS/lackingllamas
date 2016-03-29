@@ -267,6 +267,62 @@
 
 }
 
+#mainDiv > div.sideDiv > div.datePicker {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.datePicker > input.picker {
+    width: 100% !important;
+}
+
+.datePicker {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.datePicker > label.dateTitle {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.datePicker > label.dateLabel {
+    font-weight: normal;
+    font-size: small;
+
+}
+
+.budgetBox {
+    margin-top: 10%;
+}
+
+#mainDiv > div.sideDiv > div.budgetBox > textarea.ta {
+    width: 100% !important;
+    resize: none;
+}
+
+#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel {
+    font-weight: normal;
+    font-size: small;
+
+}
+
+#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.Clear {
+    margin-top: 10%;
+    height: 3vw;
+}
+
+#mainDiv > div.sideDiv > div.Clear > button {
+    float: right;
+    -webkit-appearance: button;
+    cursor: pointer;
+    background-color: rgb(245, 0, 54);
+    color: white;
+    height: 100%;
+}
+
 #mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect {
     width: 100% !important;
 }
