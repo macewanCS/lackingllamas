@@ -25,6 +25,8 @@
 
                     <li><div class="task-lead"><label>Lead </label><a href="{{url('/businessplan')}}"> {{\App\User::find($task->userId)->name}}</a> </div></li><!-- TODO: Link to businessplan filtered by lead -->
 
+                    <li><div class="task-group-lead"><label>Group Lead</label><a href="{{'/businessplan'}}"> {{\App\Group::find($task->group)->name}}</a></div></li>
+
                     <li><div class="task-collab">
                             <label>Collaborators </label>
 

@@ -27,6 +27,8 @@
 
                     <li><div class="action-lead"><label>Lead </label><a href="{{url('/businessplan')}}"> {{\App\User::find($action->userId)->name}} </a> </div></li><!-- TODO: Link to businessplan filtered by lead -->
 
+                    <li><div class="action-group-lead"><label>Group Lead</label><a href="{{'/businessplan'}}"> {{\App\Group::find($action->group)->name}}</a></div></li>
+
                     <li><div class="action-tasks"><label>Tasks </label>
                             @if(sizeof($tasks) < 1)
                                 N/A
@@ -81,7 +83,6 @@
                                     {{$action->progress}}
                                 @endif
                             </p></div></li>
-
                 </ul>
 
 
