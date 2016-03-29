@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Roster;
 use Illuminate\Http\Request;
 use App\Group;
 use App\Action;
@@ -16,6 +17,7 @@ class GroupController extends Controller
         $groups = Group::all();
         $actions = Action::all();
         $users = User::all();
-        return view('groups', compact('groups', 'actions', 'users'));
+        $rosters = Roster::all();
+        return view('groups', compact('groups', 'actions', 'users', 'rosters'));
     }
 }
