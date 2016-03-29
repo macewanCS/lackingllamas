@@ -33,7 +33,7 @@
                 <hr>
                 <div class="group-elements" id="group-lead">Lead: {{$users->find($groups[0]['user_ID'])->name}}</div>
                 <div class="group-elements" id="group-description">Description: {{$groups[0]['description']}}</div>
-                <div class="group-elements" id="group-budget">Budget: ${{$groups[0]['budget']}}.00</div>
+                <div class="group-elements" id="group-budget">Budget: ${{$groups[0]['budget']}}</div>
                 <hr>
                 <h2 class="roster-headers">Actions</h2>
                 <hr>
@@ -111,7 +111,7 @@
             taskText.innerHTML = taskContent;
             headerText.innerHTML = $name;
             descriptionText.innerHTML = "Description: " + description;
-            budgetText.innerHTML = "Budget: $" + budget + ".00";
+            budgetText.innerHTML = "Budget: $" + budget;
             leadText.innerHTML = "Lead: " + lead;
         }
     </script>
