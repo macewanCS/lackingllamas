@@ -5,7 +5,7 @@
     width: 100%;
     max-width: 100%;
     border: 1px solid rgba(175, 182, 205, 0.41);
-    font-size: 1.5em;
+    font-size: 1.6em;
     display: inline-block;
     float: right;
     table-layout: fixed;
@@ -15,7 +15,7 @@
     border: none;
     background-color: rgba(219, 227, 252, 0.41);
     font-weight: bold;
-    font-size: 0.5em;
+    font-size: 0.6em;
     color: black;
 }
 
@@ -49,7 +49,7 @@
 #grid-basic > thead > tr > th.text-left {
     border: none;
     background-color: #f3f5f5;
-    font-size: 1em;
+    font-size: 0.85em;
     height: 3vw;
     line-height: 50px;
     color: darkgray !important;
@@ -206,6 +206,10 @@
     background-color: #ebebeb !important;
 }
 
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left > div {
+    font-weight: normal;
+}
+
 
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.select-cell,
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left
@@ -217,6 +221,11 @@
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning
 {
     background-color: #e3f6e0;
+    font-weight: normal !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left > div {
+    font-weight: normal;
 }
 
 
@@ -226,11 +235,106 @@
     background-color: #c8e6c3 !important;
 }
 
-.selector {
+.goatSelector {
     margin-top: 10%;
 
 }
 
-#mainDiv > div.sideDiv > div.selector > button.ui-multiselect {
+#mainDiv > div.sideDiv > div.goatSelector > button.ui-multiselect {
     width: 100% !important;
+}
+
+.collabSelector {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect {
+    width: 100% !important;
+}
+
+.leadSelector {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.leadSelector > button.ui-multiselect {
+    width: 100% !important;
+}
+
+.groupSelector {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.datePicker {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.datePicker > input.picker {
+    width: 100% !important;
+}
+
+.datePicker {
+    margin-top: 10%;
+
+}
+
+#mainDiv > div.sideDiv > div.datePicker > label.dateTitle {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.datePicker > label.dateLabel {
+    font-weight: normal;
+    font-size: small;
+
+}
+
+.budgetBox {
+    margin-top: 10%;
+}
+
+#mainDiv > div.sideDiv > div.budgetBox > textarea.ta {
+    width: 100% !important;
+    resize: none;
+}
+
+#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel {
+    font-weight: normal;
+    font-size: small;
+
+}
+
+#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.Clear {
+    margin-top: 10%;
+    height: 3vw;
+}
+
+#mainDiv > div.sideDiv > div.Clear > button {
+    float: right;
+    -webkit-appearance: button;
+    cursor: pointer;
+    background-color: rgb(245, 0, 54);
+    color: white;
+    height: 100%;
+}
+
+#mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect {
+    width: 100% !important;
+}
+
+.filtering {
+    margin-top: 20px;
+}
+
+#mainDiv > .tableDiv > #grid-basic-header > .row > .actionBar > .search > div.input-group {
+    margin-bottom: 5px;
+}
+
+#mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.descript {
+    margin-left: 5%;
 }

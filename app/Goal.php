@@ -23,4 +23,8 @@ class Goal extends Model
         $goal = $goals->where("name", "=", $name)->first();
         return $goal->bpid;
     }
+          public function objectives()
+    {
+         return $this->hasMany('App\Objective', 'goal_id');
+    }
 }

@@ -154,17 +154,53 @@
             var innerMatch = false;
             var outerMatch = true;
             var searchMatch = false;
+            var constraintsMatch = false;
             if (Object.keys(that.searchParams).length > 0) {
                 for (var index = 0; index < that.columns.length; index++) {
                     innerMatch = false;
                     column = that.columns[index];
                     if (column.searchable) {
                         if (that.searchParams[index.toString()] != null) {
-                            for (var phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
-                                searchPattern = new RegExp(that.searchParams[index.toString()][phraseNum], (that.options.caseSensitive) ? "g" : "gi");
-                                if (column.converter.to(row[column.id]).search(searchPattern) > -1) {
-                                    innerMatch = true;
-                                    break;
+                            var phraseNum;
+                            if (that.constraints[index.toString()] != null){
+                                innerMatch = true;
+                                for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
+                                    constraintsMatch = false;
+                                    if (that.constraints[index.toString()][phraseNum] == "greater") {
+                                        if (!isNaN(Number(row[column.id])) && !isNaN(Number(that.searchParams[index.toString()][phraseNum]))) {
+                                            if (Number(row[column.id]) >= Number(that.searchParams[index.toString()][phraseNum])) {
+                                                constraintsMatch = true;
+                                            }
+                                        }
+                                        else {
+                                            if (row[column.id] >= that.searchParams[index.toString()][phraseNum]) {
+                                                constraintsMatch = true;
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        if (!isNaN(Number(row[column.id])) && !isNaN(Number(that.searchParams[index.toString()][phraseNum]))) {
+                                            if (Number(row[column.id]) <= Number(that.searchParams[index.toString()][phraseNum])) {
+                                                constraintsMatch = true;
+                                            }
+                                        }
+                                        else {
+                                            if (row[column.id] <= that.searchParams[index.toString()][phraseNum]) {
+                                                constraintsMatch = true;
+                                            }
+                                        }
+                                    }
+                                    innerMatch = innerMatch && constraintsMatch;
+                                }
+
+                            }
+                            else {
+                                for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
+                                    searchPattern = new RegExp(that.searchParams[index.toString()][phraseNum], (that.options.caseSensitive) ? "g" : "gi");
+                                    if (column.converter.to(row[column.id]).search(searchPattern) > -1) {
+                                        innerMatch = true;
+                                        break;
+                                    }
                                 }
                             }
                             outerMatch = outerMatch && innerMatch;
@@ -900,6 +936,7 @@
         this.footer = null;
         this.xqr = null;
         this.searchParams = {};
+        this.constraints = {};
 
         // todo: implement cache
     };
@@ -1435,8 +1472,10 @@
 
     Grid.prototype.addParams = function (phrase, columnNum) {
         if (this.searchParams.hasOwnProperty(columnNum.toString())) {
-            this.searchParams[columnNum.toString()].push(phrase);
-            executeSearchByParams.call(this);
+            if (this.searchParams[columnNum.toString()].indexOf(phrase) < 0) {
+                this.searchParams[columnNum.toString()].push(phrase);
+                executeSearchByParams.call(this);
+            }
         }
         else {
             this.searchParams[columnNum.toString()] = new Array();
@@ -1448,18 +1487,54 @@
 
     Grid.prototype.removeParams = function (phrase, columnNum) {
         if(this.searchParams.hasOwnProperty(columnNum.toString())){
-            if (phrase == null){
-                delete this.searchParams[columnNum.toString()];
+            if (phrase == null) {
+                 delete this.searchParams[columnNum.toString()];
             }
-            for (var dex = this.searchParams[columnNum.toString()].length - 1; dex >= 0; dex--){
-                if (this.searchParams[columnNum.toString()][dex] == phrase){
-                    var tempIndex = this.searchParams[columnNum.toString()].indexOf(phrase);
-                    if(tempIndex < 0) break;
-                    this.searchParams[columnNum.toString()].splice(tempIndex, 1);
-                    break;
+            else {
+                for (var dex = this.searchParams[columnNum.toString()].length - 1; dex >= 0; dex--){
+                    if (this.searchParams[columnNum.toString()][dex] == phrase){
+                        var tempIndex = this.searchParams[columnNum.toString()].indexOf(phrase);
+                        if(tempIndex < 0) break;
+                        this.searchParams[columnNum.toString()].splice(tempIndex, 1);
+                        if (this.searchParams[columnNum.toString()].length == 0) {
+                            delete this.searchParams[columnNum.toString()];
+                        }
+                        break;
+                    }
                 }
             }
             executeSearchByParams.call(this);
+        }
+
+        return this;
+    };
+
+    Grid.prototype.addConstraint = function (constraint, columnNum) {
+        if (constraint != null){
+            if (this.constraints.hasOwnProperty(columnNum.toString())){
+                if (this.constraints[columnNum.toString()].indexOf(constraint) < 0){
+                    this.constraints[columnNum.toString()].push(constraint);
+                    executeSearchByParams.call(this);
+                }
+            }
+            else {
+                this.constraints[columnNum.toString()] = new Array();
+                this.constraints[columnNum.toString()].push(constraint);
+                executeSearchByParams.call(this);
+            }
+        }
+        else {
+            delete this.constraints[columnNum.toString()];
+        }
+
+        return this;
+    };
+
+    Grid.prototype.getParams = function () {
+        for(var i = 0; i < 12; i++){
+            if(!(this.searchParams[i.toString()] == null)){
+                console.log(this.searchParams[i.toString()] + " at " + i);
+            }
         }
 
         return this;

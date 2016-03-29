@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupTable extends Migration
+class CreateRostersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,13 @@ class CreateGroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('rosters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
-            $table->integer('budget');
-            $table->timestamps();
-            $table->boolean('team');
             $table->integer('user_ID')->unsigned();
+            $table->integer('group_ID')->unsigned();
 
             $table->foreign('user_ID')->references('id')->on('users');
+            $table->foreign('group_ID')->references('id')->on('groups');
         });
     }
 
@@ -32,9 +29,11 @@ class CreateGroupTable extends Migration
      */
     public function down()
     {
-        Schema::table('groups', function(Blueprint $table) {
-            $table->dropForeign('groups_user_ID_foreign');
+        Schema::table('rosters', function(Blueprint $table) {
+            $table->dropForeign('rosters_user_ID_foreign');
+            $table->dropForeign('rosters_group_ID_foreign');
         });
-        Schema::drop('groups');
+
+        Schema::drop('rosters');
     }
 }

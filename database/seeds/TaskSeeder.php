@@ -45,7 +45,7 @@ class TaskSeeder extends Seeder
             ],
             ['description' => 'Aid in the selection, purchase, and configuration of equipment for the fourth literacy van',
                 'date' => Carbon::createFromDate(2012, 9, 9, 'America/Toronto'),
-                'collaborators' => 'Kalil, Robin, Any',
+                'collaborators' => 'Alex Carruters, Elaine Jones',
                 'budget' => 0,
                 'successMeasured' => '',
                 'progress' => 0,
