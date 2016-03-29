@@ -115,6 +115,7 @@
                     <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress">Prog.</th>
+                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Modify</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -255,6 +256,11 @@
                                     return "<div>" + row[column.id] + "</div>";
                                 }
                             }
+                        },
+                        "commands": function(column, row)
+                        {
+                            return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                    "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
                         }
                     }
                 }
@@ -276,6 +282,16 @@
             else {
                 selectedRow = row;
             }
+        }).on("loaded.rs.jquery.bootgrid", function()
+        {
+            /* Executes after data is loaded and rendered */
+            grid.find(".command-edit").on("click", function(e)
+            {
+                getSelectedRowType();
+            }).end().find(".command-delete").on("click", function(e)
+            {
+
+            });
         });
 
         function getSelectedRowType(){
