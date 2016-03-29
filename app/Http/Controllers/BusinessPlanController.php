@@ -182,7 +182,7 @@ class BusinessPlanController extends Controller
       $objective = Objective::findOrFail($id);
       $goals = Goal::lists('name');
       $groups = Group::lists('name');
-      return view('businessPlan.editObjective',compact('objective','goals','groups'));
+      return view('businessPlan.editObjective',compact('objective','goals','groups','idbp'));
    }
   public function editAction($idbp,$id)
    {
@@ -191,7 +191,7 @@ class BusinessPlanController extends Controller
       $objectives = Objective::lists('name');
       $groups = Group::lists('name');
       $user = User::lists('name');
-      return view('businessPlan.editAction',compact('action','objectives','groups','user'));
+      return view('businessPlan.editAction',compact('action','objectives','groups','user','idbp'));
    }
    public function editTask($idbp,$id)
    {
@@ -200,7 +200,7 @@ class BusinessPlanController extends Controller
       $actions = Action::lists('description');
       $groups = Group::lists('name');
       $user = User::lists('name');
-      return view('businessPlan.editTask',compact('task','actions','groups','user'));
+      return view('businessPlan.editTask',compact('task','actions','groups','user','idbp'));
    }
    public function update($idbp,$idb,$id)
    {
