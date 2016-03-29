@@ -35,13 +35,25 @@
     border: 1px solid;
     display: inline-block;
     margin: 6px 2px;
+    padding-bottom: 8px;
 }
 
 .roster-headers {
     text-align: center;
     margin: 0;
-    /*background: aquamarine;*/
     padding: 20px 0;
+}
+
+.actions-header {
+    background: rgb(240,0,50);
+}
+
+.tasks-header{
+    background: rgb(0,200,0);
+}
+
+.roster-header {
+    background: rgb(255,200,0);
 }
 
 .roster-br-top {
@@ -59,7 +71,7 @@
 #group-name {
     text-align: center;
     margin: 0;
-    /*background: aquamarine;*/
+    background: rgb(0,150,255);
     padding: 20px 0;
 }
 
@@ -104,7 +116,7 @@
     font-weight: bold;
 }
 
-.action-task-content-link:hover {
+.action-task-content:hover {
     background: lightblue;
 }
 

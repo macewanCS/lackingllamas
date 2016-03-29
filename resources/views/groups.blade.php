@@ -53,7 +53,7 @@
                 <div class="group-elements" id="group-budget">Budget: N/A</div>
                 @endif
                 <hr class="roster-br-top">
-                <h2 class="roster-headers">Actions</h2>
+                <h2 class="roster-headers actions-header">Actions</h2>
                 <hr class="roster-br-bottom">
                 <div id="group-actions">
                     @if (count($groups))
@@ -69,7 +69,7 @@
                     @endif
                 </div>
                 <hr class="roster-br-top">
-                <h2 class="roster-headers">Tasks</h2>
+                <h2 class="roster-headers tasks-header">Tasks</h2>
                 <hr class="roster-br-bottom">
                 <div id="group-tasks">
                     @if (count($groups))
@@ -85,7 +85,7 @@
                     @endif
                 </div>
                 <hr class="roster-br-top">
-                <h2 class="roster-headers">Roster</h2>
+                <h2 class="roster-headers roster-header">Roster</h2>
                 <hr class="roster-br-bottom">
                 <div id="group-users">
                     @if (count($groups))
