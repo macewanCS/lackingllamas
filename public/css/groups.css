@@ -13,7 +13,7 @@
 }
 
 .groups-container-inner {
-    width: 1200px;
+    width: 900px;
     height: auto;
     top:0;
     bottom: 0;
@@ -25,11 +25,54 @@
 }
 
 .options-container {
+    float: left;
     border: 1px solid;
     display: inline-block;
+    margin: 6px 2px;
+    width: 210px;
 }
 
 .roster-container {
+    width: 670px;
     border: 1px solid;
     display: inline-block;
+    margin: 6px 2px;
+}
+
+.group-elements {
+    margin-left: 8px;
+}
+
+#group-name {
+    text-align: center;
+}
+
+.roster-names {
+    margin-left: 8px;
+}
+
+#link-result {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+#link-result:hover {
+    background: lightblue;
+}
+
+.result-list {
+    margin: 0px;
+    padding: 0px;
+}
+
+.result-list-elem {
+    list-style: none;
+    margin: 2px;
+    border-bottom: 1px solid;
+}
+
+.result-list-elem:last-child {
+    list-style: none;
+    border-bottom: none;
 }

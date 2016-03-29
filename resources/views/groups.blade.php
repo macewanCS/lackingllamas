@@ -14,26 +14,44 @@
                     {!! Form::checkbox('departmentsBox', 1, true) !!}
                 </div>
                 <br>
-                Results
+                <div>Select Group</div>
                 <hr>
                 <div id="search-results">
+                    <ul class="result-list">
                     @foreach($groups as $group)
-                        <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;">{{$group->name}}</a>
-                        <br>
+                        <li class="result-list-elem">
+                            <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;">{{$group->name}}</a>
+                            <br>
+                        </li>
                     @endforeach
+                    </ul>
                 </div>
             </div>
 
             <div class="roster-container">
                 <h2 id="group-name">{{$groups[0]['name']}}</h2>
                 <hr>
-                <div id="group-lead">Lead: {{$users->find($groups[0]['user_ID'])->name}}</div>
-                <div id="group-description">Description: {{$groups[0]['description']}}</div>
-                <div id="group-budget">Budget: {{$groups[0]['budget']}}</div>
-                <div id="group-actions">Actions: <br>
+                <div class="group-elements" id="group-lead">Lead: {{$users->find($groups[0]['user_ID'])->name}}</div>
+                <div class="group-elements" id="group-description">Description: {{$groups[0]['description']}}</div>
+                <div class="group-elements" id="group-budget">Budget: ${{$groups[0]['budget']}}.00</div>
+                <hr>
+                <h2>Actions</h2>
+                <hr>
+                <div id="group-actions">
                     @foreach ($actions as $action)
                         @if ($action->group == $groups[0]['id'])
                             {{$action->description}}
+                            <br>
+                        @endif
+                    @endforeach
+                </div>
+                <hr>
+                <h2>Tasks</h2>
+                <hr>
+                <div id="group-tasks">
+                    @foreach ($tasks as $task)
+                        @if ($task->group == $groups[0]['id'])
+                            {{$task->description}}
                             <br>
                         @endif
                     @endforeach
@@ -79,10 +97,10 @@
                         userContent+="<div class='user-content'>" + usersArray[j].name + "</div>";
 
             userText.innerHTML = userContent;
-            actionText.innerHTML = "Actions: " + actionContent;
+            actionText.innerHTML = actionContent;
             headerText.innerHTML = $name;
             descriptionText.innerHTML = "Description: " + description;
-            budgetText.innerHTML = "Budget: " + budget;
+            budgetText.innerHTML = "Budget: $" + budget + ".00";
             leadText.innerHTML = "Lead: " + lead;
         }
 

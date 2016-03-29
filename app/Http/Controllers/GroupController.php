@@ -6,6 +6,7 @@ use App\Roster;
 use Illuminate\Http\Request;
 use App\Group;
 use App\Action;
+use App\Task;
 use App\User;
 use App\Http\Requests;
 
@@ -16,8 +17,9 @@ class GroupController extends Controller
     public function groups() {
         $groups = Group::all();
         $actions = Action::all();
+        $tasks = Task::all();
         $users = User::all();
         $rosters = Roster::all();
-        return view('groups', compact('groups', 'actions', 'users', 'rosters'));
+        return view('groups', compact('groups', 'actions', 'tasks', 'users', 'rosters'));
     }
 }
