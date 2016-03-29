@@ -20,7 +20,7 @@
                     <ul class="result-list">
                     @foreach($groups as $group)
                         <li class="result-list-elem">
-                            <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;">{{$group->name}}</a>
+                            <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;">{{$group->name}}</a>
                             <br>
                         </li>
                     @endforeach
@@ -73,7 +73,7 @@
 
     </div>
     <script>
-        function display(element, lead, description, budget, actions, users, id, rosters) {
+        function display(element, lead, description, budget, actions, tasks, users, id, rosters) {
 
             var $name = element.innerHTML;
             var headerText = document.getElementById("group-name");
@@ -81,15 +81,23 @@
             var leadText = document.getElementById("group-lead");
             var budgetText = document.getElementById("group-budget");
             var actionText = document.getElementById("group-actions");
+            var taskText = document.getElementById("group-tasks");
             var userText = document.getElementById("group-users");
             var actionsArray = JSON.parse(actions);
+            var tasksArray = JSON.parse(tasks);
             var usersArray = JSON.parse(users);
             var rostersArray = JSON.parse(rosters);
             var actionContent = '';
+            var taskContent = '';
             var userContent = '';
+
             for (var i = 0; i < actionsArray.length; i++)
                 if (actionsArray[i].group == id)
-                    actionContent+="<div class='action-content'>" + actionsArray[i].description + "</div>";
+                    actionContent+="<div class='action-content'> <a href=\"action/" + actionsArray[i].id + "\">" + actionsArray[i].description + "</a> </div>";
+
+            for (var i = 0; i < tasksArray.length; i++)
+                if (tasksArray[i].group == id)
+                    taskContent+="<div class='task-content'> <a href=\"task/" + tasksArray[i].id + "\">" + tasksArray[i].description + "</a> </div>";
 
             for (var j = 0; j < usersArray.length; j++)
                 for (var k = 0; k < rostersArray.length; k++)
@@ -98,6 +106,7 @@
 
             userText.innerHTML = userContent;
             actionText.innerHTML = actionContent;
+            taskText.innerHTML = taskContent;
             headerText.innerHTML = $name;
             descriptionText.innerHTML = "Description: " + description;
             budgetText.innerHTML = "Budget: $" + budget + ".00";
