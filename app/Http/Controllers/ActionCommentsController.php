@@ -30,7 +30,8 @@ class ActionCommentsController extends Controller
             array_push($users, $x->user_ID);
         $user = User::find(Auth::id());
         $permission = $user->hasRole('bpLead');
-        return view('action', compact('comments', 'action', 'tasks', 'users', 'permission'));
+        $groupLead = User::find(Group::find($action->group)->user_ID)->id;
+        return view('action', compact('comments', 'action', 'tasks', 'users', 'permission', 'groupLead'));
     }
 
     public function store($action_id, Requests\CommentActionRequest $request)
