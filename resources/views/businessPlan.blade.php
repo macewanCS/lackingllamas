@@ -25,7 +25,6 @@
                     <a href="/businessplan/createtask">Create Task</a>
                 </div>
 
-                <button onclick="getSelectedRowType()">Edit</button>
             </div>
 
             <div class="filtering">
@@ -265,14 +264,13 @@
                     }
                 }
         ).on("selected.rs.jquery.bootgrid", function(e, rows){
-            console.log("selected");
             var rowsIds = [];
             for (var i = 0; i < rows.length; i++)
             {
                 rowIds.push(rows[i].id);
-                if (i = rows.length - 1){
+                if (i == rows.length - 1){
                     selectedRow = rows[i];
-                    getSelectedRowType();
+                    window.location.assign("/businessplan/" + selectedRow.id + "/edit/" + selectedRow.type);
                 }
             }
         }).on("deslected.rs.jquery.bootgrid", function (e, rows){
@@ -301,15 +299,6 @@
                 //TODO: ADD the actual AJAX to delete the row from the database
             });
         });
-
-        function getSelectedRowType(){
-            if (selectedRow == null){
-                alert('Please select a row first');
-            }
-            else {
-                window.location.assign("/businessplan/" + selectedRow.id + "/edit/" + selectedRow.type);
-            }
-        }
 
         var goatSelector = $("#GOAT").multiselect({
             height: "auto",

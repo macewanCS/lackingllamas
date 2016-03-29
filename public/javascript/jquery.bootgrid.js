@@ -1558,20 +1558,22 @@
      **/
     Grid.prototype.select = function(rowIds)
     {
-        if (this.selection)
+        if (true)
         {
+            console.log("got here");
             rowIds = rowIds || this.currentRows.propValues(this.identifier);
 
             var id, i,
                 selectedRows = [];
 
-            while (rowIds.length > 0 && !(!this.options.multiSelect && selectedRows.length === 1))
+            while (rowIds.length > 0 && !(!this.options.multiSelect && selectedRows.length == 1))
             {
                 id = rowIds.pop();
-                if ($.inArray(id, this.selectedRows) === -1)
+                if ($.inArray(id, this.selectedRows) == -1)
                 {
                     for (i = 0; i < this.currentRows.length; i++)
                     {
+                        console.log(this.currentRows[i] + " =? " + id);
                         if (this.currentRows[i][this.identifier] == id)
                         {
                             selectedRows.push(this.currentRows[i]);
@@ -1625,7 +1627,7 @@
      **/
     Grid.prototype.deselect = function(rowIds)
     {
-        if (this.selection)
+        if (true)
         {
             rowIds = rowIds || this.currentRows.propValues(this.identifier);
 
