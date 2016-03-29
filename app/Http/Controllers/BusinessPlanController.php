@@ -176,31 +176,35 @@ class BusinessPlanController extends Controller
   
       return view('businessPlan.editGoal',compact('goal','groups','bp'));
    }
-   public function editObjective($id)
+   public function editObjective($idbp,$id)
    {
+      $bp = BusinessPlan::findOrFail($idbp);
       $objective = Objective::findOrFail($id);
       $goals = Goal::lists('name');
       $groups = Group::lists('name');
       return view('businessPlan.editObjective',compact('objective','goals','groups'));
    }
-  public function editAction($id)
+  public function editAction($idbp,$id)
    {
+      $bp = BusinessPlan::findOrFail($idbp);
       $action = Action::findOrFail($id);
       $objectives = Objective::lists('name');
       $groups = Group::lists('name');
       $user = User::lists('name');
       return view('businessPlan.editAction',compact('action','objectives','groups','user'));
    }
-   public function editTask($id)
+   public function editTask($idbp,$id)
    {
+       $bp = BusinessPlan::findOrFail($idbp);
       $task = Task::findOrFail($id);
       $actions = Action::lists('description');
       $groups = Group::lists('name');
       $user = User::lists('name');
       return view('businessPlan.editTask',compact('task','actions','groups','user'));
    }
-   public function update($idbp,$id)
+   public function update($idbp,$id,$id)
    {
+
       $input = Request::all();
       if(Request::has('created')){
       $bp = BusinessPlan::all();

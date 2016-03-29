@@ -294,7 +294,7 @@
             grid.find(".command-edit").on("click", function(e)
             {
                 var row = grid.bootgrid("getRowData", $(this).data("row-id"));
-                window.location.assign("/businessplan/{{$idbp}}/" + row.id + "/edit/" + row.type);
+                window.location.assign("/businessplan/{{$idbp}}/"+ row.type +"/"+ row.id + "/edit");
 
 
             }).end().find(".command-delete").on("click", function(e)
@@ -303,7 +303,7 @@
                 var token = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: "POST",
-                    url: "/businessplan/{{$idbp}}" + row.id +"/delete/" + row.type,
+                    url: "/businessplan/{{$idbp}}/" + row.type + "/" + row.id +"/delete",
                     data: {_token:token}
                 });
                 grid.bootgrid("remove", [$(this).data("row-id")]);
