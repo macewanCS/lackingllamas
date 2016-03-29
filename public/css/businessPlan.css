@@ -160,8 +160,8 @@
 }
 
 #grid-basic > thead > tr > th.budget {
-    width: 7.5%;
-    max-width: 7.5%;
+    width: 5%;
+    max-width: 5%;
 }
 
 #grid-basic > thead > tr > th.successM {
@@ -170,11 +170,16 @@
 }
 
 #grid-basic > thead > tr > th.group {
-    width: 7.5%;
-    max-width: 7.5%;
+    width: 5%;
+    max-width: 5%;
 }
 
 #grid-basic > thead > tr > th.user {
+    width: 5%;
+    max-width: 5%;
+}
+
+#grid-basic > thead > tr > th.commands {
     width: 7.5%;
     max-width: 7.5%;
 }
