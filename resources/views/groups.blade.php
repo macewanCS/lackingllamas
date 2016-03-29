@@ -21,11 +21,11 @@
                     @if (count($groups))
                         @foreach($groups as $group)
                             @if($group->team)
-                            <li class="result-list-elem team">
+                            <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
                             @else
-                            <li class="result-list-elem department">
+                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
                             @endif
-                                <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;">{{$group->name}}</a>
+                                <a id="link-result">{{$group->name}}</a>
                                 <br>
                             </li>
                         @endforeach
@@ -103,11 +103,11 @@
         </div>
 
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>>   
     <script type="text/javascript">
         function display(element, lead, description, budget, actions, tasks, users, id, rosters) {
 
-            var $name = element.innerHTML;
+            var $name = element;
             var headerText = document.getElementById("group-name");
             var descriptionText = document.getElementById("group-description");
             var leadText = document.getElementById("group-lead");

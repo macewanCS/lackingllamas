@@ -42,6 +42,7 @@
     text-align: center;
     margin: 0;
     padding: 20px 0;
+    font-weight: normal;
 }
 
 .actions-header {
@@ -57,11 +58,11 @@
 }
 
 .roster-br-top {
-    margin: 8px 0 0 0;
+    margin: 8px 0 -1px 0;
 }
 
 .roster-br-bottom {
-    margin: 0 0 8px 0;
+    margin: -1px 0 8px 0;
 }
 
 .group-elements {
@@ -73,6 +74,7 @@
     margin: 0;
     background: rgb(0,150,255);
     padding: 20px 0;
+    font-weight: normal;
 }
 
 .roster-names {
@@ -85,9 +87,9 @@
     font-weight: bold;
 }
 
-#link-result:hover {
-    background: lightblue;
-}
+/*#link-result:hover {
+    background: #ddd;
+}*/
 
 .result-list {
     margin: 0px;
@@ -98,6 +100,11 @@
     list-style: none;
     margin: 2px;
     border-bottom: 1px solid;
+}
+
+.result-list-elem:hover {
+    background: #ddd;
+    cursor: pointer;
 }
 
 .result-list-elem:last-child {
@@ -117,14 +124,14 @@
 }
 
 .action-task-content:hover {
-    background: lightblue;
+    background: #ddd;
 }
 
 /*team or department*/
 .team {
-    /*css*/
+
 }
 
 .department {
-    /*css*/
+
 }
