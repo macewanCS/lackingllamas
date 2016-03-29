@@ -1555,6 +1555,13 @@
         }
     };
 
+    Grid.prototype.sortRows = function (sorter){
+        this.rows.sort(sorter);
+        this.currentRows.sort(sorter);
+        loadData.call(this);
+        return this;
+    };
+
 
     /**
      * Selects rows by ids. Selects all visible rows if no ids are provided.

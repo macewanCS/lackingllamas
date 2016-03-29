@@ -559,6 +559,15 @@
             setupDate2();
             document.getElementById("budgetFrom").value = "";
             document.getElementById("budgetTo").value = "";
+            grid.bootgrid("sort");
+            grid.bootgrid("sortRows", function (a, b){
+                if (a.ident >= b.ident) {
+                    return 1;
+                }
+                    else {
+                    return -1;
+                }
+            });
         }
 
         $(document).ready(function () {
