@@ -16,7 +16,7 @@ class ActionComments extends Model
     public function getComments($action_id)
     {
         $comments = ActionComments::All();
-        $comment = $comments->where('action_ID', $action_id)->all();
+        $comment = $comments->where('action_ID', (int)$action_id);
         return $comment;
     }
 }
