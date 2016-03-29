@@ -93,6 +93,10 @@
 
             </div>
 
+            <div class="Clear">
+                <button onclick="clearFilters()">Reset Filtering</button>
+            </div>
+
         </div>
 
         <div class="tableDiv">
@@ -201,6 +205,8 @@
     <script type="text/javascript">
         var rowIds = [];
         var selectedRow;
+        var date1;
+        var date2;
         var grid = $("#grid-basic").bootgrid(
                 {
                     columnSelection: false,
@@ -424,59 +430,62 @@
             }
         }).multiselectfilter();
 
-        var date1 = $("#datePicker").datepicker({
-            dateFormat: "yy-mm-dd",
-            showButtonPanel: true,
-            onClose: function (dateText, inst) {
-                if (dateText != ""){
-                    grid.bootgrid("removeParams", undefined, 10);
-                    grid.bootgrid("addConstraint", undefined, 10);
-                    grid.bootgrid("addParams", dateText, 10);
-                    grid.bootgrid("addConstraint", "greater", 10);
-                    if (document.getElementById("datePicker2").value != "") {
-                        grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
-                        grid.bootgrid("addConstraint", "lesser", 10);
-                    }
-                }
-                else {
-                    grid.bootgrid("removeParams", undefined, 10);
-                    grid.bootgrid("addConstraint", undefined, 10);
-                    if (document.getElementById("datePicker2").value != "") {
-                        grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
-                        grid.bootgrid("addConstraint", "lesser", 10);
-                    }
-                }
-            }
-        });
 
-
-        var date2 = $("#datePicker2").datepicker({
-            dateFormat: "yy-mm-dd",
-            showButtonPanel: true,
-            onClose: function (dateText, inst) {
-                if (dateText != ""){
-                    grid.bootgrid("removeParams", undefined, 10);
-                    grid.bootgrid("addConstraint", undefined, 10);
-                    grid.bootgrid("addParams", dateText, 10);
-                    grid.bootgrid("addConstraint", "lesser", 10);
-                    if (document.getElementById("datePicker").value != "") {
-                        console.log(date1.datepicker("widget"));
-                        grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
+        function setupDate1 () {
+            date1 = $("#datePicker").datepicker({
+                dateFormat: "yy-mm-dd",
+                showButtonPanel: true,
+                onClose: function (dateText, inst) {
+                    if (dateText != "") {
+                        grid.bootgrid("removeParams", undefined, 10);
+                        grid.bootgrid("addConstraint", undefined, 10);
+                        grid.bootgrid("addParams", dateText, 10);
                         grid.bootgrid("addConstraint", "greater", 10);
+                        if (document.getElementById("datePicker2").value != "") {
+                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
+                            grid.bootgrid("addConstraint", "lesser", 10);
+                        }
+                    }
+                    else {
+                        grid.bootgrid("removeParams", undefined, 10);
+                        grid.bootgrid("addConstraint", undefined, 10);
+                        if (document.getElementById("datePicker2").value != "") {
+                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
+                            grid.bootgrid("addConstraint", "lesser", 10);
+                        }
                     }
                 }
-                else {
-                    grid.bootgrid("removeParams", undefined, 10);
-                    grid.bootgrid("addConstraint", undefined, 10);
-                    if (document.getElementById("datePicker").value != "") {
-                        grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
-                        grid.bootgrid("addConstraint", "greater", 10);
-                    }
-                }
-                grid.bootgrid("getParams");
-            }
-        });
+            });
+        }
 
+        function setupDate2 () {
+            date2 = $("#datePicker2").datepicker({
+                dateFormat: "yy-mm-dd",
+                showButtonPanel: true,
+                onClose: function (dateText, inst) {
+                    if (dateText != "") {
+                        grid.bootgrid("removeParams", undefined, 10);
+                        grid.bootgrid("addConstraint", undefined, 10);
+                        grid.bootgrid("addParams", dateText, 10);
+                        grid.bootgrid("addConstraint", "lesser", 10);
+                        if (document.getElementById("datePicker").value != "") {
+                            console.log(date1.datepicker("widget"));
+                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
+                            grid.bootgrid("addConstraint", "greater", 10);
+                        }
+                    }
+                    else {
+                        grid.bootgrid("removeParams", undefined, 10);
+                        grid.bootgrid("addConstraint", undefined, 10);
+                        if (document.getElementById("datePicker").value != "") {
+                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
+                            grid.bootgrid("addConstraint", "greater", 10);
+                        }
+                    }
+                    grid.bootgrid("getParams");
+                }
+            });
+        }
         var oldFromText = "";
         var budgetFrom = $("#budgetFrom").on("change keyup paste", function (){
             var currentFromText = $(this).val();
@@ -520,7 +529,6 @@
                     grid.bootgrid("addParams", currentToText, 8);
                     grid.bootgrid("addConstraint", "lesser", 8);
                     if (budgetFrom.val() != ""){
-                        console.log(budgetFrom.val());
                         grid.bootgrid("addParams", budgetFrom.val(), 8);
                         grid.bootgrid("addConstraint", "greater", 8);
                     }
@@ -536,6 +544,26 @@
             }
         });
 
+        function clearFilters () {
+            grid.bootgrid("clearParams");
+            goatSelector.multiselect("checkAll");
+            grid.bootgrid("addParams", "Goal", 2);
+            grid.bootgrid("addParams", "Objective", 2);
+            grid.bootgrid("addParams", "Action", 2);
+            grid.bootgrid("addParams", "Task", 2);
+            collabSelector.multiselect("uncheckAll");
+            leadSelector.multiselect("uncheckAll");
+            groupSelector.multiselect("uncheckAll");
+            date1.datepicker("destroy");
+            date2.datepicker("destroy");
+            document.getElementById("datePicker").value = "";
+            document.getElementById("datePicker2").value = "";
+            setupDate1();
+            setupDate2();
+            document.getElementById("budgetFrom").value = "";
+            document.getElementById("budgetTo").value = "";
+        }
+
         $(document).ready(function () {
            grid.bootgrid("addParams", "Goal", 2);
            grid.bootgrid("addParams", "Objective", 2);
@@ -547,6 +575,8 @@
             leadSelector.multiselect("uncheckAll");
             groupMaxCount = groupSelector.multiselect("getChecked").length;
             groupSelector.multiselect("uncheckAll");
+            setupDate1();
+            setupDate2();
         });
     </script>
     <script>

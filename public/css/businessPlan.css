@@ -305,6 +305,18 @@
 
 }
 
+#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle {
+    width: 100% !important;
+}
+
+#mainDiv > div.sideDiv > div.Clear {
+    margin-top: 10%;
+}
+
+#mainDiv > div.sideDiv > div.Clear > button {
+    float: right;
+}
+
 #mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect {
     width: 100% !important;
 }
