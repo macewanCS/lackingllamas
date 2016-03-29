@@ -7,7 +7,7 @@
 @section('content')
     <div class="action-container">
         @if (Auth::check())
-            @if ($action->userId == Auth::id())
+            @if ($action->userId == Auth::id() || $permission == true)
 
                 <a class="edit" href="{{ url('/action',$action->id) }}/edit">
                     {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
@@ -106,7 +106,7 @@
                     @endforeach
                 </div>
             </ul>
-            @if ( (Auth::id() == $action->userId) == true || (array_search(strval(Auth::id()), $users, true)) !== false)
+            @if ( (Auth::id() == $action->userId) == true || (array_search(strval(Auth::id()), $users, true)) !== false || $permission == true)
                 <div class="comment-form">
                     {!! Form::open(array('action' => array('ActionCommentsController@store', $action->id))) !!}
 

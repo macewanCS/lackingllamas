@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+
 class TaskCommentsController extends Controller
 {
     public function __construct() {}
@@ -24,7 +25,9 @@ class TaskCommentsController extends Controller
         $roster = DB::table('rosters')->select('user_ID')->where('group_ID','=', $task->group)->get();
         foreach ($roster as $x)
             array_push($users, $x->user_ID);
-        return view('task', compact('comments', 'task', 'users'));
+        $user = User::find(Auth::id());
+        $permission = $user->hasRole('bpLead');
+        return view('task', compact('comments', 'task', 'users', 'permission'));
     }
 
     public function store($task_id, Requests\CommentTaskRequest $request)

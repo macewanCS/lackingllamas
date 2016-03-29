@@ -13,6 +13,7 @@ use App\User;
 use App\ActionComments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Zizaco\Entrust\EntrustPermission;
 
 class ActionCommentsController extends Controller
 {
@@ -27,7 +28,9 @@ class ActionCommentsController extends Controller
         $roster = DB::table('rosters')->select('user_ID')->where('group_ID','=', $action->group)->get();
         foreach ($roster as $x)
             array_push($users, $x->user_ID);
-        return view('action', compact('comments', 'action', 'tasks', 'users'));
+        $user = User::find(Auth::id());
+        $permission = $user->hasRole('bpLead');
+        return view('action', compact('comments', 'action', 'tasks', 'users', 'permission'));
     }
 
     public function store($action_id, Requests\CommentActionRequest $request)

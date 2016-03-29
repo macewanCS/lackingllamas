@@ -7,7 +7,7 @@
 @section('content')
     <div class="task-container">
         @if (Auth::check())
-            @if ($task->userId == Auth::id())
+            @if ($task->userId == Auth::id() || $permission == true)
 
                 <a class="edit" href="{{ url('/task',$task->id) }}/edit">
                     {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
@@ -95,7 +95,7 @@
                     @endforeach
                 </div>
             </ul>
-            @if ( (Auth::id() == $task->userId) == true || (array_search(strval(Auth::id()), $users, true)) !== false)
+            @if ( (Auth::id() == $task->userId) == true || (array_search(strval(Auth::id()), $users, true)) !== false || $permission == true)
                 <div class="comment-form">
 
                     {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
