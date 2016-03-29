@@ -1496,6 +1496,9 @@
                         var tempIndex = this.searchParams[columnNum.toString()].indexOf(phrase);
                         if(tempIndex < 0) break;
                         this.searchParams[columnNum.toString()].splice(tempIndex, 1);
+                        if (this.searchParams[columnNum.toString()].length == 0) {
+                            delete this.searchParams[columnNum.toString()];
+                        }
                         break;
                     }
                 }

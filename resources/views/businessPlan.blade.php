@@ -533,7 +533,6 @@
                         grid.bootgrid("addConstraint", "greater", 8);
                     }
                 }
-                grid.bootgrid("getParams");
             }
         });
 
@@ -542,12 +541,12 @@
            grid.bootgrid("addParams", "Objective", 2);
            grid.bootgrid("addParams", "Action", 2);
            grid.bootgrid("addParams", "Task", 2);
-            collabSelector.multiselect("checkAll");
             collabMaxCount = collabSelector.multiselect("getChecked").length;
-            leadSelector.multiselect("checkAll");
+            collabSelector.multiselect("uncheckAll");
             leadMaxCount = leadSelector.multiselect("getChecked").length;
-            groupSelector.multiselect("checkAll");
+            leadSelector.multiselect("uncheckAll");
             groupMaxCount = groupSelector.multiselect("getChecked").length;
+            groupSelector.multiselect("uncheckAll");
         });
     </script>
     <script>
