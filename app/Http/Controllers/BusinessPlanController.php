@@ -223,6 +223,12 @@ class BusinessPlanController extends Controller
       }
     return redirect('businessplan');
    }
+
+
+    function deleteGoal ($id, Request $request) {
+        Goal::findOrFail($id)->first()->delete();
+        return;
+    }
 }
 
        
