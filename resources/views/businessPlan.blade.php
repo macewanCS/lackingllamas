@@ -37,7 +37,7 @@
                     <option value="Goal" selected="selected">Goals</option>
                     <option value="Objective" selected="selected">Objectives</option>
                     <option value="Action" selected="selected">Actions</option>
-                    <option value="Task" selected="selected">Task</option>
+                    <option value="Task" selected="selected">Tasks</option>
                 </select>
             </div>
 
@@ -195,7 +195,6 @@
 @stop
 
 @section('scripts')
-    {!! Html::script('javascript/jquery-2.0.3.min.js') !!}
     {!! Html::script('javascript/jquery-ui/jquery-ui.js') !!}
     {!! Html::script('javascript/jquery.bootgrid.js') !!}
     {!! Html::script('javascript/jquery.bootgrid.fa.js') !!}
@@ -596,11 +595,7 @@
 
         function clearFilters () {
             grid.bootgrid("clearParams");
-            goatSelector.multiselect("checkAll");
-            grid.bootgrid("addParams", "Goal", 2);
-            grid.bootgrid("addParams", "Objective", 2);
-            grid.bootgrid("addParams", "Action", 2);
-            grid.bootgrid("addParams", "Task", 2);
+            goatSelector.multiselect("uncheckAll");
             collabSelector.multiselect("uncheckAll");
             leadSelector.multiselect("uncheckAll");
             groupSelector.multiselect("uncheckAll");
@@ -623,8 +618,21 @@
             });
         }
 
-        function setFilters (filterSettings) {
-
+        function setFilters () {
+            clearFilters();
+            @if($filters["type"] != null)
+                goatSelector.multiselect("checkAll");
+                var types = goatSelector.multiselect("getChecked");
+                types = Array(types.slice(0,4))["0"];
+                goatSelector.multiselect("uncheckAll");
+                @foreach($filters["type"] as $type)
+                    for(var i = 0; i < 4; i++) {
+                        if (types[String(i)].value == "{{$type}}") {
+                            goatSelector.multiselect("widget").find(":checkbox:eq(" + i + ")").click();
+                        }
+                    }
+                @endforeach
+            @endif
         }
 
 
@@ -642,11 +650,13 @@
             setupDate1();
             setupDate2();
             var rowCount = grid.bootgrid("getTotalRowCount");
-            console.log(rowCount);
             maxGoals = Math.ceil(rowCount * 0.15);
             maxObj = Math.ceil(rowCount * 0.35);
             maxActions = Math.ceil(rowCount * 0.65);
             maxTasks = Math.ceil(rowCount * 0.75);
+            @if($filters != null)
+                setFilters();
+            @endif
         });
     </script>
     <script>
