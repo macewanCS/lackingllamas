@@ -114,7 +114,7 @@
                     <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress" data-sortable="false">Prog.</th>
-                    <th data-column-id="commands" data-formatter="commands" data-header-css-class="commands" data-sortable="false">Utilities</th>
+                    <th data-column-id="commands" data-formatter="commands" data-header-css-class="commands" data-sortable="false" data-align="right">Utilities</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -268,13 +268,13 @@
                         },
                         "commands": function(column, row) {
                             if (row["type"] == "Action" || row["type"] == "Task") {
-                                return "<button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> " +
+                                return "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> " +
                                         "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                             }
                             else {
-                                return  "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button>";
+                                return  "<div class\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                             }
                         }
                     }
@@ -621,6 +621,10 @@
                     return -1;
                 }
             });
+        }
+
+        function setFilters (filterSettings) {
+
         }
 
 

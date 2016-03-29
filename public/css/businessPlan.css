@@ -46,7 +46,8 @@
     width: 99%;
 }
 
-#grid-basic > thead > tr > th.text-left {
+#grid-basic > thead > tr > th.text-left,
+#grid-basic > thead > tr > th.text-right {
     border: none;
     background-color: #f3f5f5;
     font-size: 0.85em;
@@ -56,10 +57,12 @@
     font-weight: lighter;
 }
 
+#grid-basic > thead > tr > th.text-right,
 #grid-basic > thead > tr > th.text-left {
     padding-right: 1vw;
 }
 
+#grid-basic > tbody > tr > td.text-right
 #grid-basic > tbody > tr > td.text-left {
     padding-right: 1vw;
     padding-top: 0.25%;
@@ -77,6 +80,7 @@
     max-width: inherit;
 }
 
+#grid-basic > thead > tr > th.text-right > a,
 #grid-basic > thead > tr > th.text-left > a {
     color: grey !important;
     font-weight: normal !important;
@@ -211,13 +215,15 @@
     background-color: #ebebeb !important;
 }
 
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right > div,
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left > div {
     font-weight: normal;
 }
 
 
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.select-cell,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right
 {
     background-color: inherit !important;
 }
@@ -229,6 +235,7 @@
     font-weight: normal !important;
 }
 
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right > div,
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left > div {
     font-weight: normal;
 }
@@ -342,4 +349,13 @@
 
 #mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.descript {
     margin-left: 5%;
+}
+
+#mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.commandButtons {
+    width: 100%;
+    text-align: right;
+}
+
+#mainDiv > .tableDiv > #grid-basic > tbody > tr.danger > td.text-right {
+    background-color: white !important;
 }
