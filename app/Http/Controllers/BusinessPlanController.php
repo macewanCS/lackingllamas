@@ -169,7 +169,7 @@ class BusinessPlanController extends Controller
    public function editGoal($idbp, $id)
    {
 
-      $bp = BusinessPlan::findOrFail($idbp);
+      //$bp = BusinessPlan::findOrFail($idbp);
       $goal = Goal::findOrFail($id);
       $groups = Group::lists('name');
       $bp = BusinessPlan::lists('name');
@@ -202,7 +202,7 @@ class BusinessPlanController extends Controller
       $user = User::lists('name');
       return view('businessPlan.editTask',compact('task','actions','groups','user'));
    }
-   public function update($idbp,$id,$id)
+   public function update($idbp,$idb,$id)
    {
 
       $input = Request::all();
@@ -215,7 +215,7 @@ class BusinessPlanController extends Controller
         $goal = Goal::findOrFail($id);
         $input['group'] += 1;
         $input['bpid'] += 1;      
-        $goal->update($request);
+        $goal->update($input);
       }
       if (Request::has('goal_id')) {
         $objective = Objective::findOrFail($id);
@@ -237,7 +237,7 @@ class BusinessPlanController extends Controller
         $input['userId'] += 1; 
         $task->update($input);
       }
-    return redirect('businessplan');
+    return redirect('businessplan/');
    }
 
 

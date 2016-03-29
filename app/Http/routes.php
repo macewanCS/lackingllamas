@@ -63,8 +63,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan/{idbp}/Objective/{id}/edit','BusinessPlanController@editObjective'); 
     Route::get('businessplan/{idbp}/Action/{id}/edit','BusinessPlanController@editAction');
     Route::get('businessplan/{idbp}/Task/{id}/edit','BusinessPlanController@editTask');
-    Route::put('businessplan/{idbp}/{id}{true}','BusinessPlanController@update');
-    Route::patch('businessplan/{idbp}/{id}{true}','BusinessPlanController@update');
+    Route::put('businessplan/{idbp}/{id}/{true}','BusinessPlanController@update');
+    Route::patch('businessplan/{idbp}/{id}/{true}','BusinessPlanController@update');
 
     Route::post('businessplan/{idbp}/Goal/{id}/delete', 'BusinessPlanController@deleteGoal');
     Route::post('businessplan/{idbp}/Objective/{id}/delete', 'BusinessPlanController@deleteObjective');
