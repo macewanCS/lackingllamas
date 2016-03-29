@@ -303,7 +303,7 @@
                 var token = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: "POST",
-                    url: "/businessplan/{{idbp}}" + row.id +"/delete/" + row.type,
+                    url: "/businessplan/{{$idbp}}" + row.id +"/delete/" + row.type,
                     data: {_token:token}
                 });
                 grid.bootgrid("remove", [$(this).data("row-id")]);
