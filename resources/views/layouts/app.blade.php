@@ -15,44 +15,18 @@
     <div class="container-topbar">
 
 
-        <div class="topbar-header">
 
-            <!-- Branding Image -->
-            <a class="topbar-brand" href="{{ url('/') }}">
-                <img src ="http://d34rompce3lx70.cloudfront.net/wp-content/uploads/sites/18/2015/11/DesktopLogo_190x105.png?v=1455821533145582093014558209303">
-                <!-- TODO move EPL Logo to here. -->
-            </a>
-
-            <!-- Right Side Of topbar -->
-            <ul class="nav topbar-nav topbar-right">
-
-                <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <button class="dropbtn">
-                        Login
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    </div>
-                @else
-                    <button class="dropbtn">
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
-                    </div>
-
-                @endif
-            </ul>
-        </div>
 
         <div class="collapse topbar-collapse" id="app-topbar-collapse">
 
             <!-- Left Side Of topbar -->
 
             <ul class="nav topbar-nav">
-                @if (Auth::guest())
+                <!-- Branding Image -->
+                <li><div class="topbar-text"><a href="{{ url('/') }}">{{HTML::image('pictures/EPL.png',null, ['class' => 'topbar-img'])}}
+                </a></div></li>
+
+            @if (Auth::guest())
                     @if (Request::path() == 'businessplan')
                         <li><div class="topbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
                     @else
@@ -78,7 +52,7 @@
                         <li><div class="topbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
                     @endif
 
-                    @if (Request::path() == 'teams')
+                    @if (Request::path() == 'groups')
                         <li><div class="topbar-current"><a href="{{ url('/groups') }}">Groups</a></div></li>
                     @else
                         <li><div class="topbar-text"><a href="{{ url('/groups') }}">Groups</a></div></li>
@@ -86,8 +60,28 @@
                 @endif
 
             </ul>
-
         </div>
+            <!-- Right Side Of topbar -->
+            <span class="nav topbar-nav topbar-right">
+
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <button class="dropbtn">
+                        Login
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url('/login') }}">Login</a>
+                    </div>
+                @else
+                    <button class="dropbtn">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                    </div>
+
+                @endif
+                </span>
     </div>
 </nav>
 

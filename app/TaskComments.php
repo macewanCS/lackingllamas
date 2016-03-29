@@ -21,7 +21,7 @@ class TaskComments extends Model
 
     public function getComments($task_id) {
         $comments = TaskComments::All();
-        $comment = $comments->where('task_ID', (int)$task_id)->all();
+        $comment = $comments->where('task_ID', $task_id)->all();
         return $comment;
     }
 }
