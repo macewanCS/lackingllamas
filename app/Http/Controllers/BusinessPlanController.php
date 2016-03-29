@@ -178,7 +178,7 @@ class BusinessPlanController extends Controller
    }
    public function editObjective($idbp,$id)
    {
-      $bp = BusinessPlan::findOrFail($idbp);
+   
       $objective = Objective::findOrFail($id);
       $goals = Goal::lists('name');
       $groups = Group::lists('name');
@@ -186,7 +186,7 @@ class BusinessPlanController extends Controller
    }
   public function editAction($idbp,$id)
    {
-      $bp = BusinessPlan::findOrFail($idbp);
+   
       $action = Action::findOrFail($id);
       $objectives = Objective::lists('name');
       $groups = Group::lists('name');

@@ -11,7 +11,7 @@
         <hr>
         <div class="create-goal-inner">
 
-            {!! Form::model($task,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $idbp,Task, $task->id]]) !!}
+            {!! Form::model($task,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $idbp,'Task', $task->id]]) !!}
             <div class="form-group-one">
 
                 {!! Form::label('action_id','Action: ', ['class' => 'edit-task-label']) !!}

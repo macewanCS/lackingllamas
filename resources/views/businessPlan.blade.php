@@ -31,7 +31,15 @@
             <div class="filtering">
                 <label>Filter By:</label>
             </div>
-
+            <div class="bpSelector">
+                <label>Type: </label>
+                <select id="bpSelect" name="bpSelect" multiple="multiple">
+                    <option value=1 selected="selected">1</option>
+                    <option value=2 selected="selected">2</option>
+                    <option value=3 selected="selected">3</option>
+                    <option value=4 selected="selected">4</option>
+                </select>
+            </div>
             <div class="goatSelector">
                 <label>Type: </label>
                 <select id="GOAT" name="GOAT" multiple="multiple">
@@ -313,6 +321,20 @@
                 var row = grid.bootgrid("getRowData", $(this).data("row-id"));
                 window.location.assign("/" + row.type.toLowerCase() + "/" + row.id);
             });
+        });
+        var bpSelector = $("#bpSelect").multiselect({
+            height: "auto",
+            noneSelectedText: "Choose Element",
+            selectedList: 0,
+            header: "Choose element(s)",
+            click: function (event, ui) {
+                if (ui.checked){
+                    grid.bootgrid("addParams", ui.value, 2);
+                }
+                else {
+                    grid.bootgrid("removeParams", ui.value, 2);
+                }
+            }
         });
 
         function cascadeDeletes (ident) {
