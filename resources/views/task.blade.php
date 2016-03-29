@@ -95,7 +95,7 @@
                     @endforeach
                 </div>
             </ul>
-            @if (!Auth::guest())
+            @if ( (Auth::id() == $task->userId) == true || (array_search(strval(Auth::id()), $users, true)) !== false)
                 <div class="comment-form">
 
                     {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}

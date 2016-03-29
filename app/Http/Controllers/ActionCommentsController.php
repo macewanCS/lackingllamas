@@ -12,6 +12,7 @@ use App\Group;
 use App\User;
 use App\ActionComments;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ActionCommentsController extends Controller
 {
@@ -22,8 +23,11 @@ class ActionCommentsController extends Controller
         $comments = $actionComment->getComments($id);
         $action = Action::findOrFail($id);
         $tasks =  Task::all()->where('action_id', $id);
-
-        return view('action', compact('comments', 'action', 'tasks'));
+        $users = array();
+        $roster = DB::table('rosters')->select('user_ID')->where('group_ID','=', $action->group)->get();
+        foreach ($roster as $x)
+            array_push($users, $x->user_ID);
+        return view('action', compact('comments', 'action', 'tasks', 'users'));
     }
 
     public function store($action_id, Requests\CommentActionRequest $request)

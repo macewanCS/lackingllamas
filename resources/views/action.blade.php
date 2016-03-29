@@ -106,7 +106,7 @@
                     @endforeach
                 </div>
             </ul>
-            @if (Auth::check())
+            @if ( (Auth::id() == $action->userId) == true || (array_search(strval(Auth::id()), $users, true)) !== false)
                 <div class="comment-form">
                     {!! Form::open(array('action' => array('ActionCommentsController@store', $action->id))) !!}
 

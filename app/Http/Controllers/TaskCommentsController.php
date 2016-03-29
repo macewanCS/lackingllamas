@@ -9,6 +9,7 @@ use App\Task;
 use App\Action;
 use App\Group;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class TaskCommentsController extends Controller
@@ -19,8 +20,11 @@ class TaskCommentsController extends Controller
         $taskComment = new TaskComments;
         $comments = $taskComment->getComments($id);
         $task = Task::findOrFail($id);
-
-        return view('task', compact('comments', 'task'));
+        $users = array();
+        $roster = DB::table('rosters')->select('user_ID')->where('group_ID','=', $task->group)->get();
+        foreach ($roster as $x)
+            array_push($users, $x->user_ID);
+        return view('task', compact('comments', 'task', 'users'));
     }
 
     public function store($task_id, Requests\CommentTaskRequest $request)
