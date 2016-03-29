@@ -93,6 +93,72 @@ class ActionSeeder extends Seeder
                 'group' => 2,
                 'userId' => 3
             ],
+
+            ['description' => 'Host a TED talk to promote artistic freedom',
+                'date' => Carbon::createFromDate(2016, 10, 23, 'America/Toronto'),
+                'collaborators' => 'IT Services Department, Marketing',
+                'budget' => 0,
+                'successMeasured' => 'All public PCs are upgraded to Windows 10 ',
+                'progress' => 1,
+                'objective_id' => 5,
+                'group' => 2,
+                'userId' => 5
+            ],
+
+            ['description' => 'Review Q3 and Q4 2015 financial status',
+                'date' => Carbon::createFromDate(2016, 3, 4, 'America/Toronto'),
+                'collaborators' => 'J McPhee',
+                'budget' => 0,
+                'successMeasured' => 'A report on Q3 and Q4 2015 finances of EPL was generated ',
+                'progress' => 0,
+                'objective_id' => 2,
+                'group' => 4,
+                'userId' => 4
+            ],
+
+            ['description' => 'Promote virtual reality by holding Oculus Rift & HTC Vive publicity events',
+                'date' => Carbon::createFromDate(2016, 6, 2, 'America/Toronto'),
+                'collaborators' => 'Jody Crilly',
+                'budget' => 1,
+                'successMeasured' => 'Host 2 events in 2016 where people can demo virtual reality',
+                'progress' => 0,
+                'objective_id' => 6,
+                'group' => 4,
+                'userId' => 4
+            ],
+
+            ['description' => 'Ask public for feedback on possible logos',
+                'date' => Carbon::createFromDate(2016, 5, 21, 'America/Toronto'),
+                'collaborators' => 'Jody Crilly',
+                'budget' => 1,
+                'successMeasured' => 'Results of poll are in with at least 1000 participants',
+                'progress' => 0,
+                'objective_id' => 8,
+                'group' => 4,
+                'userId' => 4
+            ],
+
+            ['description' => 'Design possible EPL logos',
+                'date' => Carbon::createFromDate(2016, 4, 2, 'America/Toronto'),
+                'collaborators' => 'Fund Development',
+                'budget' => 1,
+                'successMeasured' => '3 or 4 possible new logos are created',
+                'progress' => 0,
+                'objective_id' => 8,
+                'group' => 4,
+                'userId' => 4
+            ],
+
+            ['description' => 'Communicate with eBook distributors to gain access to new eBooks',
+                'date' => Carbon::createFromDate(2016, 8, 2, 'America/Toronto'),
+                'collaborators' => 'DLI, Purchasing',
+                'budget' => 1,
+                'successMeasured' => '2 or more distributors have been successfully committed to providing eBooks',
+                'progress' => 0,
+                'objective_id' => 7,
+                'group' => 4,
+                'userId' => 4
+            ],
         ]);
 
         for ($j = 1; $j <= App\Objective::All()->Count(); $j++){

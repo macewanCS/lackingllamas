@@ -78,7 +78,7 @@
                         <li><div class="topbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
                     @endif
 
-                    @if (Request::path() == 'teams')
+                    @if (Request::path() == 'groups')
                         <li><div class="topbar-current"><a href="{{ url('/groups') }}">Groups</a></div></li>
                     @else
                         <li><div class="topbar-text"><a href="{{ url('/groups') }}">Groups</a></div></li>
