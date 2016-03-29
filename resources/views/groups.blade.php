@@ -8,72 +8,102 @@
             <div class="options-container">
                 <div class="options-checkboxes">
                     {!! Form::label('teamsBox','Teams ', ['class' => 'options-teams-box']) !!}
-                    {!! Form::checkbox('teamsBox', 1, true) !!}
+                    {!! Form::checkbox('teamsBox', 1, true, ['onclick' => 'hideTeams()']) !!}
 
                     {!! Form::label('departmentsBox', 'Departments ', ['class' => 'options-departments-box']) !!}
-                    {!! Form::checkbox('departmentsBox', 1, true) !!}
+                    {!! Form::checkbox('departmentsBox', 1, true, ['onclick' => 'hideDepartments()']) !!}
                 </div>
                 <br>
                 <div>Select Group</div>
                 <hr>
                 <div id="search-results">
                     <ul class="result-list">
-                    @foreach($groups as $group)
-                        <li class="result-list-elem">
-                            <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;">{{$group->name}}</a>
-                            <br>
-                        </li>
-                    @endforeach
+                    @if (count($groups))
+                        @foreach($groups as $group)
+                            @if($group->team)
+                            <li class="result-list-elem team">
+                            @else
+                            <li class="result-list-elem department">
+                            @endif
+                                <a href="#" id="link-result" onclick="display(this,'{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;">{{$group->name}}</a>
+                                <br>
+                            </li>
+                        @endforeach
+                    @else
+                        <li class="result-list-elem">N/A</li>
+                    @endif
                     </ul>
                 </div>
             </div>
 
             <div class="roster-container">
+                @if (count($groups))
                 <h2 id="group-name">{{$groups[0]['name']}}</h2>
-                <hr>
+                @else
+                <h2 id="group-name">No Groups</h2>
+                @endif
+                <hr class="roster-br-bottom">
+                @if (count($groups))
                 <div class="group-elements" id="group-lead">Lead: {{$users->find($groups[0]['user_ID'])->name}}</div>
                 <div class="group-elements" id="group-description">Description: {{$groups[0]['description']}}</div>
                 <div class="group-elements" id="group-budget">Budget: ${{$groups[0]['budget']}}</div>
-                <hr>
+                @else
+                <div class="group-elements" id="group-lead">Lead: N/A</div>
+                <div class="group-elements" id="group-description">Description: N/A</div>
+                <div class="group-elements" id="group-budget">Budget: N/A</div>
+                @endif
+                <hr class="roster-br-top">
                 <h2 class="roster-headers">Actions</h2>
-                <hr>
+                <hr class="roster-br-bottom">
                 <div id="group-actions">
-                    @foreach ($actions as $action)
-                        @if ($action->group == $groups[0]['id'])
-                            <div class="action-task-content">
-                                <a class="action-task-content-link" href="{{url('/task', $action->id)}}">{{$action->description}}</a>
-                            </div>
-                        @endif
-                    @endforeach
+                    @if (count($groups))
+                        @foreach ($actions as $action)
+                            @if ($action->group == $groups[0]['id'])
+                                <div class="action-task-content">
+                                    <a class="action-task-content-link" href="{{url('/task', $action->id)}}">{{$action->description}}</a>
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                    <div class="action-task-content">N/A</div>
+                    @endif
                 </div>
-                <hr>
+                <hr class="roster-br-top">
                 <h2 class="roster-headers">Tasks</h2>
-                <hr>
+                <hr class="roster-br-bottom">
                 <div id="group-tasks">
-                    @foreach ($tasks as $task)
-                        @if ($task->group == $groups[0]['id'])
-                            <div class="action-task-content">
-                                <a class="action-task-content-link" href="{{url('/task', $task->id)}}">{{$task->description}}</a>
-                            </div>
-                        @endif
-                    @endforeach
+                    @if (count($groups))
+                        @foreach ($tasks as $task)
+                            @if ($task->group == $groups[0]['id'])
+                                <div class="action-task-content">
+                                    <a class="action-task-content-link" href="{{url('/task', $task->id)}}">{{$task->description}}</a>
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                    <div class="action-task-content">N/A</div>
+                    @endif
                 </div>
-                <hr>
+                <hr class="roster-br-top">
                 <h2 class="roster-headers">Roster</h2>
-                <hr>
+                <hr class="roster-br-bottom">
                 <div id="group-users">
-                    @foreach ($rosters as $roster)
-                        @if ($roster->group_ID == $groups[0]['id'])
-                            <div class="roster-names">{{$users->find($roster->user_ID)->name}}</div>
-
-                        @endif
-                    @endforeach
+                    @if (count($groups))
+                        @foreach ($rosters as $roster)
+                            @if ($roster->group_ID == $groups[0]['id'])
+                                <div class="roster-names">{{$users->find($roster->user_ID)->name}}</div>
+                            @endif
+                        @endforeach
+                    @else
+                        <div class="roster-names">N/A</div>
+                    @endif
                 </div>
             </div>
 
         </div>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>>
     <script type="text/javascript">
         function display(element, lead, description, budget, actions, tasks, users, id, rosters) {
 
@@ -113,6 +143,22 @@
             descriptionText.innerHTML = "Description: " + description;
             budgetText.innerHTML = "Budget: $" + budget;
             leadText.innerHTML = "Lead: " + lead;
+        }
+
+        function hideTeams() {
+            if (document.getElementById("teamsBox").checked) {
+                $(".team").show();
+            } else {
+                $(".team").hide();
+            }
+        }
+
+        function hideDepartments() {
+            if (document.getElementById("departmentsBox").checked) {
+                $(".department").show();
+            } else {
+                $(".department").hide();
+            }
         }
     </script>
 @stop

@@ -6,8 +6,6 @@
     width: 100%;
     position: absolute;
     box-shadow: 10px 10px 5px grey;
-    border: 2px solid;
-    border-color: grey;
     margin-top: 25px;
     display: inline;
 }
@@ -39,12 +37,30 @@
     margin: 6px 2px;
 }
 
+.roster-headers {
+    text-align: center;
+    margin: 0;
+    /*background: aquamarine;*/
+    padding: 20px 0;
+}
+
+.roster-br-top {
+    margin: 8px 0 0 0;
+}
+
+.roster-br-bottom {
+    margin: 0 0 8px 0;
+}
+
 .group-elements {
     margin-left: 8px;
 }
 
 #group-name {
     text-align: center;
+    margin: 0;
+    /*background: aquamarine;*/
+    padding: 20px 0;
 }
 
 .roster-names {
@@ -92,6 +108,11 @@
     background: lightblue;
 }
 
-.roster-headers {
-    text-align: center;
+/*team or department*/
+.team {
+    /*css*/
+}
+
+.department {
+    /*css*/
 }
