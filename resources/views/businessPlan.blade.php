@@ -361,7 +361,6 @@
                         }
                     }
                 }
-                grid.bootgrid("getParams");
             }
         }).multiselectfilter();
 
@@ -469,7 +468,6 @@
                         grid.bootgrid("addParams", dateText, 10);
                         grid.bootgrid("addConstraint", "lesser", 10);
                         if (document.getElementById("datePicker").value != "") {
-                            console.log(date1.datepicker("widget"));
                             grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
                             grid.bootgrid("addConstraint", "greater", 10);
                         }
@@ -482,7 +480,6 @@
                             grid.bootgrid("addConstraint", "greater", 10);
                         }
                     }
-                    grid.bootgrid("getParams");
                 }
             });
         }
