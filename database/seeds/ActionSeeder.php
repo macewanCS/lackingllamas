@@ -159,6 +159,27 @@ class ActionSeeder extends Seeder
                 'group' => 4,
                 'userId' => 4
             ],
+           ['description' => 'Obtain $40,000 in sponsorships through the FTSS in 2016',
+                'date' => Carbon::createFromDate(2016, 8, 2, 'America/Toronto'),
+                'collaborators' => 'DLI, Purchasing',
+                'budget' => 1,
+                'successMeasured' => '$40,000 in event sponsorships.',
+                'progress' => 0,
+                'objective_id' => 9,
+                'group' => 4,
+                'userId' => 4
+            ],
+
+            ['description' => 'Bonus for individuals who display best service in the month',
+                'date' => Carbon::createFromDate(2016, 4, 2, 'America/Toronto'),
+                'collaborators' => 'Fund Development',
+                'budget' => 1,
+                'successMeasured' => 'Individuals communicate their happiness with the service',
+                'progress' => 0,
+                'objective_id' => 10,
+                'group' => 4,
+                'userId' => 4
+            ]
         ]);
 
         for ($j = 1; $j <= App\Objective::All()->Count(); $j++){

@@ -173,6 +173,7 @@ class BusinessPlanController extends Controller
       $goal = Goal::findOrFail($id);
       $groups = Group::lists('name');
       $bp = BusinessPlan::lists('name');
+  
       return view('businessPlan.editGoal',compact('goal','groups','bp'));
    }
    public function editObjective($id)
