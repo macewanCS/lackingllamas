@@ -1434,7 +1434,7 @@
                     id = rowIds[i];
 
                     for (var j = 0; j < this.rows.length; j++) {
-                        if (this.rows[j][this.identifier] === id) {
+                        if (this.rows[j][this.identifier] == id) {
                             removedRows.push(this.rows[j]);
                             this.rows.splice(j, 1);
                             break;
@@ -1547,6 +1547,21 @@
     };
 
 
+    Grid.prototype.getRowData = function (rowId) {
+        for(var i = this.currentRows.length - 1; i >= 0; i--){
+            if (this.currentRows[i][this.identifier] == rowId){
+                return this.currentRows[i];
+            }
+        }
+    };
+
+    Grid.prototype.sortRows = function (sorter){
+        this.rows.sort(sorter);
+        this.currentRows.sort(sorter);
+        loadData.call(this);
+        return this;
+    };
+
 
     /**
      * Selects rows by ids. Selects all visible rows if no ids are provided.
@@ -1558,23 +1573,26 @@
      **/
     Grid.prototype.select = function(rowIds)
     {
-        if (this.selection)
+        if (true)
         {
+            console.log("got here");
             rowIds = rowIds || this.currentRows.propValues(this.identifier);
 
             var id, i,
                 selectedRows = [];
 
-            while (rowIds.length > 0 && !(!this.options.multiSelect && selectedRows.length === 1))
+            while (rowIds.length > 0 && !(!this.options.multiSelect && selectedRows.length == 1))
             {
                 id = rowIds.pop();
-                if ($.inArray(id, this.selectedRows) === -1)
+                if ($.inArray(id, this.selectedRows) == -1)
                 {
                     for (i = 0; i < this.currentRows.length; i++)
                     {
-                        if (this.currentRows[i][this.identifier] === id)
+                        console.log(this.currentRows[i] + " =? " + id);
+                        if (this.currentRows[i][this.identifier] == id)
                         {
                             selectedRows.push(this.currentRows[i]);
+                            console.log(this.currentRows[i]);
                             this.selectedRows.push(id);
                             break;
                         }
@@ -1624,7 +1642,7 @@
      **/
     Grid.prototype.deselect = function(rowIds)
     {
-        if (this.selection)
+        if (true)
         {
             rowIds = rowIds || this.currentRows.propValues(this.identifier);
 

@@ -25,7 +25,7 @@ class CreateActionsTable extends Migration
             $table->integer('group')->unsigned();
             $table->integer('userId')->unsigned();
             $table->integer('objective_id')->unsigned();
-            $table->foreign('objective_id')->references('id')->on('objectives');
+            $table->foreign('objective_id')->references('id')->on('objectives')->onDelete('cascade');
             $table->foreign('group')->references('id')->on('groups');
             $table->foreign('userId')->references('id')->on('users');
         });

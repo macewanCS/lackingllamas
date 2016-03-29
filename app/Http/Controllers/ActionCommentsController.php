@@ -20,7 +20,7 @@ class ActionCommentsController extends Controller
     {
         $actionComment = new ActionComments;
         $comments = $actionComment->getComments($id);
-        $action = Action::find($id);
+        $action = Action::findOrFail($id);
         $tasks =  Task::all()->where('action_id', $id);
 
         return view('action', compact('comments', 'action', 'tasks'));

@@ -63,6 +63,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan/{id}/edit/Task','BusinessPlanController@editTask');
     Route::put('businessplan/{id}','BusinessPlanController@update');
     Route::patch('businessplan/{id}','BusinessPlanController@update');
+    Route::post('businessplan/{id}/delete/Goal', 'BusinessPlanController@deleteGoal');
     //Route::resource('businessplan','BusinessPlanController');
     //----------------------------
     Route::get('myprofile','MyProfileController@myProfile');

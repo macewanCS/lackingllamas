@@ -21,7 +21,7 @@ class CreateTaskCommentsTable extends Migration
             $table->integer('task_ID')->unsigned();
 
             $table->foreign('user_ID')->references('id')->on('users');
-            $table->foreign('task_ID')->references('id')->on('tasks');
+            $table->foreign('task_ID')->references('id')->on('tasks')->onDelete('cascade');
          });
     }
 

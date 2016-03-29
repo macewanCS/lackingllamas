@@ -18,7 +18,7 @@ class CreateRostersTable extends Migration
             $table->integer('group_ID')->unsigned();
 
             $table->foreign('user_ID')->references('id')->on('users');
-            $table->foreign('group_ID')->references('id')->on('groups');
+            $table->foreign('group_ID')->references('id')->on('groups')->onDelete('cascade');
         });
     }
 
