@@ -71,7 +71,6 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
                     </div>
                 @else
                     <button class="dropbtn">
