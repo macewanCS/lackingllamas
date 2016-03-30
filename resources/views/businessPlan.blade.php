@@ -20,10 +20,10 @@
             <div class="dropDown">
                 <button onclick="myFunction()" class="dropbtn">Create</button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="/businessplan/creategoal">Create Goal</a>
-                    <a href="/businessplan/createobjective">Create Objective</a>
-                    <a href="/businessplan/createaction">Create Action</a>
-                    <a href="/businessplan/createtask">Create Task</a>
+                    <a href="/businessplan/{{$idbp}}/creategoal">Create Goal</a>
+                    <a href="/businessplan/{{$idbp}}/createobjective">Create Objective</a>
+                    <a href="/businessplan/{{$idbp}}/createaction">Create Action</a>
+                    <a href="/businessplan/{{$idbp}}/createtask">Create Task</a>
                 </div>
 
             </div>
@@ -294,7 +294,7 @@
             grid.find(".command-edit").on("click", function(e)
             {
                 var row = grid.bootgrid("getRowData", $(this).data("row-id"));
-                window.location.assign("/businessplan/" + row.id + "/edit/" + row.type);
+                window.location.assign("/businessplan/{{$idbp}}/" + row.id + "/edit/" + row.type);
 
 
             }).end().find(".command-delete").on("click", function(e)
@@ -303,7 +303,7 @@
                 var token = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: "POST",
-                    url: "/businessplan/" + row.id +"/delete/" + row.type,
+                    url: "/businessplan/{{idbp}}" + row.id +"/delete/" + row.type,
                     data: {_token:token}
                 });
                 grid.bootgrid("remove", [$(this).data("row-id")]);

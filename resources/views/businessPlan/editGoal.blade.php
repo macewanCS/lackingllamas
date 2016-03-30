@@ -6,7 +6,7 @@
 		<h1>Edit a Goal</h1>
 		<hr>
 		<div class="create-goal-inner">
-		{!! Form::model($goal,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $goal->id]]) !!}
+		{!! Form::model($goal,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', null,$goal->id]]) !!}
 
 		<div class="form-group-one">
 			{!! Form::label('bpid','BP:',['class' => 'edit-action-label']) !!}
