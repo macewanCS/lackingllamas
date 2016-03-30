@@ -124,7 +124,7 @@
             for (var j = 0; j < usersArray.length; j++)
                 for (var k = 0; k < rostersArray.length; k++)
                     if ((usersArray[j].id == rostersArray[k].user_ID) && (rostersArray[k].group_ID == id))
-                        userContent+="<div class='user-content'>" + usersArray[j].name + "</div>";
+                        userContent+="<div class='roster-names'>" + usersArray[j].name + "</div>";
 
             userText.innerHTML = userContent;
             actionText.innerHTML = actionContent;
