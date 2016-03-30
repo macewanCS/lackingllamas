@@ -24,44 +24,26 @@
             <ul class="nav topbar-nav">
                 <!-- Branding Image -->
                 <li><div class="topbar-text"><a href="{{ url('/') }}">{{HTML::image('pictures/EPL.png',null, ['class' => 'topbar-img'])}}
-                </a></div></li>
+                        </a></div></li>
 
-            @if (Auth::guest())
-                    @if (Request::path() == 'businessplan')
-                        <li><div class="topbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    @else
-                        <li><div class="topbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    @endif
 
-                    @if (Request::path() == 'teams')
-                        <li><div class="topbar-current"><a href="{{ url('/groups') }}">Groups</a></div></li>
-                    @else
-                        <li><div class="topbar-text"><a href="{{ url('/groups') }}">Groups</a></div></li>
-                    @endif
 
+                @if (Request::path() == 'businessplan')
+                    <li><div class="topbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
                 @else
-                    @if (Request::path() == 'mytasks')
-                        <li><div class="topbar-current"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
-                    @else
-                        <li><div class="topbar-text"><a href="{{ url('/mytasks') }}">My Tasks</a></div></li>
-                    @endif
-
-                    @if (Request::path() == 'businessplan')
-                        <li><div class="topbar-current"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    @else
-                        <li><div class="topbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
-                    @endif
-
-                    @if (Request::path() == 'groups')
-                        <li><div class="topbar-current"><a href="{{ url('/groups') }}">Groups</a></div></li>
-                    @else
-                        <li><div class="topbar-text"><a href="{{ url('/groups') }}">Groups</a></div></li>
-                    @endif
+                    <li><div class="topbar-text"><a href="{{ url('/businessplan') }}">Business Plan</a></div></li>
                 @endif
+
+                @if (Request::path() == 'groups')
+                    <li><div class="topbar-current"><a href="{{ url('/groups') }}">Groups</a></div></li>
+                @else
+                    <li><div class="topbar-text"><a href="{{ url('/groups') }}">Groups</a></div></li>
+                @endif
+
 
             </ul>
         </div>
-            <!-- Right Side Of topbar -->
+        <!-- Right Side Of topbar -->
             <span class="nav topbar-nav topbar-right">
 
                 <!-- Authentication Links -->
@@ -77,6 +59,7 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </button>
                     <div class="dropdown-content">
+                        <a href="{{url('/businessplan')}}"><i class="fa fa-btn fa-my-tasks"></i>My Tasks</a> <!-- TODO: Link to business plan filtered with my tasks -->
                         <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                     </div>
 

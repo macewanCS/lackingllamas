@@ -19,12 +19,11 @@
                     @if (count($groups))
                         @foreach($groups as $group)
                             @if($group->team)
-                            <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
+                            <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"
                             @else
-                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
+                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"
                             @endif
                                 <a id="link-result">{{$group->name}}</a>
-                            </li>
                         @endforeach
                     @else
                         <li class="result-list-elem">N/A</li>
