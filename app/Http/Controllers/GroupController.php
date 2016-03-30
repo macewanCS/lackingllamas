@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessPlan;
 use App\Roster;
 use Illuminate\Http\Request;
 use App\Group;
@@ -20,6 +21,7 @@ class GroupController extends Controller
         $tasks = Task::all();
         $users = User::all();
         $rosters = Roster::all();
-        return view('groups', compact('groups', 'actions', 'tasks', 'users', 'rosters'));
+        $businessPlans = BusinessPlan::all();
+        return view('groups', compact('groups', 'actions', 'tasks', 'users', 'rosters', 'businessPlans'));
     }
 }

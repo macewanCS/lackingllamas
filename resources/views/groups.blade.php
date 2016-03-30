@@ -92,6 +92,7 @@
                 </div>
             </div>
 
+            {{Form::select('business-plan', array())}}
         </div>
 
     </div>
