@@ -19,9 +19,9 @@
                     @if (count($groups))
                         @foreach($groups as $group)
                             @if($group->team)
-                            <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"
+                            <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
                             @else
-                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"
+                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
                             @endif
                                 <a id="link-result">{{$group->name}}</a>
                         @endforeach
@@ -47,6 +47,7 @@
                 <div class="group-elements" id="group-description">Description: N/A</div>
                 <div class="group-elements" id="group-budget">Budget: N/A</div>
                 @endif
+                    <br>
                 <h2 class="roster-headers"><label id="action-colour-bar"></label>Actions</h2>
                 <div id="group-actions">
                     @if (count($groups))
@@ -61,6 +62,7 @@
                     <div class="action-task-content">N/A</div>
                     @endif
                 </div>
+                    <br>
                 <h2 class="roster-headers"><label id="task-colour-bar"></label>Tasks</h2>
                 <div id="group-tasks">
                     @if (count($groups))
@@ -75,6 +77,7 @@
                     <div class="action-task-content">N/A</div>
                     @endif
                 </div>
+                    <br>
                 <h2 class="roster-headers"><label id="roster-colour-bar"></label>Roster</h2>
                 <div id="group-users">
                     @if (count($groups))
@@ -92,7 +95,7 @@
         </div>
 
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript">
         function display(element, lead, description, budget, actions, tasks, users, id, rosters) {
 
@@ -127,10 +130,10 @@
 
             userText.innerHTML = userContent;
             actionText.innerHTML = actionContent;
-            taskText.innerHTML = taskContent;
+            taskText.innerHTML = taskContent + "<br>";
             headerText.innerHTML = "<label id=\"group-name-colour-bar\"></label>" + $name;
             descriptionText.innerHTML = "Description: " + description;
-            budgetText.innerHTML = "Budget: $" + budget;
+            budgetText.innerHTML = "Budget: $" + budget + "<br>";
             leadText.innerHTML = "Lead: " + lead;
         }
 

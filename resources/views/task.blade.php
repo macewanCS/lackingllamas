@@ -82,17 +82,23 @@
             <hr>
             <ul class="comment-container">
                 <div class="task-comments-inner">
-                    @foreach($comments as $comment)
-                        <li class="comments">
-                            <div class="comment-header">
-                                <div class="comment-name"><a href="{{url('/businessplan')}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
-                            </div>
-                            <div class="comment-content">
-                                <br>
-                                {{$comment->description}}
-                            </div>
-                        </li>
-                    @endforeach
+                    @if(count($comments))
+                        @foreach($comments as $comment)
+                            <li class="comments">
+                                <div class="comment-header">
+                                    <div class="comment-name"><a href="{{url('/businessplan')}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                                </div>
+                                <div class="comment-content">
+                                    <br>
+                                    {{$comment->description}}
+                                </div>
+                            </li>
+                        @endforeach
+                    @else
+                        <div class="comment-content">
+                            No Comments
+                        </div>
+                    @endif
                 </div>
             </ul>
             @if ( (Auth::id() == $task->userId) == true || (array_search(strval(Auth::id()), $users, true)) !== false || $permission == true || $groupLead == Auth::id())
