@@ -98,7 +98,7 @@
     float: right;
     display: inline-block;
     width: 12%;
-    max-width: 15%;
+    max-width: 12%;
     min-height: 100%;
     background-color: white;
     margin-top: 2.9%;
@@ -109,7 +109,7 @@
     float: right;
     display: inline-block;
     max-width: 88%;
-    width: 85% !important;
+    width: 88% !important;
     overflow-x: auto;
     margin-bottom: 10px;
 }
