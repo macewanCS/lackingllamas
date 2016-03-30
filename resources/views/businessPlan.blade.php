@@ -710,10 +710,7 @@
 
 
         $(document).ready(function () {
-           grid.bootgrid("addParams", "Goal", 2);
-           grid.bootgrid("addParams", "Objective", 2);
-           grid.bootgrid("addParams", "Action", 2);
-           grid.bootgrid("addParams", "Task", 2);
+            goatSelector.multiselect("uncheckAll");
             collabMaxCount = collabSelector.multiselect("getChecked").length;
             collabSelector.multiselect("uncheckAll");
             leadMaxCount = leadSelector.multiselect("getChecked").length;
@@ -733,7 +730,7 @@
             setTimeout(function() {
                 document.getElementById("tableDiv").style.visibility = 'visible';
                 document.getElementById("sideDiv").style.visibility = 'visible';
-                $(".pageLoad").fadeOut('slow');
+                $(".pageLoad").fadeOut(1500);
             }, 3000);
         });
     </script>
