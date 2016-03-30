@@ -127,6 +127,7 @@
                 <tr>
                     <th data-column-id="id" data-formatter="colorizer" data-header-css-class="id" data-visible="false"></th>
                     <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
+                    <th data-column-id="secondaryIdent" data-formatter="colorizer" data-header-css-class="secondaryIdent" data-visible="false"></th>
                     <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
                     <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status" data-visible="false"></th>
                     <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
@@ -143,11 +144,12 @@
                 <tbody>
      @foreach($bpPlans as $bp)
         @if(substr_count($bp->ident, ".")==0)
-        @if($temp = $bp->name)
+        @if($temp = $bp)
         @endif
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
+            <td>{{$temp->name}}.{{$bp->ident}}</td>
             <td>Goal</td>
             <td>1</td>
             <td>{{$bp->name}}</td>
@@ -165,9 +167,10 @@
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
+                <td>{{$temp->name}}.{{$bp->ident}}</td>
                 <td>Objective</td>
                 <td>1</td>
-                <td>{{$temp}}</td>
+                <td>{{$temp->name}}</td>
                 <td>--</td>
                 <td>--</td>
                 <td>{{$bp->name}}</td>
@@ -182,6 +185,7 @@
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
+                <td>{{$temp->name}}.{{$bp->ident}}</td>
                 <td>Action</td>
                 <td>2</td>
                 <td>{{$bp->description}}</td>
@@ -198,6 +202,7 @@
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
+            <td>{{$temp->name}}.{{$bp->ident}}</td>
             <td>Task</td>
             <td>3</td>
             <td>{{$bp->description}}</td>
@@ -377,20 +382,20 @@
             header: "Choose element(s)",
             click: function (event, ui) {
                 if (ui.checked){
-                    grid.bootgrid("addParams", ui.value, 2);
+                    grid.bootgrid("addParams", ui.value, 3);
                 }
                 else {
-                    grid.bootgrid("removeParams", ui.value, 2);
+                    grid.bootgrid("removeParams", ui.value, 3);
                 }
             },
             checkAll: function () {
-                grid.bootgrid("addParams", "Goal", 2);
-                grid.bootgrid("addParams", "Objective", 2);
-                grid.bootgrid("addParams", "Action", 2);
-                grid.bootgrid("addParams", "Task", 2);
+                grid.bootgrid("addParams", "Goal", 3);
+                grid.bootgrid("addParams", "Objective", 3);
+                grid.bootgrid("addParams", "Action", 3);
+                grid.bootgrid("addParams", "Task", 3);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 2);
+                grid.bootgrid("removeParams", undefined, 3);
             }
         });
 
@@ -405,27 +410,27 @@
             },
             click: function (event, ui) {
                 if (ui.checked){
-                    grid.bootgrid("addParams", ui.value, 7);
+                    grid.bootgrid("addParams", ui.value, 8);
                     if (collabSelector.multiselect("getChecked").length == collabMaxCount){
-                        grid.bootgrid("addParams", "", 7);
+                        grid.bootgrid("addParams", "", 8);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 7);
-                    grid.bootgrid("removeParams", ui.value, 7);
+                    grid.bootgrid("removeParams", "", 8);
+                    grid.bootgrid("removeParams", ui.value, 8);
                 }
             },
             checkAll: function () {
                     @foreach($users as $user)
-                        grid.bootgrid("addParams", "{{$user->name}}", 7);
+                        grid.bootgrid("addParams", "{{$user->name}}", 8);
                     @endforeach
                     @foreach($groups as $group)
-                        grid.bootgrid("addParams", "{{$group->name}}", 7);
+                        grid.bootgrid("addParams", "{{$group->name}}", 8);
                     @endforeach
-                        grid.bootgrid("addParams", "", 7);
+                        grid.bootgrid("addParams", "", 8);
             },
             uncheckAll: function () {
-                    grid.bootgrid("removeParams", undefined, 7);
+                    grid.bootgrid("removeParams", undefined, 8);
             },
             optgrouptoggle: function (event, ui) {
                 var values = $.map(ui.inputs, function (checkbox){
@@ -434,21 +439,21 @@
                 if (ui.checked) {
                     for (var value in values) {
                         if ((typeof values[value]) == "string") {
-                            grid.bootgrid("addParams", values[value], 7);
+                            grid.bootgrid("addParams", values[value], 8);
                         }
                     }
                     if (collabSelector.multiselect("getChecked").length == collabMaxCount) {
-                        grid.bootgrid("addParams", "", 7);
+                        grid.bootgrid("addParams", "", 8);
                     }
                 }
                 else {
                     if (collabSelector.multiselect("getChecked").length == 0) {
-                        grid.bootgrid("removeParams", undefined, 7);
+                        grid.bootgrid("removeParams", undefined, 8);
                     }
                     else {
                         for (var value in values) {
                             if ((typeof values[value]) == "string") {
-                                grid.bootgrid("removeParams", values[value], 7);
+                                grid.bootgrid("removeParams", values[value], 8);
                             }
                         }
                     }
@@ -467,24 +472,24 @@
             },
             click: function (event, ui) {
                 if (ui.checked) {
-                    grid.bootgrid("addParams", ui.value, 5);
+                    grid.bootgrid("addParams", ui.value, 6);
                     if (leadSelector.multiselect("getChecked").length == leadMaxCount){
-                        grid.bootgrid("addParams", "", 5);
+                        grid.bootgrid("addParams", "", 6);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 5);
-                    grid.bootgrid("removeParams", ui.value, 5);
+                    grid.bootgrid("removeParams", "", 6);
+                    grid.bootgrid("removeParams", ui.value, 6);
                 }
             },
             checkAll: function () {
                 @foreach($users as $user)
-                    grid.bootgrid("addParams", "{{$user->name}}", 5);
+                    grid.bootgrid("addParams", "{{$user->name}}", 6);
                 @endforeach
-                grid.bootgrid("addParams", "", 5);
+                grid.bootgrid("addParams", "", 6);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 5);
+                grid.bootgrid("removeParams", undefined, 6);
             }
         }).multiselectfilter();
 
@@ -499,24 +504,24 @@
             },
             click: function (event, ui) {
                 if (ui.checked) {
-                    grid.bootgrid("addParams", ui.value, 6);
+                    grid.bootgrid("addParams", ui.value, 7);
                     if (groupSelector.multiselect("getChecked").length == groupMaxCount){
-                        grid.bootgrid("addParams", "", 6);
+                        grid.bootgrid("addParams", "", 7);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 6);
-                    grid.bootgrid("removeParams", ui.value, 6);
+                    grid.bootgrid("removeParams", "", 7);
+                    grid.bootgrid("removeParams", ui.value, 7);
                 }
             },
             checkAll: function () {
                 @foreach($groups as $group)
-                    grid.bootgrid("addParams", "{{$group->name}}", 6);
+                    grid.bootgrid("addParams", "{{$group->name}}", 7);
                 @endforeach
-                grid.bootgrid("addParams", "", 6);
+                grid.bootgrid("addParams", "", 7);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 6);
+                grid.bootgrid("removeParams", undefined, 7);
 
             }
         }).multiselectfilter();
@@ -528,21 +533,21 @@
                 showButtonPanel: true,
                 onClose: function (dateText, inst) {
                     if (dateText != "") {
-                        grid.bootgrid("removeParams", undefined, 10);
-                        grid.bootgrid("addConstraint", undefined, 10);
-                        grid.bootgrid("addParams", dateText, 10);
-                        grid.bootgrid("addConstraint", "greater", 10);
+                        grid.bootgrid("removeParams", undefined, 11);
+                        grid.bootgrid("addConstraint", undefined, 11);
+                        grid.bootgrid("addParams", dateText, 11);
+                        grid.bootgrid("addConstraint", "greater", 11);
                         if (document.getElementById("datePicker2").value != "") {
-                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
-                            grid.bootgrid("addConstraint", "lesser", 10);
+                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 11);
+                            grid.bootgrid("addConstraint", "lesser", 11);
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", undefined, 10);
-                        grid.bootgrid("addConstraint", undefined, 10);
+                        grid.bootgrid("removeParams", undefined, 11);
+                        grid.bootgrid("addConstraint", undefined, 11);
                         if (document.getElementById("datePicker2").value != "") {
-                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
-                            grid.bootgrid("addConstraint", "lesser", 10);
+                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 11);
+                            grid.bootgrid("addConstraint", "lesser", 11);
                         }
                     }
                 }
@@ -555,21 +560,21 @@
                 showButtonPanel: true,
                 onClose: function (dateText, inst) {
                     if (dateText != "") {
-                        grid.bootgrid("removeParams", undefined, 10);
-                        grid.bootgrid("addConstraint", undefined, 10);
-                        grid.bootgrid("addParams", dateText, 10);
-                        grid.bootgrid("addConstraint", "lesser", 10);
+                        grid.bootgrid("removeParams", undefined, 11);
+                        grid.bootgrid("addConstraint", undefined, 11);
+                        grid.bootgrid("addParams", dateText, 11);
+                        grid.bootgrid("addConstraint", "lesser", 11);
                         if (document.getElementById("datePicker").value != "") {
-                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
-                            grid.bootgrid("addConstraint", "greater", 10);
+                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 11);
+                            grid.bootgrid("addConstraint", "greater", 11);
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", undefined, 10);
-                        grid.bootgrid("addConstraint", undefined, 10);
+                        grid.bootgrid("removeParams", undefined, 11);
+                        grid.bootgrid("addConstraint", undefined, 11);
                         if (document.getElementById("datePicker").value != "") {
-                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
-                            grid.bootgrid("addConstraint", "greater", 10);
+                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 11);
+                            grid.bootgrid("addConstraint", "greater", 11);
                         }
                     }
                 }
@@ -584,21 +589,21 @@
             else {
                     oldFromText = currentFromText;
                     if (currentFromText != ""){
-                        grid.bootgrid("removeParams", undefined, 8);
-                        grid.bootgrid("addConstraint", undefined, 8);
-                        grid.bootgrid("addParams", currentFromText, 8);
-                        grid.bootgrid("addConstraint", "greater", 8);
+                        grid.bootgrid("removeParams", undefined, 9);
+                        grid.bootgrid("addConstraint", undefined, 9);
+                        grid.bootgrid("addParams", currentFromText, 9);
+                        grid.bootgrid("addConstraint", "greater", 9);
                         if (budgetTo.val() != ""){
-                            grid.bootgrid("addParams", budgetTo.val(), 8);
-                            grid.bootgrid("addConstraint", "lesser", 8);
+                            grid.bootgrid("addParams", budgetTo.val(), 9);
+                            grid.bootgrid("addConstraint", "lesser", 9);
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", undefined, 8);
-                        grid.bootgrid("addConstraint", undefined, 8);
+                        grid.bootgrid("removeParams", undefined, 9);
+                        grid.bootgrid("addConstraint", undefined, 9);
                         if (budgetTo.val() != ""){
-                            grid.bootgrid("addParams", budgetTo.val(), 8);
-                            grid.bootgrid("addConstraint", "lesser", 8);
+                            grid.bootgrid("addParams", budgetTo.val(), 9);
+                            grid.bootgrid("addConstraint", "lesser", 9);
                         }
                     }
             }
@@ -613,25 +618,36 @@
             else {
                 oldToText = currentToText;
                 if (currentToText != ""){
-                    grid.bootgrid("removeParams", undefined, 8);
-                    grid.bootgrid("addConstraint", undefined, 8);
-                    grid.bootgrid("addParams", currentToText, 8);
-                    grid.bootgrid("addConstraint", "lesser", 8);
+                    grid.bootgrid("removeParams", undefined, 9);
+                    grid.bootgrid("addConstraint", undefined, 9);
+                    grid.bootgrid("addParams", currentToText, 9);
+                    grid.bootgrid("addConstraint", "lesser", 9);
                     if (budgetFrom.val() != ""){
-                        grid.bootgrid("addParams", budgetFrom.val(), 8);
-                        grid.bootgrid("addConstraint", "greater", 8);
+                        grid.bootgrid("addParams", budgetFrom.val(), 9);
+                        grid.bootgrid("addConstraint", "greater", 9);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", undefined, 8);
-                    grid.bootgrid("addConstraint", undefined, 8);
+                    grid.bootgrid("removeParams", undefined, 9);
+                    grid.bootgrid("addConstraint", undefined, 9);
                     if (budgetFrom.val() != ""){
-                        grid.bootgrid("addParams", budgetFrom.val(), 8);
-                        grid.bootgrid("addConstraint", "greater", 8);
+                        grid.bootgrid("addParams", budgetFrom.val(), 9);
+                        grid.bootgrid("addConstraint", "greater", 9);
                     }
                 }
             }
         });
+
+        function sortAlpha () {
+            grid.bootgrid("sortRows", function (a, b){
+                if (a.secondaryIdent >= b.secondaryIdent) {
+                    return 1;
+                }
+                else {
+                    return -1;
+                }
+            });
+        }
 
         function clearFilters () {
             grid.bootgrid("clearParams");
@@ -648,14 +664,7 @@
             document.getElementById("budgetFrom").value = "";
             document.getElementById("budgetTo").value = "";
             grid.bootgrid("sort");
-            grid.bootgrid("sortRows", function (a, b){
-                if (a.ident >= b.ident) {
-                    return 1;
-                }
-                    else {
-                    return -1;
-                }
-            });
+            sortAlpha();
         }
 
         function setFilters () {
@@ -740,6 +749,7 @@
 
 
         $(document).ready(function () {
+            sortAlpha();
             goatSelector.multiselect("uncheckAll");
             collabMaxCount = collabSelector.multiselect("getChecked").length;
             collabSelector.multiselect("uncheckAll");
