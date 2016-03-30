@@ -169,8 +169,8 @@
 }
 
 #grid-basic > thead > tr > th.successM {
-    width: 17.5%;
-    max-width: 15.5%;
+    width: 15%;
+    max-width: 15%;
 }
 
 #grid-basic > thead > tr > th.group {
@@ -184,8 +184,8 @@
 }
 
 #grid-basic > thead > tr > th.commands {
-    width: 7.5%;
-    max-width: 7.5%;
+    width: 10%;
+    max-width: 10%;
 }
 
 #grid-basic .active {

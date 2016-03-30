@@ -205,12 +205,13 @@
     <script type="text/javascript">
         // CSRF protection
         $.ajaxSetup(
-                {
-                    headers:
-                    {
-                        'X-CSRF-Token': $('input[name="_token"]').val()
-                    }
-                });
+        {
+            headers:
+            {
+                'X-CSRF-Token': $('input[name="_token"]').val()
+            }
+        });
+
         var maxGoals;
         var maxObj;
         var maxActions;
@@ -273,7 +274,7 @@
                                         "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                             }
                             else {
-                                return  "<div class\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                return  "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
                                         "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                             }
                         }
