@@ -1,423 +1,329 @@
-
-#grid-basic {
-    border-collapse: collapse;
-    font-family: sans-serif;
-    width: 100%;
-    max-width: 100%;
-    border: 1px solid rgba(175, 182, 205, 0.41);
-    font-size: 1.6em;
-    display: inline-block;
-    float: right;
-    table-layout: fixed;
-}
-
-#grid-basic td {
-    border: none;
-    background-color: rgba(219, 227, 252, 0.41);
-    font-weight: bold;
-    font-size: 0.6em;
-    color: black;
-}
-
-#grid-basic td.shrink {
-    width:   1%;
-}
-
-.input-group {
-    float: right;
-    width: 15%;
-    align-content: center;
-    margin-top: 3px;
-    margin-left: 3%;
-}
-
-.actions {
-    float: right;
-    margin-bottom: 3px;
-    padding-bottom: 3px;
-}
-
-#mainDiv .actionBar .form-group{
-    margin: 0;
-
-}
-
-#grid-basic td.expand {
-    width: 99%;
-}
-
-#grid-basic > thead > tr > th.text-left,
-#grid-basic > thead > tr > th.text-right {
-    border: none;
-    background-color: #f3f5f5;
-    font-size: 0.85em;
-    height: 3vw;
-    line-height: 50px;
-    color: darkgray !important;
-    font-weight: lighter;
-}
-
-#grid-basic > thead > tr > th.text-right,
-#grid-basic > thead > tr > th.text-left {
-    padding-right: 1vw;
-}
-
-#grid-basic > tbody > tr > td.text-right,
-#grid-basic > tbody > tr > td.text-left {
-    padding-right: 1vw;
-    padding-top: 0.25%;
-    padding-bottom: 0.25%;
-
-}
-
-#grid-basic > tbody > tr {
-    max-height: 1.25em;
-    height: 1.25em;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: inherit;
-    max-width: inherit;
-}
-
-#grid-basic > thead > tr > th.text-right > a,
-#grid-basic > thead > tr > th.text-left > a {
-    color: grey !important;
-    font-weight: normal !important;
-}
-
-
-#mainDiv {
-    background-color: white;
-    padding: 0 2vw;
-    margin: 1vw 2vw;
-    overflow: hidden;
-}
-
-.sideDiv {
-    float: right;
-    display: inline-block;
-    width: 12%;
-    max-width: 12%;
-    min-height: 100%;
-    background-color: white;
-    margin-top: 2.9%;
-    padding: 1%;
-}
-
-.tableDiv {
-    float: right;
-    display: inline-block;
-    max-width: 88%;
-    width: 88% !important;
-    overflow-x: auto;
-    margin-bottom: 10px;
-}
-
-.ico {
-    height: 100%;
-    width: 100%;
-    display: inline-block;
-    align-content: center;
-    padding-left: 25%;
-    font-size: 200%;
-}
-
-#grid-basic > tbody > tr.success > td {
-    background-color: white !important;
-    color: black;
-    font-weight: normal;
-}
-
-.select-cell .select-box{
-    height: 20px;
-    width: 20px;
-    min-height: 20px;
-    min-width: 20px;
-}
-
-#grid-basic > tbody > tr > td,
-#grid-basic > tbody > tr > td > div {
-    width: inherit !important;
-    max-width: inherit !important;
-}
-
-
-#grid-basic > thead > tr > th.status {
-    width: 5%;
-    max-width: 5%;
-}
-
-#grid-basic > thead > tr > th.desc {
-    width: 22.5%;
-    max-width: 20%;
-}
-
-#grid-basic > thead > tr > th.date {
-    width: 7.5%;
-    max-width: 7.5%;
-}
-
-#grid-basic > thead > tr > th.collabs {
-    width: 25%;
-    max-width: 25%;
-}
-
-#grid-basic > thead > tr > th.budget {
-    width: 5%;
-    max-width: 5%;
-}
-
-#grid-basic > thead > tr > th.successM {
-    width: 15%;
-    max-width: 15%;
-}
-
-#grid-basic > thead > tr > th.group {
-    width: 5%;
-    max-width: 5%;
-}
-
-#grid-basic > thead > tr > th.user {
-    width: 5%;
-    max-width: 5%;
-}
-
-#grid-basic > thead > tr > th.commands {
-    width: 10%;
-    max-width: 10%;
-}
-
-#grid-basic .active {
-    background-color: lightgrey;
-}
-
-#grid-basic > tbody > tr > td > div.hidden {
-    visibility: hidden;
-}
-
-#grid-basic > tbody > tr > td > div.center {
-    text-align: center !important;
-}
-
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.select-cell,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right
+#grid-basic
 {
-    background-color: inherit !important;
+    border:1px solid rgba(175,182,205,0.41);
+    border-collapse:collapse;
+    display:inline-block;
+    float:right;
+    font-family:sans-serif;
+    font-size:1.6em;
+    max-width:100%;
+    table-layout:fixed;
+    width:100%;
 }
 
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger
+#grid-basic .active
 {
-    background-color: white;
+    background-color:#D3D3D3;
 }
 
-
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover
+#grid-basic > tbody > tr
 {
-    background-color: #ebebeb !important;
+    height:1.25em;
+    max-height:1.25em;
+    max-width:inherit;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:normal;
+    width:inherit;
 }
 
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right > div,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left > div {
-    font-weight: normal;
-}
-
-
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.select-cell,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right
+#grid-basic > tbody > tr > td > div.center
 {
-    background-color: inherit !important;
+    text-align:center!important;
 }
 
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning
+#grid-basic > tbody > tr > td > div.hidden,#tableDiv,#sideDiv,#ui-datepicker-div
 {
-    background-color: #e3f6e0;
-    font-weight: normal !important;
+    visibility:hidden;
 }
 
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right > div,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left > div {
-    font-weight: normal;
-}
-
-
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover,
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover
+#grid-basic > tbody > tr > td,#grid-basic > tbody > tr > td > div
 {
-    background-color: #c8e6c3 !important;
+    max-width:inherit!important;
+    width:inherit!important;
 }
 
-.goatSelector {
-    margin-top: 10%;
-
+#grid-basic > tbody > tr > td.text-right,#grid-basic > tbody > tr > td.text-left
+{
+    padding-bottom:.25%;
+    padding-right:1vw;
+    padding-top:.25%;
 }
 
-#mainDiv > div.sideDiv > div.goatSelector > button.ui-multiselect {
-    width: 100% !important;
+#grid-basic > tbody > tr.success > td
+{
+    background-color:#FFF!important;
+    color:#000;
+    font-weight:400;
 }
 
-.collabSelector {
-    margin-top: 10%;
-
+#grid-basic > thead > tr > th.collabs
+{
+    max-width:25%;
+    width:25%;
 }
 
-#mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect {
-    width: 100% !important;
+#grid-basic > thead > tr > th.commands
+{
+    max-width:10%;
+    width:10%;
 }
 
-.leadSelector {
-    margin-top: 10%;
-
+#grid-basic > thead > tr > th.date
+{
+    max-width:7.5%;
+    width:7.5%;
 }
 
-#mainDiv > div.sideDiv > div.leadSelector > button.ui-multiselect {
-    width: 100% !important;
+#grid-basic > thead > tr > th.desc
+{
+    max-width:20%;
+    width:22.5%;
 }
 
-.groupSelector {
-    margin-top: 10%;
-
+#grid-basic > thead > tr > th.status,#grid-basic > thead > tr > th.budget,#grid-basic > thead > tr > th.group,#grid-basic > thead > tr > th.user
+{
+    max-width:5%;
+    width:5%;
 }
 
-#mainDiv > div.sideDiv > div.datePicker {
-    width: 100% !important;
+#grid-basic > thead > tr > th.successM
+{
+    max-width:15%;
+    width:15%;
 }
 
-#mainDiv > div.sideDiv > div.datePicker > input.picker {
-    width: 100% !important;
+#grid-basic > thead > tr > th.text-left,#grid-basic > thead > tr > th.text-right
+{
+    background-color:#f3f5f5;
+    border:none;
+    color:#A9A9A9!important;
+    font-size:.85em;
+    font-weight:lighter;
+    height:3vw;
+    line-height:50px;
 }
 
-.datePicker {
-    margin-top: 10%;
-
+#grid-basic > thead > tr > th.text-right > a,#grid-basic > thead > tr > th.text-left > a
+{
+    color:grey!important;
+    font-weight:400!important;
 }
 
-#mainDiv > div.sideDiv > div.datePicker > label.dateTitle {
-    width: 100% !important;
+#grid-basic > thead > tr > th.text-right,#grid-basic > thead > tr > th.text-left
+{
+    padding-right:1vw;
 }
 
-#mainDiv > div.sideDiv > div.datePicker > label.dateLabel {
-    font-weight: normal;
-
+#grid-basic td
+{
+    background-color:rgba(219,227,252,0.41);
+    border:none;
+    color:#000;
+    font-size:.6em;
+    font-weight:700;
 }
 
-.budgetBox {
-    margin-top: 10%;
+#grid-basic td.expand
+{
+    width:99%;
 }
 
-#mainDiv > div.sideDiv > div.budgetBox > textarea.ta {
-    width: 100% !important;
-    resize: none;
+#grid-basic td.shrink
+{
+    width:1%;
 }
 
-#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel {
-    font-weight: normal;
-
+#mainDiv
+{
+    background-color:#FFF;
+    margin:1vw 2vw;
+    overflow:hidden;
+    padding:0 2vw;
 }
 
-#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle {
-    width: 100% !important;
+#mainDiv .actionBar .form-group
+{
+    margin:0;
 }
 
-#mainDiv > div.sideDiv > div.Clear {
-    margin-top: 10%;
-    height: 3vw;
+#mainDiv > .sideDiv > div.checkBoxes
+{
+    margin-top:1vw;
+    width:100%;
 }
 
-#mainDiv > div.sideDiv > div.Clear > button {
-    float: right;
-    -webkit-appearance: button;
-    cursor: pointer;
-    background-color: rgb(245, 0, 54);
-    color: white;
-    height: 100%;
+#mainDiv > .sideDiv > div.checkBoxes > .check
+{
+    display:inline-block;
+    width:45%;
 }
 
-#mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect {
-    width: 100% !important;
+#mainDiv > .sideDiv > div.checkBoxes > div.check > input
+{
+    -webkit-transform:scale(1.5);
+    transform:scale(1.5);
 }
 
-.filtering {
-    margin-top: 20px;
+#mainDiv > .sideDiv > div.checkBoxes > div.checkLabels > label
+{
+    display:inline-block;
+    font-weight:400;
+    width:45%;
 }
 
-#mainDiv > .tableDiv > #grid-basic-header > .row > .actionBar > .search > div.input-group {
-    margin-bottom: 5px;
+#mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.commandButtons > button.btn
+{
+    width:25%;
 }
 
-#mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.descript {
-    margin-left: 3%;
+#mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.commandButtons,#mainDiv > .sideDiv > div.checkBoxes > label.checkBoxesTitle,#mainDiv > .sideDiv > div.checkBoxes > div.checkLabels
+{
+    width:100%;
 }
 
-#mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.commandButtons {
-    width: 100%;
+#mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.descript,#grid-basic > thead > tr > th.desc > a
+{
+    margin-left:3%;
 }
 
-#mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.commandButtons > button.btn {
-    width: 25%;
+#mainDiv > .tableDiv > #grid-basic-header > .row > .actionBar > .search > div.input-group
+{
+    margin-bottom:5px;
 }
 
-.pageLoad {
-    position: absolute;
-    left: inherit;
-    top: inherit;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    text-align: center;
-    background-color: white;
+#mainDiv > div.sideDiv > div.Clear
+{
+    height:3vw;
+    margin-top:10%;
 }
 
-.pageLoad > img {
-    margin-top: 10%;
+#mainDiv > div.sideDiv > div.Clear > button
+{
+    -webkit-appearance:button;
+    background-color:#f50036;
+    color:#FFF;
+    cursor:pointer;
+    float:right;
+    height:100%;
 }
 
-#tableDiv {
-    visibility: hidden;
+#mainDiv > div.sideDiv > div.budgetBox > textarea.ta
+{
+    resize:none;
+    width:100%!important;
 }
 
-#sideDiv {
-    visibility: hidden;
+#mainDiv > div.sideDiv > div.goatSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.leadSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.datePicker,#mainDiv > div.sideDiv > div.datePicker > input.picker,#mainDiv > div.sideDiv > div.datePicker > label.dateTitle,#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle,#mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect
+{
+    width:100%!important;
 }
 
-#grid-basic > thead > tr > th.desc > a {
-    margin-left: 3%;
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.select-cell,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.select-cell,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right
+{
+    background-color:inherit!important;
 }
 
-#mainDiv > .sideDiv > div.checkBoxes {
-    margin-top: 1vw;
-    width: 100%;
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left > div,#mainDiv > div.sideDiv > div.datePicker > label.dateLabel,#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel
+{
+    font-weight:400;
 }
 
-#mainDiv > .sideDiv > div.checkBoxes > .check {
-    width: 45%;
-    display: inline-block;
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger
+{
+    background-color:#FFF;
 }
 
-#mainDiv > .sideDiv > div.checkBoxes > label.checkBoxesTitle {
-    width: 100%;
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger:hover
+{
+    background-color:#ebebeb!important;
 }
 
-#mainDiv > .sideDiv > div.checkBoxes > div.checkLabels {
-    width: 100%;
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning
+{
+    background-color:#e3f6e0;
+    font-weight:400!important;
 }
 
-#mainDiv > .sideDiv > div.checkBoxes > div.checkLabels > label{
-    width: 45%;
-    display: inline-block;
-    font-weight: normal;
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning:hover
+{
+    background-color:#c8e6c3!important;
 }
 
-#mainDiv > .sideDiv > div.checkBoxes > div.check > input {
-    transform: scale(1.5);
-    -webkit-transform: scale(1.5);
+.actions
+{
+    float:right;
+    margin-bottom:3px;
+    padding-bottom:3px;
 }
 
-#ui-datepicker-div {
-    visibility: hidden;
+.filtering
+{
+    margin-top:20px;
+}
+
+.goatSelector,.collabSelector,.leadSelector,.groupSelector,.datePicker,.budgetBox,.pageLoad > img
+{
+    margin-top:10%;
+}
+
+.ico
+{
+    align-content:center;
+    display:inline-block;
+    font-size:200%;
+    height:100%;
+    padding-left:25%;
+    width:100%;
+}
+
+.input-group
+{
+    align-content:center;
+    float:right;
+    margin-left:3%;
+    margin-top:3px;
+    width:15%;
+}
+
+.pageLoad
+{
+    background-color:#FFF;
+    height:100%;
+    left:inherit;
+    position:absolute;
+    text-align:center;
+    top:inherit;
+    width:100%;
+    z-index:9999;
+}
+
+.select-cell .select-box
+{
+    height:20px;
+    min-height:20px;
+    min-width:20px;
+    width:20px;
+}
+
+.sideDiv
+{
+    background-color:#FFF;
+    display:inline-block;
+    float:right;
+    margin-top:2.9%;
+    max-width:12%;
+    min-height:100%;
+    padding:1%;
+    width:12%;
+}
+
+.tableDiv
+{
+    display:inline-block;
+    float:right;
+    margin-bottom:10px;
+    max-width:88%;
+    overflow-x:auto;
+    width:88%!important;
 }
