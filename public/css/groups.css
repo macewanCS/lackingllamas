@@ -6,14 +6,12 @@
     width: 100%;
     position: absolute;
     box-shadow: 10px 10px 5px grey;
-    border: 2px solid;
-    border-color: grey;
     margin-top: 25px;
     display: inline;
 }
 
 .groups-container-inner {
-    width: 1200px;
+    width: 910px;
     height: auto;
     top:0;
     bottom: 0;
@@ -24,12 +22,126 @@
 
 }
 
+#select-group {
+    margin: 12px 0 6px;
+    font-size: 24px;
+}
+
 .options-container {
-    border: 1px solid;
+    float: left;
     display: inline-block;
+    margin: 12px 12px 0px 0px;
+    width: 210px;
 }
 
 .roster-container {
-    border: 1px solid;
+    width: 670px;
     display: inline-block;
+    margin: 12px 0px 0px 12px;
+    padding-bottom: 8px;
 }
+
+.roster-headers {
+    margin: 8px 0px;
+    /*padding: 2px 0 2px 10px;*/
+    font-weight: normal;
+}
+
+/*colour bars*/
+#action-colour-bar {
+    background: rgb(240,0,50);
+    margin-right: 6px;
+    padding-right: 8px;
+}
+
+#task-colour-bar{
+    background: rgb(0,200,0);
+    margin-right: 6px;
+    padding-right: 8px;
+}
+
+#roster-colour-bar {
+    background: rgb(255,200,0);
+    margin-right: 6px;
+    padding-right: 8px;
+}
+
+#group-name-colour-bar {
+    background: rgb(0,150,255);
+    margin-right: 6px;
+    padding-right: 8px;
+}
+
+.group-elements {
+    margin-left: 8px;
+}
+
+#group-name {
+    margin: 8px 0px;
+    font-weight: normal;
+}
+
+.roster-names {
+    margin-left: 8px;
+}
+
+#link-result {
+    text-decoration: none;
+    color: black;
+    margin-left: 8px;
+}
+
+.result-list {
+    margin: 0px;
+    padding: 0px;
+}
+
+.result-list-elem {
+    list-style: none;
+    margin: 2px;
+}
+
+.result-list-elem:hover {
+    background: #ddd;
+    cursor: pointer;
+}
+
+.result-list-elem:last-child {
+    list-style: none;
+    border-bottom: none;
+}
+
+/*action tasks content*/
+.action-task-content {
+    margin: 2px 8px;
+}
+
+.action-task-content-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.action-task-content:hover {
+    background: #ddd;
+}
+
+/*team or department*/
+.team {
+
+}
+
+.department {
+
+}
+
+#teamsBox {
+    float: left;
+}
+
+#departmentsBox {
+    float: left;
+    clear: left;
+}
+
+
