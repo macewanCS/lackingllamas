@@ -361,7 +361,7 @@
 }
 
 .pageLoad {
-    position: fixed;
+    position: absolute;
     left: inherit;
     top: inherit;
     width: 100%;
