@@ -303,7 +303,6 @@
 
 #mainDiv > div.sideDiv > div.datePicker > label.dateLabel {
     font-weight: normal;
-    font-size: small;
 
 }
 
@@ -318,7 +317,6 @@
 
 #mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel {
     font-weight: normal;
-    font-size: small;
 
 }
 
@@ -353,7 +351,7 @@
 }
 
 #mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.descript {
-    margin-left: 5%;
+    margin-left: 3%;
 }
 
 #mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.commandButtons {
@@ -385,4 +383,37 @@
 
 #sideDiv {
     visibility: hidden;
+}
+
+#grid-basic > thead > tr > th.desc > a {
+    margin-left: 3%;
+}
+
+#mainDiv > .sideDiv > div.checkBoxes {
+    margin-top: 1vw;
+    width: 100%;
+}
+
+#mainDiv > .sideDiv > div.checkBoxes > .check {
+    width: 45%;
+    display: inline-block;
+}
+
+#mainDiv > .sideDiv > div.checkBoxes > label.checkBoxesTitle {
+    width: 100%;
+}
+
+#mainDiv > .sideDiv > div.checkBoxes > div.checkLabels {
+    width: 100%;
+}
+
+#mainDiv > .sideDiv > div.checkBoxes > div.checkLabels > label{
+    width: 45%;
+    display: inline-block;
+    font-weight: normal;
+}
+
+#mainDiv > .sideDiv > div.checkBoxes > div.check > input {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
 }

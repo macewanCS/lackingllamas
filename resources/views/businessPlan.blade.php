@@ -93,6 +93,21 @@
 
             </div>
 
+            <div class="checkBoxes">
+                <label class="checkBoxesTitle">Show: </label>
+                <div class="checkLabels">
+                    <label id="checkFirst">BP</label>
+                    <label id="checkSecond">NonBP</label>
+                </div>
+                <div class="check">
+                    <input type="checkbox" id="check1" name="check1" />
+                </div>
+
+                <div class="check">
+                    <input type="checkbox" id="check2" name="check2" />
+                </div>
+            </div>
+
             <div class="Clear">
                 <button id="resetButton" onclick="clearFilters()">Reset Filtering</button>
             </div>
