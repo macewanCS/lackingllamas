@@ -9,13 +9,11 @@
                 <div class="options-checkboxes">
                     {!! Form::label('teamsBox','Teams ', ['class' => 'options-teams-box']) !!}
                     {!! Form::checkbox('teamsBox', 1, true, ['onclick' => 'hideTeams()']) !!}
-
+                    <br>
                     {!! Form::label('departmentsBox', 'Departments ', ['class' => 'options-departments-box']) !!}
                     {!! Form::checkbox('departmentsBox', 1, true, ['onclick' => 'hideDepartments()']) !!}
                 </div>
-                <br>
-                <div>Select Group</div>
-                <hr>
+                <div id="select-group">Select Group</div>
                 <div id="search-results">
                     <ul class="result-list">
                     @if (count($groups))
@@ -26,7 +24,6 @@
                             <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
                             @endif
                                 <a id="link-result">{{$group->name}}</a>
-                                <br>
                             </li>
                         @endforeach
                     @else
@@ -38,11 +35,10 @@
 
             <div class="roster-container">
                 @if (count($groups))
-                <h2 id="group-name">{{$groups[0]['name']}}</h2>
+                <h2 id="group-name"><label id="group-name-colour-bar"></label>{{$groups[0]['name']}}</h2>
                 @else
-                <h2 id="group-name">No Groups</h2>
+                <h2 id="group-name"><label id="group-name-colour-bar"></label>No Groups</h2>
                 @endif
-                <hr class="roster-br-bottom">
                 @if (count($groups))
                 <div class="group-elements" id="group-lead">Lead: {{$users->find($groups[0]['user_ID'])->name}}</div>
                 <div class="group-elements" id="group-description">Description: {{$groups[0]['description']}}</div>
@@ -52,9 +48,7 @@
                 <div class="group-elements" id="group-description">Description: N/A</div>
                 <div class="group-elements" id="group-budget">Budget: N/A</div>
                 @endif
-                <hr class="roster-br-top">
-                <h2 class="roster-headers actions-header">Actions</h2>
-                <hr class="roster-br-bottom">
+                <h2 class="roster-headers"><label id="action-colour-bar"></label>Actions</h2>
                 <div id="group-actions">
                     @if (count($groups))
                         @foreach ($actions as $action)
@@ -68,9 +62,7 @@
                     <div class="action-task-content">N/A</div>
                     @endif
                 </div>
-                <hr class="roster-br-top">
-                <h2 class="roster-headers tasks-header">Tasks</h2>
-                <hr class="roster-br-bottom">
+                <h2 class="roster-headers"><label id="task-colour-bar"></label>Tasks</h2>
                 <div id="group-tasks">
                     @if (count($groups))
                         @foreach ($tasks as $task)
@@ -84,9 +76,7 @@
                     <div class="action-task-content">N/A</div>
                     @endif
                 </div>
-                <hr class="roster-br-top">
-                <h2 class="roster-headers roster-header">Roster</h2>
-                <hr class="roster-br-bottom">
+                <h2 class="roster-headers"><label id="roster-colour-bar"></label>Roster</h2>
                 <div id="group-users">
                     @if (count($groups))
                         @foreach ($rosters as $roster)
@@ -139,7 +129,7 @@
             userText.innerHTML = userContent;
             actionText.innerHTML = actionContent;
             taskText.innerHTML = taskContent;
-            headerText.innerHTML = $name;
+            headerText.innerHTML = "<label id=\"group-name-colour-bar\"></label>" + $name;
             descriptionText.innerHTML = "Description: " + description;
             budgetText.innerHTML = "Budget: $" + budget;
             leadText.innerHTML = "Lead: " + lead;
