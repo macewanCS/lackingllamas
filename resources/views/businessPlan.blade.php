@@ -2,9 +2,9 @@
 
 @section('endHead')
     {!! Html::style('css/businessPlan.css') !!}
-    {!! Html::style('css/font-awesome.css') !!}
-    {!! Html::style('css/Template.css') !!}
-    {!! Html::style('javascript/jquery-ui/jquery-ui.css') !!}
+    {!! Html::style('css/font-awesome.min.css') !!}
+    {!! Html::style('css/template.min.css') !!}
+    {!! Html::style('javascript/jquery-ui/jquery-ui.min.css') !!}
     {!! Html::style('css/jquery.multiselect.css') !!}
     {!! Html::style('css/jquery.multiselect.filter.css') !!}
 @stop
@@ -196,11 +196,11 @@
 @stop
 
 @section('scripts')
-    {!! Html::script('javascript/jquery-ui/jquery-ui.js') !!}
+    {!! Html::script('javascript/jquery-ui/jquery-ui.min.js') !!}
     {!! Html::script('javascript/jquery.bootgrid.js') !!}
     {!! Html::script('javascript/jquery.bootgrid.fa.js') !!}
-    {!! Html::script('javascript/jquery.multiselect.js') !!}
-    {!! Html::script('javascript/jquery.multiselect.filter.js') !!}
+    {!! Html::script('javascript/jquery.multiselect.min.js') !!}
+    {!! Html::script('javascript/jquery.multiselect.filter.min.js') !!}
 
     <script type="text/javascript">
         // CSRF protection
