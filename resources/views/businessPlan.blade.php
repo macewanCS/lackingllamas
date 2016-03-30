@@ -15,7 +15,8 @@
 
 @section('content')
     <div id="mainDiv">
-        <div class="sideDiv">
+        <div class="pageLoad"><img src="/pictures/page-loader.gif"/></div>
+        <div class="sideDiv" id="sideDiv">
             <div class="dropDown">
                 <button onclick="myFunction()" class="dropbtn">Create</button>
                 <div id="myDropdown" class="dropdown-content">
@@ -98,7 +99,7 @@
 
         </div>
 
-        <div class="tableDiv">
+        <div class="tableDiv" id="tableDiv">
             <table id="grid-basic"  class="table table-condensed table-hover bootgrid-table">
                 <thead>
                 <tr>
@@ -729,6 +730,11 @@
             @if($filters != null)
                 setFilters();
             @endif
+            setTimeout(function() {
+                document.getElementById("tableDiv").style.visibility = 'visible';
+                document.getElementById("sideDiv").style.visibility = 'visible';
+                $(".pageLoad").fadeOut('slow');
+            }, 3000);
         });
     </script>
     <script>
