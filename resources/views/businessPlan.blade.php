@@ -32,12 +32,11 @@
                 <label>Filter By:</label>
             </div>
             <div class="bpSelector">
-                <label>Type: </label>
+                <label>Business Plan: </label>
                 <select id="bpSelect" name="bpSelect" multiple="multiple">
-                    <option value=1 selected="selected">1</option>
-                    <option value=2 selected="selected">2</option>
-                    <option value=3 selected="selected">3</option>
-                    <option value=4 selected="selected">4</option>
+                @for($i=1;$i<8;$i++)
+                    <option value=1 selected="selected">{{$i}}</option>
+                @endfor
                 </select>
             </div>
             <div class="goatSelector">
