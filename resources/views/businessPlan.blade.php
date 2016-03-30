@@ -351,6 +351,15 @@
                 else {
                     grid.bootgrid("removeParams", ui.value, 2);
                 }
+            },
+            checkAll: function () {
+                grid.bootgrid("addParams", "Goal", 2);
+                grid.bootgrid("addParams", "Objective", 2);
+                grid.bootgrid("addParams", "Action", 2);
+                grid.bootgrid("addParams", "Task", 2);
+            },
+            uncheckAll: function () {
+                grid.bootgrid("removeParams", undefined, 2);
             }
         });
 
@@ -621,17 +630,80 @@
         function setFilters () {
             clearFilters();
             @if($filters["type"] != null)
-                goatSelector.multiselect("checkAll");
-                var types = goatSelector.multiselect("getChecked");
-                types = Array(types.slice(0,4))["0"];
-                goatSelector.multiselect("uncheckAll");
-                @foreach($filters["type"] as $type)
-                    for(var i = 0; i < 4; i++) {
-                        if (types[String(i)].value == "{{$type}}") {
-                            goatSelector.multiselect("widget").find(":checkbox:eq(" + i + ")").click();
+                @if ($filters["type"] == "all")
+                    goatSelector.multiselect("checkAll");
+                @elseif ($filters["type"] == "none")
+                    goatSelector.multiselect("uncheckAll");
+                @else
+                    goatSelector.multiselect("checkAll");
+                    var types = goatSelector.multiselect("getChecked");
+                    types = Array(types.slice(0,4))["0"];
+                    goatSelector.multiselect("uncheckAll");
+                    @foreach($filters["type"] as $type)
+                        for(var i = 0; i < 4; i++) {
+                            if (types[String(i)].value == "{{$type}}") {
+                                goatSelector.multiselect("widget").find(":checkbox:eq(" + i + ")").click();
+                            }
                         }
-                    }
-                @endforeach
+                    @endforeach
+                @endif
+            @endif
+
+            @if($filters["collabs"] != null)
+                @if ($filters["collabs"] == "all")
+                    collabSelector.multiselect("checkAll");
+                @elseif($filters["collabs"] == "none")
+                    collabSelector.multiselect("uncheckAll");
+                @else
+                    collabSelector.multiselect("checkAll");
+                    var collabs = collabSelector.multiselect("getChecked");
+                    collabSelector.multiselect("uncheckAll");
+                    @foreach($filters["collabs"] as $collab)
+                        for(var j = 0; j < collabMaxCount - 1; j++) {
+                            if (collabs[String(j)].value == "{{$collab}}") {
+                                collabSelector.multiselect("widget").find(":checkbox:eq(" + j + ")").click();
+                            }
+                         }
+                    @endforeach
+                @endif
+            @endif
+            
+            @if($filters["leads"] != null)
+                @if ($filters["leads"] == "all")
+                    leadSelector.multiselect("checkAll");
+                @elseif($filters["leads"] == "none")
+                    leadSelector.multiselect("uncheckAll");
+                @else
+                    leadSelector.multiselect("checkAll");
+                    var leads = leadSelector.multiselect("getChecked");
+                    leadSelector.multiselect("uncheckAll");
+                    @foreach($filters["leads"] as $lead)
+                        for(var k = 0; k < leadMaxCount - 1; k++) {
+                            if (leads[String(k)].value == "{{$lead}}") {
+                                leadSelector.multiselect("widget").find(":checkbox:eq(" + k + ")").click();
+                            }
+                        }
+                    @endforeach
+                @endif
+            @endif
+
+            @if($filters["groups"] != null)
+                @if ($filters["groups"] == "all")
+                    groupSelector.multiselect("checkAll");
+                @elseif($filters["groups"] == "none")
+                    groupSelector.multiselect("uncheckAll");
+                @else
+                    groupSelector.multiselect("checkAll");
+                    var groups = groupSelector.multiselect("getChecked");
+                    groupSelector.multiselect("uncheckAll");
+                    @foreach($filters["groups"] as $lead)
+                        for(var l = 0; l < leadMaxCount - 1; l++) {
+                            if (groups[String(l)].value == "{{$lead}}") {
+                                groupSelector.multiselect("widget").find(":checkbox:eq(" + l + ")").click();
+                            }
+                        }
+                    @endforeach
+                @endif
             @endif
         }
 
