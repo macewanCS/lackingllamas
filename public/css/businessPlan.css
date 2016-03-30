@@ -108,7 +108,7 @@
 .tableDiv {
     float: right;
     display: inline-block;
-    max-width: 85%;
+    max-width: 88%;
     width: 85% !important;
     overflow-x: auto;
 
@@ -416,4 +416,8 @@
 #mainDiv > .sideDiv > div.checkBoxes > div.check > input {
     transform: scale(1.5);
     -webkit-transform: scale(1.5);
+}
+
+#ui-datepicker-div {
+    visibility: hidden;
 }
