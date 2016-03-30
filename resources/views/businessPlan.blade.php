@@ -111,7 +111,7 @@
                     <th data-column-id="user" data-formatter="colorizer" data-header-css-class="user">Lead</th>
                     <th data-column-id="group" data-formatter="colorizer" data-header-css-class="group">Group</th>
                     <th data-column-id="collabs" data-formatter="colorizer" data-header-css-class="collabs">Collaborators</th>
-                    <th data-column-id="budget" data-formatter="budget" data-header-css-class="budget">Budget</th>
+                    <th data-column-id="budget" data-formatter="colorizer" data-header-css-class="budget">Budget</th>
                     <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress" data-sortable="false">Prog.</th>
@@ -250,21 +250,14 @@
                                     return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
                             }
-                            else if (column.id == "desc"){
+                            else if (column.id == "desc") {
                                 return "<div class=\"descript\">" + row[column.id] + "</div>";
+                            }
+                            else if ((row[column.id] == ""  || row[column.id] == "0") && (row["type"] == "Action" || row["type"] == "Task")){
+                                return "<div class=\"center\">" + "-" + "</div>";
                             }
                             else {
                                 return "<div>" + row[column.id] + "</div>";
-                            }
-                        },
-                        budget: function (column, row) {
-                            if (column.id = "budget"){
-                                if (row[column.id] == "0"){
-                                    return "<div class=\"hidden\">" + row[column.id] + "</div>";
-                                }
-                                else {
-                                    return "<div>" + row[column.id] + "</div>";
-                                }
                             }
                         },
                         "commands": function(column, row) {

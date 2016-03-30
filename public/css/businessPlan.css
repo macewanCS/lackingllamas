@@ -196,6 +196,10 @@
     visibility: hidden;
 }
 
+#grid-basic > tbody > tr > td > div.center {
+    text-align: center !important;
+}
+
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.select-cell,
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left,
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right
