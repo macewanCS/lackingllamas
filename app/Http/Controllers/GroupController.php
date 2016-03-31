@@ -21,7 +21,7 @@ class GroupController extends Controller
         $tasks = Task::all();
         $users = User::all();
         $rosters = Roster::all();
-        $businessPlans = BusinessPlan::all();
+        $businessPlans = BusinessPlan::lists('name', 'id');
         return view('groups', compact('groups', 'actions', 'tasks', 'users', 'rosters', 'businessPlans'));
     }
 }

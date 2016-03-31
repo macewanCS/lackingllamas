@@ -92,9 +92,11 @@
                 </div>
             </div>
 
-            {{Form::select('business-plan', array())}}
         </div>
-
+        <div class="business-plan-div">
+            {{Form::label('businessplan-label', 'Business Plan', ['class' => 'business-plan-selector'])}}
+            {{Form::select('business-plan', $businessPlans, null, ['class' => 'business-plan-selector'])}}
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript">

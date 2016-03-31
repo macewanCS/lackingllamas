@@ -144,4 +144,14 @@
     clear: left;
 }
 
+.business-plan-selector {
+    .float:right;
+    display: inline-block;
+}
 
+.business-plan-div {
+    border: 1px solid;
+    width: auto;
+    display: inline;
+    float: right;
+}

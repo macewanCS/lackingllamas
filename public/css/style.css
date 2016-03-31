@@ -21,7 +21,7 @@
 
 .topbar-collapse {
     width: 50%;
-    min-width: 2000px;
+    min-width: 1500px;
     position: relative;
     margin: 0 auto;
 }
@@ -50,7 +50,6 @@
     text-align: center;
     display:inline;
     padding-bottom: 0.5mm;
-
 }
 
 
