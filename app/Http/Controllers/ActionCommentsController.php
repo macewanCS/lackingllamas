@@ -63,7 +63,7 @@ class ActionCommentsController extends Controller
         $groups = Group::lists('name','id');
         $users = User::lists('name', 'id');
 
-        return view('editActionComments',compact('action','objectives','groups','users'));
+        return view('editActionComments',compact('action','objectives','groups','users', 'bpid'));
     }
 
     public function updateAction($id, Request $request)

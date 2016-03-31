@@ -73,6 +73,12 @@ h1 {
     margin: 25px auto 25px auto;
 }
 
+h2 {
+    font-weight:normal;
+    width:50%;
+    margin: 25px auto 25px auto;
+}
+
 .form-group-one {
     margin: 20px 0px 20px 0px;
 }

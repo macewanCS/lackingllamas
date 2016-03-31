@@ -8,6 +8,9 @@
         <h1>
             Edit a Action
         </h1>
+        <h2>
+            Business Plan: {{App\BusinessPlan::find($bpid)->name}}
+        </h2>
         <hr>
         <div class="create-goal-inner">
             {!! Form::model($action,['method' => 'PATCH', 'action' => ['ActionCommentsController@updateAction', $action->id]]) !!}
