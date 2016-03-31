@@ -34,6 +34,17 @@
                 {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
 
                 <br>
+
+                <!-- {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!} TODO: (test code) Remove this, and above, with multi dropdown selector for collabs
+                <select class="edit-action-field" name="collab-select" multiple>
+                    @foreach ($users as $x)
+                        <option value="user">{{$x}}</option>
+                        @endforeach
+                    @foreach ($groups as $x)
+                        <option value="group">{{$x}}</option>
+                        @endforeach
+                </select>
+                -->
                 {!! Form::label('budget','Budget: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       <br>
 
