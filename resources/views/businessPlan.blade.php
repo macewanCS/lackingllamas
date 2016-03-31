@@ -308,13 +308,40 @@
                             }
                         },
                         "commands": function (column, row) {
-                           return "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> " +
-                                   "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                                   "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
+                            var returnString = "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
+                            if (row["type"] == "Action" || row["type"] == "Task") {
+                                if("{{$permission}}" < "2"){
+                                    if (row["user"] == "{{$thisUser->name}}") {
+                                        returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
+                                    }
+                                    else {
+                                        returnString += "</div>";
+                                    }
+                                }
+                                else if ("{{$permission}}" < "3") {
+                                    @foreach ($thisGroups as $thisGroup)
+                                        if (row["user"] == "{{$thisUser->name}}" || row["group"] == "{{$thisGroup->name}}") returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " + "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>"; @break
+                                    @endforeach
+                                }
+                                else {
+                                    returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                            "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
+                                }
+                            }
+                            else {
+                                if("{{$permission}}" > "2") {
+                                    returnString += "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                            "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
+                                }
+                                else {
+                                        returnString += "</div>";
+                                }
+                            }
+                            return returnString;
                         }
                     }
-                }).on("loaded.rs.jquery.bootgrid", function()
-        {
+                }).on("loaded.rs.jquery.bootgrid", function() {
             /* Executes after data is loaded and rendered */
             grid.find(".command-edit").on("click", function(e)
             {
@@ -339,6 +366,8 @@
                 window.location.assign("/" + row.type.toLowerCase() + "/" + row.id);
             });
         });
+
+
         var bpSelector = $("#bpSelect").multiselect({
             height: "auto",
             noneSelectedText: "Choose Element",
