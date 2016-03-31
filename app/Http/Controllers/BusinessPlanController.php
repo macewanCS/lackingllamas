@@ -11,9 +11,12 @@ use App\User;
 use App\Group;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 use DB;
+use Zizaco\Entrust\Entrust;
+
 //use Illuminate\Http\Request;
 //use Request;
 
@@ -59,8 +62,21 @@ class BusinessPlanController extends Controller
               $users = User::all();
               $groups = Group::all();
               $filters = null;
+               if (Auth::check()) {
+                   $user = User::find(Auth::id());
+                   if ($user->hasRole('admin')) $permission = 4;
+                   else if ($user->hasRole('bpLead')) $permission = 3;
+                   else if ($user->hasRole('leader')) $permission = 2;
+                   else if ($user->hasRole('user')) $permission = 1;
+                   else $permission = 0;
+               }
+               else {
+                   $permission = 0;
+               }
+             $thisUser = User::find(Auth::id());
+             $thisGroup = Group::find($thisUser->group);
               $nameBP=$bp[$idbp-1]->name;
-              return view('businessPlan',compact('users', 'groups','bpPlans','idbp','filters','nameBP'));
+              return view('businessPlan',compact('users', 'groups','bpPlans','idbp','filters','nameBP', 'permission', 'thisUser', 'thisGroup'));
  }     
  public function businessPlan($idbp)
     {
@@ -71,8 +87,20 @@ class BusinessPlanController extends Controller
         $groups = Group::all();
         $nameBP=$bp[$idbp-1]->name;
         $filters = null;
-        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters','nameBP'));
-
+        if (Auth::check()) {
+            $user = User::find(Auth::id());
+            if ($user->hasRole('admin')) $permission = 4;
+            else if ($user->hasRole('bpLead')) $permission = 3;
+            else if ($user->hasRole('leader')) $permission = 2;
+            else if ($user->hasRole('user')) $permission = 1;
+            else $permission = 0;
+        }
+        else {
+            $permission = 0;
+        }
+        $thisUser = User::find(Auth::id());
+        $thisGroup = Group::find($thisUser->group);
+        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters', 'nameBP', 'permission', 'thisUser', 'thisGroup'));
 
     }
   public function createBP()
