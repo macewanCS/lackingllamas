@@ -133,21 +133,5 @@
             budgetText.innerHTML = "Budget: $" + budget;
             leadText.innerHTML = "Lead: " + lead;
         }
-
-        function hideTeams() {
-            if (document.getElementById("teamsBox").checked) {
-                $(".team").show();
-            } else {
-                $(".team").hide();
-            }
-        }
-
-        function hideDepartments() {
-            if (document.getElementById("departmentsBox").checked) {
-                $(".department").show();
-            } else {
-                $(".department").hide();
-            }
-        }
     </script>
 @stop
