@@ -58,12 +58,11 @@ class ActionCommentsController extends Controller
         $model = new Action;
         $action = Action::findOrFail($id);
         $bpid = $model->getBpIdFromAction($id);
-        $objectives = $model->getAllObjectivesInBp($bpid);
-        $objectives = $objectives->lists('name', 'id');
+        $objective = Objective::find($action->objective_id)->name;
         $groups = Group::lists('name','id');
         $users = User::lists('name', 'id');
 
-        return view('editActionComments',compact('action','objectives','groups','users', 'bpid'));
+        return view('editActionComments',compact('action','objective','groups','users', 'bpid'));
     }
 
     public function updateAction($id, Request $request)

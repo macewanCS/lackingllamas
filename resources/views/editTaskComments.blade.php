@@ -18,7 +18,7 @@
             <div class="form-group-one">
 
                 {!! Form::label('action_id','Action: ', ['class' => 'edit-task-label']) !!}
-                {!! Form::select('action_id',$actions,null, array('class' => 'edit-action-field'))!!}<br>
+                {!! Form::text('action_id',$action, array('class' => 'edit-action-field', 'disabled' => 'disabled'))!!}<br>
 
                 <br>
                 {!! Form::label('description','Name: ', ['class' => 'edit-task-label']) !!}

@@ -54,10 +54,9 @@ class TaskCommentsController extends Controller
         $groups = Group::lists('name', 'id');
         $users = User::lists('name', 'id');
         $bpid = $model->getBpIdFromTask($id);
-        $actions = $model->getAllActionsInBp($bpid);
-        $actions = $actions->lists('description', 'id');
+        $action = Action::find($task->action_id)->description;
 
-        return view('editTaskComments',compact('task','actions','groups','users', 'bpid'));
+        return view('editTaskComments',compact('task','action','groups','users', 'bpid'));
     }
     public function updateTask($id, Request $request)
     {

@@ -17,7 +17,7 @@
             <div class="form-group-one">
 
                 {!! Form::label('objective_id','Objective: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::select('objective_id',$objectives,null, array('class' => 'edit-action-field')) !!}
+                {!! Form::text('objective_id',$objective, array('class' => 'edit-action-field', 'disabled' => 'disabled')) !!}
 
                 <br><br>
                 {!! Form::label('description','Name: ', ['class' => 'edit-action-label']) !!}
