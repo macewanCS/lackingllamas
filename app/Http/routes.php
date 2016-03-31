@@ -40,12 +40,13 @@
 |
 */
 
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'LoginController@login');
+    Route::resource('imprimer', 'PDFController@show');
     //Route::get('dashboard', 'DashboardController@dashBoard');
     Route::get('mytasks','MyTasksController@myTasks');
+    Route::get('businessplan/print','BusinessPlanController@printBP');
     Route::get('businessplan','BusinessPlanController@lastBP');
     Route::get('businessplan/{idbp}','BusinessPlanController@businessPlan');
     //---------------------------
