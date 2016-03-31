@@ -21,6 +21,7 @@ class ActionCommentsController extends Controller
     public function actionComments($id)
     {
         $actionComment = new ActionComments;
+        $model = new Action;
         $comments = $actionComment->getComments($id);
         $action = Action::findOrFail($id);
         $tasks =  Task::all()->where('action_id', $id);
@@ -37,9 +38,10 @@ class ActionCommentsController extends Controller
         } else {
             $permission = false;
         }
+        $businessplan = $model->getBpIdFromAction($id);
 
 
-        return view('action', compact('comments', 'action', 'tasks', 'users', 'permission', 'groupLead'));
+        return view('action', compact('comments', 'action', 'tasks', 'users', 'permission', 'groupLead', 'businessplan'));
     }
 
     public function store($action_id, Requests\CommentActionRequest $request)

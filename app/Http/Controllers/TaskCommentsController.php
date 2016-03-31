@@ -19,6 +19,7 @@ class TaskCommentsController extends Controller
     public function taskComments($id)
     {
         $taskComment = new TaskComments;
+        $model = new Task;
         $comments = $taskComment->getComments($id);
         $task = Task::findOrFail($id);
         $users = array();
@@ -32,9 +33,9 @@ class TaskCommentsController extends Controller
         } else {
             $permission = false;
         }
+        $businessplan = $model->getBpIdFromTask($id);
 
-
-        return view('task', compact('comments', 'task', 'users', 'permission', 'groupLead'));
+        return view('task', compact('comments', 'task', 'users', 'permission', 'groupLead', 'businessplan'));
     }
 
     public function store($task_id, Requests\CommentTaskRequest $request)

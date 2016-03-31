@@ -26,12 +26,11 @@
                 <li><div class="topbar-text"><a href="{{ url('/') }}">{{HTML::image('pictures/EPL.png',null, ['class' => 'topbar-img'])}}
                         </a></div></li>
 
-
-
                 @if (Request::path() == 'businessplan')
-                    <li><div class="topbar-current"><a href="{{ url('/businessplan',App\BusinessPlan::orderBy('created_at')->first()->id)}}">Business Plan</a></div></li>
+
+                    <li><div class="topbar-current"><a href="{{ url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id)}}">Business Plan</a></div></li>
                 @else
-                    <li><div class="topbar-text"><a href="{{  url('/businessplan',App\BusinessPlan::orderBy('created_at')->first()->id) }}">Business Plan</a></div></li>
+                    <li><div class="topbar-text"><a href="{{  url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id) }}">Business Plan</a></div></li>
                 @endif
 
                 @if (Request::path() == 'groups')
@@ -59,7 +58,7 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </button>
                     <div class="dropdown-content">
-                        <a href="{{url('/businessplan',App\BusinessPlan::orderBy('created_at')->first()->id)}}"><i class="fa fa-btn fa-my-tasks"></i>My Tasks</a> <!-- TODO: Link to business plan filtered with my tasks -->
+                        <a href="{{url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id)}}"><i class="fa fa-btn fa-my-tasks"></i>My Tasks</a> <!-- TODO: Link to business plan filtered with my tasks -->
                         <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                     </div>
 
