@@ -22,9 +22,10 @@ public function show()
                           $users = User::all();
               $groups = Group::all();
               $filters = null;
+        $nameBP=$bp[$idbp-1]->name;
+//$users[$bp->userId - 1]->name
 
-
-    $html = View::make('businessPlan.printBP',compact('users', 'groups','bpPlans','idbp','filters'))->render();
+    $html = View::make('businessPlan.printBP',compact('users', 'groups','bpPlans','idbp','filters','nameBP'))->render();
     $pdf = App::make('dompdf.wrapper');
     $pdf->loadHTML($html);
     return $pdf->stream();

@@ -10,7 +10,12 @@
     table-layout:fixed;
     width:100%;
 }
-
+h1 {
+    font-weight:normal;
+    width:50%;
+    margin: 25px auto 25px auto;
+    display: inline;
+}
 #grid-basic .active
 {
     background-color:#D3D3D3;
@@ -176,7 +181,19 @@
 {
     width:25%;
 }
-
+.create-goal-container {
+    background:white;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    position: absolute;
+    box-shadow: 10px 10px 5px grey;
+    border: 2px solid;
+    border-color: grey;
+    margin-top: 25px;
+    display: inline;
+}
 #mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.commandButtons,#mainDiv > .sideDiv > div.checkBoxes > label.checkBoxesTitle,#mainDiv > .sideDiv > div.checkBoxes > div.checkLabels
 {
     width:100%;
