@@ -152,6 +152,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Radic\BladeExtensions\BladeExtensionsServiceProvider::class,
 
         /*
          * Application Service Providers...

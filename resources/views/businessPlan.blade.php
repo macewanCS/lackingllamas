@@ -117,11 +117,11 @@
                     <label id="checkSecond">NonBP</label>
                 </div>
                 <div class="check">
-                    <input type="checkbox" id="check1" name="check1" />
+                    <input type="checkbox" id="check1" name="check1" checked>
                 </div>
 
                 <div class="check">
-                    <input type="checkbox" id="check2" name="check2" />
+                    <input type="checkbox" id="check2" name="check2" checked>
                 </div>
             </div>
 
@@ -137,6 +137,7 @@
                 <tr>
                     <th data-column-id="id" data-formatter="colorizer" data-header-css-class="id" data-visible="false"></th>
                     <th data-column-id="ident" data-formatter="colorizer" data-header-css-class="indent" data-identifier="true" data-visible="false"></th>
+                    <th data-column-id="secondaryIdent" data-formatter="colorizer" data-header-css-class="secondaryIdent" data-visible="false"></th>
                     <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
                     <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status" data-visible="false"></th>
                     <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
@@ -148,16 +149,19 @@
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress" data-sortable="false">Prog.</th>
                     <th data-column-id="commands" data-formatter="commands" data-header-css-class="commands" data-sortable="false" data-align="right">Utilities</th>
+                    <th data-column-di="bp" data-formatter="bp" data-header-css-class="bp" data-visible="false"></th>
                 </tr>
                 </thead>
                 <tbody>
+
      @foreach($bpPlans as $bp)
         @if(substr_count($bp->ident, ".")==0)
-        @if($temp = $bp->name)
+        @if($tempGoal = $bp)
         @endif
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
+            <td>{{$tempGoal->name}}.{{$bp->ident}}</td>
             <td>Goal</td>
             <td>1</td>
             <td>{{$bp->name}}</td>
@@ -169,15 +173,19 @@
             <td></td>
             <td></td>
             <td></td>
+            <td>{{$tempGoal->bp}}</td>
         </tr>
         @endif
          @if(substr_count($bp->ident, ".")==1)
+         @if($tempObj = $bp)
+         @endif
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
+                <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
                 <td>Objective</td>
                 <td>1</td>
-                <td>{{$temp}}</td>
+                <td>{{$tempGoal->name}}</td>
                 <td>--</td>
                 <td>--</td>
                 <td>{{$bp->name}}</td>
@@ -186,12 +194,14 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td>{{$tempGoal->bp}}</td>
             </tr>
         @endif 
           @if(substr_count($bp->ident, ".")==2)
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
+                <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
                 <td>Action</td>
                 <td>2</td>
                 <td>{{$bp->description}}</td>
@@ -202,12 +212,15 @@
                 <td>{{$bp->successMeasured}}</td>
                 <td>{{$bp->date}}</td>
                 <td>{{$bp->progress}}</td>
+                <td></td>
+                <td>{{$tempGoal->bp}}</td>
             </tr>         
         @endif
         @if(substr_count($bp->ident, ".")==3)
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
+            <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
             <td>Task</td>
             <td>3</td>
             <td>{{$bp->description}}</td>
@@ -218,6 +231,8 @@
             <td>{{$bp->successMeasured}}</td>
             <td>{{$bp->date}}</td>
             <td>{{$bp->progress}}</td>
+            <td></td>
+            <td>{{$tempGoal->bp}}</td>
         </tr>         
         @endif
     @endforeach
@@ -256,7 +271,7 @@
                     rowCount: -1,
                     caseSensitive: false,
                     statusMappings: {
-                      0: "Goal",
+                        0: "Goal",
                         1: "Objective",
                         2: "Action",
                         3: "Task"
@@ -264,18 +279,18 @@
 
                     formatters: {
                         colorizer: function (column, row) {
-                            if (column.id == "progress"){
+                            if (column.id == "progress") {
                                 var prog = row.progress;
-                                if (prog < 0){
+                                if (prog < 0) {
                                     return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
-                                else if (prog == 0){
+                                else if (prog == 0) {
                                     return "<div class=\"ico\"></div>";
                                 }
-                                else if (prog == 1){
+                                else if (prog == 1) {
                                     return "<div class=\"ico\"><span class=\"fa fa-hourglass-1\"></span></div>";
                                 }
-                                else if (prog == 2){
+                                else if (prog == 2) {
                                     return "<div class=\"ico\"><span class=\"fa fa-check\"></span></div>";
                                 }
                                 else {
@@ -285,28 +300,48 @@
                             else if (column.id == "desc") {
                                 return "<div class=\"descript\">" + row[column.id] + "</div>";
                             }
-                            else if ((row[column.id] == ""  || row[column.id] == "0") && (row["type"] == "Action" || row["type"] == "Task")){
+                            else if ((row[column.id] == "" || row[column.id] == "0") && (row["type"] == "Action" || row["type"] == "Task")) {
                                 return "<div class=\"center\">" + "-" + "</div>";
                             }
                             else {
                                 return "<div>" + row[column.id] + "</div>";
                             }
                         },
-                        "commands": function(column, row) {
+                        "commands": function (column, row) {
+                            var returnString = "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
                             if (row["type"] == "Action" || row["type"] == "Task") {
-                                return "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> " +
-                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                if("{{$permission}}" < "2"){
+                                    if (row["user"] == "{{$thisUser->name}}") {
+                                        returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
                                         "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
+                                    }
+                                    else {
+                                        returnString += "</div>";
+                                    }
+                                }
+                                else if ("{{$permission}}" < "3") {
+                                    @foreach ($thisGroups as $thisGroup)
+                                        if (row["user"] == "{{$thisUser->name}}" || row["group"] == "{{$thisGroup->name}}") returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " + "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>"; @break
+                                    @endforeach
+                                }
+                                else {
+                                    returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                            "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
+                                }
                             }
                             else {
-                                return  "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
+                                if("{{$permission}}" > "2") {
+                                    returnString += "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                            "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
+                                }
+                                else {
+                                        returnString += "</div>";
+                                }
                             }
+                            return returnString;
                         }
                     }
-                }
-        ).on("loaded.rs.jquery.bootgrid", function()
-        {
+                }).on("loaded.rs.jquery.bootgrid", function() {
             /* Executes after data is loaded and rendered */
             grid.find(".command-edit").on("click", function(e)
             {
@@ -331,6 +366,8 @@
                 window.location.assign("/" + row.type.toLowerCase() + "/" + row.id);
             });
         });
+
+
         var bpSelector = $("#bpSelect").multiselect({
             height: "auto",
             noneSelectedText: "Choose Element",
@@ -387,20 +424,20 @@
             header: "Choose element(s)",
             click: function (event, ui) {
                 if (ui.checked){
-                    grid.bootgrid("addParams", ui.value, 2);
+                    grid.bootgrid("addParams", ui.value, 3);
                 }
                 else {
-                    grid.bootgrid("removeParams", ui.value, 2);
+                    grid.bootgrid("removeParams", ui.value, 3);
                 }
             },
             checkAll: function () {
-                grid.bootgrid("addParams", "Goal", 2);
-                grid.bootgrid("addParams", "Objective", 2);
-                grid.bootgrid("addParams", "Action", 2);
-                grid.bootgrid("addParams", "Task", 2);
+                grid.bootgrid("addParams", "Goal", 3);
+                grid.bootgrid("addParams", "Objective", 3);
+                grid.bootgrid("addParams", "Action", 3);
+                grid.bootgrid("addParams", "Task", 3);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 2);
+                grid.bootgrid("removeParams", undefined, 3);
             }
         });
 
@@ -415,27 +452,27 @@
             },
             click: function (event, ui) {
                 if (ui.checked){
-                    grid.bootgrid("addParams", ui.value, 7);
+                    grid.bootgrid("addParams", ui.value, 8);
                     if (collabSelector.multiselect("getChecked").length == collabMaxCount){
-                        grid.bootgrid("addParams", "", 7);
+                        grid.bootgrid("addParams", "", 8);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 7);
-                    grid.bootgrid("removeParams", ui.value, 7);
+                    grid.bootgrid("removeParams", "", 8);
+                    grid.bootgrid("removeParams", ui.value, 8);
                 }
             },
             checkAll: function () {
                     @foreach($users as $user)
-                        grid.bootgrid("addParams", "{{$user->name}}", 7);
+                        grid.bootgrid("addParams", "{{$user->name}}", 8);
                     @endforeach
                     @foreach($groups as $group)
-                        grid.bootgrid("addParams", "{{$group->name}}", 7);
+                        grid.bootgrid("addParams", "{{$group->name}}", 8);
                     @endforeach
-                        grid.bootgrid("addParams", "", 7);
+                        grid.bootgrid("addParams", "", 8);
             },
             uncheckAll: function () {
-                    grid.bootgrid("removeParams", undefined, 7);
+                    grid.bootgrid("removeParams", undefined, 8);
             },
             optgrouptoggle: function (event, ui) {
                 var values = $.map(ui.inputs, function (checkbox){
@@ -444,21 +481,21 @@
                 if (ui.checked) {
                     for (var value in values) {
                         if ((typeof values[value]) == "string") {
-                            grid.bootgrid("addParams", values[value], 7);
+                            grid.bootgrid("addParams", values[value], 8);
                         }
                     }
                     if (collabSelector.multiselect("getChecked").length == collabMaxCount) {
-                        grid.bootgrid("addParams", "", 7);
+                        grid.bootgrid("addParams", "", 8);
                     }
                 }
                 else {
                     if (collabSelector.multiselect("getChecked").length == 0) {
-                        grid.bootgrid("removeParams", undefined, 7);
+                        grid.bootgrid("removeParams", undefined, 8);
                     }
                     else {
                         for (var value in values) {
                             if ((typeof values[value]) == "string") {
-                                grid.bootgrid("removeParams", values[value], 7);
+                                grid.bootgrid("removeParams", values[value], 8);
                             }
                         }
                     }
@@ -477,24 +514,24 @@
             },
             click: function (event, ui) {
                 if (ui.checked) {
-                    grid.bootgrid("addParams", ui.value, 5);
+                    grid.bootgrid("addParams", ui.value, 6);
                     if (leadSelector.multiselect("getChecked").length == leadMaxCount){
-                        grid.bootgrid("addParams", "", 5);
+                        grid.bootgrid("addParams", "", 6);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 5);
-                    grid.bootgrid("removeParams", ui.value, 5);
+                    grid.bootgrid("removeParams", "", 6);
+                    grid.bootgrid("removeParams", ui.value, 6);
                 }
             },
             checkAll: function () {
                 @foreach($users as $user)
-                    grid.bootgrid("addParams", "{{$user->name}}", 5);
+                    grid.bootgrid("addParams", "{{$user->name}}", 6);
                 @endforeach
-                grid.bootgrid("addParams", "", 5);
+                grid.bootgrid("addParams", "", 6);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 5);
+                grid.bootgrid("removeParams", undefined, 6);
             }
         }).multiselectfilter();
 
@@ -509,24 +546,24 @@
             },
             click: function (event, ui) {
                 if (ui.checked) {
-                    grid.bootgrid("addParams", ui.value, 6);
+                    grid.bootgrid("addParams", ui.value, 7);
                     if (groupSelector.multiselect("getChecked").length == groupMaxCount){
-                        grid.bootgrid("addParams", "", 6);
+                        grid.bootgrid("addParams", "", 7);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", "", 6);
-                    grid.bootgrid("removeParams", ui.value, 6);
+                    grid.bootgrid("removeParams", "", 7);
+                    grid.bootgrid("removeParams", ui.value, 7);
                 }
             },
             checkAll: function () {
                 @foreach($groups as $group)
-                    grid.bootgrid("addParams", "{{$group->name}}", 6);
+                    grid.bootgrid("addParams", "{{$group->name}}", 7);
                 @endforeach
-                grid.bootgrid("addParams", "", 6);
+                grid.bootgrid("addParams", "", 7);
             },
             uncheckAll: function () {
-                grid.bootgrid("removeParams", undefined, 6);
+                grid.bootgrid("removeParams", undefined, 7);
 
             }
         }).multiselectfilter();
@@ -538,21 +575,21 @@
                 showButtonPanel: true,
                 onClose: function (dateText, inst) {
                     if (dateText != "") {
-                        grid.bootgrid("removeParams", undefined, 10);
-                        grid.bootgrid("addConstraint", undefined, 10);
-                        grid.bootgrid("addParams", dateText, 10);
-                        grid.bootgrid("addConstraint", "greater", 10);
+                        grid.bootgrid("removeParams", undefined, 11);
+                        grid.bootgrid("addConstraint", undefined, 11);
+                        grid.bootgrid("addParams", dateText, 11);
+                        grid.bootgrid("addConstraint", "greater", 11);
                         if (document.getElementById("datePicker2").value != "") {
-                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
-                            grid.bootgrid("addConstraint", "lesser", 10);
+                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 11);
+                            grid.bootgrid("addConstraint", "lesser", 11);
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", undefined, 10);
-                        grid.bootgrid("addConstraint", undefined, 10);
+                        grid.bootgrid("removeParams", undefined, 11);
+                        grid.bootgrid("addConstraint", undefined, 11);
                         if (document.getElementById("datePicker2").value != "") {
-                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 10);
-                            grid.bootgrid("addConstraint", "lesser", 10);
+                            grid.bootgrid("addParams", document.getElementById("datePicker2").value, 11);
+                            grid.bootgrid("addConstraint", "lesser", 11);
                         }
                     }
                 }
@@ -565,21 +602,21 @@
                 showButtonPanel: true,
                 onClose: function (dateText, inst) {
                     if (dateText != "") {
-                        grid.bootgrid("removeParams", undefined, 10);
-                        grid.bootgrid("addConstraint", undefined, 10);
-                        grid.bootgrid("addParams", dateText, 10);
-                        grid.bootgrid("addConstraint", "lesser", 10);
+                        grid.bootgrid("removeParams", undefined, 11);
+                        grid.bootgrid("addConstraint", undefined, 11);
+                        grid.bootgrid("addParams", dateText, 11);
+                        grid.bootgrid("addConstraint", "lesser", 11);
                         if (document.getElementById("datePicker").value != "") {
-                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
-                            grid.bootgrid("addConstraint", "greater", 10);
+                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 11);
+                            grid.bootgrid("addConstraint", "greater", 11);
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", undefined, 10);
-                        grid.bootgrid("addConstraint", undefined, 10);
+                        grid.bootgrid("removeParams", undefined, 11);
+                        grid.bootgrid("addConstraint", undefined, 11);
                         if (document.getElementById("datePicker").value != "") {
-                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 10);
-                            grid.bootgrid("addConstraint", "greater", 10);
+                            grid.bootgrid("addParams", document.getElementById("datePicker").value, 11);
+                            grid.bootgrid("addConstraint", "greater", 11);
                         }
                     }
                 }
@@ -594,21 +631,21 @@
             else {
                     oldFromText = currentFromText;
                     if (currentFromText != ""){
-                        grid.bootgrid("removeParams", undefined, 8);
-                        grid.bootgrid("addConstraint", undefined, 8);
-                        grid.bootgrid("addParams", currentFromText, 8);
-                        grid.bootgrid("addConstraint", "greater", 8);
+                        grid.bootgrid("removeParams", undefined, 9);
+                        grid.bootgrid("addConstraint", undefined, 9);
+                        grid.bootgrid("addParams", currentFromText, 9);
+                        grid.bootgrid("addConstraint", "greater", 9);
                         if (budgetTo.val() != ""){
-                            grid.bootgrid("addParams", budgetTo.val(), 8);
-                            grid.bootgrid("addConstraint", "lesser", 8);
+                            grid.bootgrid("addParams", budgetTo.val(), 9);
+                            grid.bootgrid("addConstraint", "lesser", 9);
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", undefined, 8);
-                        grid.bootgrid("addConstraint", undefined, 8);
+                        grid.bootgrid("removeParams", undefined, 9);
+                        grid.bootgrid("addConstraint", undefined, 9);
                         if (budgetTo.val() != ""){
-                            grid.bootgrid("addParams", budgetTo.val(), 8);
-                            grid.bootgrid("addConstraint", "lesser", 8);
+                            grid.bootgrid("addParams", budgetTo.val(), 9);
+                            grid.bootgrid("addConstraint", "lesser", 9);
                         }
                     }
             }
@@ -623,23 +660,64 @@
             else {
                 oldToText = currentToText;
                 if (currentToText != ""){
-                    grid.bootgrid("removeParams", undefined, 8);
-                    grid.bootgrid("addConstraint", undefined, 8);
-                    grid.bootgrid("addParams", currentToText, 8);
-                    grid.bootgrid("addConstraint", "lesser", 8);
+                    grid.bootgrid("removeParams", undefined, 9);
+                    grid.bootgrid("addConstraint", undefined, 9);
+                    grid.bootgrid("addParams", currentToText, 9);
+                    grid.bootgrid("addConstraint", "lesser", 9);
                     if (budgetFrom.val() != ""){
-                        grid.bootgrid("addParams", budgetFrom.val(), 8);
-                        grid.bootgrid("addConstraint", "greater", 8);
+                        grid.bootgrid("addParams", budgetFrom.val(), 9);
+                        grid.bootgrid("addConstraint", "greater", 9);
                     }
                 }
                 else {
-                    grid.bootgrid("removeParams", undefined, 8);
-                    grid.bootgrid("addConstraint", undefined, 8);
+                    grid.bootgrid("removeParams", undefined, 9);
+                    grid.bootgrid("addConstraint", undefined, 9);
                     if (budgetFrom.val() != ""){
-                        grid.bootgrid("addParams", budgetFrom.val(), 8);
-                        grid.bootgrid("addConstraint", "greater", 8);
+                        grid.bootgrid("addParams", budgetFrom.val(), 9);
+                        grid.bootgrid("addConstraint", "greater", 9);
                     }
                 }
+            }
+        });
+
+        function sortAlpha () {
+            grid.bootgrid("sortRows", function (a, b){
+                if (a.secondaryIdent >= b.secondaryIdent) {
+                    return 1;
+                }
+                else {
+                    return -1;
+                }
+            });
+        }
+
+        var check1Value = true;
+        var check1 = document.getElementById("check1");
+        check1.addEventListener('click', function () {
+            check1Value = !check1Value;
+            if (check1Value) {
+                grid.bootgrid("addParams", "1", 14);
+            }
+            else {
+                if (!check2Value) {
+                    check2.click();
+                }
+                grid.bootgrid("removeParams", "1", 14);
+            }
+        });
+
+        var check2Value = true;
+        var check2 = document.getElementById("check2");
+        check2.addEventListener('click', function () {
+            check2Value = !check2Value;
+            if (check2Value) {
+                grid.bootgrid("addParams", "0", 14);
+            }
+            else {
+                if (!check1Value) {
+                    check1.click();
+                }
+                grid.bootgrid("removeParams", "0", 14);
             }
         });
 
@@ -655,17 +733,12 @@
             document.getElementById("datePicker2").value = "";
             setupDate1();
             setupDate2();
+            if (!check1Value) check1.click();
+            if (!check2Value) check2.click();
             document.getElementById("budgetFrom").value = "";
             document.getElementById("budgetTo").value = "";
             grid.bootgrid("sort");
-            grid.bootgrid("sortRows", function (a, b){
-                if (a.ident >= b.ident) {
-                    return 1;
-                }
-                    else {
-                    return -1;
-                }
-            });
+            sortAlpha();
         }
 
         function setFilters () {
@@ -750,6 +823,7 @@
 
 
         $(document).ready(function () {
+            sortAlpha();
             goatSelector.multiselect("uncheckAll");
             collabMaxCount = collabSelector.multiselect("getChecked").length;
             collabSelector.multiselect("uncheckAll");
@@ -759,6 +833,8 @@
             groupSelector.multiselect("uncheckAll");
             setupDate1();
             setupDate2();
+            grid.bootgrid("addParams", "1", 14);
+            grid.bootgrid("addParams", "0", 14);
             var rowCount = grid.bootgrid("getTotalRowCount");
             maxGoals = Math.ceil(rowCount * 0.15);
             maxObj = Math.ceil(rowCount * 0.35);

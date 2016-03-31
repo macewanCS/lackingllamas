@@ -37,7 +37,7 @@ h1 {
     text-align:center!important;
 }
 
-#grid-basic > tbody > tr > td > div.hidden,#tableDiv,#sideDiv,#ui-datepicker-div
+#grid-basic > tbody > tr > td > div.hidden,#tableDiv,#sideDiv
 {
     visibility:hidden;
 }
@@ -202,6 +202,17 @@ h1 {
 #mainDiv > .tableDiv > #grid-basic > tbody > tr > td > div.descript,#grid-basic > thead > tr > th.desc > a
 {
     margin-left:3%;
+}
+
+#grid-basic > thead > tr > th.commands
+{
+    text-align: right !important;
+
+}
+
+#grid-basic > thead > tr > th.commands > a
+{
+    margin-right: 10%;
 }
 
 #mainDiv > .tableDiv > #grid-basic-header > .row > .actionBar > .search > div.input-group
