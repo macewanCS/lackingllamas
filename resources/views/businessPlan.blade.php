@@ -20,10 +20,10 @@
             <div class="dropDown">
                 <button onclick="myFunction()" class="dropbtn">Create</button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="/businessplan/creategoal">Create Goal</a>
-                    <a href="/businessplan/createobjective">Create Objective</a>
-                    <a href="/businessplan/createaction">Create Action</a>
-                    <a href="/businessplan/createtask">Create Task</a>
+                    <a href="/businessplan/{{$idbp}}/creategoal">Create Goal</a>
+                    <a href="/businessplan/{{$idbp}}/createobjective">Create Objective</a>
+                    <a href="/businessplan/{{$idbp}}/createaction">Create Action</a>
+                    <a href="/businessplan/{{$idbp}}/createtask">Create Task</a>
                 </div>
 
             </div>
@@ -31,7 +31,14 @@
             <div class="filtering">
                 <label>Filter By:</label>
             </div>
-
+            <div class="bpSelector">
+                <label>Business Plan: </label>
+                <select id="bpSelect" name="bpSelect" multiple="multiple">
+                @for($i=1;$i<8;$i++)
+                    <option value=1 selected="selected">{{$i}}</option>
+                @endfor
+                </select>
+            </div>
             <div class="goatSelector">
                 <label>Type: </label>
                 <select id="GOAT" name="GOAT" multiple="multiple">
@@ -294,7 +301,7 @@
             grid.find(".command-edit").on("click", function(e)
             {
                 var row = grid.bootgrid("getRowData", $(this).data("row-id"));
-                window.location.assign("/businessplan/" + row.id + "/edit/" + row.type);
+                window.location.assign("/businessplan/{{$idbp}}/"+ row.type +"/"+ row.id + "/edit");
 
 
             }).end().find(".command-delete").on("click", function(e)
@@ -303,7 +310,7 @@
                 var token = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: "POST",
-                    url: "/businessplan/" + row.id +"/delete/" + row.type,
+                    url: "/businessplan/{{$idbp}}/" + row.type + "/" + row.id +"/delete",
                     data: {_token:token}
                 });
                 grid.bootgrid("remove", [$(this).data("row-id")]);
@@ -313,6 +320,20 @@
                 var row = grid.bootgrid("getRowData", $(this).data("row-id"));
                 window.location.assign("/" + row.type.toLowerCase() + "/" + row.id);
             });
+        });
+        var bpSelector = $("#bpSelect").multiselect({
+            height: "auto",
+            noneSelectedText: "Choose Element",
+            selectedList: 0,
+            header: "Choose element(s)",
+            click: function (event, ui) {
+                if (ui.checked){
+                    grid.bootgrid("addParams", ui.value, 2);
+                }
+                else {
+                    grid.bootgrid("removeParams", ui.value, 2);
+                }
+            }
         });
 
         function cascadeDeletes (ident) {

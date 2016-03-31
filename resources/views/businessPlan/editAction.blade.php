@@ -12,7 +12,7 @@
         <div class="create-goal-inner">
 
 
-            {!! Form::model($action,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $action->id]]) !!}
+            {!! Form::model($action,['method' => 'PATCH', 'action' => ['BusinessPlanController@update',$idbp,'Action', $action->id]]) !!}
             <div class="form-group-one">
 
                 {!! Form::label('objective_id','Objective: ', ['class' => 'edit-action-label']) !!}
