@@ -12,7 +12,7 @@
                         <div id="select-group">Departments</div>
                         @foreach($groups as $group)<!--departments-->
                             @if(!$group->team)
-                            <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
+                            <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions[0])}}', '{{json_encode($tasks[0])}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
                                 <a id="link-result">{{$group->name}}</a>
                             </li>
                             @endif
@@ -20,7 +20,7 @@
                         <div id="select-group">Teams</div>
                         @foreach($groups as $group)<!--teams-->
                             @if($group->team)
-                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
+                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions[0])}}', '{{json_encode($tasks[0])}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
                                 <a id="link-result">{{$group->name}}</a>
                             </li>
                             @endif
