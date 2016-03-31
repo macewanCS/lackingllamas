@@ -46,24 +46,30 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'LoginController@login');
     //Route::get('dashboard', 'DashboardController@dashBoard');
     Route::get('mytasks','MyTasksController@myTasks');
-    Route::get('businessplan','BusinessPlanController@businessPlan');
+    Route::get('businessplan','BusinessPlanController@lastBP');
+    Route::get('businessplan/{idbp}','BusinessPlanController@businessPlan');
     //---------------------------
     //create goat routes
     Route::get('test','BusinessPlanController@test');
-    Route::get('businessplan/createbp','BusinessPlanController@createBP');
-    Route::get('businessplan/creategoal','BusinessPlanController@createGoal');
-    Route::get('businessplan/createobjective','BusinessPlanController@createObjective');
-    Route::get('businessplan/createaction','BusinessPlanController@createAction');
-    Route::get('businessplan/createtask','BusinessPlanController@createTask');
-    Route::post('businessplan','BusinessPlanController@store');
-    Route::get('businessplan/{id}/edit/bp','BusinessPlanController@editBP');
-    Route::get('businessplan/{id}/edit/Goal','BusinessPlanController@editGoal');
-    Route::get('businessplan/{id}/edit/Objective','BusinessPlanController@editObjective'); 
-    Route::get('businessplan/{id}/edit/Action','BusinessPlanController@editAction');
-    Route::get('businessplan/{id}/edit/Task','BusinessPlanController@editTask');
-    Route::put('businessplan/{id}','BusinessPlanController@update');
-    Route::patch('businessplan/{id}','BusinessPlanController@update');
-    Route::post('businessplan/{id}/delete/Goal', 'BusinessPlanController@deleteGoal');
+    Route::get('businessplan/{idbp}/createbp','BusinessPlanController@createBP');
+    Route::get('businessplan/{idbp}/creategoal','BusinessPlanController@createGoal');
+    Route::get('businessplan/{idbp}/createobjective','BusinessPlanController@createObjective');
+    Route::get('businessplan/{idbp}/createaction','BusinessPlanController@createAction');
+    Route::get('businessplan/{idbp}/createtask','BusinessPlanController@createTask');
+    Route::post('businessplan/{idbp}','BusinessPlanController@store');
+
+    Route::get('businessplan/{idbp}/edit/bp','BusinessPlanController@editBP');
+    Route::get('businessplan/{idbp}/Goal/{id}/edit','BusinessPlanController@editGoal');
+    Route::get('businessplan/{idbp}/Objective/{id}/edit','BusinessPlanController@editObjective'); 
+    Route::get('businessplan/{idbp}/Action/{id}/edit','BusinessPlanController@editAction');
+    Route::get('businessplan/{idbp}/Task/{id}/edit','BusinessPlanController@editTask');
+    Route::put('businessplan/{idbp}/{id}/{true}','BusinessPlanController@update');
+    Route::patch('businessplan/{idbp}/{id}/{true}','BusinessPlanController@update');
+
+    Route::post('businessplan/{idbp}/Goal/{id}/delete', 'BusinessPlanController@deleteGoal');
+    Route::post('businessplan/{idbp}/Objective/{id}/delete', 'BusinessPlanController@deleteObjective');
+    Route::post('businessplan/{idbp}/Action/{id}/delete', 'BusinessPlanController@deleteAction');
+    Route::post('businessplan/{idbp}/Task/{id}/delete', 'BusinessPlanController@deleteTask');
     //Route::resource('businessplan','BusinessPlanController');
     //----------------------------
     Route::get('myprofile','MyProfileController@myProfile');

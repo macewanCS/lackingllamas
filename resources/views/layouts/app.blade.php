@@ -71,6 +71,7 @@
 @yield('content')
 
         <!-- JavaScripts -->
+{!! Html::script('javascript/jquery-2.0.3.min.js') !!}
 @yield('scripts')
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
