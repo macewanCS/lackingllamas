@@ -59,16 +59,17 @@ class BusinessPlanController extends Controller
               $users = User::all();
               $groups = Group::all();
               $filters = null;
-              return view('businessPlan',compact('users', 'groups','bpPlans','idbp','filters'));
+              $nameBP=$bp[$idbp-1]->name;
+              return view('businessPlan',compact('users', 'groups','bpPlans','idbp','filters','nameBP'));
  }     
  public function businessPlan($idbp)
     {
         $bpPlans = DB::select("select * from (select  null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, goals.group, goals. id, null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, objectives.group, objectives.id, null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select actions.userId, actions.progress, actions.date, actions.successMeasured, actions.budget, actions.collaborators, actions.group, actions.id, actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select tasks.userId, tasks.progress, tasks.date, tasks.successMeasured, tasks.budget, tasks.collaborators, tasks.group, tasks.id, tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."')a order by ident");
         $users = User::all();
         $groups = Group::all();
-
+        $nameBP=$bp[$idbp-1]->name;
         $filters = null;
-        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters'));
+        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters','nameBP'));
 
 
     }

@@ -14,10 +14,17 @@
 
 
 @section('content')
+
     <div id="mainDiv">
-    <a href="{{ URL::to('imprimer') }}">
+    
+            <h1>
+                  
+                 {{ $nameBP}}
+            </h1>
+           <a href="{{ URL::to('imprimer') }}">
   <button>PDF</button>
 </a>
+    <hr>
         <div class="pageLoad"><img src="/pictures/page-loader.gif"/></div>
         <div class="sideDiv" id="sideDiv">
             <div class="dropDown">
