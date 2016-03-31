@@ -32,6 +32,9 @@
     display: inline-block;
     margin: 12px 12px 0px 0px;
     width: 210px;
+    border-right: 2px solid;
+    padding-top: 6px;
+    padding-bottom: 18px;
 }
 
 .roster-container {
@@ -43,8 +46,9 @@
 
 .roster-headers {
     margin: 8px 0px;
-    /*padding: 2px 0 2px 10px;*/
     font-weight: normal;
+    border-bottom: 1px solid;
+    padding-bottom: 4px;
 }
 
 /*colour bars*/
@@ -79,6 +83,9 @@
 #group-name {
     margin: 8px 0px;
     font-weight: normal;
+    font-size: 36px;
+    border-bottom: 2px solid;
+    padding-bottom: 4px;
 }
 
 .roster-names {
@@ -144,4 +151,14 @@
     clear: left;
 }
 
+.business-plan-selector {
+    .float:right;
+    display: inline-block;
+}
 
+.business-plan-div {
+    border: 1px solid;
+    width: auto;
+    display: inline;
+    float: right;
+}

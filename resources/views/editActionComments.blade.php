@@ -8,15 +8,18 @@
         <h1>
             Edit a Action
         </h1>
+        <h2>
+            Business Plan: {{App\BusinessPlan::find($bpid)->name}}
+        </h2>
         <hr>
         <div class="create-goal-inner">
             {!! Form::model($action,['method' => 'PATCH', 'action' => ['ActionCommentsController@updateAction', $action->id]]) !!}
             <div class="form-group-one">
 
                 {!! Form::label('objective_id','Objective: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::text('objective_id',App\Objective::find($action->objective_id)->name, array('class' => 'form-extras','disabled' => 'disabled'))!!}<br>
+                {!! Form::text('objective_id',$objective, array('class' => 'edit-action-field', 'disabled' => 'disabled')) !!}
 
-                <br>
+                <br><br>
                 {!! Form::label('description','Name: ', ['class' => 'edit-action-label']) !!}
                 {!! Form::text('description', null, ['class' => 'edit-action-field']) !!}
 
@@ -44,12 +47,15 @@
                 {!! Form::label('priority','Priority: ', ['class' => 'edit-action-label']) !!}
                 {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br>
                 <br>
-
                 {!! Form::label('group','Group Lead: ',['class' => 'edit-action-label']) !!}
-                {!! Form::text('group',App\Group::find($action->group)->name, array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
+                @if(!App\User::find(Auth::id())->hasRole('bpLead'))
+                    {!! Form::text('group',App\Group::find($action->group)->name,array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
+                @else
+                    {!! Form::select('group',$groups, null, array('class' => 'form-extras'))!!}
+                @endif
                 <br><br>
                 {!! Form::label('userId','User Lead: ',['class' => 'edit-action-label']) !!}
-                {!! Form::text('userId',App\User::find($action->userId)->name, array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
+                {!! Form::select('userId',$users,null, array('class' => 'form-extras'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
                 {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}

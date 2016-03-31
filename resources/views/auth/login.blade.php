@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4 LoginRegister-link">
-                        <a href="{{ url('/businessplan') }}">Read-Only Mode</a>
+                        <a href="{{ url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id) }}">Read-Only Mode</a>
                     </div>
                 </div>
                 <div class="form-group">

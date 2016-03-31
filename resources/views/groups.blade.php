@@ -6,25 +6,24 @@
     <div class="groups-container">
         <div class="groups-container-inner">
             <div class="options-container">
-                <div class="options-checkboxes">
-                    {!! Form::label('teamsBox','Teams ', ['class' => 'options-teams-box']) !!}
-                    {!! Form::checkbox('teamsBox', 1, true, ['onclick' => 'hideTeams()']) !!}
-                    <br>
-                    {!! Form::label('departmentsBox', 'Departments ', ['class' => 'options-departments-box']) !!}
-                    {!! Form::checkbox('departmentsBox', 1, true, ['onclick' => 'hideDepartments()']) !!}
-                </div>
-                <div id="select-group">Select Group</div>
                 <div id="search-results">
                     <ul class="result-list">
                     @if (count($groups))
-                        @foreach($groups as $group)
-                            @if($group->team)
+                        <div id="select-group">Departments</div>
+                        @foreach($groups as $group)<!--departments-->
+                            @if(!$group->team)
                             <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
-                            @else
-                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
-                            @endif
                                 <a id="link-result">{{$group->name}}</a>
                             </li>
+                            @endif
+                        @endforeach
+                        <div id="select-group">Teams</div>
+                        @foreach($groups as $group)<!--teams-->
+                            @if($group->team)
+                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
+                                <a id="link-result">{{$group->name}}</a>
+                            </li>
+                            @endif
                         @endforeach
                     @else
                         <li class="result-list-elem">N/A</li>
@@ -48,6 +47,7 @@
                 <div class="group-elements" id="group-description">Description: N/A</div>
                 <div class="group-elements" id="group-budget">Budget: N/A</div>
                 @endif
+                    <br>
                 <h2 class="roster-headers"><label id="action-colour-bar"></label>Actions</h2>
                 <div id="group-actions">
                     @if (count($groups))
@@ -62,6 +62,7 @@
                     <div class="action-task-content">N/A</div>
                     @endif
                 </div>
+                    <br>
                 <h2 class="roster-headers"><label id="task-colour-bar"></label>Tasks</h2>
                 <div id="group-tasks">
                     @if (count($groups))
@@ -76,6 +77,7 @@
                     <div class="action-task-content">N/A</div>
                     @endif
                 </div>
+                    <br>
                 <h2 class="roster-headers"><label id="roster-colour-bar"></label>Roster</h2>
                 <div id="group-users">
                     @if (count($groups))
@@ -91,9 +93,12 @@
             </div>
 
         </div>
-
+        <div class="business-plan-div">
+            {{Form::label('businessplan-label', 'Business Plan', ['class' => 'business-plan-selector'])}}
+            {{Form::select('business-plan', $businessPlans, null, ['class' => 'business-plan-selector'])}}
+        </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript">
         function display(element, lead, description, budget, actions, tasks, users, id, rosters) {
 
@@ -124,31 +129,15 @@
             for (var j = 0; j < usersArray.length; j++)
                 for (var k = 0; k < rostersArray.length; k++)
                     if ((usersArray[j].id == rostersArray[k].user_ID) && (rostersArray[k].group_ID == id))
-                        userContent+="<div class='user-content'>" + usersArray[j].name + "</div>";
+                        userContent+="<div class='roster-names'>" + usersArray[j].name + "</div>";
 
             userText.innerHTML = userContent;
             actionText.innerHTML = actionContent;
-            taskText.innerHTML = taskContent;
+            taskText.innerHTML = taskContent + "<br>";
             headerText.innerHTML = "<label id=\"group-name-colour-bar\"></label>" + $name;
             descriptionText.innerHTML = "Description: " + description;
-            budgetText.innerHTML = "Budget: $" + budget;
+            budgetText.innerHTML = "Budget: $" + budget + "<br>";
             leadText.innerHTML = "Lead: " + lead;
-        }
-
-        function hideTeams() {
-            if (document.getElementById("teamsBox").checked) {
-                $(".team").show();
-            } else {
-                $(".team").hide();
-            }
-        }
-
-        function hideDepartments() {
-            if (document.getElementById("departmentsBox").checked) {
-                $(".department").show();
-            } else {
-                $(".department").hide();
-            }
         }
     </script>
 @stop
