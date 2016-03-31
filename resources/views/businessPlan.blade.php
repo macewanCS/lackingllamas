@@ -117,11 +117,11 @@
                     <label id="checkSecond">NonBP</label>
                 </div>
                 <div class="check">
-                    <input type="checkbox" id="check1" name="check1" />
+                    <input type="checkbox" id="check1" name="check1" checked>
                 </div>
 
                 <div class="check">
-                    <input type="checkbox" id="check2" name="check2" />
+                    <input type="checkbox" id="check2" name="check2" checked>
                 </div>
             </div>
 
@@ -149,17 +149,19 @@
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress" data-sortable="false">Prog.</th>
                     <th data-column-id="commands" data-formatter="commands" data-header-css-class="commands" data-sortable="false" data-align="right">Utilities</th>
+                    <th data-column-di="bp" data-formatter="bp" data-header-css-class="bp" data-visible="false"></th>
                 </tr>
                 </thead>
                 <tbody>
+
      @foreach($bpPlans as $bp)
         @if(substr_count($bp->ident, ".")==0)
-        @if($temp = $bp)
+        @if($tempGoal = $bp)
         @endif
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
-            <td>{{$temp->name}}.{{$bp->ident}}</td>
+            <td>{{$tempGoal->name}}.{{$bp->ident}}</td>
             <td>Goal</td>
             <td>1</td>
             <td>{{$bp->name}}</td>
@@ -171,16 +173,19 @@
             <td></td>
             <td></td>
             <td></td>
+            <td>{{$tempGoal->bp}}</td>
         </tr>
         @endif
          @if(substr_count($bp->ident, ".")==1)
+         @if($tempObj = $bp)
+         @endif
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
-                <td>{{$temp->name}}.{{$bp->ident}}</td>
+                <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
                 <td>Objective</td>
                 <td>1</td>
-                <td>{{$temp->name}}</td>
+                <td>{{$tempGoal->name}}</td>
                 <td>--</td>
                 <td>--</td>
                 <td>{{$bp->name}}</td>
@@ -189,13 +194,14 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td>{{$tempGoal->bp}}</td>
             </tr>
         @endif 
           @if(substr_count($bp->ident, ".")==2)
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
-                <td>{{$temp->name}}.{{$bp->ident}}</td>
+                <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
                 <td>Action</td>
                 <td>2</td>
                 <td>{{$bp->description}}</td>
@@ -206,13 +212,14 @@
                 <td>{{$bp->successMeasured}}</td>
                 <td>{{$bp->date}}</td>
                 <td>{{$bp->progress}}</td>
+                <td>{{$tempGoal->bp}}</td>
             </tr>         
         @endif
         @if(substr_count($bp->ident, ".")==3)
         <tr>
             <td>{{$bp->id}}</td>
             <td>{{$bp->ident}}</td>
-            <td>{{$temp->name}}.{{$bp->ident}}</td>
+            <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
             <td>Task</td>
             <td>3</td>
             <td>{{$bp->description}}</td>
@@ -223,6 +230,7 @@
             <td>{{$bp->successMeasured}}</td>
             <td>{{$bp->date}}</td>
             <td>{{$bp->progress}}</td>
+            <td>{{$tempGoal->bp}}</td>
         </tr>         
         @endif
     @endforeach
