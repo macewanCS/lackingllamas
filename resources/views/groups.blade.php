@@ -6,24 +6,24 @@
     <div class="groups-container">
         <div class="groups-container-inner">
             <div class="options-container">
-                <div class="options-checkboxes">
-                    {!! Form::label('teamsBox','Teams ', ['class' => 'options-teams-box']) !!}
-                    {!! Form::checkbox('teamsBox', 1, true, ['onclick' => 'hideTeams()']) !!}
-                    <br>
-                    {!! Form::label('departmentsBox', 'Departments ', ['class' => 'options-departments-box']) !!}
-                    {!! Form::checkbox('departmentsBox', 1, true, ['onclick' => 'hideDepartments()']) !!}
-                </div>
-                <div id="select-group">Select Group</div>
                 <div id="search-results">
                     <ul class="result-list">
                     @if (count($groups))
-                        @foreach($groups as $group)
-                            @if($group->team)
+                        <div id="select-group">Departments</div>
+                        @foreach($groups as $group)<!--departments-->
+                            @if(!$group->team)
                             <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
-                            @else
-                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
-                            @endif
                                 <a id="link-result">{{$group->name}}</a>
+                            </li>
+                            @endif
+                        @endforeach
+                        <div id="select-group">Teams</div>
+                        @foreach($groups as $group)<!--teams-->
+                            @if($group->team)
+                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
+                                <a id="link-result">{{$group->name}}</a>
+                            </li>
+                            @endif
                         @endforeach
                     @else
                         <li class="result-list-elem">N/A</li>
@@ -129,7 +129,7 @@
             for (var j = 0; j < usersArray.length; j++)
                 for (var k = 0; k < rostersArray.length; k++)
                     if ((usersArray[j].id == rostersArray[k].user_ID) && (rostersArray[k].group_ID == id))
-                        userContent+="<div class='user-content'>" + usersArray[j].name + "</div>";
+                        userContent+="<div class='roster-names'>" + usersArray[j].name + "</div>";
 
             userText.innerHTML = userContent;
             actionText.innerHTML = actionContent;
@@ -138,22 +138,6 @@
             descriptionText.innerHTML = "Description: " + description;
             budgetText.innerHTML = "Budget: $" + budget + "<br>";
             leadText.innerHTML = "Lead: " + lead;
-        }
-
-        function hideTeams() {
-            if (document.getElementById("teamsBox").checked) {
-                $(".team").show();
-            } else {
-                $(".team").hide();
-            }
-        }
-
-        function hideDepartments() {
-            if (document.getElementById("departmentsBox").checked) {
-                $(".department").show();
-            } else {
-                $(".department").hide();
-            }
         }
     </script>
 @stop

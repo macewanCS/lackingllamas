@@ -15,6 +15,9 @@
 
 @section('content')
     <div id="mainDiv">
+    <a href="{{ URL::to('imprimer') }}">
+  <button>PDF</button>
+</a>
         <div class="pageLoad"><img src="/pictures/page-loader.gif"/></div>
         <div class="sideDiv" id="sideDiv">
             <div class="dropDown">
@@ -34,7 +37,7 @@
             <div class="bpSelector">
                 <label>Business Plan: </label>
                 <select id="bpSelect" name="bpSelect" multiple="multiple">
-                @for($i=1;$i<8;$i++)
+                @for($i=0;$i<$idbp;$i++)
                     <option value=1 selected="selected">{{$i}}</option>
                 @endfor
                 </select>
