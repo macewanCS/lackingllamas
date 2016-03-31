@@ -33,7 +33,8 @@
     margin: 12px 12px 0px 0px;
     width: 210px;
     border-right: 2px solid;
-    padding: 8px 0;
+    padding-top: 6px;
+    padding-bottom: 18px;
 }
 
 .roster-container {

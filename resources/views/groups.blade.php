@@ -6,25 +6,24 @@
     <div class="groups-container">
         <div class="groups-container-inner">
             <div class="options-container">
-                <div class="options-checkboxes">
-                    {!! Form::label('teamsBox','Teams ', ['class' => 'options-teams-box']) !!}
-                    {!! Form::checkbox('teamsBox', 1, true, ['onclick' => 'hideTeams()']) !!}
-                    <br>
-                    {!! Form::label('departmentsBox', 'Departments ', ['class' => 'options-departments-box']) !!}
-                    {!! Form::checkbox('departmentsBox', 1, true, ['onclick' => 'hideDepartments()']) !!}
-                </div>
-                <div id="select-group">Select Group</div>
                 <div id="search-results">
                     <ul class="result-list">
                     @if (count($groups))
-                        @foreach($groups as $group)
-                            @if($group->team)
+                        <div id="select-group">Departments</div>
+                        @foreach($groups as $group)<!--departments-->
+                            @if(!$group->team)
                             <li class="result-list-elem team href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
-                            @else
-                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
-                            @endif
                                 <a id="link-result">{{$group->name}}</a>
                             </li>
+                            @endif
+                        @endforeach
+                        <div id="select-group">Teams</div>
+                        @foreach($groups as $group)<!--teams-->
+                            @if($group->team)
+                            <li class="result-list-elem department href="#" onclick="display('{{$group->name}}','{{$users->find($group->user_ID)->name}}' ,'{{$group->description}}', '{{$group->budget}}', '{{json_encode($actions)}}', '{{json_encode($tasks)}}', '{{json_encode($users)}}', '{{$group->id}}', '{{$rosters}}');return false;"">
+                                <a id="link-result">{{$group->name}}</a>
+                            </li>
+                            @endif
                         @endforeach
                     @else
                         <li class="result-list-elem">N/A</li>
