@@ -271,7 +271,7 @@
                     rowCount: -1,
                     caseSensitive: false,
                     statusMappings: {
-                      0: "Goal",
+                        0: "Goal",
                         1: "Objective",
                         2: "Action",
                         3: "Task"
@@ -279,18 +279,18 @@
 
                     formatters: {
                         colorizer: function (column, row) {
-                            if (column.id == "progress"){
+                            if (column.id == "progress") {
                                 var prog = row.progress;
-                                if (prog < 0){
+                                if (prog < 0) {
                                     return "<div class=\"ico\"><span class=\"fa fa-fw\"></span></div>";
                                 }
-                                else if (prog == 0){
+                                else if (prog == 0) {
                                     return "<div class=\"ico\"></div>";
                                 }
-                                else if (prog == 1){
+                                else if (prog == 1) {
                                     return "<div class=\"ico\"><span class=\"fa fa-hourglass-1\"></span></div>";
                                 }
-                                else if (prog == 2){
+                                else if (prog == 2) {
                                     return "<div class=\"ico\"><span class=\"fa fa-check\"></span></div>";
                                 }
                                 else {
@@ -300,32 +300,20 @@
                             else if (column.id == "desc") {
                                 return "<div class=\"descript\">" + row[column.id] + "</div>";
                             }
-                            else if ((row[column.id] == ""  || row[column.id] == "0") && (row["type"] == "Action" || row["type"] == "Task")){
+                            else if ((row[column.id] == "" || row[column.id] == "0") && (row["type"] == "Action" || row["type"] == "Task")) {
                                 return "<div class=\"center\">" + "-" + "</div>";
                             }
                             else {
                                 return "<div>" + row[column.id] + "</div>";
                             }
                         },
-                        "commands": function(column, row) {
-                            if (row["type"] == "Action" || row["type"] == "Task") {
-                                var returnString = "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
-                                        @if($permission < 2)
-                                            returnString += "</div>";
-                                        @elseif ($permission < 3)
-                                            if (row["lead"] == "{{$thisUser}}" || row["group"] == "{{$thisGroup}}"){
-
-                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
-                            }
-                            else {
-                                return  "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
-                                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
-                            }
+                        "commands": function (column, row) {
+                           return "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> " +
+                                   "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                   "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                         }
                     }
-                }
-        ).on("loaded.rs.jquery.bootgrid", function()
+                }).on("loaded.rs.jquery.bootgrid", function()
         {
             /* Executes after data is loaded and rendered */
             grid.find(".command-edit").on("click", function(e)

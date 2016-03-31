@@ -59,25 +59,27 @@ class BusinessPlanController extends Controller
     $bp = BusinessPlan::all();
     $idbp = count($bp);
      $bpPlans = DB::select("select * from (select  null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, goals.bp, goals.group, goals.id, null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, objectives.bp, objectives.group, objectives.id, null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select actions.userId, actions.progress, actions.date, actions.successMeasured, actions.budget, actions.collaborators, null as bp, actions.group, actions.id, actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select tasks.userId, tasks.progress, tasks.date, tasks.successMeasured, tasks.budget, tasks.collaborators, null as bp, tasks.group, tasks.id, tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."')a order by ident");
-              $users = User::all();
-              $groups = Group::all();
-              $filters = null;
-               if (Auth::check()) {
-                   $user = User::find(Auth::id());
-                   if ($user->hasRole('admin')) $permission = 4;
-                   else if ($user->hasRole('bpLead')) $permission = 3;
-                   else if ($user->hasRole('leader')) $permission = 2;
-                   else if ($user->hasRole('user')) $permission = 1;
-                   else $permission = 0;
-               }
-               else {
-                   $permission = 0;
-               }
-             $thisUser = User::find(Auth::id());
-             $thisGroup = Group::find($thisUser->group);
-              $nameBP=$bp[$idbp-1]->name;
-              return view('businessPlan',compact('users', 'groups','bpPlans','idbp','filters','nameBP', 'permission', 'thisUser', 'thisGroup'));
- }     
+     $users = User::all();
+     $groups = Group::all();
+     $filters = null;
+     if (Auth::check()) {
+         $user = User::find(Auth::id());
+         if ($user->hasRole('admin')) $permission = 4;
+         else if ($user->hasRole('bpLead')) $permission = 3;
+         else if ($user->hasRole('leader')) $permission = 2;
+         else if ($user->hasRole('user')) $permission = 1;
+         else $permission = 0;
+     }
+     else {
+         $permission = 0;
+     }
+     $userId  = Auth::id();
+     $thisUser = User::find($userId);
+     $thisGroups = DB::select("select distinct groups.name as name from groups, users where groups.user_ID = '".$userId."'");
+     $nameBP=$bp[$idbp-1]->name;
+     return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters', 'nameBP', 'permission', 'thisUser', 'thisGroups'));
+ }
+
  public function businessPlan($idbp)
     {
           $bp = BusinessPlan::all();
@@ -98,9 +100,10 @@ class BusinessPlanController extends Controller
         else {
             $permission = 0;
         }
-        $thisUser = User::find(Auth::id());
-        $thisGroup = Group::find($thisUser->group);
-        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters', 'nameBP', 'permission', 'thisUser', 'thisGroup'));
+        $userId  = Auth::id();
+        $thisUser = User::find($userId);
+        $thisGroups = DB::select("select distinct groups.name as name from groups, users where groups.user_ID = '".$userId."'");
+        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters', 'nameBP', 'permission', 'thisUser', 'thisGroups'));
 
     }
   public function createBP()
