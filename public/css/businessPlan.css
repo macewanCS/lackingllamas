@@ -37,7 +37,7 @@ h1 {
     text-align:center!important;
 }
 
-#grid-basic > tbody > tr > td > div.hidden,#tableDiv,#sideDiv,#ui-datepicker-div
+#grid-basic > tbody > tr > td > div.hidden,#tableDiv,#sideDiv
 {
     visibility:hidden;
 }
