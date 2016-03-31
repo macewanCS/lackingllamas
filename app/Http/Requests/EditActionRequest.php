@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use App\Action;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class EditActionRequest extends Request
@@ -17,7 +18,8 @@ class EditActionRequest extends Request
     {
         $actionid = $this->route('id');
         if (Auth::check())
-            Return (Auth::user()->id == Action::find($actionid)->userId);
+            Return (Auth::user()->id == Action::find($actionid)->userId || User::find(Auth::id())->hasRole('bpLead')
+                || User::find(Group::find(Action::find($actionid)->group)->user_ID)->id == Auth::id());
         else {
             return false;
         }

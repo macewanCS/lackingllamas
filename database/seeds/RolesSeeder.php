@@ -37,11 +37,20 @@ class RolesSeeder extends Seeder
         ]);
 
         $user = User::where('name', '=', 'root')->first();
-        $role = Role::where('name', '=', 'admin')->first();
+        $role = Role::where('name', '=', 'bpLead')->first();
         $user->attachRole($role);
 
         $user = User::where('name', '=', 'Vicky Varga')->first();
         $role = Role::where('name', '=', 'leader')->first();
         $user->attachRole($role);
+
+        $user = User::where('name', '=', 'Elaine Jones')->first();
+        $role = Role::where('name', '=', 'user')->first();
+        $user->attachRole($role);
+
+        $user = User::where('name', '=', 'J McPhee')->first();
+        $role = Role::where('name', '=', 'user')->first();
+        $user->attachRole($role);
+
     }
 }

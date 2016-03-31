@@ -21,7 +21,7 @@
 
 .topbar-collapse {
     width: 50%;
-    min-width: 2000px;
+    min-width: 1500px;
     position: relative;
     margin: 0 auto;
 }
@@ -50,7 +50,6 @@
     text-align: center;
     display:inline;
     padding-bottom: 0.5mm;
-
 }
 
 
@@ -96,12 +95,12 @@
 }
 
 .topbar-right {
-    width: 15%;
+    width: auto;
     display: inline-block;
-    position: relative;
+    position: absolute;
     float:right;
-    margin-top: -6%;
     margin-left: 500px;
+    border: 1px solid red;
 }
 
 .dropbtn {
@@ -113,13 +112,14 @@
     cursor: pointer;
 
 
+
 }
 .dropdown-content {
     z-index: 99;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .dropdown-content a {
@@ -127,11 +127,14 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+
 }
 .dropdown-content a:hover {background-color: #f1f1f1}
 
 .topbar-right:hover .dropdown-content {
     display: block;
+
+
 }
 .topbar-right:hover .dropbtn {
     background-color: rgb(214, 0, 54);
