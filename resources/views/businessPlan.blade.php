@@ -299,7 +299,12 @@
                         },
                         "commands": function(column, row) {
                             if (row["type"] == "Action" || row["type"] == "Task") {
-                                return "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> " +
+                                var returnString = "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
+                                        @if($permission < 2)
+                                            returnString += "</div>";
+                                        @elseif ($permission < 3)
+                                            if (row["lead"] == "{{$thisUser}}" || row["group"] == "{{$thisGroup}}"){
+
                                         "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
                                         "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                             }
