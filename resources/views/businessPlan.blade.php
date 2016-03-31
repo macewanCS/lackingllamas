@@ -14,7 +14,14 @@
 
 
 @section('content')
+
     <div id="mainDiv">
+    <div class="create-goal-container">
+            <h1>
+                  
+                  Create a Action
+            </h1>
+        </div>
     <a href="{{ URL::to('imprimer') }}">
   <button>PDF</button>
 </a>
