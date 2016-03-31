@@ -43,8 +43,9 @@
 
 .roster-headers {
     margin: 8px 0px;
-    /*padding: 2px 0 2px 10px;*/
     font-weight: normal;
+    border-bottom: 1px solid;
+    padding-bottom: 4px;
 }
 
 /*colour bars*/
@@ -79,6 +80,9 @@
 #group-name {
     margin: 8px 0px;
     font-weight: normal;
+    font-size: 36px;
+    border-bottom: 2px solid;
+    padding-bottom: 4px;
 }
 
 .roster-names {
