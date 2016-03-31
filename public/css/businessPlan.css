@@ -187,6 +187,17 @@
     margin-left:3%;
 }
 
+#grid-basic > thead > tr > th.commands
+{
+    text-align: right !important;
+
+}
+
+#grid-basic > thead > tr > th.commands > a
+{
+    margin-right: 10%;
+}
+
 #mainDiv > .tableDiv > #grid-basic-header > .row > .actionBar > .search > div.input-group
 {
     margin-bottom:5px;
