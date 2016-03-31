@@ -212,6 +212,7 @@
                 <td>{{$bp->successMeasured}}</td>
                 <td>{{$bp->date}}</td>
                 <td>{{$bp->progress}}</td>
+                <td></td>
                 <td>{{$tempGoal->bp}}</td>
             </tr>         
         @endif
@@ -230,6 +231,7 @@
             <td>{{$bp->successMeasured}}</td>
             <td>{{$bp->date}}</td>
             <td>{{$bp->progress}}</td>
+            <td></td>
             <td>{{$tempGoal->bp}}</td>
         </tr>         
         @endif
@@ -667,6 +669,36 @@
             });
         }
 
+        var check1Value = true;
+        var check1 = document.getElementById("check1");
+        check1.addEventListener('click', function () {
+            check1Value = !check1Value;
+            if (check1Value) {
+                grid.bootgrid("addParams", "1", 14);
+            }
+            else {
+                if (!check2Value) {
+                    check2.click();
+                }
+                grid.bootgrid("removeParams", "1", 14);
+            }
+        });
+
+        var check2Value = true;
+        var check2 = document.getElementById("check2");
+        check2.addEventListener('click', function () {
+            check2Value = !check2Value;
+            if (check2Value) {
+                grid.bootgrid("addParams", "0", 14);
+            }
+            else {
+                if (!check1Value) {
+                    check1.click();
+                }
+                grid.bootgrid("removeParams", "0", 14);
+            }
+        });
+
         function clearFilters () {
             grid.bootgrid("clearParams");
             goatSelector.multiselect("uncheckAll");
@@ -679,6 +711,8 @@
             document.getElementById("datePicker2").value = "";
             setupDate1();
             setupDate2();
+            if (!check1Value) check1.click();
+            if (!check2Value) check2.click();
             document.getElementById("budgetFrom").value = "";
             document.getElementById("budgetTo").value = "";
             grid.bootgrid("sort");
@@ -777,6 +811,8 @@
             groupSelector.multiselect("uncheckAll");
             setupDate1();
             setupDate2();
+            grid.bootgrid("addParams", "1", 14);
+            grid.bootgrid("addParams", "0", 14);
             var rowCount = grid.bootgrid("getTotalRowCount");
             maxGoals = Math.ceil(rowCount * 0.15);
             maxObj = Math.ceil(rowCount * 0.35);
