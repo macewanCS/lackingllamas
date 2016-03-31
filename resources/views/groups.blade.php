@@ -51,7 +51,7 @@
                 <h2 class="roster-headers"><label id="action-colour-bar"></label>Actions</h2>
                 <div id="group-actions">
                     @if (count($groups))
-                        @foreach ($actions as $action)
+                        @foreach ($actions[0] as $action)<!-- first businessplan -->
                             @if ($action->group == $groups[0]['id'])
                                 <div class="action-task-content">
                                     <a class="action-task-content-link" href="{{url('/task', $action->id)}}">{{$action->description}}</a>
@@ -66,7 +66,7 @@
                 <h2 class="roster-headers"><label id="task-colour-bar"></label>Tasks</h2>
                 <div id="group-tasks">
                     @if (count($groups))
-                        @foreach ($tasks as $task)
+                        @foreach ($tasks[0] as $task)<!-- first businessplan -->
                             @if ($task->group == $groups[0]['id'])
                                 <div class="action-task-content">
                                     <a class="action-task-content-link" href="{{url('/task', $task->id)}}">{{$task->description}}</a>
