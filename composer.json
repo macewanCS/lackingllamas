@@ -15,7 +15,9 @@
         "Illuminate/support": "^5.2",
         "Illuminate/container": "^5.2",
         "nesbot/Carbon": "^1.21",
-        "zizaco/entrust": "dev-laravel-5"
+        "zizaco/entrust": "dev-laravel-5",
+        "barryvdh/laravel-dompdf": "^0.6.1",
+		"radic/blade-extensions": "^6.2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

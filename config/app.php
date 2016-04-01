@@ -151,6 +151,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Radic\BladeExtensions\BladeExtensionsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,7 +210,8 @@ return [
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Entrust' => Zizaco\Entrust\EntrustFacade::class
+        'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class
 
     ],
 

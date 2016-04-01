@@ -12,6 +12,8 @@ use App\Group;
 use App\User;
 use App\ActionComments;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Zizaco\Entrust\EntrustPermission;
 
 class ActionCommentsController extends Controller
 {
@@ -19,11 +21,27 @@ class ActionCommentsController extends Controller
     public function actionComments($id)
     {
         $actionComment = new ActionComments;
+        $model = new Action;
         $comments = $actionComment->getComments($id);
         $action = Action::findOrFail($id);
         $tasks =  Task::all()->where('action_id', $id);
+        $users = array();
+        $roster = DB::table('rosters')->select('user_ID')->where('group_ID','=', $action->group)->get();
+        foreach ($roster as $x)
+            array_push($users, $x->user_ID);
+        $groupLead = User::find(Group::find($action->group)->user_ID)->id;
 
-        return view('action', compact('comments', 'action', 'tasks'));
+        if (Auth::check()) {
+            $user = User::find(Auth::id());
+            $permission = $user->hasRole('bpLead');
+
+        } else {
+            $permission = false;
+        }
+        $businessplan = $model->getBpIdFromAction($id);
+
+
+        return view('action', compact('comments', 'action', 'tasks', 'users', 'permission', 'groupLead', 'businessplan'));
     }
 
     public function store($action_id, Requests\CommentActionRequest $request)
@@ -37,11 +55,14 @@ class ActionCommentsController extends Controller
     }
     public function editActionFromComments($id, Requests\EditActionRequest $request)
     {
+        $model = new Action;
         $action = Action::findOrFail($id);
-        $objectives = Objective::lists('name');
-        $groups = Group::lists('name');
-        $user = User::lists('name');
-        return view('editActionComments',compact('action','objectives','groups','user'));
+        $bpid = $model->getBpIdFromAction($id);
+        $objective = Objective::find($action->objective_id)->name;
+        $groups = Group::lists('name','id');
+        $users = User::lists('name', 'id');
+
+        return view('editActionComments',compact('action','objective','groups','users', 'bpid'));
     }
 
     public function updateAction($id, Request $request)

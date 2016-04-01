@@ -8,6 +8,9 @@
         <h1>
             Edit a Task
         </h1>
+        <h2>
+            Business Plan: {{App\BusinessPlan::find($bpid)->name}}
+        </h2>
         <hr>
         <div class="create-goal-inner">
 
@@ -15,7 +18,7 @@
             <div class="form-group-one">
 
                 {!! Form::label('action_id','Action: ', ['class' => 'edit-task-label']) !!}
-                {!! Form::text('action_id', App\Action::find($task->action_id)->description, ['class' => 'edit-action-field', 'disabled' => 'disabled']) !!}<br>
+                {!! Form::text('action_id',$action, array('class' => 'edit-action-field', 'disabled' => 'disabled'))!!}<br>
 
                 <br>
                 {!! Form::label('description','Name: ', ['class' => 'edit-task-label']) !!}
@@ -31,6 +34,17 @@
                 {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
 
                 <br>
+
+                <!-- {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!} TODO: (test code) Remove this, and above, with multi dropdown selector for collabs
+                <select class="edit-action-field" name="collab-select" multiple>
+                    @foreach ($users as $x)
+                        <option value="user">{{$x}}</option>
+                        @endforeach
+                    @foreach ($groups as $x)
+                        <option value="group">{{$x}}</option>
+                        @endforeach
+                </select>
+                -->
                 {!! Form::label('budget','Budget: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       <br>
 
@@ -46,11 +60,16 @@
                 {!! Form::label('priority','Priority: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('priority', null, ['class' => 'edit-action-field']) !!} <br><br>
 
+
                 {!! Form::label('group','Group Lead: ',['class' => 'edit-action-label']) !!}
-                {!! Form::text('group',App\Group::find($task->group)->name,array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
+                @if(!App\User::find(Auth::id())->hasRole('bpLead'))
+                    {!! Form::text('group',App\Group::find($task->group)->name,array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
+                @else
+                    {!! Form::select('group',$groups, null, array('class' => 'form-extras'))!!}
+                @endif
                 <br><br>
                 {!! Form::label('userId','User Lead: ',['class' => 'edit-action-label']) !!}
-                {!! Form::text('userId',App\User::find($task->userId)->name, array('class' => 'form-extras', 'disabled' => 'disabled'))!!}
+                {!! Form::select('userId',$users, null, array('class' => 'form-extras'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
                 {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}
