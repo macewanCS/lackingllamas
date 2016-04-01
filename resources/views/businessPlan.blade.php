@@ -175,7 +175,11 @@
             <td>{{$bp->ident}}</td>
             <td>{{$tempGoal->name}}.{{$bp->ident}}</td>
             <td>Goal</td>
-            <td>0</td>
+            @if ($tempGoal->bp)
+                <td>0</td>
+            @else
+                <td>4</td>
+            @endif
             <td>{{$bp->name}}</td>
             <td></td>
             <td></td>
@@ -196,7 +200,11 @@
                 <td>{{$bp->ident}}</td>
                 <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
                 <td>Objective</td>
-                <td>1</td>
+                @if ($tempGoal->bp)
+                    <td>1</td>
+                @else
+                    <td>5</td>
+                @endif
                 <td>{{$tempGoal->name}}</td>
                 <td>--</td>
                 <td>--</td>
@@ -215,7 +223,11 @@
                 <td>{{$bp->ident}}</td>
                 <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
                 <td>Action</td>
-                <td>2</td>
+                @if ($tempGoal->bp)
+                    <td>2</td>
+                @else
+                    <td>6</td>
+                @endif
                 <td>{{$bp->description}}</td>
                 <td>{{$users[$bp->userId - 1]->name}}</td>
                 <td>{{$groups[$bp->group - 1]->name}}</td>
@@ -234,7 +246,11 @@
             <td>{{$bp->ident}}</td>
             <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
             <td>Task</td>
-            <td>3</td>
+            @if ($tempGoal->bp)
+                <td>3</td>
+            @else
+                <td>7</td>
+            @endif
             <td>{{$bp->description}}</td>
             <td>{{$users[$bp->userId - 1]->name}}</td>
             <td>{{$groups[$bp->group - 1]->name}}</td>
@@ -283,13 +299,12 @@
                     rowCount: -1,
                     caseSensitive: false,
                     navigation: 1,
-                    statusMappings: {
-                        0: "Goal",
-                        1: "Objective",
-                        2: "Action",
-                        3: "Task"
+                    statusMapping: {
+                        4: "nbpGoal",
+                        5: "nbpObjective",
+                        6: "nbpAction",
+                        7: "nbpTask"
                     },
-
                     formatters: {
                         colorizer: function (column, row) {
                             if (column.id == "progress") {

@@ -64,8 +64,8 @@ h1 {
 
 #grid-basic > thead > tr > th.collabs
 {
-    max-width:25%;
-    width:25%;
+    max-width:20%;
+    width:20%;
 }
 
 #grid-basic > thead > tr > th.commands
@@ -76,14 +76,14 @@ h1 {
 
 #grid-basic > thead > tr > th.date
 {
-    max-width:7.5%;
-    width:7.5%;
+    max-width:5%;
+    width:5%;
 }
 
 #grid-basic > thead > tr > th.desc
 {
-    max-width:20%;
-    width:22.5%;
+    max-width:30%;
+    width:30%;
 }
 
 #grid-basic > thead > tr > th.status,#grid-basic > thead > tr > th.budget,#grid-basic > thead > tr > th.group,#grid-basic > thead > tr > th.user
@@ -275,13 +275,18 @@ h1 {
     background-color:inherit!important;
 }
 
-#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left > div,#mainDiv > div.sideDiv > div.datePicker > label.dateLabel,#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right > div,#mainDiv > div.sideDiv > div.datePicker > label.dateLabel,#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel
 {
     font-weight:400;
 }
 
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-left > div,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction > td.text-left > div {
+    font-weight: 500;
+}
+
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.success {
-    background-color: #f2caf2
+    background-color: #f2caf2;
 }
 
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.success > td.text-left, #mainDiv > div.tableDiv > #grid-basic > tbody > tr.success > td.text-right
@@ -410,6 +415,84 @@ h1 {
     height: 100% !important;
     max-height: 100% !important;
 }
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask > td.select-cell,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask > td.text-left,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask > td.text-right,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction > td.select-cell,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction > td.text-left,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction > td.text-right
+{
+    background-color:inherit!important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask > td.text-right > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask > td.text-left > div,#mainDiv > div.sideDiv > div.datePicker > label.dateLabel,#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel
+{
+    font-weight:400;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpGoal {
+    background-color: #f2caf2;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpGoal > td.text-left, #mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpGoal > td.text-right
+{
+    font-weight: 800;
+    background-color: inherit !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpGoal > td.text-left > div {
+    overflow: visible;
+    max-height: 2em;
+    width: 550% !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpObjective > td.text-left > div.objectiveTd {
+    overflow: visible;
+    max-height: 3em;
+    width: 275% !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask
+{
+    background-color:#FFF;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask:hover,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask:hover
+{
+    background-color:#ebebeb!important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction
+{
+    background-color:#e3f6e0;
+    font-weight:400!important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction:hover,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction:hover
+{
+    background-color:#c8e6c3!important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpObjective {
+    background-color: #d9edf7;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpObjective > td {
+    background-color: inherit;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpObjective:hover {
+    background-color: #c4e3f3 !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.success:hover,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpGoal:hover {
+    background-color: #eaaded !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpGoal > td > div,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpObjective > td > div,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpAction > td > div,
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpTask > td > div{
+    color: navy !important;
+}
+
 
 #legend {
     height: 1.3em;
