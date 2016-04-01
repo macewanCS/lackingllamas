@@ -280,6 +280,28 @@ h1 {
     font-weight:400;
 }
 
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.success {
+    background-color: #f2caf2
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.success > td.text-left, #mainDiv > div.tableDiv > #grid-basic > tbody > tr.success > td.text-right
+{
+    font-weight: 800;
+    background-color: inherit !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.success > td.text-left > div {
+    overflow: visible;
+    max-height: 2em;
+    width: 550% !important;
+}
+
+#mainDiv > div.tableDiv > #grid-basic > tbody > tr.info > td.text-left > div.objectiveTd {
+    overflow: visible;
+    max-height: 3em;
+    width: 275% !important;
+}
+
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger
 {
     background-color:#FFF;
@@ -382,4 +404,30 @@ h1 {
     max-width:88%;
     overflow-x:auto;
     width:88%!important;
+}
+
+#mainDiv > #tableDiv > #grid-basic-header > div.row > div.actionBar {
+    height: 100% !important;
+    max-height: 100% !important;
+}
+
+#legend {
+    height: 1.3em;
+    max-height: 1.3em;
+    width: 80%;
+    float: left;
+    font-size: 1.2em;
+    text-align: center;
+    overflow: hidden;
+}
+
+#legend > div {
+    float: left;
+    margin-left: 1%;
+}
+
+#goalLegend {
+    height: 1.25em;
+    width: 1.25em;
+    background-color: #d9edf7;
 }

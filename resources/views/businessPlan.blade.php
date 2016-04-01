@@ -17,15 +17,15 @@
 
     <div id="mainDiv">
     <div id ="headerBP">
-    <h1>              
+    <h1>
         {{ $nameBP}}
     </h1>
-   
+
 
                 <a class="editBP" href="{{ url('/businessplan',$idbp) }}/edit">
                     {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
                 </a>
-    
+
     <a class = "buttonPDF" href="{{ URL::to('export') }}">
         <button id="buttonPDF" class = "buttonPDF">Export</button>
     </a>
@@ -175,7 +175,7 @@
             <td>{{$bp->ident}}</td>
             <td>{{$tempGoal->name}}.{{$bp->ident}}</td>
             <td>Goal</td>
-            <td>1</td>
+            <td>0</td>
             <td>{{$bp->name}}</td>
             <td></td>
             <td></td>
@@ -208,7 +208,7 @@
                 <td></td>
                 <td>{{$tempGoal->bp}}</td>
             </tr>
-        @endif 
+        @endif
           @if(substr_count($bp->ident, ".")==2)
             <tr>
                 <td>{{$bp->id}}</td>
@@ -226,7 +226,7 @@
                 <td>{{$bp->progress}}</td>
                 <td></td>
                 <td>{{$tempGoal->bp}}</td>
-            </tr>         
+            </tr>
         @endif
         @if(substr_count($bp->ident, ".")==3)
         <tr>
@@ -245,7 +245,7 @@
             <td>{{$bp->progress}}</td>
             <td></td>
             <td>{{$tempGoal->bp}}</td>
-        </tr>         
+        </tr>
         @endif
     @endforeach
                 </tbody>
@@ -282,6 +282,7 @@
                     columnSelection: false,
                     rowCount: -1,
                     caseSensitive: false,
+                    navigation: 1,
                     statusMappings: {
                         0: "Goal",
                         1: "Objective",
@@ -314,6 +315,9 @@
                             }
                             else if ((row[column.id] == "" || row[column.id] == "0") && (row["type"] == "Action" || row["type"] == "Task")) {
                                 return "<div class=\"center\">" + "-" + "</div>";
+                            }
+                            else if (column.id == "collabs" && row["type"] == "Objective"){
+                                return "<div class=\"objectiveTd\">" + row[column.id] + "</div>";
                             }
                             else {
                                 return "<div>" + row[column.id] + "</div>";
@@ -797,7 +801,7 @@
                     @endforeach
                 @endif
             @endif
-            
+
             @if($filters["leads"] != null)
                 @if ($filters["leads"] == "all")
                     leadSelector.multiselect("checkAll");
@@ -859,6 +863,10 @@
             @if($filters != null)
                 setFilters();
             @endif
+            $(".actionBar").append("<div id=\"legend\">" +
+                                        "<div id=\"goalLabelDiv\"><label id=\"goalLabel\">Goal</label></div>" +
+                                        "<div id=\"goalLegend\">&nbsp;</div>" +
+                                    "</div>");
             setTimeout(function() {
                 document.getElementById("tableDiv").style.visibility = 'visible';
                 document.getElementById("sideDiv").style.visibility = 'visible';
