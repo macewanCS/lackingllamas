@@ -76,6 +76,13 @@ class GroupsSeeder extends Seeder
                 'team' => false,
                 'user_ID' => 1,
             ],
+            [
+                'name' => 'Project Team',
+                'description' => 'Provides project support',
+                'budget' => 55000,
+                'team' => true,
+                'user_ID' => 3
+            ],
         ]);
     }
 }

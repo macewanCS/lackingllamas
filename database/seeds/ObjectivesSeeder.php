@@ -23,7 +23,10 @@ class ObjectivesSeeder extends Seeder
             ['name' => 'Design new EPL logo for 2017', 'goal_id'=> 4, 'group' => 3, 'bp' => true],
 
             ['name' => 'Entice high end speakers to come at no or low cost', 'goal_id' => 5, 'group' => 4, 'bp' => true],
-            ['name' => 'Incentives for employees with good service', 'goal_id'=> 6, 'group' => 5, 'bp' => true]
+            ['name' => 'Incentives for employees with good service', 'goal_id'=> 6, 'group' => 5, 'bp' => true],
+
+            ['name' => 'Upgrade IT software and hardware', 'goal_id' => 7, 'group' => 1, 'bp' => false],
+            ['name' => 'Improve IT related services', 'goal_id' => 7, 'group' => 1, 'bp' => false]
         ]);
 
         //Generate Idents for Objectives.
