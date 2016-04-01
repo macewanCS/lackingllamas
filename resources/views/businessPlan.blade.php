@@ -17,15 +17,15 @@
 
     <div id="mainDiv">
     <div id ="headerBP">
-    <h1>              
+    <h1>
         {{ $nameBP}}
     </h1>
-   
+
 
                 <a class="editBP" href="{{ url('/businessplan',$idbp) }}/edit">
                     {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
                 </a>
-    
+
     <a class = "buttonPDF" href="{{ URL::to('export') }}">
         <button id="buttonPDF" class = "buttonPDF">Export</button>
     </a>
@@ -58,11 +58,23 @@
             </div>
 
             <div class="filtering">
-                <label>Filter By:</label>
+                <label id="filtering">Filter</label>
+                <div class="filterMenu dropDown" style="position:relative">
+                    <button class="filterMenuDropdown btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="fa fa-cog"></span>
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="filterMenu dropdown-menu">
+                        <li value="1" selected="selected" onClick="clearFilters()">Reset Filters</li>
+                        <li value="1" selected="selected" onClick="sortAlpha()">Reset Sorting</li>
+                        <li value="1" selected="selected" onClick="clearBoth()">Reset Both</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="goatSelector">
-                <label>Type: </label>
+                <label>Type </label>
                 <select id="GOAT" name="GOAT" multiple="multiple">
                     <option value="Goal" selected="selected">Goals</option>
                     <option value="Objective" selected="selected">Objectives</option>
@@ -72,7 +84,7 @@
             </div>
 
             <div class="collabSelector">
-                <label>Collaborators: </label>
+                <label>Collaborators </label>
                 <select id="collab" name="collab" multiple="multiple">
                     <optgroup label="Users">
                         @foreach($users as $user)
@@ -88,7 +100,7 @@
             </div>
 
             <div class="leadSelector">
-                <label>Leads: </label>
+                <label>Leads </label>
                 <select id="lead" name="lead" multiple="multiple">
                     @foreach($users as $user)
                         <option value="{{$user->name}}" selected="selected">{{$user->name}}</option>
@@ -97,7 +109,7 @@
             </div>
 
             <div class="groupSelector">
-                <label>Groups: </label>
+                <label>Groups </label>
                 <select id="group" name="group" multiple="multiple">
                     @foreach($groups as $group)
                         <option value="{{$group->name}}" selected="selected">{{$group->name}}</option>
@@ -106,24 +118,24 @@
             </div>
 
             <div class="datePicker">
-                <label class="dateTitle">Due Date: </label>
-                <label class="dateLabel">From: </label>
+                <label class="dateTitle">Due Date </label>
+                <label class="dateLabel">From </label>
                 <input title="From: " type="text" id="datePicker" class="picker">
-                <label class="dateLabel">To: </label>
+                <label class="dateLabel">To </label>
                 <input title="To: " type="text" id="datePicker2" class="picker">
             </div>
 
             <div class="budgetBox">
-                <label class="budgetTitle">Budget: </label>
-                <label class="budgetLabel">Greater Than: </label>
+                <label class="budgetTitle">Budget </label>
+                <label class="budgetLabel">Greater Than </label>
                 <textarea class="ta" id="budgetFrom" cols="10" rows="1"></textarea>
-                <label class="budgetLabel">Less Than: </label>
+                <label class="budgetLabel">Less Than </label>
                 <textarea class="ta" id="budgetTo" cols="10" rows="1"></textarea>
 
             </div>
 
             <div class="checkBoxes">
-                <label class="checkBoxesTitle">Show: </label>
+                <label class="checkBoxesTitle">Show </label>
                 <div class="checkLabels">
                     <label id="checkFirst">BP</label>
                     <label id="checkSecond">NonBP</label>
@@ -136,10 +148,7 @@
                     <input type="checkbox" id="check2" name="check2" checked>
                 </div>
             </div>
-
-            <div class="Clear">
-                <button id="resetButton" onclick="clearFilters()">Reset Filtering</button>
-            </div>
+            
 
         </div>
 
@@ -175,7 +184,11 @@
             <td>{{$bp->ident}}</td>
             <td>{{$tempGoal->name}}.{{$bp->ident}}</td>
             <td>Goal</td>
-            <td>1</td>
+            @if ($tempGoal->bp)
+                <td>0</td>
+            @else
+                <td>4</td>
+            @endif
             <td>{{$bp->name}}</td>
             <td></td>
             <td></td>
@@ -196,7 +209,11 @@
                 <td>{{$bp->ident}}</td>
                 <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
                 <td>Objective</td>
-                <td>1</td>
+                @if ($tempGoal->bp)
+                    <td>1</td>
+                @else
+                    <td>5</td>
+                @endif
                 <td>{{$tempGoal->name}}</td>
                 <td>--</td>
                 <td>--</td>
@@ -208,14 +225,18 @@
                 <td></td>
                 <td>{{$tempGoal->bp}}</td>
             </tr>
-        @endif 
+        @endif
           @if(substr_count($bp->ident, ".")==2)
             <tr>
                 <td>{{$bp->id}}</td>
                 <td>{{$bp->ident}}</td>
                 <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
                 <td>Action</td>
-                <td>2</td>
+                @if ($tempGoal->bp)
+                    <td>2</td>
+                @else
+                    <td>6</td>
+                @endif
                 <td>{{$bp->description}}</td>
                 <td>{{$users[$bp->userId - 1]->name}}</td>
                 <td>{{$groups[$bp->group - 1]->name}}</td>
@@ -226,7 +247,7 @@
                 <td>{{$bp->progress}}</td>
                 <td></td>
                 <td>{{$tempGoal->bp}}</td>
-            </tr>         
+            </tr>
         @endif
         @if(substr_count($bp->ident, ".")==3)
         <tr>
@@ -234,7 +255,11 @@
             <td>{{$bp->ident}}</td>
             <td>{{$tempGoal->name}}.{{$tempGoal->ident}}.{{$tempObj->name}}.{{$bp->ident}}</td>
             <td>Task</td>
-            <td>3</td>
+            @if ($tempGoal->bp)
+                <td>3</td>
+            @else
+                <td>7</td>
+            @endif
             <td>{{$bp->description}}</td>
             <td>{{$users[$bp->userId - 1]->name}}</td>
             <td>{{$groups[$bp->group - 1]->name}}</td>
@@ -245,7 +270,7 @@
             <td>{{$bp->progress}}</td>
             <td></td>
             <td>{{$tempGoal->bp}}</td>
-        </tr>         
+        </tr>
         @endif
     @endforeach
                 </tbody>
@@ -282,13 +307,13 @@
                     columnSelection: false,
                     rowCount: -1,
                     caseSensitive: false,
-                    statusMappings: {
-                        0: "Goal",
-                        1: "Objective",
-                        2: "Action",
-                        3: "Task"
+                    navigation: 1,
+                    statusMapping: {
+                        4: "nbpGoal",
+                        5: "nbpObjective",
+                        6: "nbpAction",
+                        7: "nbpTask"
                     },
-
                     formatters: {
                         colorizer: function (column, row) {
                             if (column.id == "progress") {
@@ -315,6 +340,9 @@
                             else if ((row[column.id] == "" || row[column.id] == "0") && (row["type"] == "Action" || row["type"] == "Task")) {
                                 return "<div class=\"center\">" + "-" + "</div>";
                             }
+                            else if (column.id == "collabs" && row["type"] == "Objective"){
+                                return "<div class=\"objectiveTd\">" + row[column.id] + "</div>";
+                            }
                             else {
                                 return "<div>" + row[column.id] + "</div>";
                             }
@@ -322,9 +350,13 @@
                         "commands": function (column, row) {
                             var returnString = "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
                             if (row["type"] == "Action" || row["type"] == "Task") {
+                                @if($thisUser == null || $permission == "0")
+                                        returnString += "</div>";
+                                        return returnString;
+                                @endif
                                 if("{{$permission}}" < "2"){
                                     if (row["user"] == "{{$thisUser->name}}") {
-                                        returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
+                                        returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +w
                                         "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                                     }
                                     else {
@@ -693,6 +725,7 @@
         });
 
         function sortAlpha () {
+            grid.bootgrid("sort");
             grid.bootgrid("sortRows", function (a, b){
                 if (a.secondaryIdent >= b.secondaryIdent) {
                     return 1;
@@ -749,12 +782,15 @@
             if (!check2Value) check2.click();
             document.getElementById("budgetFrom").value = "";
             document.getElementById("budgetTo").value = "";
-            grid.bootgrid("sort");
+        }
+
+        function clearBoth () {
+            clearFilters();
             sortAlpha();
         }
 
         function setFilters () {
-            clearFilters();
+            clearBoth();
             @if($filters["type"] != null)
                 @if ($filters["type"] == "all")
                     goatSelector.multiselect("checkAll");
@@ -793,7 +829,7 @@
                     @endforeach
                 @endif
             @endif
-            
+
             @if($filters["leads"] != null)
                 @if ($filters["leads"] == "all")
                     leadSelector.multiselect("checkAll");
@@ -855,6 +891,10 @@
             @if($filters != null)
                 setFilters();
             @endif
+            $(".actionBar").append("<div id=\"legend\">" +
+                                        "<div id=\"goalLabelDiv\"><label id=\"goalLabel\">Goal</label></div>" +
+                                        "<div id=\"goalLegend\">&nbsp;</div>" +
+                                    "</div>");
             setTimeout(function() {
                 document.getElementById("tableDiv").style.visibility = 'visible';
                 document.getElementById("sideDiv").style.visibility = 'visible';

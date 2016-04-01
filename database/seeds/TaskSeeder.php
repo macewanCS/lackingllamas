@@ -1,4 +1,4 @@
-<?php
+-<?php
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
@@ -120,9 +120,181 @@ class TaskSeeder extends Seeder
                 'userId' => 5
             ],
 
+            ['description' => 'Create internal documentation for each profile (i.e. Early literacy and Mini-makerspace) applied to EPL iPads',
+                'date' => Carbon::createFromDate(2016, 6, 21, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Documentation is created and shared with the IT department',
+                'progress' => 0,
+                'action_id' => 17,
+                'group' => 1,
+                'userId' => 1
+            ],
 
+            ['description' => 'Develop and implement an implementation plan for rolling EPL\'s Mobile Device Management tool out to all pre-existing kit iPads',
+                'date' => Carbon::createFromDate(2016, 7, 11, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'MDM implemented on all kit laptops',
+                'progress' => 0,
+                'action_id' => 17,
+                'group' => 1,
+                'userId' => 1
+            ],
 
+            ['description' => 'Complete a cost/benefit analysis of using EPL\'s MDM to secure manager iPads',
+                'date' => Carbon::createFromDate(2016, 7, 11, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Report Completed',
+                'progress' => 0,
+                'action_id' => 17,
+                'group' => 1,
+                'userId' => 1
+            ],
 
+            ['description' => 'Develop a test plan to determine if EPL is ready to move to Windows 10',
+                'date' => Carbon::createFromDate(2016, 4, 11, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Test plan completed and recommendation forwarded',
+                'progress' => 1,
+                'action_id' => 18,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Determine the budget implications of upgrading to Windows 10',
+                'date' => Carbon::createFromDate(2016, 4, 11, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Analysis completed',
+                'progress' => 1,
+                'action_id' => 18,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Develop a deployment/upgrade plan to migrate to Windows 10 if appropriate',
+                'date' => Carbon::createFromDate(2016, 4, 11, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Plan completed',
+                'progress' => 1,
+                'action_id' => 18,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Order monitors, PCs, and laptops due for replacement in 2016',
+                'date' => Carbon::createFromDate(2016, 3, 31, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Equipment ordered',
+                'progress' => 2,
+                'action_id' => 19,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Replace 184 monitors ',
+                'date' => Carbon::createFromDate(2016, 3, 31, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 20000,
+                'successMeasured' => 'Monitors deployed',
+                'progress' => 2,
+                'action_id' => 19,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Replace 237 PCs',
+                'date' => Carbon::createFromDate(2016, 5, 31, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 20000,
+                'successMeasured' => 'PCs deployed',
+                'progress' => 1,
+                'action_id' => 19,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Replace 32 laptops',
+                'date' => Carbon::createFromDate(2016, 7, 31, 'America/Toronto'),
+                'collaborators' => 'DLI',
+                'budget' => 10000,
+                'successMeasured' => 'Laptops deployed',
+                'progress' => 0,
+                'action_id' => 19,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Collaborate with DLI on how to expend the $5356 allocated for replacing aging sandbox devices',
+                'date' => Carbon::createFromDate(2016, 9, 31, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Equipment selected and deployed',
+                'progress' => 0,
+                'action_id' => 19,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Determine how to expend the $4848 allotted for projector upgrades in IT’s capital budget',
+                'date' => Carbon::createFromDate(2016, 10, 31, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Equipment selected and deployed',
+                'progress' => 0,
+                'action_id' => 19,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Support the ELF team\'s evaluation of the early literacy iPad pilot and purchase hardware to replace AWE\'s',
+                'date' => Carbon::createFromDate(2016, 4, 31, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Hardware purchased and deployed',
+                'progress' => 1,
+                'action_id' => 20,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Upgrade Minecraft EDU on the public PCs to match the version used on the kit laptops',
+                'date' => Carbon::createFromDate(2016, 2, 31, 'America/Toronto'),
+                'collaborators' => 'DLI',
+                'budget' => 0,
+                'successMeasured' => 'Minecraft upgraded',
+                'progress' => 2,
+                'action_id' => 20,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Complete configurations to allow access to gaming via Steam over WiFi',
+                'date' => Carbon::createFromDate(2016, 10, 31, 'America/Toronto'),
+                'collaborators' => 'DLI',
+                'budget' => 0,
+                'successMeasured' => 'Steam access allowed',
+                'progress' => 0,
+                'action_id' => 20,
+                'group' => 1,
+                'userId' => 1
+            ],
+
+            ['description' => 'Provide support for DLI\'s League of Legends tournament pilot',
+                'date' => Carbon::createFromDate(2016, 8, 31, 'America/Toronto'),
+                'collaborators' => '',
+                'budget' => 0,
+                'successMeasured' => 'Equipment selected and deployed',
+                'progress' => 0,
+                'action_id' => 20,
+                'group' => 1,
+                'userId' => 1
+            ],
         ]);
 
         for ($j = 1; $j <= App\Action::All()->Count(); $j++){
