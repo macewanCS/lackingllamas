@@ -296,13 +296,15 @@ h1 {
 }
 
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.success > td.text-left > div {
-    overflow: visible;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-height: 2em;
-    width: 550% !important;
+    width: 300% !important;
 }
 
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.info > td.text-left > div.objectiveTd {
-    overflow: visible;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-height: 3em;
     width: 275% !important;
 }
@@ -437,13 +439,15 @@ h1 {
 }
 
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpGoal > td.text-left > div {
-    overflow: visible;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-height: 2em;
-    width: 550% !important;
+    width: 300% !important;
 }
 
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.nbpObjective > td.text-left > div.objectiveTd {
-    overflow: visible;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-height: 3em;
     width: 275% !important;
 }
