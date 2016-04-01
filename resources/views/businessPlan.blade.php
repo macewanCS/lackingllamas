@@ -16,39 +16,51 @@
 @section('content')
 
     <div id="mainDiv">
+    <div id ="headerBP">
+    <h1>              
+        {{ $nameBP}}
+    </h1>
+   
+
+                <a class="editBP" href="{{ url('/businessplan',$idbp) }}/edit">
+                    {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
+                </a>
     
-            <h1>
-                  
-                 {{ $nameBP}}
-            </h1>
-           <a href="{{ URL::to('imprimer') }}">
-  <button>PDF</button>
-</a>
+    <a class = "buttonPDF" href="{{ URL::to('export') }}">
+        <button id="buttonPDF" class = "buttonPDF">Export</button>
+    </a>
+     <div style = "position:relative;float: right;left:0px;" class="dropdown">
+  <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BP Selector
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    @foreach($bp as $plan)
+        <li value=1 selected="selected"><a href="/businessplan/{{$plan->id}}">{{$plan->name}}</a></li>
+    @endforeach
+  </ul>
+  </div>
+</div>
     <hr>
         <div class="pageLoad"><img src="/pictures/page-loader.gif"/></div>
         <div class="sideDiv" id="sideDiv">
-            <div class="dropDown">
-                <button onclick="myFunction()" class="dropbtn">Create</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="/businessplan/{{$idbp}}/creategoal">Create Goal</a>
-                    <a href="/businessplan/{{$idbp}}/createobjective">Create Objective</a>
-                    <a href="/businessplan/{{$idbp}}/createaction">Create Action</a>
-                    <a href="/businessplan/{{$idbp}}/createtask">Create Task</a>
-                </div>
+
+            <div style = "position:relative;"class="dropDown">
+                <button style ="width:120%;"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Create
+                <span class="caret"></span></button>
+
+                <ul style ="left:-20px;"class="dropdown-menu">
+                    <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createbp">Create Business Plan</a></li>
+                    <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/creategoal">Create Goal</a></li>
+                    <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createobjective">Create Objective</a></li>
+                    <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createaction">Create Action</a></li>
+                    <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createtask">Create Task</a></li>
+                </ul>
 
             </div>
 
             <div class="filtering">
                 <label>Filter By:</label>
             </div>
-            <div class="bpSelector">
-                <label>Business Plan: </label>
-                <select id="bpSelect" name="bpSelect" multiple="multiple">
-                @for($i=0;$i<$idbp;$i++)
-                    <option value=1 selected="selected">{{$i}}</option>
-                @endfor
-                </select>
-            </div>
+
             <div class="goatSelector">
                 <label>Type: </label>
                 <select id="GOAT" name="GOAT" multiple="multiple">

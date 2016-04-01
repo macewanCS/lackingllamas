@@ -60,7 +60,7 @@ class BusinessPlanController extends Controller
               $groups = Group::all();
               $filters = null;
               $nameBP=$bp[$idbp-1]->name;
-              return view('businessPlan',compact('users', 'groups','bpPlans','idbp','filters','nameBP'));
+              return view('businessPlan',compact('users', 'groups','bpPlans','idbp','filters','nameBP','bp'));
  }     
  public function businessPlan($idbp)
     {
@@ -71,7 +71,7 @@ class BusinessPlanController extends Controller
         $groups = Group::all();
         $nameBP=$bp[$idbp-1]->name;
         $filters = null;
-        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters','nameBP'));
+        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters','nameBP','bp'));
 
 
     }

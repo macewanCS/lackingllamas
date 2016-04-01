@@ -128,7 +128,25 @@ h1 {
     font-size:.6em;
     font-weight:700;
 }
+.editBP {
 
+
+
+    width: 32px;
+    height: 32px;
+    z-index: 9999;
+    position: relative;
+    opacity: 0.5;
+    top:-9px;
+
+}
+
+.editBP:hover {
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
 #grid-basic td.expand
 {
     width:99%;
@@ -138,9 +156,14 @@ h1 {
 {
     width:1%;
 }
+#headerBP
+{
 
+    margin-top:15px;
+}
 #mainDiv
 {
+
     background-color:#FFF;
     margin:1vw 2vw;
     overflow:hidden;
@@ -273,7 +296,12 @@ h1 {
     margin-bottom:3px;
     padding-bottom:3px;
 }
-
+#buttonPDF
+{
+    position:relative;
+    top:-7px;
+    left:10px;
+}
 .filtering
 {
     margin-top:20px;
