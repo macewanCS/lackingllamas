@@ -57,6 +57,8 @@
 
             </div>
 
+            <hr>
+
             <div class="filtering">
                 <label id="filtering">Filter</label>
                 <div class="filterMenu dropDown" style="position:relative">
@@ -148,7 +150,7 @@
                     <input type="checkbox" id="check2" name="check2" checked>
                 </div>
             </div>
-            
+
 
         </div>
 
@@ -894,6 +896,18 @@
             $(".actionBar").append("<div id=\"legend\">" +
                                         "<div id=\"goalLabelDiv\"><label id=\"goalLabel\">Goal</label></div>" +
                                         "<div id=\"goalLegend\">&nbsp;</div>" +
+
+                                        "<div id=\"objectiveLabelDiv\"><label id=\"objectiveLabel\">Obj.</label></div>" +
+                                        "<div id=\"objectiveLegend\">&nbsp;</div>" +
+
+                                        "<div id=\"actionLabelDiv\"><label id=\"actionLabel\">Action</label></div>" +
+                                        "<div id=\"actionLegend\">&nbsp;</div>" +
+
+                                        "<div id=\"taskLabelDiv\"><label id=\"taskLabel\">Task</label></div>" +
+                                        "<div id=\"taskLegend\">&nbsp;</div>" +
+
+                                        "<div id=\"bpLabelDiv\"><label id=\"bpLabel\">BP</label></div>" +
+                                        "<div id=\"nonbpLabelDiv\"><label id=\"nonbpLabel\">NonBP</label></div>" +
                                     "</div>");
             setTimeout(function() {
                 document.getElementById("tableDiv").style.visibility = 'visible';

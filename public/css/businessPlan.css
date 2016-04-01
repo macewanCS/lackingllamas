@@ -521,7 +521,52 @@ h1 {
 #goalLegend {
     height: 1.25em;
     width: 1.25em;
+    background-color: #f2caf2;
+    border: 1px solid lightgrey;
+    margin-right: 2.5%;
+}
+
+#objectiveLegend {
+    height: 1.25em;
+    width: 1.25em;
     background-color: #d9edf7;
+    border: 1px solid lightgrey;
+    margin-right: 2.5%;
+}
+
+#actionLegend {
+    height: 1.25em;
+    width: 1.25em;
+    background-color: #e3f6e0;
+    border: 1px solid lightgrey;
+    margin-right: 2.5%;
+}
+
+#taskLegend {
+    height: 1.25em;
+    width: 1.25em;
+    backgroud-color: white;
+    border: 1px solid lightgrey;
+    margin-right: 2.5%;
+}
+
+#bpLabel {
+    color: black;
+    margin-left: 2.5%;
+    font-weight: bolder;
+    text-decoration: wavy;
+}
+
+#nonbpLabel {
+    color: navy;
+    margin-right: 2.5%;
+    font-weight: bolder;
+    text-decoration: wavy;
+}
+
+#nonbpLabelDiv {
+    overflow: visible;
+    max-height: 100%;
 }
 
 .filterMenu {
@@ -550,4 +595,9 @@ h1 {
 
 #mainDiv > #sideDiv > .filtering > label {
     font-weight: bold;
+}
+
+#mainDiv > #sideDiv > hr {
+    margin-top: 10px;
+    width: 120%;
 }
