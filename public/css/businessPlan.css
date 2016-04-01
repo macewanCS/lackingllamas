@@ -277,6 +277,7 @@ h1 {
 
 #mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-right > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.danger > td.text-left > div,#mainDiv > div.tableDiv > #grid-basic > tbody > tr.warning > td.text-right > div,#mainDiv > div.sideDiv > div.datePicker > label.dateLabel,#mainDiv > div.sideDiv > div.budgetBox > label.budgetLabel
 {
+    margin-top: 5px;
     font-weight:400;
 }
 
@@ -497,6 +498,10 @@ h1 {
     color: navy !important;
 }
 
+#mainDiv > div.sideDiv > div.filtering > #filtering {
+    font-size: larger;
+}
+
 
 #legend {
     height: 1.3em;
@@ -517,4 +522,32 @@ h1 {
     height: 1.25em;
     width: 1.25em;
     background-color: #d9edf7;
+}
+
+.filterMenu {
+    float:right;
+    width: 25%;
+    display:inline-block;
+    margin-left: 10%;
+    text-align: left;
+}
+
+#mainDiv > #sideDiv > div.filtering > div.filterMenu > ul.filterMenu {
+    min-width: 140px !important;
+    text-align: center;
+    left: -275%;
+}
+
+#mainDiv > #sideDiv > div.filtering > div.filterMenu > ul.filterMenu > li {
+    width: 100%;
+    padding: 2.5%;
+}
+
+#mainDiv > #sideDiv > div.filtering > div.filterMenu > ul.filterMenu > li:hover {
+    background-color: lightgrey !important;
+    cursor: pointer;
+}
+
+#mainDiv > #sideDiv > .filtering > label {
+    font-weight: bold;
 }

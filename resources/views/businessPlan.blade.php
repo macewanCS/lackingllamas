@@ -58,11 +58,23 @@
             </div>
 
             <div class="filtering">
-                <label>Filter By:</label>
+                <label id="filtering">Filter</label>
+                <div class="filterMenu dropDown" style="position:relative">
+                    <button class="filterMenuDropdown btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="fa fa-cog"></span>
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="filterMenu dropdown-menu">
+                        <li value="1" selected="selected" onClick="clearFilters()">Reset Filters</li>
+                        <li value="1" selected="selected" onClick="sortAlpha()">Reset Sorting</li>
+                        <li value="1" selected="selected" onClick="clearBoth()">Reset Both</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="goatSelector">
-                <label>Type: </label>
+                <label>Type </label>
                 <select id="GOAT" name="GOAT" multiple="multiple">
                     <option value="Goal" selected="selected">Goals</option>
                     <option value="Objective" selected="selected">Objectives</option>
@@ -72,7 +84,7 @@
             </div>
 
             <div class="collabSelector">
-                <label>Collaborators: </label>
+                <label>Collaborators </label>
                 <select id="collab" name="collab" multiple="multiple">
                     <optgroup label="Users">
                         @foreach($users as $user)
@@ -88,7 +100,7 @@
             </div>
 
             <div class="leadSelector">
-                <label>Leads: </label>
+                <label>Leads </label>
                 <select id="lead" name="lead" multiple="multiple">
                     @foreach($users as $user)
                         <option value="{{$user->name}}" selected="selected">{{$user->name}}</option>
@@ -97,7 +109,7 @@
             </div>
 
             <div class="groupSelector">
-                <label>Groups: </label>
+                <label>Groups </label>
                 <select id="group" name="group" multiple="multiple">
                     @foreach($groups as $group)
                         <option value="{{$group->name}}" selected="selected">{{$group->name}}</option>
@@ -106,24 +118,24 @@
             </div>
 
             <div class="datePicker">
-                <label class="dateTitle">Due Date: </label>
-                <label class="dateLabel">From: </label>
+                <label class="dateTitle">Due Date </label>
+                <label class="dateLabel">From </label>
                 <input title="From: " type="text" id="datePicker" class="picker">
-                <label class="dateLabel">To: </label>
+                <label class="dateLabel">To </label>
                 <input title="To: " type="text" id="datePicker2" class="picker">
             </div>
 
             <div class="budgetBox">
-                <label class="budgetTitle">Budget: </label>
-                <label class="budgetLabel">Greater Than: </label>
+                <label class="budgetTitle">Budget </label>
+                <label class="budgetLabel">Greater Than </label>
                 <textarea class="ta" id="budgetFrom" cols="10" rows="1"></textarea>
-                <label class="budgetLabel">Less Than: </label>
+                <label class="budgetLabel">Less Than </label>
                 <textarea class="ta" id="budgetTo" cols="10" rows="1"></textarea>
 
             </div>
 
             <div class="checkBoxes">
-                <label class="checkBoxesTitle">Show: </label>
+                <label class="checkBoxesTitle">Show </label>
                 <div class="checkLabels">
                     <label id="checkFirst">BP</label>
                     <label id="checkSecond">NonBP</label>
@@ -136,10 +148,7 @@
                     <input type="checkbox" id="check2" name="check2" checked>
                 </div>
             </div>
-
-            <div class="Clear">
-                <button id="resetButton" onclick="clearFilters()">Reset Filtering</button>
-            </div>
+            
 
         </div>
 
@@ -716,6 +725,7 @@
         });
 
         function sortAlpha () {
+            grid.bootgrid("sort");
             grid.bootgrid("sortRows", function (a, b){
                 if (a.secondaryIdent >= b.secondaryIdent) {
                     return 1;
@@ -772,12 +782,15 @@
             if (!check2Value) check2.click();
             document.getElementById("budgetFrom").value = "";
             document.getElementById("budgetTo").value = "";
-            grid.bootgrid("sort");
+        }
+
+        function clearBoth () {
+            clearFilters();
             sortAlpha();
         }
 
         function setFilters () {
-            clearFilters();
+            clearBoth();
             @if($filters["type"] != null)
                 @if ($filters["type"] == "all")
                     goatSelector.multiselect("checkAll");
