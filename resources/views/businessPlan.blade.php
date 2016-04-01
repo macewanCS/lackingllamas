@@ -322,6 +322,10 @@
                         "commands": function (column, row) {
                             var returnString = "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
                             if (row["type"] == "Action" || row["type"] == "Task") {
+                                @if($thisUser == null || $permission == "0")
+                                        returnString += "</div>";
+                                        return returnString;
+                                @endif
                                 if("{{$permission}}" < "2"){
                                     if (row["user"] == "{{$thisUser->name}}") {
                                         returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
