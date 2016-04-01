@@ -77,7 +77,7 @@ class BusinessPlanController extends Controller
      $thisUser = User::find($userId);
      $thisGroups = DB::select("select distinct groups.name as name from groups, users where groups.user_ID = '".$userId."'");
      $nameBP=$bp[$idbp-1]->name;
-     return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters', 'nameBP', 'permission', 'thisUser', 'thisGroups'));
+     return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters', 'nameBP', 'permission', 'thisUser', 'thisGroups','bp'));
  }
 
  public function businessPlan($idbp)
@@ -103,7 +103,8 @@ class BusinessPlanController extends Controller
         $userId  = Auth::id();
         $thisUser = User::find($userId);
         $thisGroups = DB::select("select distinct groups.name as name from groups, users where groups.user_ID = '".$userId."'");
-        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters', 'nameBP', 'permission', 'thisUser', 'thisGroups'));
+        return view('businessPlan',compact('users', 'groups','bpPlans','idbp', 'filters', 'nameBP', 'permission', 'thisUser', 'thisGroups','bp'));
+
 
     }
   public function createBP()

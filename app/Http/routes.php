@@ -43,7 +43,7 @@
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'LoginController@login');
-    Route::resource('imprimer', 'PDFController@show');
+    Route::resource('export', 'PDFController@show');
     //Route::get('dashboard', 'DashboardController@dashBoard');
     Route::get('mytasks','MyTasksController@myTasks');
     Route::get('businessplan/print','BusinessPlanController@printBP');
@@ -59,7 +59,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan/{idbp}/createtask','BusinessPlanController@createTask');
     Route::post('businessplan/{idbp}','BusinessPlanController@store');
 
-    Route::get('businessplan/{idbp}/edit/bp','BusinessPlanController@editBP');
+    Route::get('businessplan/{idbp}/edit','BusinessPlanController@editBP');
     Route::get('businessplan/{idbp}/Goal/{id}/edit','BusinessPlanController@editGoal');
     Route::get('businessplan/{idbp}/Objective/{id}/edit','BusinessPlanController@editObjective'); 
     Route::get('businessplan/{idbp}/Action/{id}/edit','BusinessPlanController@editAction');
