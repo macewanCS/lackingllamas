@@ -40,7 +40,7 @@
                             @endif
                         </div></li>
 
-                    <li><div class="action-lead"><label>Lead </label> <a href="{{url('/businessplan', $businessplan)}}">{{\App\User::find($action->userId)->name}} </a></div></li><!-- TODO: Link to businessplan filtered by lead -->
+                    <li><div class="action-lead"><label>Lead </label> <a href="{{url('/businessplan/'. $businessplan . '/user/' . $action->userId)}}">{{\App\User::find($action->userId)->name}} </a></div></li><!-- TODO: Link to businessplan filtered by lead -->
 
                     <li><div class="action-group-lead"><label>Group Lead</label><a href="{{url('/businessplan', $businessplan)}}">{{\App\Group::find($action->group)->name}}</a></div></li>
 
@@ -104,7 +104,7 @@
                         @foreach($comments as $comment)
                             <li class="comments">
                                 <div class="comment-header">
-                                    <div class="comment-name"><a href="{{url('/businessplan', $businessplan)}}">{{\App\User::findOrFail($comment->user_ID)->name}}</a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                                    <div class="comment-name"><a href="{{url('/businessplan/'. $businessplan . '/user/' . $comment->user_ID)}}">{{\App\User::findOrFail($comment->user_ID)->name}}</a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
                                 </div>
                                 <div class="comment-content">
                                     <br>

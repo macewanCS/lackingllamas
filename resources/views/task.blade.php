@@ -23,7 +23,7 @@
 
                     <li><div class="task-action"><label>Action </label><a href="{{url('/action', $task->action_id)}}"><span>A</span> {{str_limit(\App\Action::findOrFail($task->action_id)->description, $limit=75, $end='...')}} </a></div></li>
 
-                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/businessplan', $businessplan)}}">{{\App\User::find($task->userId)->name}} </a></div></li>
+                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/businessplan/'. $businessplan . '/user/' . $task->userId)}}">{{\App\User::find($task->userId)->name}} </a></div></li>
 
                     <li><div class="task-group-lead"><label>Group Lead</label> <a href="{{url('/businessplan', $businessplan)}}">{{\App\Group::find($task->group)->name}}</a></div></li>
 
@@ -86,7 +86,7 @@
                         @foreach($comments as $comment)
                             <li class="comments">
                                 <div class="comment-header">
-                                    <div class="comment-name"><a href="{{url('/businessplan', $businessplan)}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                                    <div class="comment-name"><a href="{{url('/businessplan/'. $businessplan . '/user/' . $comment->user_ID)}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
                                 </div>
                                 <div class="comment-content">
                                     <br>
@@ -106,7 +106,7 @@
 
                     {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
 
-                    {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
+                    {!! Form::label('description','Leave a Comment ', ['class' => 'comment-label']) !!}<br>
                     {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
 
                     {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
