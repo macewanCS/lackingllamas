@@ -6,7 +6,7 @@
     {!! Html::style('css/createGoal.css') !!}
     <div class="create-action-container">
         <h1>
-            Edit a Action
+            Edit an Action
         </h1>
         <h2>
             Business Plan: {{App\BusinessPlan::find($bpid)->name}}

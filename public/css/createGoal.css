@@ -186,3 +186,13 @@ h2 {
     left:0px;
     visibility:hidden;
 }
+
+#collab-selectors-groups {
+    width: 39.33%;
+    display: inline;
+}
+
+#collab-selectors-users {
+    width: 39.33%;
+    display: inline;
+}
