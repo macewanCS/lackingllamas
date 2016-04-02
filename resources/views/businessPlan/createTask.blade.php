@@ -61,11 +61,7 @@
                   {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}       
                   <br><br>
                   
-                <div id ="divBP">
-                    {!! Form::label('bp','Non Business Plan Goal: ') !!}
-                    {!! Form::checkbox('bp', 1, false) !!}
-                    <p class="text">Checked to make it a Non Business Plan Goal?</p>
-                </div>
+
                   </div>
 
           

@@ -22,11 +22,7 @@
 			<br><br>
 			{!! Form::label('group','Departments Teams: ',['class' => 'edit-action-label']) !!}
 			{!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
-                <div id ="divBP">
-                    {!! Form::label('bp','Non Business Plan Goal: ') !!}
-                    {!! Form::checkbox('bp', 1, false) !!}
-                    <p class="text">Checked to make it a Non Business Plan Goal?</p>
-                </div>
+
 			</div>
 				<div class="form-group-two">
 					{!! Form::submit('Add Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
