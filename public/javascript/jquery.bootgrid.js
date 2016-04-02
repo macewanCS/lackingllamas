@@ -1570,7 +1570,7 @@
             });
         }
         return currentData;
-    }
+    };
 
     Grid.prototype.sortRows = function (sorter){
         this.rows.sort(sorter);

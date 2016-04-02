@@ -137,6 +137,15 @@
                 </select>
             </div>
 
+            <div class="progressSelector">
+                <label>Progress </label>
+                <select id="progress" name="progress" multiple="multiple">
+                        <option value="0" selected="selected">Not Started</option>
+                        <option value="1" selected="selected">In Progress</option>
+                        <option value="2" selected="selected">Completed</option>
+                </select>
+            </div>
+
             <div class="budgetBox">
                 <label class="budgetTitle">Budget </label>
                 <label class="budgetLabel">Greater Than </label>
@@ -190,7 +199,8 @@
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress" data-sortable="false">Prog.</th>
                     <th data-column-id="commands" data-formatter="commands" data-header-css-class="commands" data-sortable="false" data-align="right">Utilities</th>
-                    <th data-column-di="bp" data-formatter="bp" data-header-css-class="bp" data-visible="false"></th>
+                    <th data-column-id="bp" data-formatter="bp" data-header-css-class="bp" data-visible="false"></th>
+                    <th data-column-id="progressCode" data-formatter="colorizer" data-header-css-class="progressCode" data-visible="false"><</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -219,6 +229,7 @@
             <td></td>
             <td></td>
             <td>{{$tempGoal->bp}}</td>
+            <td></td>
         </tr>
         @endif
          @if(substr_count($bp->ident, ".")==1)
@@ -244,6 +255,7 @@
                 <td></td>
                 <td></td>
                 <td>{{$tempGoal->bp}}</td>
+                <td></td>
             </tr>
         @endif
           @if(substr_count($bp->ident, ".")==2)
@@ -267,6 +279,7 @@
                 <td>{{$bp->progress}}</td>
                 <td></td>
                 <td>{{$tempGoal->bp}}</td>
+                <td>{{$bp->progress}}</td>
             </tr>
         @endif
         @if(substr_count($bp->ident, ".")==3)
@@ -290,6 +303,7 @@
             <td>{{$bp->progress}}</td>
             <td></td>
             <td>{{$tempGoal->bp}}</td>
+            <td>{{$bp->progress}}</td>
         </tr>
         @endif
     @endforeach
@@ -640,6 +654,37 @@
 
             }
         }).multiselectfilter();
+        var progressMaxCount = 3;
+        var progressSelector = $("#progress").multiselect({
+            selectedList: 0,
+            header: true,
+            minWidth: "auto",
+            position: {
+                my: 'right top',
+                at: 'right bottom'
+            },
+            click: function (event, ui) {
+                if (ui.checked) {
+                    grid.bootgrid("addParams", ui.value, 15);
+                    if (progressSelector.multiselect("getChecked").length == progressMaxCount){
+                        grid.bootgrid("addParams", "", 15);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", "", 15);
+                    grid.bootgrid("removeParams", ui.value, 15);
+                }
+            },
+            checkAll: function () {
+                grid.bootgrid("addParams", "0", 15);
+                grid.bootgrid("addParams", "1", 15);
+                grid.bootgrid("addParams", "2", 15);
+                grid.bootgrid("addParams", "", 15);
+            },
+            uncheckAll: function () {
+                grid.bootgrid("removeParams", undefined, 15);
+            }
+        });
 
 
         function setupDate1 () {
@@ -810,6 +855,7 @@
             collabSelector.multiselect("uncheckAll");
             leadSelector.multiselect("uncheckAll");
             groupSelector.multiselect("uncheckAll");
+            progressSelector.multiselect("uncheckAll");
             date1.datepicker("destroy");
             date2.datepicker("destroy");
             document.getElementById("datePicker").value = "";
@@ -917,6 +963,7 @@
             leadSelector.multiselect("uncheckAll");
             groupMaxCount = groupSelector.multiselect("getChecked").length;
             groupSelector.multiselect("uncheckAll");
+            progressSelector.multiselect("uncheckAll");
             setupDate1();
             setupDate2();
             grid.bootgrid("addParams", "1", 14);

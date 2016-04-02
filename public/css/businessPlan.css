@@ -265,7 +265,7 @@ h1 {
     width:100%!important;
 }
 
-#mainDiv > div.sideDiv > div.goatSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.leadSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.datePicker,#mainDiv > div.sideDiv > div.datePicker > input.picker,#mainDiv > div.sideDiv > div.datePicker > label.dateTitle,#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle,#mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect
+#mainDiv > div.sideDiv > div.goatSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.leadSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.datePicker,#mainDiv > div.sideDiv > div.datePicker > input.picker,#mainDiv > div.sideDiv > div.datePicker > label.dateTitle,#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle,#mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect, #mainDiv > div.sideDiv > div.progressSelector > button.ui-multiselect
 {
     width:100%!important;
 }
@@ -348,7 +348,7 @@ h1 {
     margin-top:20px;
 }
 
-.goatSelector,.collabSelector,.leadSelector,.groupSelector,.datePicker,.budgetBox,.pageLoad > img
+.goatSelector,.collabSelector,.leadSelector,.progressSelector,.groupSelector,.datePicker,.budgetBox,.pageLoad > img
 {
     margin-top:10%;
 }
