@@ -59,6 +59,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="{{url('/businessplan/' . App\BusinessPlan::orderBy('created', 'desc')->first()->id) . '/user/' . Auth::id()}}"><i class="fa fa-btn fa-my-tasks"></i>My Tasks</a> <!-- TODO: Link to business plan filtered with my tasks -->
+                        <a href="{{url('/user/' . Auth::id())}}"> My Profile</a>
                         <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                     </div>
 
