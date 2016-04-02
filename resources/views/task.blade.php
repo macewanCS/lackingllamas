@@ -66,10 +66,25 @@
 
                     <li><div class="task-progress">
                             <label>Progress </label> <p>
-                                @if (empty($task->progress))
+                                @if (empty($task->progress) || $task->progress == 0)
                                     Not Started
-                                @else
-                                    {{$task->progress}}
+                                    <style media="screen" type="text/css">
+                                        .task-progress p {
+                                            color: red;
+                                        }
+                                    </style>
+                                @endif
+                                @if ($task->progress == 1)
+                                    In Progress
+                                @endif
+
+                                @if ($task->progress == 2)
+                                    Done
+                                    <style media="screen" type="text/css">
+                                        .task-progress p {
+                                            color: green;
+                                        }
+                                    </style>
                                 @endif
                             </p></div></li>
 

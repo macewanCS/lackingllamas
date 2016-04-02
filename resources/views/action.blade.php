@@ -32,11 +32,11 @@
                                 @foreach ($tasks as $task)
                                     <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
                                 @endforeach
-                                    <style media="screen" type="text/css">
-                                        .action-list li:nth-child(2) label {
-                                            margin-top: 15px;
-                                        }
-                                        </style>
+                                <style media="screen" type="text/css">
+                                    .action-list li:nth-child(2) label {
+                                        margin-top: 15px;
+                                    }
+                                </style>
                             @endif
                         </div></li>
 
@@ -84,10 +84,19 @@
 
                     <li><div class="action-progress">
                             <label>Progress </label> <p>
-                                @if (empty($action->progress))
+                                @if (empty($action->progress) || $action->progress == 0)
                                     Not Started
-                                @else
-                                    {{$action->progress}}
+                                @endif
+                                @if ($action->progress == 1)
+                                    In Progress
+                                @endif
+                                @if ($action->progress == 2)
+                                    Done
+                                        <style media="screen" type="text/css">
+                                            .task-progress p {
+                                                color: green;
+                                            }
+                                        </style>
                                 @endif
                             </p></div></li>
                 </ul>
@@ -113,9 +122,9 @@
                             </li>
                         @endforeach
                     @else
-                            <div class="comment-content">
-                                No Comments
-                            </div>
+                        <div class="comment-content">
+                            No Comments
+                        </div>
                     @endif
                 </div>
             </ul>

@@ -49,6 +49,7 @@ class TaskCommentsController extends Controller
     }
     public function editTaskFromComments($id, Requests\EditTaskRequest $request)
     {
+        $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
         $model = new Task;
         $task = Task::findOrFail($id);
         $groups = Group::lists('name', 'id');
@@ -67,7 +68,7 @@ class TaskCommentsController extends Controller
             }
         }
 
-        return view('editTaskComments',compact('task','action','groups','users', 'bpid', 'selectedUsers', 'selectedGroups'));
+        return view('editTaskComments',compact('task','action','groups','users', 'bpid', 'selectedUsers', 'selectedGroups', 'progress'));
     }
     public function updateTask($id, Request $request)
     {

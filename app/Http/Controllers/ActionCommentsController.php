@@ -55,6 +55,7 @@ class ActionCommentsController extends Controller
     }
     public function editActionFromComments($id, Requests\EditActionRequest $request)
     {
+        $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
         $model = new Action;
         $action = Action::findOrFail($id);
         $bpid = $model->getBpIdFromAction($id);
@@ -73,7 +74,7 @@ class ActionCommentsController extends Controller
             }
         }
 
-        return view('editActionComments',compact('action','objective','groups','users', 'bpid', 'selectedUsers', 'selectedGroups'));
+        return view('editActionComments',compact('action','objective','groups','users', 'bpid', 'selectedUsers', 'selectedGroups', 'progress'));
     }
 
     public function updateAction($id, Request $request)
