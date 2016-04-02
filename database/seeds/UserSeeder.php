@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make ('password' ),
             ],
             [
-                'name' => 'Alex Carruters',
+                'name' => 'Alex Carruthers',
                 'email' => 'AlexCarruthers@epl.ca',
                 'password' => Hash::make ('password' ),
             ],
@@ -41,6 +41,11 @@ class UserSeeder extends Seeder
                 'name' => 'root',
                 'email' => 'root@root.ca',
                 'password' => Hash::make ('alpine' ),
+            ],
+            [
+                'name' => 'Sharon Karr',
+                'email' => 'SharonKarr@epl.ca',
+                'password' => Hash::make ('password')
             ]
         ]);
     }
