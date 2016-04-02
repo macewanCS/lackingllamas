@@ -217,7 +217,7 @@ label {
     border-bottom-left-radius: 5px;
     border-right: 1px solid  rgba(0,0,0,0.15);
 }
-.action-tasks:hover span, .action-tasks.active span {
+.action-tasks a:hover span, .action-tasks a.active span {
     background-color:rgb(0,102,26);
     border-right: 1px solid  rgba(0,0,0,0.3);
 }
