@@ -569,6 +569,24 @@ h1 {
     max-height: 100%;
 }
 
+#legend > #progressLegendLabel, #legend > #progressLegendIcon, #legend > #doneLegendIcon {
+    float: left;
+    height: 100%;
+    margin-left: 2%;
+}
+
+#legend > #doneLegendLabel {
+    float: left;
+    height: 100%;
+    margin-left: 4%;
+}
+
+#legend > #verticalRule {
+    height: 100%;
+    border-left: 1px solid darkgray;
+}
+
+
 .filterMenu {
     float:right;
     width: 25%;
@@ -624,3 +642,4 @@ h1 {
     background-color: lightgrey !important;
     cursor: pointer;
 }
+

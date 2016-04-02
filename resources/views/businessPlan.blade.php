@@ -21,10 +21,11 @@
         {{ $nameBP}}
     </h1>
 
-
+                @if ($permission > 2)
                 <a class="editBP" href="{{ url('/businessplan',$idbp) }}/edit">
                     {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
                 </a>
+                @endif
 
         <div class="exporting">
             <div class="exportMenu dropDown" style="position:relative">
@@ -136,14 +137,6 @@
                 </select>
             </div>
 
-            <div class="datePicker">
-                <label class="dateTitle">Due Date </label>
-                <label class="dateLabel">From </label>
-                <input title="From: " type="text" id="datePicker" class="picker">
-                <label class="dateLabel">To </label>
-                <input title="To: " type="text" id="datePicker2" class="picker">
-            </div>
-
             <div class="budgetBox">
                 <label class="budgetTitle">Budget </label>
                 <label class="budgetLabel">Greater Than </label>
@@ -151,6 +144,14 @@
                 <label class="budgetLabel">Less Than </label>
                 <textarea class="ta" id="budgetTo" cols="10" rows="1"></textarea>
 
+            </div>
+
+            <div class="datePicker">
+                <label class="dateTitle">Due Date </label>
+                <label class="dateLabel">From </label>
+                <input title="From: " type="text" id="datePicker" class="picker">
+                <label class="dateLabel">To </label>
+                <input title="To: " type="text" id="datePicker2" class="picker">
             </div>
 
             <div class="checkBoxes">
@@ -375,8 +376,9 @@
                             }
                         },
                         "commands": function (column, row) {
-                            var returnString = "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
+                            var returnString = "<div class=\"commandButtons\">";
                             if (row["type"] == "Action" || row["type"] == "Task") {
+                                returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
                                 @if($thisUser == null || $permission == "0")
                                         returnString += "</div>";
                                         return returnString;
@@ -940,8 +942,18 @@
                                         "<div id=\"taskLabelDiv\"><label id=\"taskLabel\">Task</label></div>" +
                                         "<div id=\"taskLegend\">&nbsp;</div>" +
 
+                                        "<div id=\"verticalRule\"></div>" +
+
                                         "<div id=\"bpLabelDiv\"><label id=\"bpLabel\">BP</label></div>" +
                                         "<div id=\"nonbpLabelDiv\"><label id=\"nonbpLabel\">NonBP</label></div>" +
+
+                                        "<div id=\"verticalRule\"></div>" +
+
+                                        "<div id=\"progressLegendLabel\"><label>In Progress</label></div>" +
+                                        "<div id=\"progressLegendIcon\"><span class=\"fa fa-hourglass-1\"></span></div>" +
+
+                                        "<div id=\"doneLegendLabel\"><label>Completed</label></div>" +
+                                        "<div id=\"doneLegendIcon\"><span class=\"fa fa-check\"></span></div>" +
                                     "</div>");
             setTimeout(function() {
                 document.getElementById("tableDiv").style.visibility = 'visible';
