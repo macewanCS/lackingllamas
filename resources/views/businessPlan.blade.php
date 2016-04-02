@@ -26,18 +26,35 @@
                     {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
                 </a>
 
-    <a class = "buttonPDF" href="{{ URL::to('export') }}">
-        <button id="buttonPDF" class = "buttonPDF">Export</button>
-    </a>
+        <div class="exporting">
+            <div class="exportMenu dropDown" style="position:relative">
+                <button class="exportMenuDropdown btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Export
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="exportMenu dropdown-menu">
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'json',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">JSON</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'xml',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">XML</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'csv',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">CSV</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'txt',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">TXT</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'sql',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">SQL</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'excel',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">MS-Excel</li>
+                    <li value="1" selected="selected" onClick ="generateReportPDF()">PDF</li>
+                </ul>
+            </div>
+        </div>
+
+
      <div style = "position:relative;float: right;left:0px;" class="dropdown">
-  <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BP Selector
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    @foreach($bp as $plan)
-        <li value=1 selected="selected"><a href="/businessplan/{{$plan->id}}">{{$plan->name}}</a></li>
-    @endforeach
-  </ul>
-  </div>
+      <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BP Selector
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        @foreach($bp as $plan)
+            <li value=1 selected="selected"><a href="/businessplan/{{$plan->id}}">{{$plan->name}}</a></li>
+        @endforeach
+      </ul>
+      </div>
 </div>
     <hr>
         <div class="pageLoad"><img src="/pictures/page-loader.gif"/></div>
@@ -287,6 +304,14 @@
     {!! Html::script('javascript/jquery.bootgrid.fa.js') !!}
     {!! Html::script('javascript/jquery.multiselect.min.js') !!}
     {!! Html::script('javascript/jquery.multiselect.filter.min.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/FileSaver.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/tableExport.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/jquery.base64.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/html2canvas.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/jspdf/libs/sprintf.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/jspdf/jspdf.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/jspdf/libs/base64.js') !!}
+    {!! Html::script('javascript/jspdf.plugin.table.js') !!}
 
     <script type="text/javascript">
         // CSRF protection
@@ -767,6 +792,15 @@
                 grid.bootgrid("removeParams", "0", 14);
             }
         });
+
+        function generateReportPDF () {
+            var doc = new jsPDF('p', 'pt', 'a4', true);
+            doc.setFont("courier", "normal");
+            doc.setFontSize(8);
+            height = doc.drawTable(grid.bootgrid("getCurrentRowsData"), {xstart:30,ystart:10,tablestart:70,marginleft:50,columnWidths:[125,75,75,80,40,100,30]});
+            doc.text(50, height + 20, "{{$nameBP}}");
+            doc.save("{{$nameBP}}" + ".pdf");
+        }
 
         function clearFilters () {
             grid.bootgrid("clearParams");

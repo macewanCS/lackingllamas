@@ -601,3 +601,26 @@ h1 {
     margin-top: 10px;
     width: 120%;
 }
+
+#mainDiv > #headerBP > div.exporting {
+    display: inline-block;
+}
+
+#mainDiv > #headerBP > div.exporting > div.exportMenu {
+    padding-bottom: 10%;
+}
+
+#mainDiv > #headerBP > div.exporting > div.exportMenu > ul.exportMenu {
+    min-width: 140px !important;
+    text-align: center;
+}
+
+#mainDiv > #headerBP > div.exporting > div.exportMenu > ul.exportMenu > li {
+    width: 100%;
+    padding: 2.5%;
+}
+
+#mainDiv > #headerBP > div.exporting > div.exportMenu > ul.exportMenu > li:hover {
+    background-color: lightgrey !important;
+    cursor: pointer;
+}
