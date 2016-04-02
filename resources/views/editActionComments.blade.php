@@ -28,8 +28,9 @@
                 {!! Form::input('date','date', $action->date, ['class' => 'form-extras']) !!}<br>
 
                 <br>
-                {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
+                {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!}
+                {!! Form::select('collaborators-groups[]', $groups, $selectedGroups, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-groups'] ) !!}
+                {!! Form::select('collaborators-users[]', $users, $selectedUsers, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-users'] ) !!}<br>
 
                 <br>
                 {!! Form::label('budget','Budget: ', ['class' => 'edit-action-label']) !!}
