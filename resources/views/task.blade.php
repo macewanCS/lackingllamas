@@ -21,11 +21,11 @@
                 </div>
                 <ul class="task-list">
 
-                    <li><div class="task-action"> <label>Action </label> <a href="{{url('/action', $task->action_id)}}"> {{\App\Action::findOrFail($task->action_id)->description}} </a></div></li>
+                    <li><div class="task-action"><label>Action </label><a href="{{url('/action', $task->action_id)}}"><span>A</span> {{\App\Action::findOrFail($task->action_id)->description}} </a></div></li>
 
-                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/businessplan', $businessplan)}}"> {{\App\User::find($task->userId)->name}}</a> </div></li><!-- TODO: Link to businessplan filtered by lead -->
+                    <li><div class="task-lead"><label>Lead </label>{{\App\User::find($task->userId)->name}} </div></li>
 
-                    <li><div class="task-group-lead"><label>Group Lead</label><a href="{{url('/businessplan', $businessplan)}}"> {{\App\Group::find($task->group)->name}}</a></div></li>
+                    <li><div class="task-group-lead"><label>Group Lead</label> {{\App\Group::find($task->group)->name}}</div></li>
 
                     <li><div class="task-collab">
                             <label>Collaborators </label>
@@ -34,7 +34,7 @@
                                 N/A
                             @else
                                 @foreach (explode(', ', $task->collaborators) as $colab)
-                                    <a href="{{url('/businessplan', $businessplan)}}"> {{ $colab }} </a> <!-- TODO: Link to businessplan filtered by collabs -->
+                                    {{ $colab }}  <!-- TODO: Link to businessplan filtered by collabs -->
                                 @endforeach
                             @endif
 
