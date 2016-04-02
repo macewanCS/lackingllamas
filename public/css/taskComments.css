@@ -75,16 +75,15 @@ hr {
 
 .comment-name {
 
-
-    text-decoration: none;
     font-weight: bold;
     padding: 3px;
     display: inline-block;
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
 }
 
-.comment-name a:hover {
-    border-bottom: 1px solid;
-}
+
 .comment-name a {
     text-decoration: none;
     color: black;
@@ -101,7 +100,7 @@ hr {
     padding-right: 30px;
     padding-left: 70px;
     position: relative;
-    background-color:rgb(41,127,184);
+    background-color:#e74c3c;
     color:rgb(255,255,255);
     text-decoration: none;
     text-transform: uppercase;
@@ -209,3 +208,55 @@ label {
     z-index: 9999;
 }
 
+.task-lead a {
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+
+.task-group-lead a {
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+
+.task-collab a {
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+.comment-name a {
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+.task-lead a:link,
+.task-lead a:visited { color: #265C83; }
+.task-lead a:hover   { color: darkblue; }
+.task-lead a:active {
+    transition: color .3s;
+    color: #007BE6;
+}
+
+.task-group-lead a:link,
+.task-group-lead a:visited { color: #265C83; }
+.task-group-lead a:hover   { color: darkblue; }
+.task-group-lead a:active {
+    transition: color .3s;
+    color: #007BE6;
+}
+
+.task-collab a:link,
+.task-collab a:visited { color: #265C83; }
+.task-collab a:hover   { color: darkblue; }
+.task-collab a:active {
+    transition: color .3s;
+    color: #007BE6;
+}
+.comment-name a:link,
+.comment-name a:visited { color: #265C83; }
+.comment-name a:hover   { color: darkblue;}
+.comment-name a:active {
+    transition: color .3s;
+    color: #007BE6;
+}
