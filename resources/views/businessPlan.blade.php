@@ -322,10 +322,7 @@
     {!! Html::script('javascript/tableExport.jquery.plugin-master/FileSaver.js') !!}
     {!! Html::script('javascript/tableExport.jquery.plugin-master/tableExport.js') !!}
     {!! Html::script('javascript/tableExport.jquery.plugin-master/jquery.base64.js') !!}
-    {!! Html::script('javascript/tableExport.jquery.plugin-master/html2canvas.js') !!}
-    {!! Html::script('javascript/tableExport.jquery.plugin-master/jspdf/libs/sprintf.js') !!}
     {!! Html::script('javascript/tableExport.jquery.plugin-master/jspdf/jspdf.js') !!}
-    {!! Html::script('javascript/tableExport.jquery.plugin-master/jspdf/libs/base64.js') !!}
     {!! Html::script('javascript/jspdf.plugin.table.js') !!}
 
     <script type="text/javascript">

@@ -254,6 +254,7 @@ THE SOFTWARE.*/
 				}
 
 				var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:"+defaults.type+"' xmlns='http://www.w3.org/TR/REC-html40'>";
+				excelFile += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />";
 				excelFile += "<head>";
 				excelFile += "<!--[if gte mso 9]>";
 				excelFile += "<xml>";
@@ -277,7 +278,9 @@ THE SOFTWARE.*/
 				excelFile += "</body>";
 				excelFile += "</html>";
 
-				var base64data = "base64," + $.base64.encode(excelFile);
+				var base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) } // New base64
+// var base64data = "base64," + $.base64.encode(excelFile); OLD LINE
+				var base64data = "base64," + base64(excelFile); // New line with new base64
 				switch(defaults.type){
 					case 'excel':
 						window.open('data:application/vnd.ms-'+defaults.type+';'+base64data);
