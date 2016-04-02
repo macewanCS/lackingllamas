@@ -103,7 +103,7 @@
     display: inline-block;
     position: absolute;
     float:right;
-    margin-left: 500px;
+    margin-left: 575px;
     border: 1px solid red;
 }
 
@@ -114,6 +114,7 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+    min-width: 120px;
 
 
 
