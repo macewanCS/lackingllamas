@@ -24,7 +24,7 @@ class ObjectivesSeeder extends Seeder
 
 
             ['name' => 'Entice high end speakers to come at no or low cost', 'goal_id' => 5, 'group' => 4],
-            ['name' => 'Incentives for employees with good service', 'goal_id'=> 6, 'group' => 5]
+            ['name' => 'Incentives for employees with good service', 'goal_id'=> 6, 'group' => 5],
 
             ['name' => 'Entice high end speakers to come at no or low cost', 'goal_id' => 5, 'group' => 4],
             ['name' => 'Incentives for employees with good service', 'goal_id'=> 6, 'group' => 5],
