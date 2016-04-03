@@ -137,7 +137,7 @@ hr {
     border-right: 1px solid  rgba(0,0,0,0.15);
 }
 
-.task-action:hover span, .task-action.active span {
+.task-action a:hover span, .task-action a.active span {
     background-color:rgb(0,102,26);
     border-right: 1px solid  rgba(0,0,0,0.3);
 }

@@ -196,3 +196,9 @@ h2 {
     width: 39.33%;
     display: inline;
 }
+
+.tooltiptext {
+    margin-left: 115px;
+    font-size: smaller;
+    font-style: italic;
+ }

@@ -33,8 +33,9 @@
                 {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::select('collaborators-groups[]', $groups, $selectedGroups, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-groups'] ) !!}
                 {!! Form::select('collaborators-users[]', $users, $selectedUsers, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-users'] ) !!}
+                <div class="tooltiptext">Hold CTRL to select multiple elements</div>
 
-                <br><br>
+                <br>
                 {!! Form::label('budget','Budget: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       <br>
 

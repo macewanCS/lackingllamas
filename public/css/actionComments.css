@@ -141,7 +141,7 @@ hr {
 
 }
 
-.action-objective:hover span, .action-objective.active span {
+.action-objective a:hover span, .action-objective a.active span {
     background-color:rgb(0,102,26);
     border-right: 1px solid  rgba(0,0,0,0.3);
 }
@@ -310,3 +310,4 @@ label {
     transition: color .3s;
     color: #007BE6;
 }
+
