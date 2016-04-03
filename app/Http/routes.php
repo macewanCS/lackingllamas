@@ -68,6 +68,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::put('businessplan/{idbp}/{id}/{true}','BusinessPlanController@update');
     Route::patch('businessplan/{idbp}/{id}/{true}','BusinessPlanController@update');
 
+   
     Route::post('businessplan/{idbp}/Goal/{id}/delete', 'BusinessPlanController@deleteGoal');
     Route::post('businessplan/{idbp}/Objective/{id}/delete', 'BusinessPlanController@deleteObjective');
     Route::post('businessplan/{idbp}/Action/{id}/delete', 'BusinessPlanController@deleteAction');

@@ -397,6 +397,7 @@
             {
                 var row = grid.bootgrid("getRowData", $(this).data("row-id"));
                 var token = $('meta[name="csrf-token"]').attr('content');
+                alert("/businessplan/{{$idbp}}/" + row.type + "/" + row.id +"/delete");
                 $.ajax({
                     type: "POST",
                     url: "/businessplan/{{$idbp}}/" + row.type + "/" + row.id +"/delete",

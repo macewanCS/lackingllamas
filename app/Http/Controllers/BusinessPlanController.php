@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 use DB;
 use Zizaco\Entrust\Entrust;
+use Log;
 
 //use Illuminate\Http\Request;
 //use Request;
@@ -196,6 +197,7 @@ class BusinessPlanController extends Controller
   }
    public function store()
    {
+       $redirectID;
        $input = Request::all();
        
                if (Request::has('created')) {
@@ -208,6 +210,7 @@ class BusinessPlanController extends Controller
                     $input['group'] += 1;
                     $input['bpid'] += 1;
                     Goal::create($input);
+                     $redirectID = $input['bpid'];
                }
                if (Request::has('goal_id')) {
                    $input['group'] += 1;
@@ -217,6 +220,8 @@ class BusinessPlanController extends Controller
                    $input['ident'] ="$goalIdent.$objectiveIdent";
                    //return $input['group'];
                    Objective::create($input);
+                   $redirectIDArray = DB::select("select goals.bpid from goals, objectives where objective.goal_id = goals.id");
+                   $redirectID=$redirectIDArray[0];
                }
                if (Request::has('objective_id')) {
                    $input['group'] += 1;
@@ -237,7 +242,7 @@ class BusinessPlanController extends Controller
                    Task::create($input);
                }
 
-               return redirect('businessplan');
+               return redirect("businessplan/".$redirectID."");
            
        
    }
@@ -321,20 +326,24 @@ class BusinessPlanController extends Controller
    }
 
 
-    function deleteGoal ($id, Request $request) {
-        Goal::findOrFail($id)->first()->delete();
+    function deleteGoal ($idbp,$id) {
+
+
+Log::info('This is some useful information.');
+Log::info($id);
+        Goal::findOrFail($id)->delete();
         return;
     }
-    function deleteObjective ($id, Request $request) {
-        Objective::findOrFail($id)->first()->delete();
+    function deleteObjective ($idbp,$id) {
+        Objective::findOrFail($id)->delete();
         return;
     }
-    function deleteAction ($id, Request $request) {
-        Action::findOrFail($id)->first()->delete();
+    function deleteAction ($idbp,$id) {
+        Action::findOrFail($id)->delete();
         return;
     }
-    function deleteTask ($id, Request $request) {
-        Task::findOrFail($id)->first()->delete();
+    function deleteTask ($idbp, $id) {
+        Task::findOrFail($id)->delete();
         return;
     }
 }
