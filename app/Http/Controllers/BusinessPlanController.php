@@ -214,14 +214,18 @@ class BusinessPlanController extends Controller
                }
                if (Request::has('goal_id')) {
                    $input['group'] += 1;
-                   $input['goal_id'] += 1;
+                  // return  $input['goal_id'];
+                   $goals = Goal::all();
+                   $input['goal_id'] =$goals[$input['goal_id']]->id;
                    $objectiveIdent = count(DB::table('objectives')->where('goal_id', $input['goal_id'])->get())+1;
                    $goalIdent = $input['goal_id'];
                    $input['ident'] ="$goalIdent.$objectiveIdent";
                    //return $input['group'];
-                   Objective::create($input);
-                   $redirectIDArray = DB::select("select goals.bpid from goals, objectives where objective.goal_id = goals.id");
+                   $redirectIDArray = DB::table('goals')-> where('id',$input['goal_id'])->pluck('bpid');
                    $redirectID=$redirectIDArray[0];
+                   Objective::create($input);
+
+
                }
                if (Request::has('objective_id')) {
                    $input['group'] += 1;

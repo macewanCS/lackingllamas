@@ -20,8 +20,8 @@
 			<br><br>
                 <div id ="divBP">
                     {!! Form::label('bp','Non Business Plan Goal: ') !!}
-                    {!! Form::checkbox('bp', 1, false) !!}
-                    <p class="text">Checked to make it a Non Business Plan Goal?</p>
+                    {!! Form::checkbox('bp', 'True', false) !!}
+                    <p class="text">Checking the box will seperate the goal from the business plan</p>
                 </div>
 		</div>
 
