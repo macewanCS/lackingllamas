@@ -265,7 +265,7 @@ h1 {
     width:100%!important;
 }
 
-#mainDiv > div.sideDiv > div.goatSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.leadSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.datePicker,#mainDiv > div.sideDiv > div.datePicker > input.picker,#mainDiv > div.sideDiv > div.datePicker > label.dateTitle,#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle,#mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect
+#mainDiv > div.sideDiv > div.goatSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.collabSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.leadSelector > button.ui-multiselect,#mainDiv > div.sideDiv > div.datePicker,#mainDiv > div.sideDiv > div.datePicker > input.picker,#mainDiv > div.sideDiv > div.datePicker > label.dateTitle,#mainDiv > div.sideDiv > div.budgetBox > label.budgetTitle,#mainDiv > div.sideDiv > div.groupSelector > button.ui-multiselect, #mainDiv > div.sideDiv > div.progressSelector > button.ui-multiselect
 {
     width:100%!important;
 }
@@ -348,7 +348,7 @@ h1 {
     margin-top:20px;
 }
 
-.goatSelector,.collabSelector,.leadSelector,.groupSelector,.datePicker,.budgetBox,.pageLoad > img
+.goatSelector,.collabSelector,.leadSelector,.progressSelector,.groupSelector,.datePicker,.budgetBox,.pageLoad > img
 {
     margin-top:10%;
 }
@@ -521,8 +521,71 @@ h1 {
 #goalLegend {
     height: 1.25em;
     width: 1.25em;
-    background-color: #d9edf7;
+    background-color: #f2caf2;
+    border: 1px solid lightgrey;
+    margin-right: 2.5%;
 }
+
+#objectiveLegend {
+    height: 1.25em;
+    width: 1.25em;
+    background-color: #d9edf7;
+    border: 1px solid lightgrey;
+    margin-right: 2.5%;
+}
+
+#actionLegend {
+    height: 1.25em;
+    width: 1.25em;
+    background-color: #e3f6e0;
+    border: 1px solid lightgrey;
+    margin-right: 2.5%;
+}
+
+#taskLegend {
+    height: 1.25em;
+    width: 1.25em;
+    backgroud-color: white;
+    border: 1px solid lightgrey;
+    margin-right: 2.5%;
+}
+
+#bpLabel {
+    color: black;
+    margin-left: 2.5%;
+    font-weight: bolder;
+    text-decoration: wavy;
+}
+
+#nonbpLabel {
+    color: navy;
+    margin-right: 2.5%;
+    font-weight: bolder;
+    text-decoration: wavy;
+}
+
+#nonbpLabelDiv {
+    overflow: visible;
+    max-height: 100%;
+}
+
+#legend > #progressLegendLabel, #legend > #progressLegendIcon, #legend > #doneLegendIcon {
+    float: left;
+    height: 100%;
+    margin-left: 2%;
+}
+
+#legend > #doneLegendLabel {
+    float: left;
+    height: 100%;
+    margin-left: 4%;
+}
+
+#legend > #verticalRule {
+    height: 100%;
+    border-left: 1px solid darkgray;
+}
+
 
 .filterMenu {
     float:right;
@@ -551,3 +614,32 @@ h1 {
 #mainDiv > #sideDiv > .filtering > label {
     font-weight: bold;
 }
+
+#mainDiv > #sideDiv > hr {
+    margin-top: 10px;
+    width: 120%;
+}
+
+#mainDiv > #headerBP > div.exporting {
+    display: inline-block;
+}
+
+#mainDiv > #headerBP > div.exporting > div.exportMenu {
+    padding-bottom: 10%;
+}
+
+#mainDiv > #headerBP > div.exporting > div.exportMenu > ul.exportMenu {
+    min-width: 140px !important;
+    text-align: center;
+}
+
+#mainDiv > #headerBP > div.exporting > div.exportMenu > ul.exportMenu > li {
+    width: 100%;
+    padding: 2.5%;
+}
+
+#mainDiv > #headerBP > div.exporting > div.exportMenu > ul.exportMenu > li:hover {
+    background-color: lightgrey !important;
+    cursor: pointer;
+}
+
