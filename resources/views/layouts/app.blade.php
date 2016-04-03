@@ -23,10 +23,10 @@
 
             <ul class="nav topbar-nav">
                 <!-- Branding Image -->
-                <li><div class="topbar-text"><a href="{{ url('/') }}">{{HTML::image('pictures/EPL.png',null, ['class' => 'topbar-img'])}}
+                <li><div class="topbar-text"><a href="{{ url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id) }}">{{HTML::image('pictures/EPL.png',null, ['class' => 'topbar-img'])}}
                         </a></div></li>
 
-                @if (Request::path() == 'businessplan')
+                @if (strpos(Request::path(),'businessplan') !== FALSE)
 
                     <li><div class="topbar-current"><a href="{{ url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id)}}">Business Plan</a></div></li>
                 @else
