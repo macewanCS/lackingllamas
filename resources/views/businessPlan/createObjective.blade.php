@@ -12,6 +12,7 @@
 		{!! Form::open(['url'=>'businessplan']) !!}
 			{!! Form::hidden('id',$counted) !!}
 			{!! Form::hidden('ident',0) !!}
+			{!! Form::hidden('idbp',$idbp) !!}
 			<div class="form-group-one">
 		<div class="form-group-one">
 			{!! Form::label('goal_id','Goal: ',['class' => 'edit-action-label']) !!}

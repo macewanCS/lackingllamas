@@ -11,11 +11,10 @@
 			{!! Form::hidden('ident',$counted) !!}
 			{!! Form::hidden('id',$counted) !!}
 			{{ Form::hidden('bp', 'False') }}
+			{{ Form::hidden('bpid', $idbp) }}
 
 		<div class="form-group-one">
-			{!! Form::label('bpid','BP:',['class' => 'edit-action-label']) !!}
-			{!! Form::select('bpid',$bp,null, array('class' => 'form-extras'))!!}
-			<br><br>
+	
 			{!! Form::label('name','Name:',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>

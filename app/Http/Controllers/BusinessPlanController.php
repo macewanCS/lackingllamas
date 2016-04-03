@@ -156,44 +156,61 @@ class BusinessPlanController extends Controller
     //$counted = count($goals)+1;
     return view('businessPlan.createBP',compact('counted'));
   }
-  public function createGoal()
+  public function createGoal($idbp)
   {
     $bp = BusinessPlan::lists('name');
     $goals = Goal::all();
     $groups = Group::lists('name');
     $counted = count($goals)+1;
-  	return view('businessPlan.createGoal',compact('counted','groups','bp'));
+  	return view('businessPlan.createGoal',compact('counted','groups','bp','idbp'));
   }
 
-  public function createObjective()
+  public function createObjective($idbp)
   {
-    $goals = Goal::lists('name');
+   //$goals = Goal::lists('name');
+    $goals = DB::table('goals')->where ('bpid',$idbp)->pluck('name');
     $objective = Objective::all();
     $groups = Group::lists('name');
     $counted = count($objective)+1;
-    return view('businessPlan.createObjective',compact('goals','counted','groups'));
+    return view('businessPlan.createObjective',compact('goals','counted','groups','idbp'));
   }
 
 
-    public function createAction()
+    public function createAction($idbp)
   {
-    $objectives = Objective::lists('name');
+    $objectives= DB::table('objectives as o')
+      ->join('goals as g',function ($join) use ($idbp){
+        $join->on('o.goal_id','=','g.id')
+          ->where('g.bpid','=',$idbp);
+      })
+      ->distinct()
+      ->pluck('o.name');
     $action = Action::all();
     $groups = Group::lists('name');
     $user = User::lists('name');
     $counted = count($action)+1;
-    return view('businessPlan.createAction',compact('objectives','counted','groups','user'));
+    return view('businessPlan.createAction',compact('objectives','counted','groups','user','idbp'));
   }
 
 
-    public function createTask()
+    public function createTask($idbp)
   {
-    $actions = Action::lists('description');
+        $actions= DB::table('actions as a')
+        ->join('objectives as o',function ($join) use ($idbp){
+            $join->on('a.objective_id','=','o.id');
+          })
+        ->join('goals as g',function ($join2) use ($idbp){
+            $join2->on('o.goal_id','=','g.id')
+              ->where('g.bpid','=',$idbp);
+          })    
+      ->distinct()
+      ->pluck('a.description');
+
     $task = Task::all();
     $groups = Group::lists('name');
     $user = User::lists('name');
     $counted = count($task)+1;
-    return view('businessPlan.createTask',compact('actions','counted','groups','user'));
+    return view('businessPlan.createTask',compact('actions','counted','groups','user','idbp'));
   }
    public function store()
    {
@@ -210,12 +227,12 @@ class BusinessPlanController extends Controller
                     $input['group'] += 1;
                     $input['bpid'] += 1;
                     Goal::create($input);
-                     $redirectID = $input['bpid'];
+                    $redirectID = $input['bpid'];
                }
                if (Request::has('goal_id')) {
                    $input['group'] += 1;
                   // return  $input['goal_id'];
-                   $goals = Goal::all();
+                   $goals = DB::select("select * from goals where bpid = '".$input['idbp']."'");
                    $input['goal_id'] =$goals[$input['goal_id']]->id;
                    $objectiveIdent = count(DB::table('objectives')->where('goal_id', $input['goal_id'])->get())+1;
                    $goalIdent = $input['goal_id'];
@@ -229,20 +246,45 @@ class BusinessPlanController extends Controller
                }
                if (Request::has('objective_id')) {
                    $input['group'] += 1;
-                   $input['objective_id'] += 1;
+                   $objectives = DB::select("select distinct * from goals, objectives where bpid = '".$input['idbp']."' and objectives.goal_id = goals.id");
+                   $input['objective_id'] =$objectives[$input['objective_id']]->id;
                    $input['userId'] += 1; 
                    $objectiveIdent = DB::table('objectives')->where('id', $input['objective_id'])->pluck('ident');
                    $actionIdent = count(DB::table('actions')->where('objective_id', $input['objective_id'])->get())+1;
-                   $input['ident'] = "$objectiveIdent[0].$actionIdent";            
+                   $input['ident'] = "$objectiveIdent[0].$actionIdent";  
+                   $var2 = $input['idbp'];
+                  $redirectIDArray= DB::table('goals as g')
+                    ->join('objectives as o',function ($join) use ($var2){
+                    $join->on('o.goal_id','=','g.id')
+                    ->where('g.bpid','=',$var2);
+                    })
+                ->distinct()
+                ->pluck('g.bpid');
+                  $redirectID= $redirectIDArray[0];
                    Action::create($input);
                }
                if (Request::has('action_id')) {
                    $input['group'] += 1;
-                   $input['action_id'] += 1;
+                   $actions = DB::select("select distinct * from goals, objectives,actions where bpid = '".$input['idbp']."' and objectives.goal_id = goals.id and actions.objective_id = objectives.id");
+                   $input['action_id'] =$actions[$input['action_id']]->id;
                    $input['userId'] += 1; 
                    $actionIdent = DB::table('actions')->where('id', $input['action_id'])->pluck('ident');
                    $taskIdent = count(DB::table('tasks')->where('action_id', $input['action_id'])->get())+1;
                    $input['ident'] = "$actionIdent[0].$taskIdent";
+                   $var2 = $input['idbp'];
+
+                  $redirectIDArray= DB::table('goals as g')
+       
+        ->join('objectives as o',function ($join2) use ($var2){
+            $join2->on('o.goal_id','=','g.id')
+              ->where('g.bpid','=',$var2);
+          })   
+              ->join('actions as a',function ($join){
+                    $join->on('a.objective_id','=','o.id');
+          })
+                ->distinct()
+                ->pluck('g.bpid');
+                  $redirectID= $redirectIDArray[0];
                    Task::create($input);
                }
 

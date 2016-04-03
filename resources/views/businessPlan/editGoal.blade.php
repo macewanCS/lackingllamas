@@ -9,9 +9,7 @@
 		{!! Form::model($goal,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $goal->bpid,'Goal',$goal->id]]) !!}
 
 		<div class="form-group-one">
-			{!! Form::label('bpid','BP:',['class' => 'edit-action-label']) !!}
-			{!! Form::select('bpid',$bp,null, array('class' => 'form-extras'))!!}
-			<br><br>
+	
 			{!! Form::label('name','Name:',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>
