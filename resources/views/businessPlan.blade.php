@@ -21,23 +21,41 @@
         {{ $nameBP}}
     </h1>
 
-
+                @if ($permission > 2)
                 <a class="editBP" href="{{ url('/businessplan',$idbp) }}/edit">
                     {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
                 </a>
+                @endif
 
-    <a class = "buttonPDF" href="{{ URL::to('export') }}">
-        <button id="buttonPDF" class = "buttonPDF">Export</button>
-    </a>
+        <div class="exporting">
+            <div class="exportMenu dropDown" style="position:relative">
+                <button class="exportMenuDropdown btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Export
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="exportMenu dropdown-menu">
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'json',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">JSON</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'xml',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">XML</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'csv',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">CSV</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'txt',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">TXT</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'sql',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">SQL</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'excel',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">MS-Excel</li>
+                    <li value="1" selected="selected" onClick ="generateReportPDF()">PDF</li>
+                </ul>
+            </div>
+        </div>
+
+
      <div style = "position:relative;float: right;left:0px;" class="dropdown">
-  <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BP Selector
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    @foreach($bp as $plan)
-        <li value=1 selected="selected"><a href="/businessplan/{{$plan->id}}">{{$plan->name}}</a></li>
-    @endforeach
-  </ul>
-  </div>
+      <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BP Selector
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        @foreach($bp as $plan)
+            <li value=1 selected="selected"><a href="/businessplan/{{$plan->id}}">{{$plan->name}}</a></li>
+        @endforeach
+      </ul>
+      </div>
 </div>
     <hr>
         <div class="pageLoad"><img src="/pictures/page-loader.gif"/></div>
@@ -56,6 +74,8 @@
                 </ul>
 
             </div>
+
+            <hr>
 
             <div class="filtering">
                 <label id="filtering">Filter</label>
@@ -117,12 +137,13 @@
                 </select>
             </div>
 
-            <div class="datePicker">
-                <label class="dateTitle">Due Date </label>
-                <label class="dateLabel">From </label>
-                <input title="From: " type="text" id="datePicker" class="picker">
-                <label class="dateLabel">To </label>
-                <input title="To: " type="text" id="datePicker2" class="picker">
+            <div class="progressSelector">
+                <label>Progress </label>
+                <select id="progress" name="progress" multiple="multiple">
+                        <option value="0" selected="selected">Not Started</option>
+                        <option value="1" selected="selected">In Progress</option>
+                        <option value="2" selected="selected">Completed</option>
+                </select>
             </div>
 
             <div class="budgetBox">
@@ -132,6 +153,14 @@
                 <label class="budgetLabel">Less Than </label>
                 <textarea class="ta" id="budgetTo" cols="10" rows="1"></textarea>
 
+            </div>
+
+            <div class="datePicker">
+                <label class="dateTitle">Due Date </label>
+                <label class="dateLabel">From </label>
+                <input title="From: " type="text" id="datePicker" class="picker">
+                <label class="dateLabel">To </label>
+                <input title="To: " type="text" id="datePicker2" class="picker">
             </div>
 
             <div class="checkBoxes">
@@ -148,7 +177,7 @@
                     <input type="checkbox" id="check2" name="check2" checked>
                 </div>
             </div>
-            
+
 
         </div>
 
@@ -170,7 +199,8 @@
                     <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
                     <th data-column-id="progress" data-formatter="colorizer" data-header-css-class="progress" data-sortable="false">Prog.</th>
                     <th data-column-id="commands" data-formatter="commands" data-header-css-class="commands" data-sortable="false" data-align="right">Utilities</th>
-                    <th data-column-di="bp" data-formatter="bp" data-header-css-class="bp" data-visible="false"></th>
+                    <th data-column-id="bp" data-formatter="bp" data-header-css-class="bp" data-visible="false"></th>
+                    <th data-column-id="progressCode" data-formatter="colorizer" data-header-css-class="progressCode" data-visible="false"><</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -199,6 +229,7 @@
             <td></td>
             <td></td>
             <td>{{$tempGoal->bp}}</td>
+            <td></td>
         </tr>
         @endif
          @if(substr_count($bp->ident, ".")==1)
@@ -224,6 +255,7 @@
                 <td></td>
                 <td></td>
                 <td>{{$tempGoal->bp}}</td>
+                <td></td>
             </tr>
         @endif
           @if(substr_count($bp->ident, ".")==2)
@@ -247,6 +279,7 @@
                 <td>{{$bp->progress}}</td>
                 <td></td>
                 <td>{{$tempGoal->bp}}</td>
+                <td>{{$bp->progress}}</td>
             </tr>
         @endif
         @if(substr_count($bp->ident, ".")==3)
@@ -270,6 +303,7 @@
             <td>{{$bp->progress}}</td>
             <td></td>
             <td>{{$tempGoal->bp}}</td>
+            <td>{{$bp->progress}}</td>
         </tr>
         @endif
     @endforeach
@@ -285,6 +319,11 @@
     {!! Html::script('javascript/jquery.bootgrid.fa.js') !!}
     {!! Html::script('javascript/jquery.multiselect.min.js') !!}
     {!! Html::script('javascript/jquery.multiselect.filter.min.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/FileSaver.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/tableExport.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/jquery.base64.js') !!}
+    {!! Html::script('javascript/tableExport.jquery.plugin-master/jspdf/jspdf.js') !!}
+    {!! Html::script('javascript/jspdf.plugin.table.js') !!}
 
     <script type="text/javascript">
         // CSRF protection
@@ -348,8 +387,9 @@
                             }
                         },
                         "commands": function (column, row) {
-                            var returnString = "<div class=\"commandButtons\"><button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
+                            var returnString = "<div class=\"commandButtons\">";
                             if (row["type"] == "Action" || row["type"] == "Task") {
+                                returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
                                 @if($thisUser == null || $permission == "0")
                                         returnString += "</div>";
                                         return returnString;
@@ -611,6 +651,37 @@
 
             }
         }).multiselectfilter();
+        var progressMaxCount = 3;
+        var progressSelector = $("#progress").multiselect({
+            selectedList: 0,
+            header: true,
+            minWidth: "auto",
+            position: {
+                my: 'right top',
+                at: 'right bottom'
+            },
+            click: function (event, ui) {
+                if (ui.checked) {
+                    grid.bootgrid("addParams", ui.value, 15);
+                    if (progressSelector.multiselect("getChecked").length == progressMaxCount){
+                        grid.bootgrid("addParams", "", 15);
+                    }
+                }
+                else {
+                    grid.bootgrid("removeParams", "", 15);
+                    grid.bootgrid("removeParams", ui.value, 15);
+                }
+            },
+            checkAll: function () {
+                grid.bootgrid("addParams", "0", 15);
+                grid.bootgrid("addParams", "1", 15);
+                grid.bootgrid("addParams", "2", 15);
+                grid.bootgrid("addParams", "", 15);
+            },
+            uncheckAll: function () {
+                grid.bootgrid("removeParams", undefined, 15);
+            }
+        });
 
 
         function setupDate1 () {
@@ -766,12 +837,22 @@
             }
         });
 
+        function generateReportPDF () {
+            var doc = new jsPDF('p', 'pt', 'a4', true);
+            doc.setFont("courier", "normal");
+            doc.setFontSize(8);
+            height = doc.drawTable(grid.bootgrid("getCurrentRowsData"), {xstart:30,ystart:10,tablestart:70,marginleft:50,columnWidths:[125,75,75,80,40,100,30]});
+            doc.text(50, height + 20, "{{$nameBP}}");
+            doc.save("{{$nameBP}}" + ".pdf");
+        }
+
         function clearFilters () {
             grid.bootgrid("clearParams");
             goatSelector.multiselect("uncheckAll");
             collabSelector.multiselect("uncheckAll");
             leadSelector.multiselect("uncheckAll");
             groupSelector.multiselect("uncheckAll");
+            progressSelector.multiselect("uncheckAll");
             date1.datepicker("destroy");
             date2.datepicker("destroy");
             document.getElementById("datePicker").value = "";
@@ -879,6 +960,7 @@
             leadSelector.multiselect("uncheckAll");
             groupMaxCount = groupSelector.multiselect("getChecked").length;
             groupSelector.multiselect("uncheckAll");
+            progressSelector.multiselect("uncheckAll");
             setupDate1();
             setupDate2();
             grid.bootgrid("addParams", "1", 14);
@@ -894,6 +976,28 @@
             $(".actionBar").append("<div id=\"legend\">" +
                                         "<div id=\"goalLabelDiv\"><label id=\"goalLabel\">Goal</label></div>" +
                                         "<div id=\"goalLegend\">&nbsp;</div>" +
+
+                                        "<div id=\"objectiveLabelDiv\"><label id=\"objectiveLabel\">Obj.</label></div>" +
+                                        "<div id=\"objectiveLegend\">&nbsp;</div>" +
+
+                                        "<div id=\"actionLabelDiv\"><label id=\"actionLabel\">Action</label></div>" +
+                                        "<div id=\"actionLegend\">&nbsp;</div>" +
+
+                                        "<div id=\"taskLabelDiv\"><label id=\"taskLabel\">Task</label></div>" +
+                                        "<div id=\"taskLegend\">&nbsp;</div>" +
+
+                                        "<div id=\"verticalRule\"></div>" +
+
+                                        "<div id=\"bpLabelDiv\"><label id=\"bpLabel\">BP</label></div>" +
+                                        "<div id=\"nonbpLabelDiv\"><label id=\"nonbpLabel\">NonBP</label></div>" +
+
+                                        "<div id=\"verticalRule\"></div>" +
+
+                                        "<div id=\"progressLegendLabel\"><label>In Progress</label></div>" +
+                                        "<div id=\"progressLegendIcon\"><span class=\"fa fa-hourglass-1\"></span></div>" +
+
+                                        "<div id=\"doneLegendLabel\"><label>Completed</label></div>" +
+                                        "<div id=\"doneLegendIcon\"><span class=\"fa fa-check\"></span></div>" +
                                     "</div>");
             setTimeout(function() {
                 document.getElementById("tableDiv").style.visibility = 'visible';
