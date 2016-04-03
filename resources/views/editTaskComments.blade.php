@@ -68,12 +68,13 @@
 
 
 
-            {!! Form::submit('Submit Changes',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}
+                {!! Form::submit('Submit Changes',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}
 
 
 
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @stop
