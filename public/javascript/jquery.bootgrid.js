@@ -284,9 +284,9 @@
             if (this.subtree) {
                  rows.forEach(function (currentValue, index, array) {
                      var checkRow = currentValue;
+                     var re = new RegExp("^" + checkRow[this.identifier] + ".*");
                      this.rows.forEach(function (currentValue, index, array) {
-                         //console.log(currentValue[this.identifier] + " =? " + checkRow[this.identifier] + "  " + (currentValue[this.identifier] != checkRow[this.identifier]));
-                         if (new RegExp("^" + checkRow[this.identifier] + ".*").test(currentValue[this.identifier]) && rows.indexOf(currentValue) < 0) {
+                         if (re.test(currentValue[this.identifier]) && rows.indexOf(currentValue) < 0) {
                              rows.push(currentValue);
                          }
                      }, this);
@@ -1613,6 +1613,7 @@
         else {
             this.subtree = false;
         }
+        loadData.call(this);
         return this;
     };
 
