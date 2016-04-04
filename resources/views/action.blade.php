@@ -23,7 +23,7 @@
                 <ul class="action-list">
 
                     <li><div class="action-objective">
-                            <label>Objective</label><a href="{{url('/businessplan', $businessplan)}}"> <span>O</span>{{str_limit(\App\Objective::find($action->objective_id)->name, $limit=75, $end = '...')}} </a></div></li>
+                            <label>Objective</label><a href="{{url('/businessplan/' .  $businessplan . '/Objective/' . $action->objective_id)}}"> <span>O</span>{{str_limit(\App\Objective::find($action->objective_id)->name, $limit=75, $end = '...')}} </a></div></li>
 
                     <li><div class="action-tasks"><label>Tasks </label>
                             <?php $tmp = 0; ?>

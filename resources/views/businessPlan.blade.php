@@ -964,6 +964,10 @@
                         @endforeach
                     @endif
                 @endif
+
+                @if ($filters["objective"] != null)
+                    grid.bootgrid("search", "{{$filters["objective"]->name}}");
+                @endif
             }
 
 

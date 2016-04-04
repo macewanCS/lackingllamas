@@ -61,7 +61,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('businessplan/{idbp}/edit','BusinessPlanController@editBP');
     Route::get('businessplan/{idbp}/Goal/{id}/edit','BusinessPlanController@editGoal');
-    Route::get('businessplan/{idbp}/Objective/{id}/edit','BusinessPlanController@editObjective'); 
+    Route::get('businessplan/{idbp}/Objective/{id}/edit','BusinessPlanController@editObjective');
+    Route::get('businessplan/{idbp}/Objective/{id}', 'BusinessPlanController@objectiveFilter');
     Route::get('businessplan/{idbp}/Action/{id}/edit','BusinessPlanController@editAction');
     Route::get('businessplan/{idbp}/Task/{id}/edit','BusinessPlanController@editTask');
     Route::get('businessplan/{idbp}/user/{userId}', 'BusinessPlanController@userFilter');
