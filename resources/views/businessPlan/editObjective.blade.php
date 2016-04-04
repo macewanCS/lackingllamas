@@ -6,6 +6,9 @@
 		<h1>
 			Edit a Objective
 		</h1>
+		<h2>
+			Business Plan: {{App\BusinessPlan::find($idbp)->name}}
+		</h2>
 		<hr>
 		<div class="create-goal-inner">
 		{!! Form::model($objective,['method' => 'PATCH', 'action' => ['BusinessPlanController@update',$idbp,'Objective',$objective->id]]) !!}

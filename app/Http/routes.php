@@ -89,6 +89,9 @@ Route::group(['middleware' => 'web'], function () {
 
     //Group Routes
     Route::get('groups', 'GroupController@groups');
+
+    //User Routes
+    Route::get('user/{id}', 'UserController@user');
 });
 
 

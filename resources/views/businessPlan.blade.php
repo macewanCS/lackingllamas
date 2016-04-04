@@ -36,7 +36,7 @@
 
                 <ul class="exportMenu dropdown-menu">
                     <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'json',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">JSON</li>
-                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'xml',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">XML</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'xml',escape:'true',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">XML</li>
                     <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'csv',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">CSV</li>
                     <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'txt',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">TXT</li>
                     <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'sql',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">SQL</li>
@@ -47,7 +47,7 @@
         </div>
 
 
-     <div style = "position:relative;float: right;left:0px;" class="dropdown">
+     <div style = "position:relative;visibility:hidden;left:0px;" class="dropdown" id="bp-selector-button">
       <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BP Selector
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
@@ -1002,6 +1002,10 @@
             setTimeout(function() {
                 document.getElementById("tableDiv").style.visibility = 'visible';
                 document.getElementById("sideDiv").style.visibility = 'visible';
+                //document.styleSheets[1].insertRule('.dropdown {float: right;}', document.styleSheets[1].length);
+                //document.styleSheets[1].insertRule('.btn btn-primary dropdown-toggle {display:inline-block;}', document.styleSheets[1].length);
+                document.getElementById("bp-selector-button").style.float= 'right';
+                document.getElementById("bp-selector-button").style.visibility= 'visible';
                 $(".pageLoad").fadeOut(1500);
             }, 3000);
         });

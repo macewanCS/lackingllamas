@@ -13,7 +13,7 @@
 
 .container-topbar {
     width: 1500px;
-    height: 112px;
+    height: 115px;
     background:white;
     position: relative;
     margin: 0 auto;
@@ -50,6 +50,10 @@
     text-align: center;
     display:inline;
     padding-bottom: 0.5mm;
+}
+
+.topbar-nav li a{
+    font-size: 20px;
 }
 
 
@@ -99,7 +103,7 @@
     display: inline-block;
     position: absolute;
     float:right;
-    margin-left: 500px;
+    margin-left: 575px;
     border: 1px solid red;
 }
 
@@ -110,6 +114,7 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+    min-width: 120px;
 
 
 

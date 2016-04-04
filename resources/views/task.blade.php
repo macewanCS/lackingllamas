@@ -21,11 +21,11 @@
                 </div>
                 <ul class="task-list">
 
-                    <li><div class="task-action"> <label>Action </label> <a href="{{url('/action', $task->action_id)}}"> {{\App\Action::findOrFail($task->action_id)->description}} </a></div></li>
+                    <li><div class="task-action"><label>Action </label><a href="{{url('/action', $task->action_id)}}"><span>A</span> {{str_limit(\App\Action::findOrFail($task->action_id)->description, $limit=75, $end='...')}} </a></div></li>
 
-                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/businessplan', $businessplan)}}"> {{\App\User::find($task->userId)->name}}</a> </div></li><!-- TODO: Link to businessplan filtered by lead -->
+                    <li><div class="task-lead"><label>Lead </label><a href="{{url('/businessplan/'. $businessplan . '/user/' . $task->userId)}}">{{\App\User::find($task->userId)->name}} </a></div></li>
 
-                    <li><div class="task-group-lead"><label>Group Lead</label><a href="{{url('/businessplan', $businessplan)}}"> {{\App\Group::find($task->group)->name}}</a></div></li>
+                    <li><div class="task-group-lead"><label>Group Lead</label> <a href="{{url('/businessplan', $businessplan)}}">{{\App\Group::find($task->group)->name}}</a></div></li>
 
                     <li><div class="task-collab">
                             <label>Collaborators </label>
@@ -34,7 +34,7 @@
                                 N/A
                             @else
                                 @foreach (explode(', ', $task->collaborators) as $colab)
-                                    <a href="{{url('/businessplan', $businessplan)}}"> {{ $colab }} </a> <!-- TODO: Link to businessplan filtered by collabs -->
+                                    <a href="{{url('/businessplan', $businessplan)}}">{{ $colab }}</a>  <!-- TODO: Link to businessplan filtered by collabs -->
                                 @endforeach
                             @endif
 
@@ -66,10 +66,25 @@
 
                     <li><div class="task-progress">
                             <label>Progress </label> <p>
-                                @if (empty($task->progress))
+                                @if (empty($task->progress) || $task->progress == 0)
                                     Not Started
-                                @else
-                                    {{$task->progress}}
+                                    <style media="screen" type="text/css">
+                                        .task-progress p {
+                                            color: red;
+                                        }
+                                    </style>
+                                @endif
+                                @if ($task->progress == 1)
+                                    In Progress
+                                @endif
+
+                                @if ($task->progress == 2)
+                                    Done
+                                    <style media="screen" type="text/css">
+                                        .task-progress p {
+                                            color: green;
+                                        }
+                                    </style>
                                 @endif
                             </p></div></li>
 
@@ -86,7 +101,7 @@
                         @foreach($comments as $comment)
                             <li class="comments">
                                 <div class="comment-header">
-                                    <div class="comment-name"><a href="{{url('/businessplan', $businessplan)}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
+                                    <div class="comment-name"><a href="{{url('/businessplan/'. $businessplan . '/user/' . $comment->user_ID)}}">{{\App\User::findOrFail($comment->user_ID)->name}} </a></div> commented {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}
                                 </div>
                                 <div class="comment-content">
                                     <br>
@@ -106,7 +121,7 @@
 
                     {!! Form::open(array('action' => array('TaskCommentsController@store', $task->id))) !!}
 
-                    {!! Form::label('description','Leave a Comment: ', ['class' => 'comment-label']) !!}<br>
+                    {!! Form::label('description','Leave a Comment ', ['class' => 'comment-label']) !!}<br>
                     {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
 
                     {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}

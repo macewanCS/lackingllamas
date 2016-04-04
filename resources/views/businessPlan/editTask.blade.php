@@ -8,6 +8,9 @@
         <h1>
             Edit a Task
         </h1>
+        <h2>
+            Business Plan: {{App\BusinessPlan::find($idbp)->name}}
+        </h2>
         <hr>
         <div class="create-goal-inner">
 
