@@ -127,7 +127,8 @@ class BusinessPlanController extends Controller
                 "type" => "none",
                 "collabs" => "none",
                 "leads" => array($userFilter->name),
-                "groups" => "none"
+                "groups" => "none",
+                "objective" => null
             );
         }
         if (Auth::check()) {
@@ -169,7 +170,8 @@ class BusinessPlanController extends Controller
                 "type" => "none",
                 "collabs" => array($collabName),
                 "leads" => "none",
-                "groups" => "none"
+                "groups" => "none",
+                "objective" => null
             );
         }
         if (Auth::check()) {
@@ -207,7 +209,8 @@ class BusinessPlanController extends Controller
                 "type" => "none",
                 "collabs" => "none",
                 "leads" => "none",
-                "groups" => array($groupFilter->name)
+                "groups" => array($groupFilter->name),
+                "objective" => null
             );
         }
         if (Auth::check()) {
