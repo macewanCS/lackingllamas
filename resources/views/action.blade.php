@@ -57,7 +57,7 @@
 
                     <li><div class="action-lead"><label>Lead </label> <a href="{{url('/businessplan/'. $businessplan . '/user/' . $action->userId)}}">{{\App\User::find($action->userId)->name}} </a></div></li><!-- TODO: Link to businessplan filtered by lead -->
 
-                    <li><div class="action-group-lead"><label>Group Lead</label><a href="{{url('/businessplan', $businessplan)}}">{{\App\Group::find($action->group)->name}}</a></div></li>
+                    <li><div class="action-group-lead"><label>Group Lead</label><a href="{{url('/businessplan/' . $businessplan . "/group/" . $action->group)}}">{{\App\Group::find($action->group)->name}}</a></div></li>
 
 
                     <li><div class="action-collab">
@@ -67,7 +67,7 @@
                                 N/A
                             @else
                                 @foreach (explode(', ', $action->collaborators) as $colab)
-                                    <a href="{{url('/businessplan', $businessplan)}}">{{ $colab }}</a>
+                                    <a href="{{url('/businessplan/' . $businessplan . "/collab/" . $colab)}}">{{ $colab }}</a>,
                                 @endforeach
                             @endif
 
