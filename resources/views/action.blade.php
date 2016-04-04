@@ -26,12 +26,27 @@
                             <label>Objective</label><a href="{{url('/businessplan', $businessplan)}}"> <span>O</span>{{str_limit(\App\Objective::find($action->objective_id)->name, $limit=75, $end = '...')}} </a></div></li>
 
                     <li><div class="action-tasks"><label>Tasks </label>
+                            <?php $tmp = 0; ?>
                             @if(sizeof($tasks) < 1)
                                 N/A
-                            @else
+                            @endif
+                            @if(sizeof($tasks) == 2)
                                 @foreach ($tasks as $task)
                                     <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
                                 @endforeach
+                                <style media="screen" type="text/css">
+                                    .action-list li:nth-child(2) label {
+                                        margin-top: 15px;
+                                    }
+                                </style>
+                            @endif
+                            @if (sizeof($tasks) > 2)
+                                @foreach($tasks as $task)
+                                    @if ($tmp++ < 2)
+                                        <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
+                                    @endif
+                                @endforeach
+                                 <a class="view-all-tasks" href="{{url('/businessplan', $businessplan)}}">View all</a>
                                 <style media="screen" type="text/css">
                                     .action-list li:nth-child(2) label {
                                         margin-top: 15px;
@@ -92,11 +107,11 @@
                                 @endif
                                 @if ($action->progress == 2)
                                     Done
-                                        <style media="screen" type="text/css">
-                                            .task-progress p {
-                                                color: green;
-                                            }
-                                        </style>
+                                    <style media="screen" type="text/css">
+                                        .task-progress p {
+                                            color: green;
+                                        }
+                                    </style>
                                 @endif
                             </p></div></li>
                 </ul>
