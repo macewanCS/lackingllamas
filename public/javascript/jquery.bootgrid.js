@@ -1484,6 +1484,13 @@
         phrase = phrase || "";
 
 
+        if (this.searchPhrase !== phrase)
+        {
+            var selector = getCssSelector(this.options.css.searchField),
+                searchFields = findFooterAndHeaderItems.call(this, selector);
+            searchFields.val(phrase);
+        }
+
         executeSearch.call(this, phrase);
 
 
