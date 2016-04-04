@@ -97,13 +97,17 @@ class ActionCommentsController extends Controller
             $permission = false;
         }
         $businessplan = $model->getBpIdFromAction($id);
-        foreach ($input['collaborators-groups'] as $x) {
-            $collabs .= Group::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
         }
-        foreach ($input['collaborators-users'] as $x) {
-            $collabs .= User::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
         }
         $collabs = rtrim($collabs, ", ");
         $input['collaborators'] = $collabs;
