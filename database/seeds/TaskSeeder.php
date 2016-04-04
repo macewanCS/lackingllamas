@@ -45,7 +45,7 @@ class TaskSeeder extends Seeder
             ],
             ['description' => 'Aid in the selection, purchase, and configuration of equipment for the fourth literacy van',
                 'date' => Carbon::createFromDate(2016, 9, 9, 'America/Toronto'),
-                'collaborators' => 'Alex Carruters, Elaine Jones',
+                'collaborators' => 'Alex Carruthers, Elaine Jones',
                 'budget' => 4300,
                 'successMeasured' => 'Fourth literacy van equipment was purchased',
                 'progress' => 0,
@@ -56,7 +56,7 @@ class TaskSeeder extends Seeder
 
             ['description' => 'Get speaker for TED talk',
                 'date' => Carbon::createFromDate(2016, 8, 9, 'America/Toronto'),
-                'collaborators' => 'Alex Carruters, Elaine Jones',
+                'collaborators' => 'Alex Carruthers, Elaine Jones',
                 'budget' => 10000,
                 'successMeasured' => 'A speaker has agreed to speak at EPL',
                 'progress' => 0,
@@ -67,7 +67,7 @@ class TaskSeeder extends Seeder
 
             ['description' => 'Promote TED talk',
                 'date' => Carbon::createFromDate(2016, 8, 9, 'America/Toronto'),
-                'collaborators' => 'Alex Carruters, Elaine Jones',
+                'collaborators' => 'Alex Carruthers, Elaine Jones',
                 'budget' => 10000,
                 'successMeasured' => 'A speaker has agreed to speak at EPL',
                 'progress' => 0,

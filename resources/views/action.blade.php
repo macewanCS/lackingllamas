@@ -23,14 +23,14 @@
                 <ul class="action-list">
 
                     <li><div class="action-objective">
-                            <label>Objective</label><a href="{{url('/businessplan', $businessplan)}}"> <span>O</span>{{str_limit(\App\Objective::find($action->objective_id)->name, $limit=75, $end = '...')}} </a></div></li>
+                            <label>Objective</label><a href="{{url('/businessplan/' .  $businessplan . '/Objective/' . $action->objective_id)}}"> <span>O</span>{{str_limit(\App\Objective::find($action->objective_id)->name, $limit=75, $end = '...')}} </a></div></li>
 
                     <li><div class="action-tasks"><label>Tasks </label>
                             <?php $tmp = 0; ?>
                             @if(sizeof($tasks) < 1)
                                 N/A
                             @endif
-                            @if(sizeof($tasks) == 2)
+                            @if(sizeof($tasks) <= 2)
                                 @foreach ($tasks as $task)
                                     <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
                                 @endforeach
@@ -57,7 +57,7 @@
 
                     <li><div class="action-lead"><label>Lead </label> <a href="{{url('/businessplan/'. $businessplan . '/user/' . $action->userId)}}">{{\App\User::find($action->userId)->name}} </a></div></li><!-- TODO: Link to businessplan filtered by lead -->
 
-                    <li><div class="action-group-lead"><label>Group Lead</label><a href="{{url('/businessplan', $businessplan)}}">{{\App\Group::find($action->group)->name}}</a></div></li>
+                    <li><div class="action-group-lead"><label>Group Lead</label><a href="{{url('/businessplan/' . $businessplan . "/group/" . $action->group)}}">{{\App\Group::find($action->group)->name}}</a></div></li>
 
 
                     <li><div class="action-collab">
@@ -67,7 +67,7 @@
                                 N/A
                             @else
                                 @foreach (explode(', ', $action->collaborators) as $colab)
-                                    <a href="{{url('/businessplan', $businessplan)}}">{{ $colab }}</a>
+                                    <a href="{{url('/businessplan/' . $businessplan . "/collab/" . $colab)}}">{{ $colab }}</a>,
                                 @endforeach
                             @endif
 

@@ -175,8 +175,37 @@ h1 {
     margin:0;
 }
 
-#mainDiv > .sideDiv > div.checkBoxes
+#mainDiv > .sideDiv > #mainHier {
+    width: 125%;
+    margin-top: 1.25vw;
+}
+
+#mainDiv > .sideDiv > #mainHier > div.hierarchyCheckBox {
+    width: 100%;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#mainDiv > .sideDiv >  #mainHier > div.hierarchyCheckBox > #hierCheck > input {
+    -webkit-transform:scale(1.5);
+    transform:scale(1.5);
+    padding-bottom: 50%;
+}
+
+#mainDiv > .sideDiv >  #mainHier > div.hierarchyCheckBox > #hierCheck {
+    display: inline-block;
+    width: 25%;
+    padding: 10%;
+}
+#mainDiv > .sideDiv >  #mainHier > div.hierarchyCheckBox > #hierLabel {
+     display: inline-block;
+    width: 70%;
+}
+
+#mainDiv > .sideDiv >  #mainHier > div.checkBoxes
 {
+    margin: auto;
+    display: block;
     margin-top:1vw;
     width:100%;
 }
@@ -348,7 +377,11 @@ h1 {
     margin-top:20px;
 }
 
-.goatSelector,.collabSelector,.leadSelector,.progressSelector,.groupSelector,.datePicker,.budgetBox,.pageLoad > img
+.collabSelector {
+    margin-top: 0%;
+}
+
+.goatSelector,.leadSelector,.progressSelector,.groupSelector,.datePicker,.budgetBox,.pageLoad > img
 {
     margin-top:10%;
 }
@@ -643,3 +676,6 @@ h1 {
     cursor: pointer;
 }
 
+#sideDiv > div.filtering {
+    width: 100%;
+}

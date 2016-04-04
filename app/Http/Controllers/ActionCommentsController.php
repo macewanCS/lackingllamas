@@ -24,7 +24,7 @@ class ActionCommentsController extends Controller
         $model = new Action;
         $comments = $actionComment->getComments($id);
         $action = Action::findOrFail($id);
-        $tasks =  Task::all()->where('action_id', $id);
+        $tasks =  Task::all()->where('action_id', $id, false);
         $users = array();
         $roster = DB::table('rosters')->select('user_ID')->where('group_ID','=', $action->group)->get();
         foreach ($roster as $x)
