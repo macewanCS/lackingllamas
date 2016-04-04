@@ -30,7 +30,7 @@
                             @if(sizeof($tasks) < 1)
                                 N/A
                             @endif
-                            @if(sizeof($tasks) == 2)
+                            @if(sizeof($tasks) <= 2)
                                 @foreach ($tasks as $task)
                                     <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
                                 @endforeach
