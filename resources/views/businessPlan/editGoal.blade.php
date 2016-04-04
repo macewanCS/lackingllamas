@@ -4,6 +4,9 @@
 	{!! Html::style('css/createGoal.css') !!}
 	<div class="create-goal-container">
 		<h1>Edit a Goal</h1>
+		<h2>
+			Business Plan: {{App\BusinessPlan::find($idbp)->name}}
+		</h2>
 		<hr>
 		<div class="create-goal-inner">
 		{!! Form::model($goal,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $goal->bpid,'Goal',$goal->id]]) !!}

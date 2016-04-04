@@ -23,10 +23,10 @@
 
             <ul class="nav topbar-nav">
                 <!-- Branding Image -->
-                <li><div class="topbar-text"><a href="{{ url('/') }}">{{HTML::image('pictures/EPL.png',null, ['class' => 'topbar-img'])}}
+                <li><div class="topbar-text"><a href="{{ url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id) }}">{{HTML::image('pictures/EPL.png',null, ['class' => 'topbar-img'])}}
                         </a></div></li>
 
-                @if (Request::path() == 'businessplan')
+                @if (strpos(Request::path(),'businessplan') !== FALSE)
 
                     <li><div class="topbar-current"><a href="{{ url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id)}}">Business Plan</a></div></li>
                 @else
@@ -59,6 +59,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="{{url('/businessplan/' . App\BusinessPlan::orderBy('created', 'desc')->first()->id) . '/user/' . Auth::id()}}"><i class="fa fa-btn fa-my-tasks"></i>My Tasks</a> <!-- TODO: Link to business plan filtered with my tasks -->
+                        <a href="{{url('/user/' . Auth::id())}}"> My Profile</a>
                         <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                     </div>
 

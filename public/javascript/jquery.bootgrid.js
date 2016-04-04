@@ -1555,6 +1555,23 @@
         }
     };
 
+    Grid.prototype.getCurrentRowsData = function () {
+        var currentData = [];
+        for (var j = 0; j < this.currentRows.length; j++){
+            var row = this.currentRows[j];
+            currentData.push({
+               "Description" :  row["desc"],
+                "Lead" : row["user"],
+                "Group" : row["group"],
+                "Collaborators" : row["collabs"],
+                "Budget" : row["budget"],
+                "Success" : row["successM"],
+                "Due" : row["date"]
+            });
+        }
+        return currentData;
+    };
+
     Grid.prototype.sortRows = function (sorter){
         this.rows.sort(sorter);
         this.currentRows.sort(sorter);

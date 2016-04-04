@@ -6,7 +6,7 @@
     {!! Html::style('css/createGoal.css') !!}
     <div class="create-action-container">
         <h1>
-            Edit a Action
+            Edit an Action
         </h1>
         <h2>
             Business Plan: {{App\BusinessPlan::find($bpid)->name}}
@@ -28,9 +28,10 @@
                 {!! Form::input('date','date', $action->date, ['class' => 'form-extras']) !!}<br>
 
                 <br>
-                {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-action-label']) !!}
-                {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
-
+                {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!}
+                {!! Form::select('collaborators-groups[]', $groups, $selectedGroups, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-groups'] ) !!}
+                {!! Form::select('collaborators-users[]', $users, $selectedUsers, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-users'] ) !!}<br>
+                <div class="tooltiptext">Hold CTRL to select multiple elements</div>
                 <br>
                 {!! Form::label('budget','Budget: ', ['class' => 'edit-action-label']) !!}
                 {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       <br>
@@ -58,15 +59,16 @@
                 {!! Form::select('userId',$users,null, array('class' => 'form-extras'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
-                {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}
+                {!! Form::select('progress',$progress, null, array('class' => 'form-extras'))!!}
                 <br><br>
 
 
 
-            {!! Form::submit('Submit Changes',['class'=>'btn-primary-action form-control ','data-toggle' => 'tooltip']) !!}
+                {!! Form::submit('Submit Changes',['class'=>'btn-primary-action form-control ','data-toggle' => 'tooltip']) !!}
 
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @stop

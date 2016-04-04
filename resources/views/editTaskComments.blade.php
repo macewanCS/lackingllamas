@@ -31,20 +31,11 @@
                 <br>
 
                 {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!}
-                {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
+                {!! Form::select('collaborators-groups[]', $groups, $selectedGroups, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-groups'] ) !!}
+                {!! Form::select('collaborators-users[]', $users, $selectedUsers, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-users'] ) !!}
+                <div class="tooltiptext">Hold CTRL to select multiple elements</div>
 
                 <br>
-
-                <!-- {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!} TODO: (test code) Remove this, and above, with multi dropdown selector for collabs
-                <select class="edit-action-field" name="collab-select" multiple>
-                    @foreach ($users as $x)
-                        <option value="user">{{$x}}</option>
-                        @endforeach
-                    @foreach ($groups as $x)
-                        <option value="group">{{$x}}</option>
-                        @endforeach
-                </select>
-                -->
                 {!! Form::label('budget','Budget: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       <br>
 
@@ -72,17 +63,18 @@
                 {!! Form::select('userId',$users, null, array('class' => 'form-extras'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
-                {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}
+                {!! Form::select('progress',$progress, null, array('class' => 'form-extras'))!!}
                 <br><br>
 
 
 
-            {!! Form::submit('Submit Changes',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}
+                {!! Form::submit('Submit Changes',['class'=>'btn-primary-action form-control','data-toggle' => 'tooltip']) !!}
 
 
 
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @stop

@@ -305,7 +305,7 @@ class BusinessPlanController extends Controller
       $groups = Group::lists('name');
       $bp = BusinessPlan::lists('name');
   
-      return view('businessPlan.editGoal',compact('goal','groups','bp'));
+      return view('businessPlan.editGoal',compact('goal','groups','bp', 'idbp'));
    }
    public function editObjective($idbp,$id)
    {
