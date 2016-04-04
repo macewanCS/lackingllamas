@@ -676,3 +676,6 @@ h1 {
     cursor: pointer;
 }
 
+#sideDiv > div.filtering {
+    width: 100%;
+}
