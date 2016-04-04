@@ -36,7 +36,7 @@
 
                 <ul class="exportMenu dropdown-menu">
                     <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'json',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">JSON</li>
-                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'xml',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">XML</li>
+                    <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'xml',escape:'true',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">XML</li>
                     <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'csv',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">CSV</li>
                     <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'txt',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">TXT</li>
                     <li value="1" selected="selected" onClick ="$('#grid-basic').tableExport({type:'sql',escape:'false',tableName:'{{$nameBP}}',ignoreColumn:[8,9]});">SQL</li>
