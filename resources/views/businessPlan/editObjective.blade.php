@@ -12,10 +12,8 @@
 		<hr>
 		<div class="create-goal-inner">
 		{!! Form::model($objective,['method' => 'PATCH', 'action' => ['BusinessPlanController@update',$idbp,'Objective',$objective->id]]) !!}
+		 {!! Form::hidden('objective','a') !!}
 		<div class="form-group-one">
-			{!! Form::label('goal_id','Goal: ',['class' => 'edit-action-label']) !!}
-			{!! Form::select('goal_id',$goals,null, array('class' => 'form-extras'))!!}
-			<br><br>
 			{!! Form::label('name','Name: ',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>

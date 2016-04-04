@@ -170,7 +170,7 @@ class BusinessPlanController extends Controller
    //$goals = Goal::lists('name');
     $goals = DB::table('goals')->where ('bpid',$idbp)->pluck('name');
     $objective = Objective::all();
-    $groups = Group::lists('name');
+    //$groups = Group::lists('name');
     $counted = count($objective)+1;
     return view('businessPlan.createObjective',compact('goals','counted','groups','idbp'));
   }
@@ -189,7 +189,14 @@ class BusinessPlanController extends Controller
     $groups = Group::lists('name');
     $user = User::lists('name');
     $counted = count($action)+1;
-    return view('businessPlan.createAction',compact('objectives','counted','groups','user','idbp'));
+    $selectedUsers = array();
+    $selectedGroups = array();
+    $users = User::lists('name', 'id');
+
+       
+      
+        
+    return view('businessPlan.createAction',compact('objectives','counted','groups','user','idbp','users','selectedUsers','selectedGroups'));
   }
 
 
@@ -210,7 +217,10 @@ class BusinessPlanController extends Controller
     $groups = Group::lists('name');
     $user = User::lists('name');
     $counted = count($task)+1;
-    return view('businessPlan.createTask',compact('actions','counted','groups','user','idbp'));
+    $users = User::lists('name', 'id');
+    $selectedUsers = array();
+    $selectedGroups = array();
+    return view('businessPlan.createTask',compact('actions','counted','groups','user','idbp','users','selectedUsers','selectedGroups'));
   }
    public function store()
    {
@@ -261,8 +271,20 @@ class BusinessPlanController extends Controller
                 ->distinct()
                 ->pluck('g.bpid');
                   $redirectID= $redirectIDArray[0];
+                   $collabs = "";
+                           foreach ($input['collaborators-groups'] as $x) {
+            $collabs .= Group::find($x)->name;
+            $collabs .= ", ";
+        }
+        foreach ($input['collaborators-users'] as $x) {
+            $collabs .= User::find($x)->name;
+            $collabs .= ", ";
+        }
+        $collabs = rtrim($collabs, ", ");
+        $input['collaborators'] = $collabs;
                    Action::create($input);
                }
+               
                if (Request::has('action_id')) {
                    $input['group'] += 1;
                    $actions = DB::select("select distinct * from goals, objectives,actions where bpid = '".$input['idbp']."' and objectives.goal_id = goals.id and actions.objective_id = objectives.id");
@@ -286,8 +308,17 @@ class BusinessPlanController extends Controller
                 ->pluck('g.bpid');
                   $redirectID= $redirectIDArray[0];
                    Task::create($input);
-               }
-
+                     }
+              foreach ($input['collaborators-groups'] as $x) {
+                  $collabs .= Group::find($x)->name;
+                  $collabs .= ", ";
+              }
+              foreach ($input['collaborators-users'] as $x) {
+                  $collabs .= User::find($x)->name;
+                  $collabs .= ", ";
+              }
+              $collabs = rtrim($collabs, ", ");
+              $input['collaborators'] = $collabs;
                return redirect("businessplan/".$redirectID."");
            
        
@@ -317,21 +348,49 @@ class BusinessPlanController extends Controller
    }
   public function editAction($idbp,$id)
    {
-   
+    
       $action = Action::findOrFail($id);
       $objectives = Objective::lists('name');
-      $groups = Group::lists('name');
+
       $user = User::lists('name');
-      return view('businessPlan.editAction',compact('action','objectives','groups','user','idbp'));
+        $groups = Group::lists('name', 'id');
+        $users = User::lists('name', 'id');
+
+        $names = explode(', ', $action->collaborators);
+        $selectedUsers = array();
+        $selectedGroups = array();
+        foreach ($names as $name) {
+            if (count(User::all()->where('name', $name)) > 0) {
+                array_push($selectedUsers, User::all()->where('name', $name)->first()->id);
+            }
+            if (count(Group::all()->where('name', $name)) > 0) {
+                array_push($selectedGroups, Group::all()->where('name', $name)->first()->id);
+            }
+        }
+
+      return view('businessPlan.editAction',compact('action','objectives','groups','user','idbp','users','selectedUsers','selectedGroups'));
    }
    public function editTask($idbp,$id)
    {
        $bp = BusinessPlan::findOrFail($idbp);
       $task = Task::findOrFail($id);
       $actions = Action::lists('description');
-      $groups = Group::lists('name');
       $user = User::lists('name');
-      return view('businessPlan.editTask',compact('task','actions','groups','user','idbp'));
+        $groups = Group::lists('name', 'id');
+        $users = User::lists('name', 'id');
+
+        $names = explode(', ', $task->collaborators);
+        $selectedUsers = array();
+        $selectedGroups = array();
+        foreach ($names as $name) {
+            if (count(User::all()->where('name', $name)) > 0) {
+                array_push($selectedUsers, User::all()->where('name', $name)->first()->id);
+            }
+            if (count(Group::all()->where('name', $name)) > 0) {
+                array_push($selectedGroups, Group::all()->where('name', $name)->first()->id);
+            }
+        }
+      return view('businessPlan.editTask',compact('task','actions','groups','user','idbp','users','selectedUsers','selectedGroups'));
    }
    public function update($idbp,$idb,$id)
    {
@@ -341,34 +400,53 @@ class BusinessPlanController extends Controller
       $bp = BusinessPlan::all();
       $bp->update($input);
       }
-      if (Request::has('bpid')) {
+      if (Request::has('goal')) {
 
         $goal = Goal::findOrFail($id);
-        $input['group'] += 1;
-        $input['bpid'] += 1;      
+        $input['group'] += 1;    
         $goal->update($input);
       }
-      if (Request::has('goal_id')) {
+      if (Request::has('objective')) {
         $objective = Objective::findOrFail($id);
-        $input['group'] += 1;
-        $input['goal_id'] += 1;  
+        $input['group'] += 1; 
         $objective->update($input);
       }
-      if (Request::has('objective_id')) {
+      if (Request::has('action')) {
+        $collabs = "";
+        foreach ($input['collaborators-groups'] as $x) {
+            $collabs .= Group::find($x)->name;
+            $collabs .= ", ";
+        }
+        foreach ($input['collaborators-users'] as $x) {
+            $collabs .= User::find($x)->name;
+            $collabs .= ", ";
+        }
+        $collabs = rtrim($collabs, ", ");
+        $input['collaborators'] = $collabs;
+        //return  $input['collaborators'];
         $action = Action::findOrFail($id);
         $input['group'] += 1;
-        $input['objective_id'] += 1;
         $input['userId'] += 1; 
-        $action->update(Request::all());
+        $action->update($input);
       }
-      if (Request::has('action_id')) {
+      if (Request::has('task')) {
+        $collabs = "";
+        foreach ($input['collaborators-groups'] as $x) {
+            $collabs .= Group::find($x)->name;
+            $collabs .= ", ";
+        }
+        foreach ($input['collaborators-users'] as $x) {
+            $collabs .= User::find($x)->name;
+            $collabs .= ", ";
+        }
+        $collabs = rtrim($collabs, ", ");
+        $input['collaborators'] = $collabs;
         $task = Task::findOrFail($id);
         $input['group'] += 1;
-        $input['action_id'] += 1;
         $input['userId'] += 1; 
         $task->update($input);
       }
-    return redirect('businessplan/');
+    return redirect("businessplan/".$idbp."");
    }
 
 

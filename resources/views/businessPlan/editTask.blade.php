@@ -15,12 +15,10 @@
         <div class="create-goal-inner">
 
             {!! Form::model($task,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $idbp,'Task', $task->id]]) !!}
+             {!! Form::hidden('task','a') !!}
             <div class="form-group-one">
 
-                {!! Form::label('action_id','Action: ', ['class' => 'edit-task-label']) !!}
-                {!! Form::select('action_id',$actions,null, array('class' => 'form-extras')) !!}<br>
-
-                <br>
+     
                 {!! Form::label('description','Name: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('description', null, ['class' => 'edit-action-field']) !!}<br>
 
@@ -31,8 +29,10 @@
                 <br>
           
                 {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!}
-                {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}<br>
-
+                {!! Form::select('collaborators-groups[]', $groups, $selectedGroups, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-groups'] ) !!}
+                {!! Form::select('collaborators-users[]', $users, $selectedUsers, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-users'] ) !!}
+                <div class="tooltiptext">Hold CTRL to select multiple elements</div>
+                <br>
                 <br>
                 {!! Form::label('budget','Budget: ', ['class' => 'edit-task-label']) !!}
                 {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       <br>
