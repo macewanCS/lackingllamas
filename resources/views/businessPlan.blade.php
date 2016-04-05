@@ -223,7 +223,11 @@
                 <td>{{$bp->name}}</td>
                 <td></td>
                 <td></td>
-                <td></td>
+                @if ($tempGoal->bp)
+                    <td></td>
+                @else
+                    <td>{{$groups[$tempGoal->group - 1]->name}}</td>
+                @endif
                 <td></td>
                 <td></td>
                 <td></td>
