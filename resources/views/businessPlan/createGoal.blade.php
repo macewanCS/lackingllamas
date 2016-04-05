@@ -12,7 +12,7 @@
 			{!! Form::hidden('id',$counted) !!}
 			{{ Form::hidden('bp', 'False') }}
 			{{ Form::hidden('bpid', $idbp) }}
-			{{ Form::hidden('group', null) }}
+			{{ Form::hidden('group', 'a') }}
 
 		<div class="form-group-one">
 	

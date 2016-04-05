@@ -235,7 +235,7 @@ class BusinessPlanController extends Controller
                    if($input['bp']=='False')  $input['bp']=True;
                    else   $input['bp']=False;
                     $input['group'] += 1;
-                    $input['bpid'] += 1;
+                   
                     Goal::create($input);
                     $redirectID = $input['bpid'];
                }
@@ -308,7 +308,7 @@ class BusinessPlanController extends Controller
                 ->pluck('g.bpid');
                   $redirectID= $redirectIDArray[0];
                    Task::create($input);
-                     }
+                     
               foreach ($input['collaborators-groups'] as $x) {
                   $collabs .= Group::find($x)->name;
                   $collabs .= ", ";
@@ -319,6 +319,8 @@ class BusinessPlanController extends Controller
               }
               $collabs = rtrim($collabs, ", ");
               $input['collaborators'] = $collabs;
+              }
+
                return redirect("businessplan/".$redirectID."");
            
        
