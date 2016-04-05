@@ -60,6 +60,7 @@
             <div class="pageLoad"><img src="/pictures/page-loader.gif"/></div>
             <div class="sideDiv" id="sideDiv">
 
+                @if($permission > 1)
                 <div style = "position:relative;"class="dropDown">
                     <button style ="width:120%;"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Create
                     <span class="caret"></span></button>
@@ -74,7 +75,7 @@
 
 
                 </div>
-
+                @endif
                 <hr>
 
                 <div class="filtering">
@@ -101,17 +102,6 @@
                         <option value="Action" selected="selected">Actions</option>
                         <option value="Task" selected="selected">Tasks</option>
                     </select>
-                </div>
-
-                <div id="mainHier">
-                <div class="hierarchyCheckBox">
-                    <div id="hierLabel">
-                        <label>Show Sub-Elements?</label>
-                    </div>
-                    <div id="hierCheck">
-                        <input type="checkbox" id="hierarchyCheckBox" name="hierarchyCheckBox" checked>
-                    </div>
-                </div>
                 </div>
 
                 <div class="collabSelector">
@@ -813,16 +803,18 @@
             }
 
             var hierCheckValue = true;
-            var hierCheck = document.getElementById("hierarchyCheckBox");
-            hierCheck.addEventListener('click', function () {
-                hierCheckValue = !hierCheckValue;
-                if (hierCheckValue) {
-                    grid.bootgrid("setSubtree", "true");
-                }
-                else {
-                    grid.bootgrid("setSubtree", "false");
-                }
-            });
+            function setupCheckBox () {
+                var hierCheck = document.getElementById("hierarchyCheckBox");
+                hierCheck.addEventListener('click', function () {
+                    hierCheckValue = !hierCheckValue;
+                    if (hierCheckValue) {
+                        grid.bootgrid("setSubtree", "true");
+                    }
+                    else {
+                        grid.bootgrid("setSubtree", "false");
+                    }
+                });
+            }
 
             var check1Value = true;
             var check1 = document.getElementById("check1");
@@ -1027,8 +1019,12 @@
 
                                             "<div id=\"doneLegendLabel\"><label>Completed</label></div>" +
                                             "<div id=\"doneLegendIcon\"><span class=\"fa fa-check\"></span></div>" +
+
+                                            "<div id=\"hierCheck\"><input type=\"checkbox\" id=\"hierarchyCheckBox\" name=\"hierarchyCheckBox\" checked></div>" +
+                                            "<div id=\"hierLabel\"><label>Show sub-elements</label></div>" +
                                         "</div>");
                 grid.bootgrid("setSubtree", "true");
+                setupCheckBox();
                 setTimeout(function() {
                     document.getElementById("tableDiv").style.visibility = 'visible';
                     document.getElementById("sideDiv").style.visibility = 'visible';

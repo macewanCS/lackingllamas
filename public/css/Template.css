@@ -1644,7 +1644,7 @@
     border: 0;
     border-bottom: 1px solid #e5e5e5;
 }
-#mainDiv label {
+#mainDiv > .sideDiv label {
     display: inline-block;
     margin-bottom: 5px;
     font-weight: bold;
