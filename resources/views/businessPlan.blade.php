@@ -50,7 +50,7 @@
      <div style = "position:relative;visibility:hidden;left:0px;" class="dropdown" id="bp-selector-button">
       <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BP Selector
       <span class="caret"></span></button>
-      <ul class="dropdown-menu">
+      <ul style ="left:-80px;"class="dropdown-menu">
         @foreach($bp as $plan)
             <li value=1 selected="selected"><a href="/businessplan/{{$plan->id}}">{{$plan->name}}</a></li>
         @endforeach
