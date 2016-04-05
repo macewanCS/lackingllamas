@@ -280,8 +280,27 @@
             this.xqr = $.ajax(settings);
         }
         else {
-            var rows = (this.searchPhrase.length > 0 || Object.keys(that.searchParams).length > 0) ? this.rows.where(containsPhrase) : this.rows,
-                total = rows.length;
+            var rows = (this.searchPhrase.length > 0 || Object.keys(that.searchParams).length > 0) ? this.rows.where(containsPhrase) : this.rows;
+            if (this.subtree) {
+                 rows.forEach(function (currentValue, index, array) {
+                     var checkRow = currentValue;
+                     var re = new RegExp("^" + checkRow[this.identifier] + ".*");
+                     this.rows.forEach(function (currentValue, index, array) {
+                         if (re.test(currentValue[this.identifier]) && rows.indexOf(currentValue) < 0) {
+                             rows.push(currentValue);
+                         }
+                     }, this);
+                 }, this);
+                var empty = true;
+                for (var field in this.sortDictionary){
+                    empty = false;
+                    break;
+                }
+                if (empty){
+                    rows.sort(this.defaultSort);
+                }
+            }
+            var total = rows.length;
             if (this.rowCount !== -1) {
                 rows = rows.page(this.current, this.rowCount);
             }
@@ -937,6 +956,8 @@
         this.xqr = null;
         this.searchParams = {};
         this.constraints = {};
+        this.subtree = false;
+        this.defaultSort = null;
 
         // todo: implement cache
     };
@@ -1463,6 +1484,13 @@
         phrase = phrase || "";
 
 
+        if (this.searchPhrase !== phrase)
+        {
+            var selector = getCssSelector(this.options.css.searchField),
+                searchFields = findFooterAndHeaderItems.call(this, selector);
+            searchFields.val(phrase);
+        }
+
         executeSearch.call(this, phrase);
 
 
@@ -1572,9 +1600,26 @@
         return currentData;
     };
 
-    Grid.prototype.sortRows = function (sorter){
-        this.rows.sort(sorter);
-        this.currentRows.sort(sorter);
+    Grid.prototype.setSort = function (sortFunction) {
+      this.defaultSort = sortFunction;
+        return this;
+    };
+
+    Grid.prototype.sortRows = function (){
+        if (this.defaultSort == null) return this;
+        this.rows.sort(this.defaultSort);
+        this.currentRows.sort(this.defaultSort);
+        loadData.call(this);
+        return this;
+    };
+
+    Grid.prototype.setSubtree = function (bool) {
+        if (bool == "true") {
+            this.subtree = true;
+        }
+        else {
+            this.subtree = false;
+        }
         loadData.call(this);
         return this;
     };

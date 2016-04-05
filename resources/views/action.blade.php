@@ -23,15 +23,30 @@
                 <ul class="action-list">
 
                     <li><div class="action-objective">
-                            <label>Objective</label><a href="{{url('/businessplan', $businessplan)}}"> <span>O</span>{{str_limit(\App\Objective::find($action->objective_id)->name, $limit=75, $end = '...')}} </a></div></li>
+                            <label>Objective</label><a href="{{url('/businessplan/' .  $businessplan . '/Objective/' . $action->objective_id)}}"> <span>O</span>{{str_limit(\App\Objective::find($action->objective_id)->name, $limit=75, $end = '...')}} </a></div></li>
 
                     <li><div class="action-tasks"><label>Tasks </label>
+                            <?php $tmp = 0; ?>
                             @if(sizeof($tasks) < 1)
                                 N/A
-                            @else
+                            @endif
+                            @if(sizeof($tasks) <= 2)
                                 @foreach ($tasks as $task)
                                     <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
                                 @endforeach
+                                <style media="screen" type="text/css">
+                                    .action-list li:nth-child(2) label {
+                                        margin-top: 15px;
+                                    }
+                                </style>
+                            @endif
+                            @if (sizeof($tasks) > 2)
+                                @foreach($tasks as $task)
+                                    @if ($tmp++ < 2)
+                                        <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
+                                    @endif
+                                @endforeach
+                                 <a class="view-all-tasks" href="{{url('/businessplan', $businessplan)}}">View all</a>
                                 <style media="screen" type="text/css">
                                     .action-list li:nth-child(2) label {
                                         margin-top: 15px;
@@ -42,7 +57,7 @@
 
                     <li><div class="action-lead"><label>Lead </label> <a href="{{url('/businessplan/'. $businessplan . '/user/' . $action->userId)}}">{{\App\User::find($action->userId)->name}} </a></div></li><!-- TODO: Link to businessplan filtered by lead -->
 
-                    <li><div class="action-group-lead"><label>Group Lead</label><a href="{{url('/businessplan', $businessplan)}}">{{\App\Group::find($action->group)->name}}</a></div></li>
+                    <li><div class="action-group-lead"><label>Group Lead</label><a href="{{url('/businessplan/' . $businessplan . "/group/" . $action->group)}}">{{\App\Group::find($action->group)->name}}</a></div></li>
 
 
                     <li><div class="action-collab">
@@ -52,7 +67,7 @@
                                 N/A
                             @else
                                 @foreach (explode(', ', $action->collaborators) as $colab)
-                                    <a href="{{url('/businessplan', $businessplan)}}">{{ $colab }}</a>
+                                    <a href="{{url('/businessplan/' . $businessplan . "/collab/" . $colab)}}">{{ $colab }}</a>,
                                 @endforeach
                             @endif
 
@@ -92,11 +107,11 @@
                                 @endif
                                 @if ($action->progress == 2)
                                     Done
-                                        <style media="screen" type="text/css">
-                                            .task-progress p {
-                                                color: green;
-                                            }
-                                        </style>
+                                    <style media="screen" type="text/css">
+                                        .task-progress p {
+                                            color: green;
+                                        }
+                                    </style>
                                 @endif
                             </p></div></li>
                 </ul>

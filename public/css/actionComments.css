@@ -174,7 +174,7 @@ label {
 
 
 
-.action-tasks a{
+.action-tasks a:not(.view-all-tasks){
     display: inline-block;
     height: 50px;
     line-height: 50px;
@@ -307,6 +307,21 @@ label {
 .comment-name a:visited { color: #265C83; }
 .comment-name a:hover   { color: darkblue;}
 .comment-name a:active {
+    transition: color .3s;
+    color: #007BE6;
+}
+
+.view-all-tasks {
+    margin-left: 12px;
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+
+.view-all-tasks:link,
+.view-all-tasks:visited { color: #265C83; }
+.view-all-tasks:hover   { color: darkblue;}
+.view-all-tasks:active {
     transition: color .3s;
     color: #007BE6;
 }

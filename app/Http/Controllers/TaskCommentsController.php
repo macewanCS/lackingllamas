@@ -72,6 +72,7 @@ class TaskCommentsController extends Controller
     }
     public function updateTask($id, Request $request)
     {
+
         $collabs = "";
         $input = $request->all();
         $taskComment = new TaskComments;
@@ -89,14 +90,19 @@ class TaskCommentsController extends Controller
         } else {
             $permission = false;
         }
+
         $businessplan = $model->getBpIdFromTask($id);
-        foreach ($input['collaborators-groups'] as $x) {
-            $collabs .= Group::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
         }
-        foreach ($input['collaborators-users'] as $x) {
-            $collabs .= User::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-users', $input))  {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
         }
         $collabs = rtrim($collabs, ", ");
         $input['collaborators'] = $collabs;
