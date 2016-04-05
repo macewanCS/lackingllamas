@@ -350,6 +350,7 @@ class BusinessPlanController extends Controller
        $input = Request::all();
        
                if (Request::has('created')) {
+                    $redirectID=$input['id'];
                     BusinessPlan::create($input);
                }
                if (Request::has('bpid')) {
