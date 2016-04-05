@@ -2,6 +2,7 @@
 
 @section('endHead')
     {!! Html::style('css/actionComments.css') !!}
+    {!! Html::style('css/style.css') !!}
 @stop
 
 @section('content')
