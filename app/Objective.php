@@ -10,6 +10,7 @@ class Objective extends Model
         'name',
         'goal_id',
         'group',
+        
         'ident'
     ];
 

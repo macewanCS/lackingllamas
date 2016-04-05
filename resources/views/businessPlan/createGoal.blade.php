@@ -9,7 +9,7 @@
 		<div class="create-goal-inner">
 		{!! Form::open(['url'=>'businessplan']) !!}
 			{!! Form::hidden('ident',$counted) !!}
-			{!! Form::hidden('id',$counted) !!}
+			
 			{{ Form::hidden('bp', 'False') }}
 			{{ Form::hidden('bpid', $idbp) }}
 			{{ Form::hidden('group', 'a') }}

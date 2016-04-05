@@ -16,6 +16,7 @@
 			{!! Form::label('name','Name ',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>
+			
            
 		</div>
 
