@@ -9,21 +9,21 @@
 		<div class="create-goal-inner">
 		{!! Form::model($bp,['method' => 'PATCH', 'action' => ['BusinessPlanController@update', $bp->id,null,null]]) !!}
 		<div class="form-group-one">
-			{!! Form::label('name','Name:',['class' => 'edit-action-label']) !!}
+			{!! Form::label('name','Name',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 
 			<br><br>
-            {!! Form::label('created','Date Start: ', ['class' => 'edit-action-label']) !!}
+            {!! Form::label('created','Date Start ', ['class' => 'edit-action-label']) !!}
             {!! Form::input('created','date', date('Y-m-d'), ['class' => 'form-extras']) !!}
             <br><br>
-            {!! Form::label('ending','Date End: ', ['class' => 'edit-action-label']) !!}
+            {!! Form::label('ending','Date End ', ['class' => 'edit-action-label']) !!}
             {!! Form::input('ending','date', date('Y-m-d'), ['class' => 'form-extras']) !!}
             <br><br>  
 		</div>
 
 		<div class="form-group-two">
 			<br><br>
-			{!! Form::submit('Edit BP',['class'=>'btn-primary form-control']) !!}
+			{!! Form::submit('Submit Changes',['class'=>'btn-primary form-control']) !!}
 		</div>
 
 		{!! Form::close() !!}

@@ -108,7 +108,7 @@
                                 @if ($action->progress >= 2)
                                     Done
                                     <style media="screen" type="text/css">
-                                        .task-progress p {
+                                        .action-progress p {
                                             color: green;
                                         }
                                     </style>

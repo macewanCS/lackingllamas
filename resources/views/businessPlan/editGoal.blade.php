@@ -13,7 +13,7 @@
  		{!! Form::hidden('goal','a') !!}
 		<div class="form-group-one">
 	
-			{!! Form::label('name','Name:',['class' => 'edit-action-label']) !!}
+			{!! Form::label('name','Name ',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>
            
@@ -21,7 +21,7 @@
 
 		<div class="form-group-two">
 			<br><br>
-			{!! Form::submit('Edit Goal',['class'=>'btn-primary form-control']) !!}
+			{!! Form::submit('Submit Changes',['class'=>'btn-primary form-control']) !!}
 		</div>
 
 		{!! Form::close() !!}

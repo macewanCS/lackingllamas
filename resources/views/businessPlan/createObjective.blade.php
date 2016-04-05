@@ -15,10 +15,10 @@
 			{!! Form::hidden('idbp',$idbp) !!}
 			<div class="form-group-one">
 		<div class="form-group-one">
-			{!! Form::label('goal_id','Goal: ',['class' => 'edit-action-label']) !!}
+			{!! Form::label('goal_id','Goal ',['class' => 'edit-action-label']) !!}
 			{!! Form::select('goal_id',$goals,null, array('class' => 'form-extras'))!!}
 			<br><br>
-			{!! Form::label('name','Name: ',['class' => 'edit-action-label']) !!}
+			{!! Form::label('name','Name ',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>
 
