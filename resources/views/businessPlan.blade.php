@@ -2,7 +2,6 @@
 
     @section('endHead')
         {!! Html::style('css/businessPlan.css') !!}
-        {!! Html::style('css/font-awesome.min.css') !!}
         {!! Html::style('css/template.min.css') !!}
         {!! Html::style('javascript/jquery-ui/jquery-ui.min.css') !!}
         {!! Html::style('css/jquery.multiselect.css') !!}

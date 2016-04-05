@@ -11,6 +11,7 @@
 <body id="app-layout">
 <!-- Styles -->
 {!! Html::style('css/style.css') !!}
+{!! Html::style('css/font-awesome.min.css') !!}
 <nav class="topbar topbar-default">
     <div class="container-topbar">
 
@@ -55,7 +56,7 @@
                     </div>
                 @else
                     <button class="dropbtn">
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        {{ Auth::user()->name }} <span class="fa fa-caret-down"></span>
                     </button>
                     <div class="dropdown-content">
                         <a href="{{url('/businessplan/' . App\BusinessPlan::orderBy('created', 'desc')->first()->id) . '/user/' . Auth::id()}}"><i class="fa fa-btn fa-my-tasks"></i>My Tasks</a> <!-- TODO: Link to business plan filtered with my tasks -->
