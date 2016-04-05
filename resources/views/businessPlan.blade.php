@@ -344,9 +344,6 @@
             var usersArray = $.parseJSON('{{json_encode($users, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
             var groupsArray = $.parseJSON('{{json_encode($groups, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
 
-            console.log(usersArray);
-            console.log(groupsArray);
-
             var maxGoals;
             var maxObj;
             var maxActions;
@@ -856,8 +853,9 @@
             }
 
             var hierCheckValue = true;
+            var hierCheck = null;
             function setupCheckBox () {
-                var hierCheck = document.getElementById("hierarchyCheckBox");
+                hierCheck = document.getElementById("hierarchyCheckBox");
                 hierCheck.addEventListener('click', function () {
                     hierCheckValue = !hierCheckValue;
                     if (hierCheckValue) {
@@ -1078,6 +1076,9 @@
                                         "</div>");
                 grid.bootgrid("setSubtree", "true");
                 setupCheckBox();
+                hierCheck.checked=false;
+                hierCheckValue = false;
+                grid.bootgrid("setSubtree", "false");
                 setTimeout(function() {
                     document.getElementById("tableDiv").style.visibility = 'visible';
                     document.getElementById("sideDiv").style.visibility = 'visible';
