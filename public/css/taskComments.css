@@ -10,8 +10,11 @@
     border-color: grey;
     margin-top: 25px;
     display: inline;
-    height: 100%;
 
+
+}
+.task-description-container {
+    height: auto;
 }
 
 .task-name h1{
@@ -64,6 +67,7 @@ hr {
 .comment-container {
     list-style-type: none;
     padding-left: 0px;
+    height: auto;
 }
 .task-comments-inner li {
 
