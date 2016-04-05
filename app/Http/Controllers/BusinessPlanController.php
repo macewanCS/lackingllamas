@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 use DB;
 use Zizaco\Entrust\Entrust;
+use Log;
 
 //use Illuminate\Http\Request;
 //use Request;
@@ -58,7 +59,7 @@ class BusinessPlanController extends Controller
  {
     $bp = BusinessPlan::all();
     $idbp = count($bp);
-     $bpPlans = DB::select("select * from (select  null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, goals.bp, goals.group, goals.id, null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, objectives.bp, objectives.group, objectives.id, null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select actions.userId, actions.progress, actions.date, actions.successMeasured, actions.budget, actions.collaborators, null as bp, actions.group, actions.id, actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select tasks.userId, tasks.progress, tasks.date, tasks.successMeasured, tasks.budget, tasks.collaborators, null as bp, tasks.group, tasks.id, tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."')a order by ident");
+     $bpPlans = DB::select("select * from (select  null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, goals.bp, goals.group, goals.id, null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, null as bp, objectives.group, objectives.id, null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select actions.userId, actions.progress, actions.date, actions.successMeasured, actions.budget, actions.collaborators, null as bp, actions.group, actions.id, actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select tasks.userId, tasks.progress, tasks.date, tasks.successMeasured, tasks.budget, tasks.collaborators, null as bp, tasks.group, tasks.id, tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."')a order by ident");
      $users = User::all();
      $groups = Group::all();
      $filters = null;
@@ -85,7 +86,7 @@ class BusinessPlanController extends Controller
     {
           $bp = BusinessPlan::all();
    
-        $bpPlans = DB::select("select * from (select  null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, goals.bp, goals.group, goals.id, null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, objectives.bp, objectives.group, objectives.id, null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select actions.userId, actions.progress, actions.date, actions.successMeasured, actions.budget, actions.collaborators, null as bp, actions.group, actions.id, actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select tasks.userId, tasks.progress, tasks.date, tasks.successMeasured, tasks.budget, tasks.collaborators, null as bp, tasks.group, tasks.id, tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."')a order by ident");
+        $bpPlans = DB::select("select * from (select  null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, goals.bp, goals.group, goals.id, null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, null as bp, objectives.group, objectives.id, null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select actions.userId, actions.progress, actions.date, actions.successMeasured, actions.budget, actions.collaborators, null as bp, actions.group, actions.id, actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select tasks.userId, tasks.progress, tasks.date, tasks.successMeasured, tasks.budget, tasks.collaborators, null as bp, tasks.group, tasks.id, tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."')a order by ident");
         $users = User::all();
         $groups = Group::all();
         $nameBP=$bp[$idbp-1]->name;
@@ -114,7 +115,7 @@ class BusinessPlanController extends Controller
     {
         $bp = BusinessPlan::all();
 
-        $bpPlans = DB::select("select * from (select  null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, goals.bp, goals.group, goals.id, null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, objectives.bp, objectives.group, objectives.id, null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select actions.userId, actions.progress, actions.date, actions.successMeasured, actions.budget, actions.collaborators, null as bp, actions.group, actions.id, actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select tasks.userId, tasks.progress, tasks.date, tasks.successMeasured, tasks.budget, tasks.collaborators, null as bp, tasks.group, tasks.id, tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."')a order by ident");
+        $bpPlans = DB::select("select * from (select  null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, goals.bp, goals.group, goals.id, null as description, goals.name, goals.ident from goals ,business_plans where business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select null as userId, null as progress, null as date, null as successMeasured, null as budget, null as collaborators, null as bp, objectives.group, objectives.id, null as description, objectives.name, objectives.ident from objectives, goals, business_plans where goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select actions.userId, actions.progress, actions.date, actions.successMeasured, actions.budget, actions.collaborators, null as bp, actions.group, actions.id, actions.description, null as name, actions.ident from actions, objectives, goals, business_plans where objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."' union all select tasks.userId, tasks.progress, tasks.date, tasks.successMeasured, tasks.budget, tasks.collaborators, null as bp, tasks.group, tasks.id, tasks.description, null as name, tasks.ident from tasks, actions, objectives, goals, business_plans where actions.id = tasks.action_id and objectives.id = actions.objective_id and goals.id = objectives.goal_id and business_plans.id = goals.bpid and business_plans.id = '".$idbp."')a order by ident");
         $users = User::all();
         $groups = Group::all();
         $nameBP=$bp[$idbp-1]->name;
@@ -276,87 +277,182 @@ class BusinessPlanController extends Controller
     //$counted = count($goals)+1;
     return view('businessPlan.createBP',compact('counted'));
   }
-  public function createGoal()
+  public function createGoal($idbp)
   {
     $bp = BusinessPlan::lists('name');
     $goals = Goal::all();
     $groups = Group::lists('name');
     $counted = count($goals)+1;
-  	return view('businessPlan.createGoal',compact('counted','groups','bp'));
+  	return view('businessPlan.createGoal',compact('counted','groups','bp','idbp'));
   }
 
-  public function createObjective()
+  public function createObjective($idbp)
   {
-    $goals = Goal::lists('name');
+   //$goals = Goal::lists('name');
+    $goals = DB::table('goals')->where ('bpid',$idbp)->pluck('name');
     $objective = Objective::all();
-    $groups = Group::lists('name');
+    //$groups = Group::lists('name');
     $counted = count($objective)+1;
-    return view('businessPlan.createObjective',compact('goals','counted','groups'));
+    return view('businessPlan.createObjective',compact('goals','counted','groups','idbp'));
   }
 
 
-    public function createAction()
+    public function createAction($idbp)
   {
-    $objectives = Objective::lists('name');
+    $objectives= DB::table('objectives as o')
+      ->join('goals as g',function ($join) use ($idbp){
+        $join->on('o.goal_id','=','g.id')
+          ->where('g.bpid','=',$idbp);
+      })
+      ->distinct()
+      ->pluck('o.name');
     $action = Action::all();
     $groups = Group::lists('name');
     $user = User::lists('name');
     $counted = count($action)+1;
-    return view('businessPlan.createAction',compact('objectives','counted','groups','user'));
+    $selectedUsers = array();
+    $selectedGroups = array();
+    $users = User::lists('name', 'id');
+
+     $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];  
+      
+        
+    return view('businessPlan.createAction',compact('objectives','counted','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
   }
 
 
-    public function createTask()
+    public function createTask($idbp)
   {
-    $actions = Action::lists('description');
+        $actions= DB::table('actions as a')
+        ->join('objectives as o',function ($join) use ($idbp){
+            $join->on('a.objective_id','=','o.id');
+          })
+        ->join('goals as g',function ($join2) use ($idbp){
+            $join2->on('o.goal_id','=','g.id')
+              ->where('g.bpid','=',$idbp);
+          })    
+      ->distinct()
+      ->pluck('a.description');
+
     $task = Task::all();
     $groups = Group::lists('name');
     $user = User::lists('name');
     $counted = count($task)+1;
-    return view('businessPlan.createTask',compact('actions','counted','groups','user'));
+    $users = User::lists('name', 'id');
+    $selectedUsers = array();
+    $selectedGroups = array();
+    $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
+    return view('businessPlan.createTask',compact('actions','counted','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
   }
    public function store()
    {
+       $redirectID;
        $input = Request::all();
        
                if (Request::has('created')) {
+                    $redirectID=$input['id'];
                     BusinessPlan::create($input);
                }
                if (Request::has('bpid')) {
+
+                   if($input['bp']=='False')  $input['bp']=True;
+                   else   $input['bp']=False;
                     $input['group'] += 1;
-                    $input['bpid'] += 1;
+                   
                     Goal::create($input);
+                    $redirectID = $input['bpid'];
                }
                if (Request::has('goal_id')) {
-
                    $input['group'] += 1;
-                   $input['goal_id'] += 1;
+                  // return  $input['goal_id'];
+                   $goals = DB::select("select * from goals where bpid = '".$input['idbp']."'");
+                   $input['goal_id'] =$goals[$input['goal_id']]->id;
                    $objectiveIdent = count(DB::table('objectives')->where('goal_id', $input['goal_id'])->get())+1;
                    $goalIdent = $input['goal_id'];
                    $input['ident'] ="$goalIdent.$objectiveIdent";
                    //return $input['group'];
+                   $redirectIDArray = DB::table('goals')-> where('id',$input['goal_id'])->pluck('bpid');
+                   $redirectID=$redirectIDArray[0];
                    Objective::create($input);
+
+
                }
                if (Request::has('objective_id')) {
                    $input['group'] += 1;
-                   $input['objective_id'] += 1;
+                   $objectives = DB::select("select distinct * from goals, objectives where bpid = '".$input['idbp']."' and objectives.goal_id = goals.id");
+                   $input['objective_id'] =$objectives[$input['objective_id']]->id;
                    $input['userId'] += 1; 
                    $objectiveIdent = DB::table('objectives')->where('id', $input['objective_id'])->pluck('ident');
                    $actionIdent = count(DB::table('actions')->where('objective_id', $input['objective_id'])->get())+1;
-                   $input['ident'] = "$objectiveIdent[0].$actionIdent";            
+                   $input['ident'] = "$objectiveIdent[0].$actionIdent";  
+                   $var2 = $input['idbp'];
+                  $redirectIDArray= DB::table('goals as g')
+                    ->join('objectives as o',function ($join) use ($var2){
+                    $join->on('o.goal_id','=','g.id')
+                    ->where('g.bpid','=',$var2);
+                    })
+                ->distinct()
+                ->pluck('g.bpid');
+                  $redirectID= $redirectIDArray[0];
+                   $collabs = "";
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+        $collabs = rtrim($collabs, ", ");
+        $input['collaborators'] = $collabs;
                    Action::create($input);
                }
+               
                if (Request::has('action_id')) {
                    $input['group'] += 1;
-                   $input['action_id'] += 1;
+                   $actions = DB::select("select distinct * from goals, objectives,actions where bpid = '".$input['idbp']."' and objectives.goal_id = goals.id and actions.objective_id = objectives.id");
+                   $input['action_id'] =$actions[$input['action_id']]->id;
                    $input['userId'] += 1; 
                    $actionIdent = DB::table('actions')->where('id', $input['action_id'])->pluck('ident');
                    $taskIdent = count(DB::table('tasks')->where('action_id', $input['action_id'])->get())+1;
                    $input['ident'] = "$actionIdent[0].$taskIdent";
-                   Task::create($input);
-               }
+                   $var2 = $input['idbp'];
 
-               return redirect('businessplan');
+                  $redirectIDArray= DB::table('goals as g')
+       
+        ->join('objectives as o',function ($join2) use ($var2){
+            $join2->on('o.goal_id','=','g.id')
+              ->where('g.bpid','=',$var2);
+          })   
+              ->join('actions as a',function ($join){
+                    $join->on('a.objective_id','=','o.id');
+          })
+                ->distinct()
+                ->pluck('g.bpid');
+                  $redirectID= $redirectIDArray[0];
+                   Task::create($input);
+                     
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+              $collabs = rtrim($collabs, ", ");
+              $input['collaborators'] = $collabs;
+              }
+
+               return redirect("businessplan/".$redirectID."");
            
        
    }
@@ -385,21 +481,50 @@ class BusinessPlanController extends Controller
    }
   public function editAction($idbp,$id)
    {
-   
+    
       $action = Action::findOrFail($id);
       $objectives = Objective::lists('name');
-      $groups = Group::lists('name');
+
       $user = User::lists('name');
-      return view('businessPlan.editAction',compact('action','objectives','groups','user','idbp'));
+        $groups = Group::lists('name', 'id');
+        $users = User::lists('name', 'id');
+
+        $names = explode(', ', $action->collaborators);
+        $selectedUsers = array();
+        $selectedGroups = array();
+        foreach ($names as $name) {
+            if (count(User::all()->where('name', $name)) > 0) {
+                array_push($selectedUsers, User::all()->where('name', $name)->first()->id);
+            }
+            if (count(Group::all()->where('name', $name)) > 0) {
+                array_push($selectedGroups, Group::all()->where('name', $name)->first()->id);
+            }
+        }
+      $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
+      return view('businessPlan.editAction',compact('action','objectives','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
    }
    public function editTask($idbp,$id)
    {
        $bp = BusinessPlan::findOrFail($idbp);
       $task = Task::findOrFail($id);
       $actions = Action::lists('description');
-      $groups = Group::lists('name');
       $user = User::lists('name');
-      return view('businessPlan.editTask',compact('task','actions','groups','user','idbp'));
+        $groups = Group::lists('name', 'id');
+        $users = User::lists('name', 'id');
+
+        $names = explode(', ', $task->collaborators);
+        $selectedUsers = array();
+        $selectedGroups = array();
+        foreach ($names as $name) {
+            if (count(User::all()->where('name', $name)) > 0) {
+                array_push($selectedUsers, User::all()->where('name', $name)->first()->id);
+            }
+            if (count(Group::all()->where('name', $name)) > 0) {
+                array_push($selectedGroups, Group::all()->where('name', $name)->first()->id);
+            }
+        }
+        $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
+      return view('businessPlan.editTask',compact('task','actions','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
    }
    public function update($idbp,$idb,$id)
    {
@@ -409,51 +534,82 @@ class BusinessPlanController extends Controller
       $bp = BusinessPlan::all();
       $bp->update($input);
       }
-      if (Request::has('bpid')) {
+      if (Request::has('goal')) {
 
         $goal = Goal::findOrFail($id);
-        $input['group'] += 1;
-        $input['bpid'] += 1;      
+        $input['group'] += 1;    
         $goal->update($input);
       }
-      if (Request::has('goal_id')) {
+      if (Request::has('objective')) {
         $objective = Objective::findOrFail($id);
-        $input['group'] += 1;
-        $input['goal_id'] += 1;  
+        $input['group'] += 1; 
         $objective->update($input);
       }
-      if (Request::has('objective_id')) {
+      if (Request::has('action')) {
+        $collabs = "";
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+        $collabs = rtrim($collabs, ", ");
+        $input['collaborators'] = $collabs;
+        //return  $input['collaborators'];
         $action = Action::findOrFail($id);
         $input['group'] += 1;
-        $input['objective_id'] += 1;
         $input['userId'] += 1; 
-        $action->update(Request::all());
+        $action->update($input);
       }
-      if (Request::has('action_id')) {
+      if (Request::has('task')) {
+        $collabs = "";
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+        $collabs = rtrim($collabs, ", ");
+        $input['collaborators'] = $collabs;
         $task = Task::findOrFail($id);
         $input['group'] += 1;
-        $input['action_id'] += 1;
         $input['userId'] += 1; 
         $task->update($input);
       }
-    return redirect('businessplan/');
+    return redirect("businessplan/".$idbp."");
    }
 
 
-    function deleteGoal ($id, Request $request) {
-        Goal::findOrFail($id)->first()->delete();
+    function deleteGoal ($idbp,$id) {
+
+
+Log::info('This is some useful information.');
+Log::info($id);
+        Goal::findOrFail($id)->delete();
         return;
     }
-    function deleteObjective ($id, Request $request) {
-        Objective::findOrFail($id)->first()->delete();
+    function deleteObjective ($idbp,$id) {
+        Objective::findOrFail($id)->delete();
         return;
     }
-    function deleteAction ($id, Request $request) {
-        Action::findOrFail($id)->first()->delete();
+    function deleteAction ($idbp,$id) {
+        Action::findOrFail($id)->delete();
         return;
     }
-    function deleteTask ($id, Request $request) {
-        Task::findOrFail($id)->first()->delete();
+    function deleteTask ($idbp, $id) {
+        Task::findOrFail($id)->delete();
         return;
     }
 }

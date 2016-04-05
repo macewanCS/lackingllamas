@@ -56,7 +56,17 @@
     background-color: #f1f1f1;
     margin-left: 10px;
 }
-
+.form-extras-hidden {
+    width: 80%;
+    padding: 12px 20px 12px 12px;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    margin-left: 10px;
+    display:none;
+    
+}
 .create-action-inner {
     height: auto;
     top:0;
@@ -128,6 +138,15 @@ h2 {
     clear: left;
     width: 95px;
     text-align: right;
+}
+.edit-action-label-hidden {
+    margin-top: 4px;
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 95px;
+    text-align: right;
+    display:none;
 }
 
 .edit-task-label{

@@ -46,11 +46,10 @@
                 </div>
             </div>
 
-
          <div style = "position:relative;visibility:hidden;left:0px;" class="dropdown" id="bp-selector-button">
           <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">BP Selector
           <span class="caret"></span></button>
-          <ul class="dropdown-menu">
+          <ul style ="left:-80px;"class="dropdown-menu">
             @foreach($bp as $plan)
                 <li value=1 selected="selected"><a href="/businessplan/{{$plan->id}}">{{$plan->name}}</a></li>
             @endforeach
@@ -72,6 +71,7 @@
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createaction">Create Action</a></li>
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createtask">Create Task</a></li>
                     </ul>
+
 
                 </div>
 
@@ -443,7 +443,6 @@
                     var row = grid.bootgrid("getRowData", $(this).data("row-id"));
                     window.location.assign("/businessplan/{{$idbp}}/"+ row.type +"/"+ row.id + "/edit");
 
-
                 }).end().find(".command-delete").on("click", function(e)
                 {
                     var row = grid.bootgrid("getRowData", $(this).data("row-id"));
@@ -455,10 +454,12 @@
                     });
                     grid.bootgrid("remove", [$(this).data("row-id")]);
                     cascadeDeletes(row.ident);
+
                 }).end().find(".command-note").on("click", function(e)
                 {
                     var row = grid.bootgrid("getRowData", $(this).data("row-id"));
                     window.location.assign("/" + row.type.toLowerCase() + "/" + row.id);
+
                 });
             });
 

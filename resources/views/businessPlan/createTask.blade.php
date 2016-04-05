@@ -16,6 +16,7 @@
             {!! Form::open(['url'=>'businessplan']) !!}
                   {!! Form::hidden('id',$counted) !!}
                   {!! Form::hidden('ident',0) !!}
+                    {!! Form::hidden('idbp',$idbp) !!}
                   <div class="form-group-one">
 
                   {!! Form::label('action_id','Action: ',['class' => 'edit-action-label']) !!}
@@ -31,9 +32,10 @@
                   {!! Form::input('date','date', date('Y-m-d'), ['class' => 'form-extras']) !!}
                   <br><br>
 
-                  {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-action-label']) !!}
-                  {!! Form::text('collaborators', null, ['class' => 'edit-action-field']) !!}
-                  <br><br>
+                {!! Form::label('collaborators','Collaborators: ', ['class' => 'edit-task-label']) !!}
+                {!! Form::select('collaborators-groups[]', $groups,$selectedGroups, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-groups'] ) !!}
+                {!! Form::select('collaborators-users[]', $users, $selectedUsers, ['multiple' => true, 'class' => 'edit-action-field', 'id' => 'collab-selectors-users'] ) !!} 
+                 <div class="tooltiptext">Hold CTRL to select multiple elements</div> 
 
                   {!! Form::label('budget','budget: ', ['class' => 'edit-action-label']) !!}
                   {!! Form::text('budget', null, ['class' => 'edit-action-field']) !!}       
@@ -57,15 +59,11 @@
                   {!! Form::label('userId','Lead: ',['class' => 'edit-action-label']) !!}
                   {!! Form::select('userId',$user,null, array('class' => 'form-extras'))!!}
                   <br><br>
-                  {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
-                  {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}       
+                {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
+                {!! Form::select('progress',$progress, null, array('class' => 'form-extras'))!!}      
                   <br><br>
                   
-                <div id ="divBP">
-                    {!! Form::label('bp','Non Business Plan Goal: ') !!}
-                    {!! Form::checkbox('bp', 1, false) !!}
-                    <p class="text">Checked to make it a Non Business Plan Goal?</p>
-                </div>
+
                   </div>
 
           
