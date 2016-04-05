@@ -1012,6 +1012,9 @@
 
                 @if ($filters["objective"] != null)
                     grid.bootgrid("search", "{{$filters["objective"]->name}}");
+                    hierCheck.checked=true;
+                    hierCheckValue = true;
+                    grid.bootgrid("setSubtree", "true");
                 @endif
             }
 
@@ -1034,9 +1037,6 @@
                 maxObj = Math.ceil(rowCount * 0.35);
                 maxActions = Math.ceil(rowCount * 0.65);
                 maxTasks = Math.ceil(rowCount * 0.75);
-                @if($filters != null)
-                    setFilters();
-                @endif
                 grid.bootgrid("setSort", function (a, b){
                     if (a.secondaryIdent >= b.secondaryIdent) {
                         return 1;
@@ -1080,6 +1080,9 @@
                 hierCheck.checked=false;
                 hierCheckValue = false;
                 grid.bootgrid("setSubtree", "false");
+                @if($filters != null)
+                    setFilters();
+                @endif
                 setTimeout(function() {
                     document.getElementById("tableDiv").style.visibility = 'visible';
                     document.getElementById("sideDiv").style.visibility = 'visible';
