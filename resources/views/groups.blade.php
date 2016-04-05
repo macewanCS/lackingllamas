@@ -35,14 +35,14 @@
 
             <div class="roster-container">
                 @if (count($groups))
-                <h2 id="group-name"><label id="group-name-colour-bar"></label>{{$groups[0]['name']}}</h2>
+                <h2 id="group-name"><label id="group-name-colour-bar"></label>{{$groups[$bpid - 1]['name']}}</h2>
                 @else
                 <h2 id="group-name"><label id="group-name-colour-bar"></label>No Groups</h2>
                 @endif
                 @if (count($groups))
-                <div class="group-elements" id="group-lead">Lead: {{$users->find($groups[0]['user_ID'])->name}}</div>
-                <div class="group-elements" id="group-description">Description: {{$groups[0]['description']}}</div>
-                <div class="group-elements" id="group-budget">Budget: ${{$groups[0]['budget']}}</div>
+                <div class="group-elements" id="group-lead">Lead: {{$users->find($groups[$bpid - 1]['user_ID'])->name}}</div>
+                <div class="group-elements" id="group-description">Description: {{$groups[$bpid - 1]['description']}}</div>
+                <div class="group-elements" id="group-budget">Budget: ${{$groups[$bpid - 1]['budget']}}</div>
                 @else
                 <div class="group-elements" id="group-lead">Lead: N/A</div>
                 <div class="group-elements" id="group-description">Description: N/A</div>
@@ -52,10 +52,10 @@
                 <h2 class="roster-headers"><label id="action-colour-bar"></label>Actions</h2>
                 <div id="group-actions">
                     @if (count($groups))
-                        @foreach ($actions[0] as $action)<!-- first businessplan -->
-                            @if ($action->group == $groups[0]['id'])
+                        @foreach ($actions[$bpid - 1] as $action)
+                            @if ($action->group == $groups[$bpid - 1]['id'])
                                 <div class="action-task-content">
-                                    <a class="action-task-content-link" href="{{url('/task', $action->id)}}">{{$action->description}}</a>
+                                    <a class="action-task-content-link" href="{{url('/action', $action->id)}}">{{$action->description}}</a>
                                 </div>
                             @endif
                         @endforeach
@@ -67,8 +67,8 @@
                 <h2 class="roster-headers"><label id="task-colour-bar"></label>Tasks</h2>
                 <div id="group-tasks">
                     @if (count($groups))
-                        @foreach ($tasks[0] as $task)<!-- first businessplan -->
-                            @if ($task->group == $groups[0]['id'])
+                        @foreach ($tasks[$bpid - 1] as $task)
+                            @if ($task->group == $groups[$bpid - 1]['id'])
                                 <div class="action-task-content">
                                     <a class="action-task-content-link" href="{{url('/task', $task->id)}}">{{$task->description}}</a>
                                 </div>
@@ -86,7 +86,7 @@
                 <div id="group-users">
                     @if (count($groups))
                         @foreach ($rosters as $roster)
-                            @if ($roster->group_ID == $groups[0]['id'])
+                            @if ($roster->group_ID == $groups[$bpid - 1]['id'])
                                 <div class="roster-names">
                                     <a id="roster-link" href="{{url('/businessplan/' . $bpid . '/user/' . $users->find($roster->user_ID)->id)}}">{{$users->find($roster->user_ID)->name}}</a>
                                 </div>
@@ -118,6 +118,7 @@
             var tasksArray = $.parseJSON('{{json_encode($tasks[$bpid-1], JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
             var usersArray = $.parseJSON('{{json_encode($users, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
             var rostersArray = $.parseJSON('{{json_encode($rosters, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
+            var groupsArray = $.parseJSON('{{json_encode($groups, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
             var actionContent = '';
             var taskContent = '';
             var userContent = '';
@@ -133,7 +134,7 @@
             for (var j = 0; j < usersArray.length; j++)
                 for (var k = 0; k < rostersArray.length; k++)
                     if ((usersArray[j].id == rostersArray[k].user_ID) && (rostersArray[k].group_ID == id))
-                        userContent+="<div class='roster-names'>" + usersArray[j].name + "</div>";
+                        userContent += "<a id='roster-link' href=\"businessplan/" + '{{$bpid}}' + "/user/" + String(j) + "\">" + usersArray[j].name + "</a>";
 
             userText.innerHTML = userContent;
             actionText.innerHTML = actionContent;
@@ -142,6 +143,9 @@
             descriptionText.innerHTML = "Description: " + description;
             budgetText.innerHTML = "Budget: $" + budget + "<br>";
             leadText.innerHTML = "Lead: " + lead;
+            userText.innerHTML = userContent;
+            console.log(userContent);
+            console.log(userText.innerHTML);
         }
     </script>
 @stop
