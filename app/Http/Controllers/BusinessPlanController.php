@@ -314,10 +314,10 @@ class BusinessPlanController extends Controller
     $selectedGroups = array();
     $users = User::lists('name', 'id');
 
-       
+     $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];  
       
         
-    return view('businessPlan.createAction',compact('objectives','counted','groups','user','idbp','users','selectedUsers','selectedGroups'));
+    return view('businessPlan.createAction',compact('objectives','counted','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
   }
 
 
@@ -341,7 +341,8 @@ class BusinessPlanController extends Controller
     $users = User::lists('name', 'id');
     $selectedUsers = array();
     $selectedGroups = array();
-    return view('businessPlan.createTask',compact('actions','counted','groups','user','idbp','users','selectedUsers','selectedGroups'));
+    $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
+    return view('businessPlan.createTask',compact('actions','counted','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
   }
    public function store()
    {
@@ -490,8 +491,8 @@ class BusinessPlanController extends Controller
                 array_push($selectedGroups, Group::all()->where('name', $name)->first()->id);
             }
         }
-
-      return view('businessPlan.editAction',compact('action','objectives','groups','user','idbp','users','selectedUsers','selectedGroups'));
+      $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
+      return view('businessPlan.editAction',compact('action','objectives','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
    }
    public function editTask($idbp,$id)
    {
@@ -513,7 +514,8 @@ class BusinessPlanController extends Controller
                 array_push($selectedGroups, Group::all()->where('name', $name)->first()->id);
             }
         }
-      return view('businessPlan.editTask',compact('task','actions','groups','user','idbp','users','selectedUsers','selectedGroups'));
+        $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
+      return view('businessPlan.editTask',compact('task','actions','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
    }
    public function update($idbp,$idb,$id)
    {

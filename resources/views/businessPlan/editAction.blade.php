@@ -56,7 +56,7 @@
                 {!! Form::select('userId',$user,null, array('class' => 'form-extras'))!!}
                 <br><br>
                 {!! Form::label('progress','Progress: ',['class' => 'edit-action-label']) !!}
-                {!! Form::text('progress', null, ['class' => 'edit-action-field']) !!}       
+                {!! Form::select('progress',$progress, null, array('class' => 'form-extras'))!!}      
                 <br><br>
 
 
