@@ -151,7 +151,7 @@
                     {!! Form::label('description','Leave a Comment ', ['class' => 'comment-label']) !!}<br>
                     {!! Form::textarea('description', null, ['class' => 'comment-text-area']) !!}
 
-                    {!! Form::submit('Comment',['class'=>'comment-form-control']) !!}
+                    {!! Form::submit('Comment',['class'=>'dropbtn']) !!}
 
                     {!! Form::close() !!}
                 </div>
