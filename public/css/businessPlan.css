@@ -175,35 +175,28 @@ h1 {
     margin:0;
 }
 
-#mainDiv > .tableDiv >#grid-basic-header > div.row > div.actionBar > #legend > #mainHier {
-    display: inline-block;
+#legend > #hierLabel {
     float: right;
-    height: 100%;
     overflow: visible;
-    width: 10%;
-    max-width: 10%;
 }
 
-#mainDiv > .tableDiv > #grid-basic-header > div.row > div.actionBar > #legend > #mainHier > div.hierarchyCheckBox > #hierCheck > input {
-    -webkit-transform:scale(1.5);
-    transform:scale(1.5);
-}
-
-#mainDiv > .tableDiv > #grid-basic-header > div.row > div.actionBar > #legend > #hierCheck {
-    display: inline-block;
-    float: right;
-
-}
-#mainDiv > .tableDiv > #grid-basic-header > div.row > div.actionBar > #legend > #hierLabel {
-    display: inline-block;
-    float: right;
-    font-size: 0.9em;
+#legend > #hierLabel > label {
     overflow: visible;
-    width: 5%;
+    position: relative;
+    left: 30%;
+    z-index: 99;
 }
 
-#mainDiv > .tableDiv > #grid-basic-header > div.row > div.actionBar > #legend > #hierLabel > label {
-    overflow:visible;
+#legend > #hierCheck {
+    float: right;
+    margin-left: 1%;
+}
+
+#legend > #hierCheck > input {
+    overflow: visible;
+    position: relative;
+    left: 375%;
+    z-index: 100;
 }
 
 #mainDiv > .sideDiv > div.checkBoxes > .check
@@ -539,12 +532,13 @@ h1 {
     float: left;
     font-size: 1.0em;
     text-align: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #legend > div {
     float: left;
     margin-left: 1%;
+    overflow: visible;
 }
 
 #goalLegend {

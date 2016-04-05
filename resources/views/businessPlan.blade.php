@@ -397,7 +397,7 @@
                                     @endif
                                     if("{{$permission}}" < "2"){
                                         if (row["user"] == "{{$thisUser->name}}") {
-                                            returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +w
+                                            returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
                                             "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                                         }
                                         else {
