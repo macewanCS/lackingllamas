@@ -394,13 +394,17 @@ class BusinessPlanController extends Controller
                 ->pluck('g.bpid');
                   $redirectID= $redirectIDArray[0];
                    $collabs = "";
-                           foreach ($input['collaborators-groups'] as $x) {
-            $collabs .= Group::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
         }
-        foreach ($input['collaborators-users'] as $x) {
-            $collabs .= User::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
         }
         $collabs = rtrim($collabs, ", ");
         $input['collaborators'] = $collabs;
@@ -431,14 +435,18 @@ class BusinessPlanController extends Controller
                   $redirectID= $redirectIDArray[0];
                    Task::create($input);
                      
-              foreach ($input['collaborators-groups'] as $x) {
-                  $collabs .= Group::find($x)->name;
-                  $collabs .= ", ";
-              }
-              foreach ($input['collaborators-users'] as $x) {
-                  $collabs .= User::find($x)->name;
-                  $collabs .= ", ";
-              }
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
+        }
               $collabs = rtrim($collabs, ", ");
               $input['collaborators'] = $collabs;
               }
@@ -538,13 +546,17 @@ class BusinessPlanController extends Controller
       }
       if (Request::has('action')) {
         $collabs = "";
-        foreach ($input['collaborators-groups'] as $x) {
-            $collabs .= Group::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
         }
-        foreach ($input['collaborators-users'] as $x) {
-            $collabs .= User::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
         }
         $collabs = rtrim($collabs, ", ");
         $input['collaborators'] = $collabs;
@@ -556,13 +568,17 @@ class BusinessPlanController extends Controller
       }
       if (Request::has('task')) {
         $collabs = "";
-        foreach ($input['collaborators-groups'] as $x) {
-            $collabs .= Group::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-groups', $input)) {
+            foreach ($input['collaborators-groups'] as $x) {
+                $collabs .= Group::find($x)->name;
+                $collabs .= ", ";
+            }
         }
-        foreach ($input['collaborators-users'] as $x) {
-            $collabs .= User::find($x)->name;
-            $collabs .= ", ";
+        if (array_key_exists('collaborators-users', $input)) {
+            foreach ($input['collaborators-users'] as $x) {
+                $collabs .= User::find($x)->name;
+                $collabs .= ", ";
+            }
         }
         $collabs = rtrim($collabs, ", ");
         $input['collaborators'] = $collabs;

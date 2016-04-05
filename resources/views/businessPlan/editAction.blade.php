@@ -17,6 +17,7 @@
 
             {!! Form::model($action,['method' => 'PATCH', 'action' => ['BusinessPlanController@update',$idbp,'Action', $action->id]]) !!}
              {!! Form::hidden('action','a') !!}
+
             <div class="form-group-one">
 
                 {!! Form::label('description','Name: ', ['class' => 'edit-action-label']) !!}
