@@ -191,9 +191,9 @@
                         <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
                         <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status" data-visible="false"></th>
                         <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
-                        <th data-column-id="user" data-formatter="colorizer" data-header-css-class="user">Lead</th>
-                        <th data-column-id="group" data-formatter="colorizer" data-header-css-class="group">Group</th>
-                        <th data-column-id="collabs" data-formatter="colorizer" data-header-css-class="collabs">Collaborators</th>
+                        <th data-column-id="user" data-formatter="links" data-header-css-class="user">Lead</th>
+                        <th data-column-id="group" data-formatter="links" data-header-css-class="group">Group</th>
+                        <th data-column-id="collabs" data-formatter="links" data-header-css-class="collabs">Collaborators</th>
                         <th data-column-id="budget" data-formatter="colorizer" data-header-css-class="budget">Budget</th>
                         <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                         <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
@@ -339,6 +339,12 @@
                 }
             });
 
+            var usersArray = $.parseJSON('{{json_encode($users, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
+            var groupsArray = $.parseJSON('{{json_encode($groups, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
+
+            console.log(usersArray);
+            console.log(groupsArray);
+
             var maxGoals;
             var maxObj;
             var maxActions;
@@ -427,6 +433,48 @@
                                     }
                                 }
                                 return returnString;
+                            },
+                            links: function (column, row) {
+                                if (row["type"] == "Action" || row["type"] == "Task") {
+                                    if (column.id == "user") {
+                                        for (var i = 0; i < usersArray.length; i++) {
+                                            if (usersArray[i].name == row["user"]) {
+                                                return "<div><a id=\"tableLink\" href=\"/user/" + usersArray[i].id + "\">" + row[column.id] + "</a></div>";
+                                            }
+                                        }
+                                    }
+                                    else if (column.id == "group"){
+                                        for (var i = 0; i < groupsArray.length; i++){
+                                            if (groupsArray[i].name == row["group"]){
+                                                return "<div><a id=\"tableLink\" href=\"/groups\">" + row[column.id] + "</a></div>";
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        var returnString = "<div>";
+                                        for (var i = 0; i < usersArray.length; i++) {
+                                            var collabs = row[column.id].split(", ");
+                                            for (var j = 0; j < collabs.length; j++){
+                                                if (usersArray[i].name == collabs[j]){
+                                                    returnString += "<a id=\"tableLink\" href=\"/user/" + usersArray[i].id + "\">" + collabs[j] + "</a>, ";
+                                                }
+                                            }
+                                        }
+                                        for (var i = 0; i < groupsArray.length; i++){
+                                            var collabs = row[column.id].split(", ");
+                                            for (var j = 0; j < collabs.length; j++){
+                                                if (groupsArray[i].name == collabs[j]) {
+                                                    returnString += "<a id=\"tableLink\" href=\"/groups\">" + collabs[j] + "</a>, ";
+                                                }
+                                            }
+                                        }
+                                        returnString += "</div>";
+                                        return returnString;
+                                    }
+                                }
+                                else {
+                                    return "<div>" + row[column.id] + "</div>";
+                                }
                             }
                         }
                     }).on("loaded.rs.jquery.bootgrid", function() {

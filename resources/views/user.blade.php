@@ -21,7 +21,7 @@
                 <div class="user-groups">
                     <label>Groups</label>
                     @foreach($groups as $group)
-                        <a href="{{url('/businessplan', App\BusinessPlan::orderBy('created', 'desc')->first()->id )}}">{{$group->name}}</a>
+                        <a href="{{url('/businessplan', App\BusinessPlan::orderBy('created', 'desc')->first()->id )}}">{{$group->name}}</a>,
                     @endforeach
                 </div>
 

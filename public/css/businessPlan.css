@@ -669,3 +669,7 @@ h1 {
 #sideDiv > div.filtering {
     width: 100%;
 }
+
+#hierarchyCheckBox {
+    -webkit-transform: scale(1.5);
+}
