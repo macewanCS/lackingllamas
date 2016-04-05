@@ -282,7 +282,9 @@ class BusinessPlanController extends Controller
     $bp = BusinessPlan::lists('name');
     $goals = Goal::all();
     $groups = Group::lists('name');
-    $counted = count($goals)+1;
+   // $counted = count($goals)+1;
+    $counted = (DB::table('goals')->max('id'))+1;
+    
   	return view('businessPlan.createGoal',compact('counted','groups','bp','idbp'));
   }
 
@@ -367,10 +369,10 @@ class BusinessPlanController extends Controller
                   // return  $input['goal_id'];
                    $goals = DB::select("select * from goals where bpid = '".$input['idbp']."'");
                    $input['goal_id'] =$goals[$input['goal_id']]->id;
+                  
                    $objectiveIdent = count(DB::table('objectives')->where('goal_id', $input['goal_id'])->get())+1;
                    $goalIdent = $input['goal_id'];
                    $input['ident'] ="$goalIdent.$objectiveIdent";
-                   //return $input['group'];
                    $redirectIDArray = DB::table('goals')-> where('id',$input['goal_id'])->pluck('bpid');
                    $redirectID=$redirectIDArray[0];
                    Objective::create($input);
