@@ -187,7 +187,7 @@ class ActionSeeder extends Seeder
                 'budget' => 3400,
                 'successMeasured' => 'MDM Fully rolled out and documented',
                 'progress' => 2,
-                'objective_id' => 11,
+                'objective_id' => 13,
                 'group' => 1,
                 'userId' => 2
             ],
@@ -197,7 +197,7 @@ class ActionSeeder extends Seeder
                 'budget' => 2300,
                 'successMeasured' => 'Development plan created',
                 'progress' => 1,
-                'objective_id' => 11,
+                'objective_id' => 13,
                 'group' => 1,
                 'userId' => 2
             ],
@@ -207,7 +207,7 @@ class ActionSeeder extends Seeder
                 'budget' => 50000,
                 'successMeasured' => 'Development plan created',
                 'progress' => 0,
-                'objective_id' => 11,
+                'objective_id' => 13,
                 'group' => 1,
                 'userId' => 2
             ],
@@ -217,7 +217,7 @@ class ActionSeeder extends Seeder
                 'budget' => 12000,
                 'successMeasured' => 'More gaming opportunities presented',
                 'progress' => 0,
-                'objective_id' => 12,
+                'objective_id' => 14,
                 'group' => 1,
                 'userId' => 2
             ],

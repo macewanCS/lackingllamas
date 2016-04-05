@@ -38,9 +38,9 @@ class UserSeeder extends Seeder
                 'password' => Hash::make ('password' ),
             ],
             [
-                'name' => 'root',
-                'email' => 'root@root.ca',
-                'password' => Hash::make ('alpine' ),
+                'name' => 'BpLead',
+                'email' => 'BpLead@epl.ca',
+                'password' => Hash::make ('password' ),
             ],
             [
                 'name' => 'Sharon Karr',
