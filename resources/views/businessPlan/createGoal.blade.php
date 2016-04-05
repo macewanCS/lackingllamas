@@ -12,22 +12,24 @@
 			{!! Form::hidden('id',$counted) !!}
 			{{ Form::hidden('bp', 'False') }}
 			{{ Form::hidden('bpid', $idbp) }}
+			{{ Form::hidden('group', null) }}
 
 		<div class="form-group-one">
 	
 			{!! Form::label('name','Name:',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>
-			{!! Form::label('group','Departments Teams:',['class' => 'edit-action-label']) !!}
-			{!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
-			<br><br>
 
                 <div id ="divBP">
                     {!! Form::label('bp','Non Business Plan Goal: ') !!}
-                    {!! Form::checkbox('bp', 'True', false) !!}
-                    <p class="text">Checking the box will seperate the goal from the business plan</p>
+                    {!! Form::checkbox('bp', 'True', false, array('id'=>'checkbox')) !!}
+                   
                 </div>
 		</div>
+		<br><br>
+			{!! Form::label('group','Departments Teams:',['class' => 'edit-action-label-hidden', 'id' => 'hidden']) !!}
+			{!! Form::select('group',$groups,null, array('class' => 'form-extras-hidden','id' => 'hidden2'))!!}
+			<br><br>
 		<div class="form-group-two">
 			<br><br>
 			{!! Form::submit('Add Goal',['class'=>'btn-primary form-control']) !!}
@@ -39,3 +41,21 @@
 @stop
 
 
+@section('scripts')
+<script>
+$(document).ready(function (){
+    $('#checkbox').change(function (){
+    	$( "#hidden" ).toggle();
+    	$( "#hidden2" ).toggle();
+    	
+    
+		//$(document.getElementById('test')).toggle();
+    	
+    	//alert($('.edit.action-label-hidden').is(":hidden"));
+   	
+    
+     
+    });
+});
+</script>
+@stop

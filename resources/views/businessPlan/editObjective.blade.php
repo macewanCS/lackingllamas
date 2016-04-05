@@ -17,8 +17,6 @@
 			{!! Form::label('name','Name: ',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>
-			{!! Form::label('group','Departments Teams: ',['class' => 'edit-action-label']) !!}
-			{!! Form::select('group',$groups,null, array('class' => 'form-extras'))!!}
 
 			{!! Form::submit('Edit Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
 		</div>
