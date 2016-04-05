@@ -6,6 +6,7 @@ use App\Http\Requests\Request;
 use App\Action;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Group;
 
 class EditActionRequest extends Request
 {

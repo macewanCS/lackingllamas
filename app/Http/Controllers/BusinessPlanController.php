@@ -399,14 +399,26 @@ class BusinessPlanController extends Controller
                    $collabs = "";
         if (array_key_exists('collaborators-groups', $input)) {
             foreach ($input['collaborators-groups'] as $x) {
-                $collabs .= Group::find($x)->name;
-                $collabs .= ", ";
+                $group = Group::find($x);
+                if ($group != null) {
+                    $collabs .= Group::find($x)->name;
+                    $collabs .= ", ";
+                }
+                else {
+                    $collabs .= "";
+                }
             }
         }
         if (array_key_exists('collaborators-users', $input)) {
             foreach ($input['collaborators-users'] as $x) {
-                $collabs .= User::find($x)->name;
-                $collabs .= ", ";
+                $user = User::find($x);
+                if ($user != null){
+                    $collabs .= User::find($x)->name;
+                    $collabs .= ", ";
+                }
+                else {
+                    $collabs .= "";
+                }
             }
         }
         $collabs = rtrim($collabs, ", ");
@@ -436,23 +448,37 @@ class BusinessPlanController extends Controller
                 ->distinct()
                 ->pluck('g.bpid');
                   $redirectID= $redirectIDArray[0];
-                   Task::create($input);
-                     
+
+             $collabs = "";
         if (array_key_exists('collaborators-groups', $input)) {
             foreach ($input['collaborators-groups'] as $x) {
-                $collabs .= Group::find($x)->name;
-                $collabs .= ", ";
+                $group = Group::find($x);
+                if ($group != null) {
+                    $collabs .= Group::find($x)->name;
+                    $collabs .= ", ";
+                }
+                else {
+                    $collabs .= "";
+                }
             }
         }
         if (array_key_exists('collaborators-users', $input)) {
             foreach ($input['collaborators-users'] as $x) {
-                $collabs .= User::find($x)->name;
-                $collabs .= ", ";
+                $user = User::find($x);
+                if ($user != null){
+                    $collabs .= User::find($x)->name;
+                    $collabs .= ", ";
+                }
+                else {
+                    $collabs .= "";
+                }
             }
         }
               $collabs = rtrim($collabs, ", ");
               $input['collaborators'] = $collabs;
-              }
+                   Task::create($input);
+               }
+
 
                return redirect("businessplan/".$redirectID."");
            
@@ -566,14 +592,26 @@ class BusinessPlanController extends Controller
         $collabs = "";
         if (array_key_exists('collaborators-groups', $input)) {
             foreach ($input['collaborators-groups'] as $x) {
-                $collabs .= Group::find($x)->name;
-                $collabs .= ", ";
+                $group = Group::find($x);
+                if ($group != null) {
+                    $collabs .= Group::find($x)->name;
+                    $collabs .= ", ";
+                }
+                else {
+                    $collabs .= "";
+                }
             }
         }
         if (array_key_exists('collaborators-users', $input)) {
             foreach ($input['collaborators-users'] as $x) {
-                $collabs .= User::find($x)->name;
-                $collabs .= ", ";
+                $user = User::find($x);
+                if ($user != null){
+                    $collabs .= User::find($x)->name;
+                    $collabs .= ", ";
+                }
+                else {
+                    $collabs .= "";
+                }
             }
         }
         $collabs = rtrim($collabs, ", ");
@@ -588,14 +626,26 @@ class BusinessPlanController extends Controller
         $collabs = "";
         if (array_key_exists('collaborators-groups', $input)) {
             foreach ($input['collaborators-groups'] as $x) {
-                $collabs .= Group::find($x)->name;
-                $collabs .= ", ";
+                $group = Group::find($x);
+                if ($group != null) {
+                    $collabs .= Group::find($x)->name;
+                    $collabs .= ", ";
+                }
+                else {
+                    $collabs .= "";
+                }
             }
         }
         if (array_key_exists('collaborators-users', $input)) {
             foreach ($input['collaborators-users'] as $x) {
-                $collabs .= User::find($x)->name;
-                $collabs .= ", ";
+                $user = User::find($x);
+                if ($user != null){
+                    $collabs .= User::find($x)->name;
+                    $collabs .= ", ";
+                }
+                else {
+                    $collabs .= "";
+                }
             }
         }
         $collabs = rtrim($collabs, ", ");
