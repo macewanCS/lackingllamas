@@ -29,8 +29,7 @@
                             <?php $tmp = 0; ?>
                             @if(sizeof($tasks) < 1)
                                 N/A
-                            @endif
-                            @if(sizeof($tasks) <= 2)
+                            @elseif(sizeof($tasks) <= 2)
                                 @foreach ($tasks as $task)
                                     <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
                                 @endforeach
@@ -39,6 +38,7 @@
                                         margin-top: 15px;
                                     }
                                 </style>
+
                             @endif
                             @if (sizeof($tasks) > 2)
                                 @foreach($tasks as $task)
@@ -46,7 +46,7 @@
                                         <a href="{{url('/task', $task->id)}}"> <span>T</span>{{str_limit($task->description, $limit = 20, $end = '...')}}</a>
                                     @endif
                                 @endforeach
-                                 <a class="view-all-tasks" href="{{url('/businessplan', $businessplan)}}">View all</a>
+                                <a class="view-all-tasks" href="{{url('/businessplan', $businessplan)}}">View all</a>
                                 <style media="screen" type="text/css">
                                     .action-list li:nth-child(2) label {
                                         margin-top: 15px;
