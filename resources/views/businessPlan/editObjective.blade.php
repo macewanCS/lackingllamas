@@ -14,11 +14,11 @@
 		{!! Form::model($objective,['method' => 'PATCH', 'action' => ['BusinessPlanController@update',$idbp,'Objective',$objective->id]]) !!}
 		 {!! Form::hidden('objective','a') !!}
 		<div class="form-group-one">
-			{!! Form::label('name','Name: ',['class' => 'edit-action-label']) !!}
+			{!! Form::label('name','Name ',['class' => 'edit-action-label']) !!}
 			{!! Form::text('name', null, ['class' => 'edit-action-field']) !!}
 			<br><br>
 
-			{!! Form::submit('Edit Objective',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
+			{!! Form::submit('Submit Changes',['class'=>'btn-primary form-control','data-toggle' => 'tooltip']) !!}
 		</div>
 
 	

@@ -78,7 +78,7 @@
                                     In Progress
                                 @endif
 
-                                @if ($task->progress == 2)
+                                @if ($task->progress >= 2)
                                     Done
                                     <style media="screen" type="text/css">
                                         .task-progress p {
@@ -89,7 +89,7 @@
                             </p></div></li>
 
                 </ul>
-
+                <br>
                 <div class="comments-header">
                     <h3>Comments</h3>
                 </div>
@@ -137,6 +137,10 @@
                         @endforeach
                     </ul>
                 @endif
+            @else
+                <style>
+                    .comment-container {margin-bottom:20%;}
+                </style>
             @endif
         </div>
     </div>

@@ -54,18 +54,11 @@
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-btn fa-sign-in"></i>Login
                         </button>
-
-                        <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group login">
                     <div class="col-md-6 col-md-offset-4 LoginRegister-link">
                         <a href="{{ url('/businessplan',App\BusinessPlan::orderBy('created', 'desc')->first()->id) }}">Read-Only Mode</a>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4 LoginRegister-link">
-                        <a href="{{ url('/register') }}">Register</a>
                     </div>
                 </div>
             </form>

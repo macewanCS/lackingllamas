@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function login()
     {
-        $bp = BusinessPlan::orderBy('created_at')->first()->id;
+        $bp = BusinessPlan::orderBy('created', 'desc')->first()->id;
         $link = "businessplan/";
         $link .= strval($bp);
         if (Auth::guest()){

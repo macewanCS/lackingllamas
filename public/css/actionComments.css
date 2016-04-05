@@ -10,7 +10,6 @@
     border-color: grey;
     margin-top: 25px;
     display: inline;
-    height: 100%;
 
 }
 
@@ -324,4 +323,20 @@ label {
 .view-all-tasks:active {
     transition: color .3s;
     color: #007BE6;
+}
+
+.comment-form-control {
+    background-color: rgb(245, 0, 54);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: rgb(220, 20, 74);
+    width: 120px;
+}
+
+.comment-form-control:hover {
+    background-color: rgb(255, 20, 64);
+    border-color: rgb(180, 30, 90);
 }

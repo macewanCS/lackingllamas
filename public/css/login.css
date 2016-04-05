@@ -2,8 +2,8 @@
 
 .LoginRegister {
     justify-content: center;
-    width: 250px;
-    height: 260px;
+    width: 300px;
+    height: 310px;
     background: white;
     margin: -220px auto;
 }
@@ -11,6 +11,7 @@
 
 .LoginRegister-link {
     text-align: center;
+
 }
 
 .top-image {
@@ -32,4 +33,33 @@
 
 .form-group {
     text-align: center;
+}
+.btn.btn-primary {
+    background-color: rgb(245, 0, 54);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: rgb(220, 20, 74);
+    width: 120px;
+}
+
+.btn.btn-primary:hover {
+    background-color: rgb(255, 20, 64);
+    border-color: rgb(180, 30, 90);
+}
+
+.LoginRegister-link a{
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+
+.LoginRegister-link a:link,
+.LoginRegister-link a:visited { color: #265C83; }
+.LoginRegister-link a:hover   { color: darkblue; }
+.LoginRegister-link a:active {
+    transition: color .3s;
+    color: #007BE6;
 }

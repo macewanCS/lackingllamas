@@ -10,8 +10,10 @@
     border-color: grey;
     margin-top: 25px;
     display: inline;
-    height: 100%;
 
+}
+.task-description-container {
+    height: auto;
 }
 
 .task-name h1{
@@ -56,7 +58,6 @@ hr {
     right: 0;
     width: 1000px;
     position: relative;
-
     margin: auto;
     margin-bottom: 5%;
 }
@@ -64,6 +65,7 @@ hr {
 .comment-container {
     list-style-type: none;
     padding-left: 0px;
+    height: auto;
 }
 .task-comments-inner li {
 
@@ -261,3 +263,18 @@ label {
     color: #007BE6;
 }
 
+.comment-form-control {
+    background-color: rgb(245, 0, 54);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: rgb(220, 20, 74);
+    width: 120px;
+}
+
+.comment-form-control:hover {
+    background-color: rgb(255, 20, 64);
+    border-color: rgb(180, 30, 90);
+}
