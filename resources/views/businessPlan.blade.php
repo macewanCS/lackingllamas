@@ -2,7 +2,6 @@
 
     @section('endHead')
         {!! Html::style('css/businessPlan.css') !!}
-        {!! Html::style('css/font-awesome.min.css') !!}
         {!! Html::style('css/template.min.css') !!}
         {!! Html::style('javascript/jquery-ui/jquery-ui.min.css') !!}
         {!! Html::style('css/jquery.multiselect.css') !!}
@@ -60,6 +59,7 @@
             <div class="pageLoad"><img src="/pictures/page-loader.gif"/></div>
             <div class="sideDiv" id="sideDiv">
 
+                @if($permission > 1)
                 <div style = "position:relative;"class="dropDown">
                     <button style ="width:120%;"  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Create
                     <span class="caret"></span></button>
@@ -74,7 +74,7 @@
 
 
                 </div>
-
+                @endif
                 <hr>
 
                 <div class="filtering">
@@ -101,17 +101,6 @@
                         <option value="Action" selected="selected">Actions</option>
                         <option value="Task" selected="selected">Tasks</option>
                     </select>
-                </div>
-
-                <div id="mainHier">
-                <div class="hierarchyCheckBox">
-                    <div id="hierLabel">
-                        <label>Show Sub-Elements?</label>
-                    </div>
-                    <div id="hierCheck">
-                        <input type="checkbox" id="hierarchyCheckBox" name="hierarchyCheckBox" checked>
-                    </div>
-                </div>
                 </div>
 
                 <div class="collabSelector">
@@ -202,9 +191,9 @@
                         <th data-column-id="type" data-formatter="colorizer" data-header-css-class="type" data-visible="false"></th>
                         <th data-column-id="status" data-formatter="colorizer" data-header-css-class="status" data-visible="false"></th>
                         <th data-column-id="desc" data-formatter="colorizer" data-header-css-class="desc">Description</th>
-                        <th data-column-id="user" data-formatter="colorizer" data-header-css-class="user">Lead</th>
-                        <th data-column-id="group" data-formatter="colorizer" data-header-css-class="group">Group</th>
-                        <th data-column-id="collabs" data-formatter="colorizer" data-header-css-class="collabs">Collaborators</th>
+                        <th data-column-id="user" data-formatter="links" data-header-css-class="user">Lead</th>
+                        <th data-column-id="group" data-formatter="links" data-header-css-class="group">Group</th>
+                        <th data-column-id="collabs" data-formatter="links" data-header-css-class="collabs">Collaborators</th>
                         <th data-column-id="budget" data-formatter="colorizer" data-header-css-class="budget">Budget</th>
                         <th data-column-id="successM" data-formatter="colorizer" data-header-css-class="successM">Success</th>
                         <th data-column-id="date" data-formatter="colorizer" data-header-css-class="date">Due</th>
@@ -233,7 +222,11 @@
                 <td>{{$bp->name}}</td>
                 <td></td>
                 <td></td>
-                <td></td>
+                @if ($tempGoal->bp)
+                    <td></td>
+                @else
+                    <td>{{$groups[$tempGoal->group - 1]->name}}</td>
+                @endif
                 <td></td>
                 <td></td>
                 <td></td>
@@ -346,6 +339,12 @@
                 }
             });
 
+            var usersArray = $.parseJSON('{{json_encode($users, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
+            var groupsArray = $.parseJSON('{{json_encode($groups, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
+
+            console.log(usersArray);
+            console.log(groupsArray);
+
             var maxGoals;
             var maxObj;
             var maxActions;
@@ -407,7 +406,7 @@
                                     @endif
                                     if("{{$permission}}" < "2"){
                                         if (row["user"] == "{{$thisUser->name}}") {
-                                            returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +w
+                                            returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-pencil\"></span></button> " +
                                             "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-trash-o\"></span></button></div>";
                                         }
                                         else {
@@ -434,6 +433,48 @@
                                     }
                                 }
                                 return returnString;
+                            },
+                            links: function (column, row) {
+                                if (row["type"] == "Action" || row["type"] == "Task") {
+                                    if (column.id == "user") {
+                                        for (var i = 0; i < usersArray.length; i++) {
+                                            if (usersArray[i].name == row["user"]) {
+                                                return "<div><a id=\"tableLink\" href=\"/user/" + usersArray[i].id + "\">" + row[column.id] + "</a></div>";
+                                            }
+                                        }
+                                    }
+                                    else if (column.id == "group"){
+                                        for (var i = 0; i < groupsArray.length; i++){
+                                            if (groupsArray[i].name == row["group"]){
+                                                return "<div><a id=\"tableLink\" href=\"/groups\">" + row[column.id] + "</a></div>";
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        var returnString = "<div>";
+                                        for (var i = 0; i < usersArray.length; i++) {
+                                            var collabs = row[column.id].split(", ");
+                                            for (var j = 0; j < collabs.length; j++){
+                                                if (usersArray[i].name == collabs[j]){
+                                                    returnString += "<a id=\"tableLink\" href=\"/user/" + usersArray[i].id + "\">" + collabs[j] + "</a>, ";
+                                                }
+                                            }
+                                        }
+                                        for (var i = 0; i < groupsArray.length; i++){
+                                            var collabs = row[column.id].split(", ");
+                                            for (var j = 0; j < collabs.length; j++){
+                                                if (groupsArray[i].name == collabs[j]) {
+                                                    returnString += "<a id=\"tableLink\" href=\"/groups\">" + collabs[j] + "</a>, ";
+                                                }
+                                            }
+                                        }
+                                        returnString += "</div>";
+                                        return returnString;
+                                    }
+                                }
+                                else {
+                                    return "<div>" + row[column.id] + "</div>";
+                                }
                             }
                         }
                     }).on("loaded.rs.jquery.bootgrid", function() {
@@ -813,16 +854,18 @@
             }
 
             var hierCheckValue = true;
-            var hierCheck = document.getElementById("hierarchyCheckBox");
-            hierCheck.addEventListener('click', function () {
-                hierCheckValue = !hierCheckValue;
-                if (hierCheckValue) {
-                    grid.bootgrid("setSubtree", "true");
-                }
-                else {
-                    grid.bootgrid("setSubtree", "false");
-                }
-            });
+            function setupCheckBox () {
+                var hierCheck = document.getElementById("hierarchyCheckBox");
+                hierCheck.addEventListener('click', function () {
+                    hierCheckValue = !hierCheckValue;
+                    if (hierCheckValue) {
+                        grid.bootgrid("setSubtree", "true");
+                    }
+                    else {
+                        grid.bootgrid("setSubtree", "false");
+                    }
+                });
+            }
 
             var check1Value = true;
             var check1 = document.getElementById("check1");
@@ -1027,8 +1070,12 @@
 
                                             "<div id=\"doneLegendLabel\"><label>Completed</label></div>" +
                                             "<div id=\"doneLegendIcon\"><span class=\"fa fa-check\"></span></div>" +
+
+                                            "<div id=\"hierCheck\"><input type=\"checkbox\" id=\"hierarchyCheckBox\" name=\"hierarchyCheckBox\" checked></div>" +
+                                            "<div id=\"hierLabel\"><label>Show sub-elements</label></div>" +
                                         "</div>");
                 grid.bootgrid("setSubtree", "true");
+                setupCheckBox();
                 setTimeout(function() {
                     document.getElementById("tableDiv").style.visibility = 'visible';
                     document.getElementById("sideDiv").style.visibility = 'visible';

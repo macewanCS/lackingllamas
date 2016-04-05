@@ -19,6 +19,8 @@ class GroupController extends Controller
     public function __construct() {}
 
     public function groups() {
+        $bp = BusinessPlan::all();
+        $bpid = count($bp);
         $groups = Group::all();
         $tasks = array();
         $actions = array();
@@ -29,6 +31,6 @@ class GroupController extends Controller
         $users = User::all();
         $rosters = Roster::all();
         $businessPlans = BusinessPlan::lists('name', 'id');
-        return view('groups', compact('groups', 'actions', 'tasks', 'users', 'rosters', 'businessPlans'));
+        return view('groups', compact('groups', 'actions', 'tasks', 'users', 'rosters', 'businessPlans', 'bpid'));
     }
 }

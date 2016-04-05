@@ -175,39 +175,28 @@ h1 {
     margin:0;
 }
 
-#mainDiv > .sideDiv > #mainHier {
-    width: 125%;
-    margin-top: 1.25vw;
+#legend > #hierLabel {
+    float: right;
+    overflow: visible;
 }
 
-#mainDiv > .sideDiv > #mainHier > div.hierarchyCheckBox {
-    width: 100%;
-    vertical-align: middle;
-    display: table-cell;
+#legend > #hierLabel > label {
+    overflow: visible;
+    position: relative;
+    left: 30%;
+    z-index: 99;
 }
 
-#mainDiv > .sideDiv >  #mainHier > div.hierarchyCheckBox > #hierCheck > input {
-    -webkit-transform:scale(1.5);
-    transform:scale(1.5);
-    padding-bottom: 50%;
+#legend > #hierCheck {
+    float: right;
+    margin-left: 1%;
 }
 
-#mainDiv > .sideDiv >  #mainHier > div.hierarchyCheckBox > #hierCheck {
-    display: inline-block;
-    width: 25%;
-    padding: 10%;
-}
-#mainDiv > .sideDiv >  #mainHier > div.hierarchyCheckBox > #hierLabel {
-     display: inline-block;
-    width: 70%;
-}
-
-#mainDiv > .sideDiv >  #mainHier > div.checkBoxes
-{
-    margin: auto;
-    display: block;
-    margin-top:1vw;
-    width:100%;
+#legend > #hierCheck > input {
+    overflow: visible;
+    position: relative;
+    left: 375%;
+    z-index: 100;
 }
 
 #mainDiv > .sideDiv > div.checkBoxes > .check
@@ -378,7 +367,7 @@ h1 {
 }
 
 .collabSelector {
-    margin-top: 0%;
+    margin-top: 10%;
 }
 
 .goatSelector,.leadSelector,.progressSelector,.groupSelector,.datePicker,.budgetBox,.pageLoad > img
@@ -541,14 +530,15 @@ h1 {
     max-height: 1.3em;
     width: 80%;
     float: left;
-    font-size: 1.2em;
+    font-size: 1.0em;
     text-align: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #legend > div {
     float: left;
     margin-left: 1%;
+    overflow: visible;
 }
 
 #goalLegend {
@@ -556,7 +546,7 @@ h1 {
     width: 1.25em;
     background-color: #f2caf2;
     border: 1px solid lightgrey;
-    margin-right: 2.5%;
+    margin-right: 1.5%;
 }
 
 #objectiveLegend {
@@ -564,7 +554,7 @@ h1 {
     width: 1.25em;
     background-color: #d9edf7;
     border: 1px solid lightgrey;
-    margin-right: 2.5%;
+    margin-right: 1.5%;
 }
 
 #actionLegend {
@@ -572,7 +562,7 @@ h1 {
     width: 1.25em;
     background-color: #e3f6e0;
     border: 1px solid lightgrey;
-    margin-right: 2.5%;
+    margin-right: 1.5%;
 }
 
 #taskLegend {
@@ -580,19 +570,19 @@ h1 {
     width: 1.25em;
     backgroud-color: white;
     border: 1px solid lightgrey;
-    margin-right: 2.5%;
+    margin-right: 1.5%;
 }
 
 #bpLabel {
     color: black;
-    margin-left: 2.5%;
+    margin-left: 1.5%;
     font-weight: bolder;
     text-decoration: wavy;
 }
 
 #nonbpLabel {
     color: navy;
-    margin-right: 2.5%;
+    margin-right: 1.5%;
     font-weight: bolder;
     text-decoration: wavy;
 }
@@ -605,13 +595,13 @@ h1 {
 #legend > #progressLegendLabel, #legend > #progressLegendIcon, #legend > #doneLegendIcon {
     float: left;
     height: 100%;
-    margin-left: 2%;
+    margin-left: 1.5%;
 }
 
 #legend > #doneLegendLabel {
     float: left;
     height: 100%;
-    margin-left: 4%;
+    margin-left: 2%;
 }
 
 #legend > #verticalRule {
@@ -678,4 +668,8 @@ h1 {
 
 #sideDiv > div.filtering {
     width: 100%;
+}
+
+#hierarchyCheckBox {
+    -webkit-transform: scale(1.5);
 }

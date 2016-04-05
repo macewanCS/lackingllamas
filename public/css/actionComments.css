@@ -162,7 +162,7 @@ p {
     margin-bottom: 4px;
 }
 
-label {
+div.action-container label {
     margin-right: 10px;
     display: inline-block;
     float: left;

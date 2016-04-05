@@ -36,7 +36,7 @@ class RolesSeeder extends Seeder
             ]
         ]);
 
-        $user = User::where('name', '=', 'root')->first();
+        $user = User::where('name', '=', 'BpLead')->first();
         $role = Role::where('name', '=', 'bpLead')->first();
         $user->attachRole($role);
 

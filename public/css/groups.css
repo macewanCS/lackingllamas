@@ -31,14 +31,14 @@
     float: left;
     display: inline-block;
     margin: 12px 12px 0px 0px;
-    width: 210px;
+    width: 22.5%;
     border-right: 2px solid;
     padding-top: 6px;
     padding-bottom: 18px;
 }
 
 .roster-container {
-    width: 670px;
+    width: 50%;
     display: inline-block;
     margin: 12px 0px 0px 12px;
     padding-bottom: 8px;
@@ -52,26 +52,26 @@
 }
 
 /*colour bars*/
-#action-colour-bar {
-    background: rgb(240,0,50);
+div.groups-container > div.groups-container-inner > div.roster-container #action-colour-bar {
+    background: darkred;
     margin-right: 6px;
     padding-right: 8px;
 }
 
-#task-colour-bar{
-    background: rgb(0,200,0);
+div.groups-container > div.groups-container-inner > div.roster-container #task-colour-bar{
+    background: rgb(41,127,184);;
     margin-right: 6px;
     padding-right: 8px;
 }
 
-#roster-colour-bar {
+div.groups-container > div.groups-container-inner > #Rosters #roster-colour-bar {
     background: rgb(255,200,0);
     margin-right: 6px;
     padding-right: 8px;
 }
 
-#group-name-colour-bar {
-    background: rgb(0,150,255);
+ div.groups-container > div.groups-container-inner > div.roster-container #group-name-colour-bar {
+    background: #eaaded;
     margin-right: 6px;
     padding-right: 8px;
 }
@@ -94,7 +94,7 @@
 
 #link-result {
     text-decoration: none;
-    color: black;
+    color: #265C83;
     margin-left: 8px;
 }
 
@@ -106,11 +106,6 @@
 .result-list-elem {
     list-style: none;
     margin: 2px;
-}
-
-.result-list-elem:hover {
-    background: #ddd;
-    cursor: pointer;
 }
 
 .result-list-elem:last-child {
@@ -127,10 +122,6 @@
     text-decoration: none;
     color: black;
     font-weight: bold;
-}
-
-.action-task-content:hover {
-    background: #ddd;
 }
 
 /*team or department*/
@@ -161,4 +152,169 @@
     width: auto;
     display: inline;
     float: right;
+}
+
+#Rosters {
+    float: right;
+    width: 20%;
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+div.roster-container a {
+    text-decoration: none;
+    color: black;
+}
+
+div.roster-container a {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    padding-right: 30px;
+    padding-left: 70px;
+    position: relative;
+    background-color:#8e44ad;
+    color:rgb(255,255,255);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-shadow:0px 1px 0px rgba(0,0,0,0.5);
+    -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true)";zoom:1;
+    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true);
+
+    -moz-box-shadow:0px 2px 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow:0px 2px 2px rgba(0,0,0,0.2);
+    box-shadow:0px 2px 2px rgba(0,0,0,0.2);
+    -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true)";
+    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true);
+}
+
+div.roster-container span{
+    position: absolute;
+    left: 0;
+    width: 50px;
+    background-color:rgba(0,0,0,0.5);
+    text-align: center;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 1px solid  rgba(0,0,0,0.15);
+
+}
+
+div.roster-container a:hover span, .action-objective a.active span {
+    background-color:rgb(0,102,26);
+    border-right: 1px solid  rgba(0,0,0,0.3);
+}
+
+
+
+div.roster-container a:not(.view-all-tasks){
+    display: inline-block;
+    height: 1.5em;
+    line-height: 1.5em;
+    padding-right: 5%;
+    padding-left: 5%;
+    width: 100%;
+    position: relative;
+    background-color:rgb(41,127,184);
+    color:rgb(255,255,255);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+    font-weight: normal !important;
+    overflow: hidden;
+    text-overflow-ellipsis: true;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-shadow:0px 1px 0px rgba(0,0,0,0.5);
+    -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true)";zoom:1;
+    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true);
+
+    -moz-box-shadow:0px 2px 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow:0px 2px 2px rgba(0,0,0,0.2);
+    box-shadow:0px 2px 2px rgba(0,0,0,0.2);
+    -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true)";
+    filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true);
+}
+
+div.roster-container span {
+    position: absolute;
+    left: 0;
+    width: 50px;
+    background-color:rgba(0,0,0,0.5);
+    text-align: center;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 1px solid  rgba(0,0,0,0.15);
+}
+
+
+div.roster-container a:hover span, div.roster-container a.active span {
+    background-color:rgb(0,102,26);
+    border-right: 1px solid  rgba(0,0,0,0.3);
+}
+
+
+div.roster-container a {
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+
+div.roster-container a:hover   { color: darkred; }
+
+#link-result:link,
+#link-result:visited { color: #265C83; }
+#link-result:hover   { color: darkblue; font-weight: bold; cursor: pointer;}
+#link-result:active {
+    transition: color .3s;
+    color: #007BE6;
+}
+
+div.roster-names a:link,
+div.roster-names a:visited { color: #265C83; text-decoration: none; display: block;}
+div.roster-names a:hover   { color: darkblue; font-weight: bold; cursor: pointer;}
+div.roster-names a:active {
+    transition: color .3s;
+    color: #007BE6;
+}
+
+#group-actions > div.action-task-content > a.action-task-content-link {
+    background-color: darkred;
+}
+
+#group-actions > div.action-task-content > a.action-task-content-link:hover {
+    color: darkblue !important;
+}
+div#group-users,
+div.roster-names {
+    width: 100%;
+    min-width: 100%;
 }
