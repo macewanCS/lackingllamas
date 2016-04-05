@@ -10,9 +10,10 @@
 		<hr>
 		<div class="create-goal-inner">
 		{!! Form::open(['url'=>'businessplan']) !!}
-			{!! Form::hidden('id',$counted) !!}
+			
 			{!! Form::hidden('ident',0) !!}
 			{!! Form::hidden('idbp',$idbp) !!}
+			{!! Form::hidden('group',1) !!}
 			<div class="form-group-one">
 		<div class="form-group-one">
 			{!! Form::label('goal_id','Goal: ',['class' => 'edit-action-label']) !!}

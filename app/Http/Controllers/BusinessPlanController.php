@@ -363,7 +363,7 @@ class BusinessPlanController extends Controller
                     $redirectID = $input['bpid'];
                }
                if (Request::has('goal_id')) {
-                   $input['group'] += 1;
+                  
                   // return  $input['goal_id'];
                    $goals = DB::select("select * from goals where bpid = '".$input['idbp']."'");
                    $input['goal_id'] =$goals[$input['goal_id']]->id;
@@ -459,6 +459,9 @@ class BusinessPlanController extends Controller
    public function editBP($id)
    {
       $bp = BusinessPlan::findOrFail($id);
+      //$counted = BusinessPlan::all();
+    //$groups = Group::lists('name');
+     //$counted = count($counted)+1;
       return view('businessPlan.editBP',compact('bp'));
    }
    public function editGoal($idbp, $id)
@@ -526,18 +529,30 @@ class BusinessPlanController extends Controller
         $progress = ['0' => 'Not Started', '1' => 'In Progress', '2' => 'Done'];
       return view('businessPlan.editTask',compact('task','actions','groups','user','idbp','users','selectedUsers','selectedGroups','progress'));
    }
+      public function updateBP($idbp)
+   {
+        $input = Request::all();
+      $bp = BusinessPlan::findOrFail($idbp);
+        $bp->update($input);
+      
+        return redirect("businessplan/".$idbp."");
+    }
+
    public function update($idbp,$idb,$id)
    {
 
       $input = Request::all();
-      if(Request::has('created')){
+      if(Request::has('bp')){
+
       $bp = BusinessPlan::all();
+      
       $bp->update($input);
+      return redirect("businessplan/".$idbp."");
       }
       if (Request::has('goal')) {
 
         $goal = Goal::findOrFail($id);
-        $input['group'] += 1;    
+ 
         $goal->update($input);
       }
       if (Request::has('objective')) {
