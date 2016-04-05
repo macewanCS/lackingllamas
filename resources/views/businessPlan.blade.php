@@ -923,6 +923,7 @@
                 if (!check2Value) check2.click();
                 document.getElementById("budgetFrom").value = "";
                 document.getElementById("budgetTo").value = "";
+                grid.bootgrid("search", "");
             }
 
             function clearBoth () {
