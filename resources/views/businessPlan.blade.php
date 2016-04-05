@@ -65,7 +65,9 @@
                     <span class="caret"></span></button>
 
                     <ul style ="left:-20px;"class="dropdown-menu">
+                        @if($permission > 2)
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createbp">Create Business Plan</a></li>
+                        @endif
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/creategoal">Create Goal</a></li>
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createobjective">Create Objective</a></li>
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createaction">Create Action</a></li>
