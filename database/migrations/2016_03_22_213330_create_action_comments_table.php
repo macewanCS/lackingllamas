@@ -19,7 +19,6 @@ class CreateActionCommentsTable extends Migration
             $table->timestamps();
             $table->integer('user_ID')->unsigned();
             $table->integer('action_ID')->unsigned();
-
             $table->foreign('user_ID')->references('id')->on('users');
             $table->foreign('action_ID')->references('id')->on('actions')->onDelete('cascade');
         });

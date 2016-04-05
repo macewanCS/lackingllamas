@@ -65,7 +65,9 @@
                     <span class="caret"></span></button>
 
                     <ul style ="left:-20px;"class="dropdown-menu">
+                        @if($permission > 2)
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createbp">Create Business Plan</a></li>
+                        @endif
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/creategoal">Create Goal</a></li>
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createobjective">Create Objective</a></li>
                         <li value=1 selected="selected"><a href="/businessplan/{{$idbp}}/createaction">Create Action</a></li>
@@ -341,9 +343,6 @@
 
             var usersArray = $.parseJSON('{{json_encode($users, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
             var groupsArray = $.parseJSON('{{json_encode($groups, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
-
-            console.log(usersArray);
-            console.log(groupsArray);
 
             var maxGoals;
             var maxObj;
@@ -854,8 +853,9 @@
             }
 
             var hierCheckValue = true;
+            var hierCheck = null;
             function setupCheckBox () {
-                var hierCheck = document.getElementById("hierarchyCheckBox");
+                hierCheck = document.getElementById("hierarchyCheckBox");
                 hierCheck.addEventListener('click', function () {
                     hierCheckValue = !hierCheckValue;
                     if (hierCheckValue) {
@@ -1076,6 +1076,9 @@
                                         "</div>");
                 grid.bootgrid("setSubtree", "true");
                 setupCheckBox();
+                hierCheck.checked=false;
+                hierCheckValue = false;
+                grid.bootgrid("setSubtree", "false");
                 setTimeout(function() {
                     document.getElementById("tableDiv").style.visibility = 'visible';
                     document.getElementById("sideDiv").style.visibility = 'visible';
