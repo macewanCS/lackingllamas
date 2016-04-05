@@ -57,7 +57,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('businessplan/{idbp}/createobjective','BusinessPlanController@createObjective');
     Route::get('businessplan/{idbp}/createaction','BusinessPlanController@createAction');
     Route::get('businessplan/{idbp}/createtask','BusinessPlanController@createTask');
-    Route::post('businessplan/{idbp}','BusinessPlanController@store');
+    Route::post('businessplan','BusinessPlanController@store');
 
     Route::get('businessplan/{idbp}/edit','BusinessPlanController@editBP');
     Route::get('businessplan/{idbp}/Goal/{id}/edit','BusinessPlanController@editGoal');
@@ -71,6 +71,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::put('businessplan/{idbp}/{id}/{true}','BusinessPlanController@update');
     Route::patch('businessplan/{idbp}/{id}/{true}','BusinessPlanController@update');
 
+   
     Route::post('businessplan/{idbp}/Goal/{id}/delete', 'BusinessPlanController@deleteGoal');
     Route::post('businessplan/{idbp}/Objective/{id}/delete', 'BusinessPlanController@deleteObjective');
     Route::post('businessplan/{idbp}/Action/{id}/delete', 'BusinessPlanController@deleteAction');
