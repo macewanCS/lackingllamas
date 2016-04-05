@@ -130,11 +130,12 @@
             for (var i = 0; i < tasksArray.length; i++)
                 if (tasksArray[i].group == id)
                     taskContent+="<div class='action-task-content'> <a class='action-task-content-link' href=\"task/" + tasksArray[i].id + "\">" + tasksArray[i].description + "</a> </div>";
-
+            userContent += "<div class=\"roster-names\">";
             for (var j = 0; j < usersArray.length; j++)
                 for (var k = 0; k < rostersArray.length; k++)
                     if ((usersArray[j].id == rostersArray[k].user_ID) && (rostersArray[k].group_ID == id))
-                        userContent += "<a id='roster-link' href=\"businessplan/" + '{{$bpid}}' + "/user/" + String(j) + "\">" + usersArray[j].name + "</a>";
+                        userContent += "<a id=\"rosters-link\" href=\"/businessplan/" + {{$bpid}} + "/user/" + j + "\">" + usersArray[j].name + "</a>";
+            userContent += "</div>";
 
             userText.innerHTML = userContent;
             actionText.innerHTML = actionContent;
@@ -144,8 +145,6 @@
             budgetText.innerHTML = "Budget: $" + budget + "<br>";
             leadText.innerHTML = "Lead: " + lead;
             userText.innerHTML = userContent;
-            console.log(userContent);
-            console.log(userText.innerHTML);
         }
     </script>
 @stop

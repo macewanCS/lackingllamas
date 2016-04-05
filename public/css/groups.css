@@ -299,7 +299,7 @@ div.roster-container a:hover   { color: darkred; }
 }
 
 div.roster-names a:link,
-div.roster-names a:visited { color: #265C83; text-decoration: none;}
+div.roster-names a:visited { color: #265C83; text-decoration: none; display: block;}
 div.roster-names a:hover   { color: darkblue; font-weight: bold; cursor: pointer;}
 div.roster-names a:active {
     transition: color .3s;
@@ -312,4 +312,9 @@ div.roster-names a:active {
 
 #group-actions > div.action-task-content > a.action-task-content-link:hover {
     color: darkblue !important;
+}
+div#group-users,
+div.roster-names {
+    width: 100%;
+    min-width: 100%;
 }
