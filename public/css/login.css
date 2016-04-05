@@ -49,3 +49,17 @@
     background-color: rgb(255, 20, 64);
     border-color: rgb(180, 30, 90);
 }
+
+.LoginRegister-link a{
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+
+.LoginRegister-link a:link,
+.LoginRegister-link a:visited { color: #265C83; }
+.LoginRegister-link a:hover   { color: darkblue; }
+.LoginRegister-link a:active {
+    transition: color .3s;
+    color: #007BE6;
+}
