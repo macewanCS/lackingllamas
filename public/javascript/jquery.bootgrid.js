@@ -155,18 +155,19 @@
             var outerMatch = true;
             var searchMatch = false;
             var constraintsMatch = false;
-            if (Object.keys(that.searchParams).length > 0) {
-                for (var index = 0; index < that.columns.length; index++) {
+            if (Object.keys(that.searchParams).length > 0) { //if there are search parameters
+                for (var index = 0; index < that.columns.length; index++) { //check each column
                     innerMatch = false;
                     column = that.columns[index];
-                    if (column.searchable) {
-                        if (that.searchParams[index.toString()] != null) {
+                    if (column.searchable) { //only if the column is searchable
+                        if (that.searchParams[index.toString()] != null) { //if there is a search parameter on this column
                             var phraseNum;
-                            if (that.constraints[index.toString()] != null){
+                            if (that.constraints[index.toString()] != null){ //if there is a constraint on that column
                                 innerMatch = true;
                                 for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
                                     constraintsMatch = false;
-                                    if (that.constraints[index.toString()][phraseNum] == "greater") {
+                                    if (that.constraints[index.toString()][phraseNum] == "greater") { //if the constraint it "greater"
+                                        //if the things to be equated are numbers, they are cast to numbers before being checked
                                         if (!isNaN(Number(row[column.id])) && !isNaN(Number(that.searchParams[index.toString()][phraseNum]))) {
                                             if (Number(row[column.id]) >= Number(that.searchParams[index.toString()][phraseNum])) {
                                                 constraintsMatch = true;
@@ -189,11 +190,12 @@
                                                 constraintsMatch = true;
                                             }
                                         }
-                                    }
+                                    } //Check that all the search parameters for the column are true
                                     innerMatch = innerMatch && constraintsMatch;
                                 }
 
                             }
+                            //if there are no contraints on that column
                             else {
                                 for (phraseNum = that.searchParams[index.toString()].length - 1; phraseNum >= 0; phraseNum--) {
                                     searchPattern = new RegExp(that.searchParams[index.toString()][phraseNum], (that.options.caseSensitive) ? "g" : "gi");
@@ -203,6 +205,7 @@
                                     }
                                 }
                             }
+                            //Make sure all the searchParams are true
                             outerMatch = outerMatch && innerMatch;
                         }
                     }
@@ -220,6 +223,7 @@
                 }
             }
 
+            //Return whether the column searchParams matched and the search bar itself match
             return (outerMatch && searchMatch);
         }
 
@@ -954,10 +958,10 @@
         this.header = null;
         this.footer = null;
         this.xqr = null;
-        this.searchParams = {};
-        this.constraints = {};
-        this.subtree = false;
-        this.defaultSort = null;
+        this.searchParams = {}; //The array of search parameters
+        this.constraints = {}; //The array of column constraints
+        this.subtree = false; //Whether to display subtrees
+        this.defaultSort = null; //The modified default sort order
 
         // todo: implement cache
     };
@@ -1497,35 +1501,51 @@
         return this;
     };
 
-
+    /**
+     * Adds a search parameter to a given column.
+     *
+     * @method addParams
+     * @param [phrase] {String} The phrase to search for
+     * @param [columnNum] {String} The string representation of the columnNumber to search on
+     *
+     **/
     Grid.prototype.addParams = function (phrase, columnNum) {
-        if (this.searchParams.hasOwnProperty(columnNum.toString())) {
-            if (this.searchParams[columnNum.toString()].indexOf(phrase) < 0) {
-                this.searchParams[columnNum.toString()].push(phrase);
+        if (this.searchParams.hasOwnProperty(columnNum)) {
+            if (this.searchParams[columnNum].indexOf(phrase) < 0) {
+                this.searchParams[columnNum].push(phrase);
                 executeSearchByParams.call(this);
             }
         }
         else {
-            this.searchParams[columnNum.toString()] = new Array();
-            this.searchParams[columnNum.toString()].push(phrase);
+            this.searchParams[columnNum] = new Array();
+            this.searchParams[columnNum].push(phrase);
             executeSearchByParams.call(this);
         }
         return this;
     };
 
+
+    /**
+     * Removes a search parameter (or all search parameters if passed a null phrase) from a given column.
+     *
+     * @method removeParams
+     * @param [phrase] {String} The phrase to search for (or null to remove all)
+     * @param [columnNum] {String} The string representation of the columnNumber to remove from
+     *
+     **/
     Grid.prototype.removeParams = function (phrase, columnNum) {
-        if(this.searchParams.hasOwnProperty(columnNum.toString())){
+        if(this.searchParams.hasOwnProperty(columnNum)){
             if (phrase == null) {
-                 delete this.searchParams[columnNum.toString()];
+                 delete this.searchParams[columnNum];
             }
             else {
-                for (var dex = this.searchParams[columnNum.toString()].length - 1; dex >= 0; dex--){
-                    if (this.searchParams[columnNum.toString()][dex] == phrase){
-                        var tempIndex = this.searchParams[columnNum.toString()].indexOf(phrase);
+                for (var dex = this.searchParams[columnNum].length - 1; dex >= 0; dex--){
+                    if (this.searchParams[columnNum][dex] == phrase){
+                        var tempIndex = this.searchParams[columnNum].indexOf(phrase);
                         if(tempIndex < 0) break;
-                        this.searchParams[columnNum.toString()].splice(tempIndex, 1);
-                        if (this.searchParams[columnNum.toString()].length == 0) {
-                            delete this.searchParams[columnNum.toString()];
+                        this.searchParams[columnNum].splice(tempIndex, 1);
+                        if (this.searchParams[columnNum].length == 0) {
+                            delete this.searchParams[columnNum];
                         }
                         break;
                     }
@@ -1537,37 +1557,62 @@
         return this;
     };
 
+
+    /**
+     * Adds a search constraint to a given column. Currently, only greater, or anything are represented.
+     * IE. "Greater" is >= and "Anything else" is <=. If you need exactly equals simply add both constraints
+     *
+     * @method addConstraint
+     * @param [constraint] {String} The type of constraint ("greater" or any other string)
+     * @param [columnNum] {String} The string representation of the columnNumber to apply the constraint
+     *
+     **/
     Grid.prototype.addConstraint = function (constraint, columnNum) {
         if (constraint != null){
-            if (this.constraints.hasOwnProperty(columnNum.toString())){
-                if (this.constraints[columnNum.toString()].indexOf(constraint) < 0){
-                    this.constraints[columnNum.toString()].push(constraint);
+            if (this.constraints.hasOwnProperty(columnNum)){
+                if (this.constraints[columnNum].indexOf(constraint) < 0){
+                    this.constraints[columnNum].push(constraint);
                     executeSearchByParams.call(this);
                 }
             }
             else {
-                this.constraints[columnNum.toString()] = new Array();
-                this.constraints[columnNum.toString()].push(constraint);
+                this.constraints[columnNum] = new Array();
+                this.constraints[columnNum].push(constraint);
                 executeSearchByParams.call(this);
             }
         }
         else {
-            delete this.constraints[columnNum.toString()];
+            delete this.constraints[columnNum];
         }
 
         return this;
     };
 
+
+    /**
+     * Prints the parameter array. Usefull when debugging.
+     *
+     * @method getParams
+     *
+     *
+     **/
     Grid.prototype.getParams = function () {
         for(var i = 0; i < 12; i++){
-            if(!(this.searchParams[i.toString()] == null)){
-                console.log(this.searchParams[i.toString()] + " at " + i);
+            if(!(this.searchParams[i] == null)){
+                console.log(this.searchParams[i] + " at " + i);
             }
         }
 
         return this;
     };
 
+
+    /**
+     * Removes all parameters from all columns
+     *
+     * @method clearParams
+     *
+     **/
     Grid.prototype.clearParams = function () {
         this.searchParams = {};
         executeSearchByParams.call(this);
@@ -1575,6 +1620,13 @@
     };
 
 
+    /**
+     * Grabs a row of data, given the rows identifier
+     *
+     * @method getRowData
+     * @param [rowId] {String} The rows identifier
+     *
+     **/
     Grid.prototype.getRowData = function (rowId) {
         for(var i = this.currentRows.length - 1; i >= 0; i--){
             if (this.currentRows[i][this.identifier] == rowId){
@@ -1583,28 +1635,31 @@
         }
     };
 
-    Grid.prototype.getCurrentRowsData = function () {
-        var currentData = [];
-        for (var j = 0; j < this.currentRows.length; j++){
-            var row = this.currentRows[j];
-            currentData.push({
-               "Description" :  row["desc"],
-                "Lead" : row["user"],
-                "Group" : row["group"],
-                "Collaborators" : row["collabs"],
-                "Budget" : row["budget"],
-                "Success" : row["successM"],
-                "Due" : row["date"]
-            });
-        }
-        return currentData;
-    };
-
+    /**
+     * Sets the defualt sorting of the table to a new function
+     *
+     * @method setSort
+     * @param [sortFunction] {function} A function to be called on the elements during the default sort
+     *                                  The funciton should recieve two rows and return -1, 0, 1 depending
+     *                                  on the given rows.
+     *
+     **/
     Grid.prototype.setSort = function (sortFunction) {
       this.defaultSort = sortFunction;
         return this;
     };
 
+
+    /**
+     * Sort the rows by a given function just once
+     *
+     * @method sortRows
+     * @param [sortFunction] {function} A function to be called on the elements during the default sort
+     *                                  The funciton should recieve two rows and return -1, 0, 1 depending
+     *                                  on the given rows.
+     *
+     *
+     **/
     Grid.prototype.sortRows = function (){
         if (this.defaultSort == null) return this;
         this.rows.sort(this.defaultSort);
@@ -1613,6 +1668,15 @@
         return this;
     };
 
+
+    /**
+     * Set subtree capability flag to the table
+     *
+     * @method setSubtree
+     * @param [bool] {String} A string representation of a boolean value. "true" is considered true,
+     *                          all other strings are considered false.
+     *
+     **/
     Grid.prototype.setSubtree = function (bool) {
         if (bool == "true") {
             this.subtree = true;
@@ -1624,6 +1688,23 @@
         return this;
     };
 
+    //This is bad...! Put in to cram exporting in before the final demo
+    Grid.prototype.getCurrentRowsData = function () {
+        var currentData = [];
+        for (var j = 0; j < this.currentRows.length; j++){
+            var row = this.currentRows[j];
+            currentData.push({
+                "Description" :  row["desc"],
+                "Lead" : row["user"],
+                "Group" : row["group"],
+                "Collaborators" : row["collabs"],
+                "Budget" : row["budget"],
+                "Success" : row["successM"],
+                "Due" : row["date"]
+            });
+        }
+        return currentData;
+    };
 
     /**
      * Selects rows by ids. Selects all visible rows if no ids are provided.

@@ -20,11 +20,11 @@
             {{ $nameBP}}
         </h1>
 
-                    @if ($permission > 2)
-                    <a class="editBP" href="{{ url('/businessplan',$idbp) }}/edit">
-                        {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
-                    </a>
-                    @endif
+            @if ($permission > 2)
+            <a class="editBP" href="{{ url('/businessplan',$idbp) }}/edit">
+                {{ HTML::image('pictures/pen.png', 'picture', ['class'=>'edit-image']) }}
+            </a>
+            @endif
 
             <div class="exporting">
                 <div class="exportMenu dropDown" style="position:relative">
@@ -79,6 +79,7 @@
                 @endif
                 <hr>
 
+                    <!-- Div that contains all the filtering elements -->
                 <div class="filtering">
                     <label id="filtering">Filter</label>
                     <div class="filterMenu dropDown" style="position:relative">
@@ -183,6 +184,8 @@
 
             </div>
 
+
+            <!-- The following pours all the neccesary info from the data into the html table to be parsed by the js -->
             <div class="tableDiv" id="tableDiv">
                 <table id="grid-basic"  class="table table-condensed table-hover bootgrid-table">
                     <thead>
@@ -344,6 +347,9 @@
             var usersArray = $.parseJSON('{{json_encode($users, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
             var groupsArray = $.parseJSON('{{json_encode($groups, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP)}}'.replace(/&quot;/g, '\u0022'));
 
+
+
+            //Bootgrid iniitalization
             var maxGoals;
             var maxObj;
             var maxActions;
@@ -362,7 +368,7 @@
                             6: "nbpAction",
                             7: "nbpTask"
                         },
-                        formatters: {
+                        formatters: { //control what appears in the table cells
                             colorizer: function (column, row) {
                                 if (column.id == "progress") {
                                     var prog = row.progress;
@@ -395,7 +401,7 @@
                                     return "<div>" + row[column.id] + "</div>";
                                 }
                             },
-                            "commands": function (column, row) {
+                            "commands": function (column, row) { //formatter for the utilities column
                                 var returnString = "<div class=\"commandButtons\">";
                                 if (row["type"] == "Action" || row["type"] == "Task") {
                                     returnString += "<button type=\"button\" class=\"btn btn-xs btn-default command-note\" data-row-id=\"" + row.ident + "\"><span class=\"fa fa-sticky-note-o\"></span></button> ";
@@ -433,7 +439,7 @@
                                 }
                                 return returnString;
                             },
-                            links: function (column, row) {
+                            links: function (column, row) { //Formatter for the leads and groups to provide links
                                 if (row["type"] == "Action" || row["type"] == "Task") {
                                     if (column.id == "user") {
                                         for (var i = 0; i < usersArray.length; i++) {
@@ -478,7 +484,7 @@
                         }
                     }).on("loaded.rs.jquery.bootgrid", function() {
                 /* Executes after data is loaded and rendered */
-                grid.find(".command-edit").on("click", function(e)
+                grid.find(".command-edit").on("click", function(e) //basically, find the command buttons and add their functionality
                 {
                     var row = grid.bootgrid("getRowData", $(this).data("row-id"));
                     window.location.assign("/businessplan/{{$idbp}}/"+ row.type +"/"+ row.id + "/edit");
@@ -504,6 +510,7 @@
             });
 
 
+            //The Business plan selector
             var bpSelector = $("#bpSelect").multiselect({
                 height: "auto",
                 noneSelectedText: "Choose Element",
@@ -511,14 +518,16 @@
                 header: "Choose element(s)",
                 click: function (event, ui) {
                     if (ui.checked){
-                        grid.bootgrid("addParams", ui.value, 2);
+                        grid.bootgrid("addParams", ui.value, "2");
                     }
                     else {
-                        grid.bootgrid("removeParams", ui.value, 2);
+                        grid.bootgrid("removeParams", ui.value, "2");
                     }
                 }
             });
 
+
+            //Provides the ability to cascade deletes to the sub elements
             function cascadeDeletes (ident) {
                 ident = String(ident);
                 var depth = 3 - (ident.split(".").length - 1);
@@ -553,6 +562,8 @@
                 }
             }
 
+
+            //Element selector
             var goatSelector = $("#GOAT").multiselect({
                 height: "auto",
                 noneSelectedText: "Choose Element",
@@ -560,23 +571,25 @@
                 header: "Choose element(s)",
                 click: function (event, ui) {
                     if (ui.checked){
-                        grid.bootgrid("addParams", ui.value, 3);
+                        grid.bootgrid("addParams", ui.value, "3");
                     }
                     else {
-                        grid.bootgrid("removeParams", ui.value, 3);
+                        grid.bootgrid("removeParams", ui.value, "3");
                     }
                 },
                 checkAll: function () {
-                    grid.bootgrid("addParams", "Goal", 3);
-                    grid.bootgrid("addParams", "Objective", 3);
-                    grid.bootgrid("addParams", "Action", 3);
-                    grid.bootgrid("addParams", "Task", 3);
+                    grid.bootgrid("addParams", "Goal", "3");
+                    grid.bootgrid("addParams", "Objective", "3");
+                    grid.bootgrid("addParams", "Action", "3");
+                    grid.bootgrid("addParams", "Task", "3");
                 },
                 uncheckAll: function () {
-                    grid.bootgrid("removeParams", undefined, 3);
+                    grid.bootgrid("removeParams", undefined, "3");
                 }
             });
 
+
+            //Collaborator multiselector
             var collabMaxCount;
             var collabSelector = $("#collab").multiselect({
                 selectedList: 0,
@@ -588,27 +601,27 @@
                 },
                 click: function (event, ui) {
                     if (ui.checked){
-                        grid.bootgrid("addParams", ui.value, 8);
+                        grid.bootgrid("addParams", ui.value, "8");
                         if (collabSelector.multiselect("getChecked").length == collabMaxCount){
-                            grid.bootgrid("addParams", "", 8);
+                            grid.bootgrid("addParams", "", "8");
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", "", 8);
-                        grid.bootgrid("removeParams", ui.value, 8);
+                        grid.bootgrid("removeParams", "", "8");
+                        grid.bootgrid("removeParams", ui.value, "8");
                     }
                 },
                 checkAll: function () {
                         @foreach($users as $user)
-                            grid.bootgrid("addParams", "{{$user->name}}", 8);
+                            grid.bootgrid("addParams", "{{$user->name}}", "8");
                         @endforeach
                         @foreach($groups as $group)
-                            grid.bootgrid("addParams", "{{$group->name}}", 8);
+                            grid.bootgrid("addParams", "{{$group->name}}", "8");
                         @endforeach
-                            grid.bootgrid("addParams", "", 8);
+                            grid.bootgrid("addParams", "", "8");
                 },
                 uncheckAll: function () {
-                        grid.bootgrid("removeParams", undefined, 8);
+                        grid.bootgrid("removeParams", undefined, "8");
                 },
                 optgrouptoggle: function (event, ui) {
                     var values = $.map(ui.inputs, function (checkbox){
@@ -617,21 +630,21 @@
                     if (ui.checked) {
                         for (var value in values) {
                             if ((typeof values[value]) == "string") {
-                                grid.bootgrid("addParams", values[value], 8);
+                                grid.bootgrid("addParams", values[value], "8");
                             }
                         }
                         if (collabSelector.multiselect("getChecked").length == collabMaxCount) {
-                            grid.bootgrid("addParams", "", 8);
+                            grid.bootgrid("addParams", "", "8");
                         }
                     }
                     else {
                         if (collabSelector.multiselect("getChecked").length == 0) {
-                            grid.bootgrid("removeParams", undefined, 8);
+                            grid.bootgrid("removeParams", undefined, "8");
                         }
                         else {
                             for (var value in values) {
                                 if ((typeof values[value]) == "string") {
-                                    grid.bootgrid("removeParams", values[value], 8);
+                                    grid.bootgrid("removeParams", values[value], "8");
                                 }
                             }
                         }
@@ -639,6 +652,8 @@
                 }
             }).multiselectfilter();
 
+
+            //Lead multiselector
             var leadMaxCount;
             var leadSelector = $("#lead").multiselect({
                 selectedList: 0,
@@ -650,27 +665,28 @@
                 },
                 click: function (event, ui) {
                     if (ui.checked) {
-                        grid.bootgrid("addParams", ui.value, 6);
+                        grid.bootgrid("addParams", ui.value, "6");
                         if (leadSelector.multiselect("getChecked").length == leadMaxCount){
-                            grid.bootgrid("addParams", "", 6);
+                            grid.bootgrid("addParams", "", "6");
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", "", 6);
-                        grid.bootgrid("removeParams", ui.value, 6);
+                        grid.bootgrid("removeParams", "", "6");
+                        grid.bootgrid("removeParams", ui.value, "6");
                     }
                 },
                 checkAll: function () {
                     @foreach($users as $user)
-                        grid.bootgrid("addParams", "{{$user->name}}", 6);
+                        grid.bootgrid("addParams", "{{$user->name}}", "6");
                     @endforeach
-                    grid.bootgrid("addParams", "", 6);
+                    grid.bootgrid("addParams", "", "6");
                 },
                 uncheckAll: function () {
-                    grid.bootgrid("removeParams", undefined, 6);
+                    grid.bootgrid("removeParams", undefined, "6");
                 }
             }).multiselectfilter();
 
+            //Group multiselector
             var groupMaxCount;
             var groupSelector = $("#group").multiselect({
                 selectedList: 0,
@@ -682,27 +698,30 @@
                 },
                 click: function (event, ui) {
                     if (ui.checked) {
-                        grid.bootgrid("addParams", ui.value, 7);
+                        grid.bootgrid("addParams", ui.value, "7");
                         if (groupSelector.multiselect("getChecked").length == groupMaxCount){
-                            grid.bootgrid("addParams", "", 7);
+                            grid.bootgrid("addParams", "", "7");
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", "", 7);
-                        grid.bootgrid("removeParams", ui.value, 7);
+                        grid.bootgrid("removeParams", "", "7");
+                        grid.bootgrid("removeParams", ui.value, "7");
                     }
                 },
                 checkAll: function () {
                     @foreach($groups as $group)
-                        grid.bootgrid("addParams", "{{$group->name}}", 7);
+                        grid.bootgrid("addParams", "{{$group->name}}", "7");
                     @endforeach
-                    grid.bootgrid("addParams", "", 7);
+                    grid.bootgrid("addParams", "", "7");
                 },
                 uncheckAll: function () {
-                    grid.bootgrid("removeParams", undefined, 7);
+                    grid.bootgrid("removeParams", undefined, "7");
 
                 }
             }).multiselectfilter();
+
+
+            //Progress multiselector
             var progressMaxCount = 3;
             var progressSelector = $("#progress").multiselect({
                 selectedList: 0,
@@ -714,49 +733,50 @@
                 },
                 click: function (event, ui) {
                     if (ui.checked) {
-                        grid.bootgrid("addParams", ui.value, 15);
+                        grid.bootgrid("addParams", ui.value, "15");
                         if (progressSelector.multiselect("getChecked").length == progressMaxCount){
-                            grid.bootgrid("addParams", "", 15);
+                            grid.bootgrid("addParams", "", "15");
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", "", 15);
-                        grid.bootgrid("removeParams", ui.value, 15);
+                        grid.bootgrid("removeParams", "", "15");
+                        grid.bootgrid("removeParams", ui.value, "15");
                     }
                 },
                 checkAll: function () {
-                    grid.bootgrid("addParams", "0", 15);
-                    grid.bootgrid("addParams", "1", 15);
-                    grid.bootgrid("addParams", "2", 15);
-                    grid.bootgrid("addParams", "", 15);
+                    grid.bootgrid("addParams", "0", "15");
+                    grid.bootgrid("addParams", "1", "15");
+                    grid.bootgrid("addParams", "2", "15");
+                    grid.bootgrid("addParams", "", "15");
                 },
                 uncheckAll: function () {
-                    grid.bootgrid("removeParams", undefined, 15);
+                    grid.bootgrid("removeParams", undefined, "15");
                 }
             });
 
 
+            //Date pickers
             function setupDate1 () {
                 date1 = $("#datePicker").datepicker({
                     dateFormat: "yy-mm-dd",
                     showButtonPanel: true,
                     onClose: function (dateText, inst) {
                         if (dateText != "") {
-                            grid.bootgrid("removeParams", undefined, 11);
-                            grid.bootgrid("addConstraint", undefined, 11);
-                            grid.bootgrid("addParams", dateText, 11);
-                            grid.bootgrid("addConstraint", "greater", 11);
+                            grid.bootgrid("removeParams", undefined, "11");
+                            grid.bootgrid("addConstraint", undefined, "11");
+                            grid.bootgrid("addParams", dateText, "11");
+                            grid.bootgrid("addConstraint", "greater", "11");
                             if (document.getElementById("datePicker2").value != "") {
-                                grid.bootgrid("addParams", document.getElementById("datePicker2").value, 11);
-                                grid.bootgrid("addConstraint", "lesser", 11);
+                                grid.bootgrid("addParams", document.getElementById("datePicker2").value, "11");
+                                grid.bootgrid("addConstraint", "lesser", "11");
                             }
                         }
                         else {
-                            grid.bootgrid("removeParams", undefined, 11);
-                            grid.bootgrid("addConstraint", undefined, 11);
+                            grid.bootgrid("removeParams", undefined, "11");
+                            grid.bootgrid("addConstraint", undefined, "11");
                             if (document.getElementById("datePicker2").value != "") {
-                                grid.bootgrid("addParams", document.getElementById("datePicker2").value, 11);
-                                grid.bootgrid("addConstraint", "lesser", 11);
+                                grid.bootgrid("addParams", document.getElementById("datePicker2").value, "11");
+                                grid.bootgrid("addConstraint", "lesser", "11");
                             }
                         }
                     }
@@ -769,26 +789,28 @@
                     showButtonPanel: true,
                     onClose: function (dateText, inst) {
                         if (dateText != "") {
-                            grid.bootgrid("removeParams", undefined, 11);
-                            grid.bootgrid("addConstraint", undefined, 11);
-                            grid.bootgrid("addParams", dateText, 11);
-                            grid.bootgrid("addConstraint", "lesser", 11);
+                            grid.bootgrid("removeParams", undefined, "11");
+                            grid.bootgrid("addConstraint", undefined, "11");
+                            grid.bootgrid("addParams", dateText, "11");
+                            grid.bootgrid("addConstraint", "lesser", "11");
                             if (document.getElementById("datePicker").value != "") {
-                                grid.bootgrid("addParams", document.getElementById("datePicker").value, 11);
-                                grid.bootgrid("addConstraint", "greater", 11);
+                                grid.bootgrid("addParams", document.getElementById("datePicker").value, "11");
+                                grid.bootgrid("addConstraint", "greater", "11");
                             }
                         }
                         else {
-                            grid.bootgrid("removeParams", undefined, 11);
-                            grid.bootgrid("addConstraint", undefined, 11);
+                            grid.bootgrid("removeParams", undefined, "11");
+                            grid.bootgrid("addConstraint", undefined, "11");
                             if (document.getElementById("datePicker").value != "") {
-                                grid.bootgrid("addParams", document.getElementById("datePicker").value, 11);
-                                grid.bootgrid("addConstraint", "greater", 11);
+                                grid.bootgrid("addParams", document.getElementById("datePicker").value, "11");
+                                grid.bootgrid("addConstraint", "greater", "11");
                             }
                         }
                     }
                 });
             }
+
+            //Budeget fields
             var oldFromText = "";
             var budgetFrom = $("#budgetFrom").on("change keyup paste", function (){
                 var currentFromText = $(this).val();
@@ -798,21 +820,21 @@
                 else {
                         oldFromText = currentFromText;
                         if (currentFromText != ""){
-                            grid.bootgrid("removeParams", undefined, 9);
-                            grid.bootgrid("addConstraint", undefined, 9);
-                            grid.bootgrid("addParams", currentFromText, 9);
-                            grid.bootgrid("addConstraint", "greater", 9);
+                            grid.bootgrid("removeParams", undefined, "9");
+                            grid.bootgrid("addConstraint", undefined, "9");
+                            grid.bootgrid("addParams", currentFromText, "9");
+                            grid.bootgrid("addConstraint", "greater", "9");
                             if (budgetTo.val() != ""){
-                                grid.bootgrid("addParams", budgetTo.val(), 9);
-                                grid.bootgrid("addConstraint", "lesser", 9);
+                                grid.bootgrid("addParams", budgetTo.val(), "9");
+                                grid.bootgrid("addConstraint", "lesser", "9");
                             }
                         }
                         else {
-                            grid.bootgrid("removeParams", undefined, 9);
-                            grid.bootgrid("addConstraint", undefined, 9);
+                            grid.bootgrid("removeParams", undefined, "9");
+                            grid.bootgrid("addConstraint", undefined, "9");
                             if (budgetTo.val() != ""){
-                                grid.bootgrid("addParams", budgetTo.val(), 9);
-                                grid.bootgrid("addConstraint", "lesser", 9);
+                                grid.bootgrid("addParams", budgetTo.val(), "9");
+                                grid.bootgrid("addConstraint", "lesser", "9");
                             }
                         }
                 }
@@ -827,21 +849,21 @@
                 else {
                     oldToText = currentToText;
                     if (currentToText != ""){
-                        grid.bootgrid("removeParams", undefined, 9);
-                        grid.bootgrid("addConstraint", undefined, 9);
-                        grid.bootgrid("addParams", currentToText, 9);
-                        grid.bootgrid("addConstraint", "lesser", 9);
+                        grid.bootgrid("removeParams", undefined, "9");
+                        grid.bootgrid("addConstraint", undefined, "9");
+                        grid.bootgrid("addParams", currentToText, "9");
+                        grid.bootgrid("addConstraint", "lesser", "9");
                         if (budgetFrom.val() != ""){
-                            grid.bootgrid("addParams", budgetFrom.val(), 9);
-                            grid.bootgrid("addConstraint", "greater", 9);
+                            grid.bootgrid("addParams", budgetFrom.val(), "9");
+                            grid.bootgrid("addConstraint", "greater", "9");
                         }
                     }
                     else {
-                        grid.bootgrid("removeParams", undefined, 9);
-                        grid.bootgrid("addConstraint", undefined, 9);
+                        grid.bootgrid("removeParams", undefined, "9");
+                        grid.bootgrid("addConstraint", undefined, "9");
                         if (budgetFrom.val() != ""){
-                            grid.bootgrid("addParams", budgetFrom.val(), 9);
-                            grid.bootgrid("addConstraint", "greater", 9);
+                            grid.bootgrid("addParams", budgetFrom.val(), "9");
+                            grid.bootgrid("addConstraint", "greater", "9");
                         }
                     }
                 }
@@ -852,6 +874,8 @@
                 grid.bootgrid("sortRows");
             }
 
+
+            //Checkbox to control the sub tree elements showing
             var hierCheckValue = true;
             var hierCheck = null;
             function setupCheckBox () {
@@ -867,18 +891,20 @@
                 });
             }
 
+
+            //BP vs NonBP checkBoxes
             var check1Value = true;
             var check1 = document.getElementById("check1");
             check1.addEventListener('click', function () {
                 check1Value = !check1Value;
                 if (check1Value) {
-                    grid.bootgrid("addParams", "1", 14);
+                    grid.bootgrid("addParams", "1", "14");
                 }
                 else {
                     if (!check2Value) {
                         check2.click();
                     }
-                    grid.bootgrid("removeParams", "1", 14);
+                    grid.bootgrid("removeParams", "1", "14");
                 }
             });
 
@@ -887,13 +913,13 @@
             check2.addEventListener('click', function () {
                 check2Value = !check2Value;
                 if (check2Value) {
-                    grid.bootgrid("addParams", "0", 14);
+                    grid.bootgrid("addParams", "0", "14");
                 }
                 else {
                     if (!check1Value) {
                         check1.click();
                     }
-                    grid.bootgrid("removeParams", "0", 14);
+                    grid.bootgrid("removeParams", "0", "14");
                 }
             });
 
@@ -931,6 +957,8 @@
                 sortAlpha();
             }
 
+
+            //Goes through the filters array and applies any filters given
             function setFilters () {
                 clearBoth();
                 @if($filters["type"] != null)
@@ -1019,6 +1047,8 @@
             }
 
 
+            //Sets up the page once the html itself is loaded. Sets all the filtering
+            //and then reveals the page.
             $(document).ready(function () {
                 goatSelector.multiselect("uncheckAll");
                 collabMaxCount = collabSelector.multiselect("getChecked").length;
@@ -1030,14 +1060,14 @@
                 progressSelector.multiselect("uncheckAll");
                 setupDate1();
                 setupDate2();
-                grid.bootgrid("addParams", "1", 14);
-                grid.bootgrid("addParams", "0", 14);
+                grid.bootgrid("addParams", "1", "14");
+                grid.bootgrid("addParams", "0", "14");
                 var rowCount = grid.bootgrid("getTotalRowCount");
                 maxGoals = Math.ceil(rowCount * 0.15);
                 maxObj = Math.ceil(rowCount * 0.35);
                 maxActions = Math.ceil(rowCount * 0.65);
                 maxTasks = Math.ceil(rowCount * 0.75);
-                grid.bootgrid("setSort", function (a, b){
+                grid.bootgrid("setSort", function (a, b){ //Sets the default filter to alphabetical
                     if (a.secondaryIdent >= b.secondaryIdent) {
                         return 1;
                     }
@@ -1046,35 +1076,40 @@
                     }
                 });
                 sortAlpha();
-                $(".actionBar").append("<div id=\"legend\">" +
-                                            "<div id=\"goalLabelDiv\"><label id=\"goalLabel\">Goal</label></div>" +
-                                            "<div id=\"goalLegend\">&nbsp;</div>" +
 
-                                            "<div id=\"objectiveLabelDiv\"><label id=\"objectiveLabel\">Obj.</label></div>" +
-                                            "<div id=\"objectiveLegend\">&nbsp;</div>" +
+                ///Insert the legend onto the top of the table
+                $(".actionBar").append(
+                    "<div id=\"legend\">" +
+                    "<div id=\"goalLabelDiv\"><label id=\"goalLabel\">Goal</label></div>" +
+                    "<div id=\"goalLegend\">&nbsp;</div>" +
 
-                                            "<div id=\"actionLabelDiv\"><label id=\"actionLabel\">Action</label></div>" +
-                                            "<div id=\"actionLegend\">&nbsp;</div>" +
+                    "<div id=\"objectiveLabelDiv\"><label id=\"objectiveLabel\">Obj.</label></div>" +
+                    "<div id=\"objectiveLegend\">&nbsp;</div>" +
 
-                                            "<div id=\"taskLabelDiv\"><label id=\"taskLabel\">Task</label></div>" +
-                                            "<div id=\"taskLegend\">&nbsp;</div>" +
+                    "<div id=\"actionLabelDiv\"><label id=\"actionLabel\">Action</label></div>" +
+                    "<div id=\"actionLegend\">&nbsp;</div>" +
 
-                                            "<div id=\"verticalRule\"></div>" +
+                    "<div id=\"taskLabelDiv\"><label id=\"taskLabel\">Task</label></div>" +
+                    "<div id=\"taskLegend\">&nbsp;</div>" +
 
-                                            "<div id=\"bpLabelDiv\"><label id=\"bpLabel\">BP</label></div>" +
-                                            "<div id=\"nonbpLabelDiv\"><label id=\"nonbpLabel\">NonBP</label></div>" +
+                    "<div id=\"verticalRule\"></div>" +
 
-                                            "<div id=\"verticalRule\"></div>" +
+                    "<div id=\"bpLabelDiv\"><label id=\"bpLabel\">BP</label></div>" +
+                    "<div id=\"nonbpLabelDiv\"><label id=\"nonbpLabel\">NonBP</label></div>" +
 
-                                            "<div id=\"progressLegendLabel\"><label>In Progress</label></div>" +
-                                            "<div id=\"progressLegendIcon\"><span class=\"fa fa-hourglass-1\"></span></div>" +
+                    "<div id=\"verticalRule\"></div>" +
 
-                                            "<div id=\"doneLegendLabel\"><label>Completed</label></div>" +
-                                            "<div id=\"doneLegendIcon\"><span class=\"fa fa-check\"></span></div>" +
+                    "<div id=\"progressLegendLabel\"><label>In Progress</label></div>" +
+                    "<div id=\"progressLegendIcon\"><span class=\"fa fa-hourglass-1\"></span></div>" +
 
-                                            "<div id=\"hierCheck\"><input type=\"checkbox\" id=\"hierarchyCheckBox\" name=\"hierarchyCheckBox\" checked></div>" +
-                                            "<div id=\"hierLabel\"><label>Show sub-elements</label></div>" +
-                                        "</div>");
+                    "<div id=\"doneLegendLabel\"><label>Completed</label></div>" +
+                    "<div id=\"doneLegendIcon\"><span class=\"fa fa-check\"></span></div>" +
+
+                    "<div id=\"hierCheck\"><input type=\"checkbox\" id=\"hierarchyCheckBox\" name=\"hierarchyCheckBox\" checked></div>" +
+                    "<div id=\"hierLabel\"><label>Show sub-elements</label></div>" +
+
+                    "</div>");
+
                 grid.bootgrid("setSubtree", "true");
                 setupCheckBox();
                 hierCheck.checked=false;
@@ -1083,18 +1118,17 @@
                 @if($filters != null)
                     setFilters();
                 @endif
+
+                //show everything and fade out the loading grapic
                 setTimeout(function() {
                     document.getElementById("tableDiv").style.visibility = 'visible';
                     document.getElementById("sideDiv").style.visibility = 'visible';
-                    //document.styleSheets[1].insertRule('.dropdown {float: right;}', document.styleSheets[1].length);
-                    //document.styleSheets[1].insertRule('.btn btn-primary dropdown-toggle {display:inline-block;}', document.styleSheets[1].length);
                     document.getElementById("bp-selector-button").style.float= 'right';
                     document.getElementById("bp-selector-button").style.visibility= 'visible';
                     $(".pageLoad").fadeOut(1500);
                 }, 3000);
             });
-        </script>
-        <script>
+
             function myFunction() {
                 document.getElementById("myDropdown").classList.toggle("show");
             }
