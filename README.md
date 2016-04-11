@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a installation guide for a web based business plan manager.Depending on role, users can create, read, update and delete various elements of a business plan. This software was created using the Laravel PHP Framework. More information can be found here: https://github.com/laravel/framework
+This is a installation guide for a web based business plan manager. Depending on role, users can create, read, update and delete various elements of a business plan. This software was created using the Laravel PHP Framework. More information can be found here: https://github.com/laravel/framework
 
 ## Requirements
 
