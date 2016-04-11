@@ -48,4 +48,4 @@ Go to localhost:8000 in any web browser to view the website. To login, you can u
 
 ## License
 
-This software was created using the Laravel PHP Framework which is under the [MIT License](https://opensource.org/licenses/MIT).
+This software is licensed under the [MIT License](https://opensource.org/licenses/MIT).
